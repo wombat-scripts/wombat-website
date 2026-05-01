@@ -1,0 +1,58 @@
+# Netlify configuration for wombatloans.com.au
+#
+# Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  publish = "public"
+  command = ""
+
+# ─────────────────────────────────────────────────────────────────────
+# REDIRECTS
+# ─────────────────────────────────────────────────────────────────────
+#
+# When the old wombathomeloans.com.au domain is pointed at Netlify too,
+# every request to it gets 301'd to the equivalent path on wombatloans.com.au.
+# This preserves SEO authority from the old domain.
+
+[[redirects]]
+  from = "https://wombathomeloans.com.au/*"
+  to = "https://wombatloans.com.au/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.wombathomeloans.com.au/*"
+  to = "https://wombatloans.com.au/:splat"
+  status = 301
+  force = true
+
+# Force www → root (or root → www, pick one and stick with it)
+[[redirects]]
+  from = "https://www.wombatloans.com.au/*"
+  to = "https://wombatloans.com.au/:splat"
+  status = 301
+  force = true
+
+# ─────────────────────────────────────────────────────────────────────
+# HEADERS — security and performance
+# ─────────────────────────────────────────────────────────────────────
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Cache images aggressively — they don't change often
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Don't cache HTML — we want changes to go live immediately
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
