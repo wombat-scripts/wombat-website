@@ -8,28 +8,29 @@ This is a self-contained context document. Drop this into the start of any new C
 
 ## Who I am
 
-Tom Carr. Mortgage broker based in Beecroft, Sydney. I run Wombat Home Loans (founded June 2024). I came to broking after 20+ years in senior data and analytics roles at Citi, UBS and RBS in London, then Commonwealth Bank in Sydney. I'm originally from the UK and have lived in Sydney for around 15 years.
+Tom Carr. Mortgage broker based in Sydney. I run Wombat Home Loans (founded June 2024). I came to broking after 20+ years in senior data and analytics roles at Citi, UBS and RBS in London, then Commonwealth Bank in Sydney. I'm originally from the UK and have lived in here for 15+ years.
 
-My niche is expats, international professionals, and people with complex finance situations (cross-border, foreign income, complex residency, self-employed). I also work with first-home buyers and investors. I'm Australia-wide via Zoom but Sydney is the centre of gravity.
+My niche is expats, international professionals, and people with complex finance situations (cross-border, foreign income, complex residency). I also work with first-home buyers and investors. I'm Australia-wide online but Sydney is the centre of gravity.
 
-The brand "Wombat" comes from the Beecroft Wombats — the kids' soccer team I coach.
+The brand "Wombat" comes from the Beecroft Wombats — a local kids soccer team I used to coach.
 
 ## What I'm working on
 
-I'm rebuilding my website ahead of starting paid marketing. Switching from `wombathomeloans.com.au` (old) to `wombatloans.com.au` (new). Considering also using `tomcarr.com.au` as a personal-brand URL alongside the Wombat URL — strategy decided, not yet executed.
+I'm rebuilding my website ahead of starting paid marketing. Upgrading from an old whitelisted version from my mortgage mentor. The domain will remain the same - `wombathomeloans.com.au`. Some testing has been done on `wombatloans.com.au`, but will not be the main public facing page. Considering also using `tomcarr.com.au` as a personal-brand URL alongside the Wombat URL — strategy decided, not yet executed.
 
 ## Key URLs and assets
 
-- Live site: https://wombatloans.com.au/
-- Old site (deprecating): https://wombathomeloans.com.au/
+- Live site: https://wombathomeloans.com.au/
+- Alternative site (has been used for development ideas): https://wombatloans.com.au/
+- Personal site (to be a near replica of wombathomeloans with some extras): https://tomcarr.com.au/ 
 - Calendly: https://calendly.com/tom-wombathomeloans
 - LinkedIn: https://linkedin.com/in/tomrcarr
-- Podcast: "The Property Web" (Spotify, Apple, YouTube)
-- Newsletter: "Wombat Wrap"
+- Podcast: "The Property Web" - (Spotify, Apple, YouTube) https://www.youtube.com/@thepropertyweb
+- Newsletter: "Wombat Wrap" - https://wombat-home-loans.kit.com/newsletter
 - Property search: https://wombathl.pifiproperty.com/
 - Australian Credit Licence: 561324
 - Phone: 0456 255 409
-- Email: tom@wombatloans.com.au
+- Email: tom@wombathomeloans.com.au
 
 ## Brand basics (full guidelines in 04-brand/)
 
