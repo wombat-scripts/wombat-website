@@ -32,4 +32,7 @@ Built the shared infrastructure that every page will hang off. No live-site chan
 
 **Next:** Phase 2 — SEO/GEO/Social infrastructure (`sitemap.xml`, `robots.txt`, `llms.txt`, `llms-full.txt`, schema.org reusable head template).
 
+**2026-05-03 — Phase 2 complete:**
+- SEO/GEO/social infrastructure (sitemap, robots, llms.txt, llms-full.txt stub, head template, meta docs)
+
 ---
