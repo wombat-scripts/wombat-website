@@ -87,8 +87,6 @@ I edit files myself but I'm not a developer. When making changes:
 - Always preserve the ACL number, real Calendly link, and contact details
 - Australian English spelling
 
----
-
 ## How to use this file
 
 1. **Copy this whole file** into a fresh Claude chat as the first message, OR upload it as an attachment
@@ -96,3 +94,15 @@ I edit files myself but I'm not a developer. When making changes:
 3. Update this file after material changes (new section on the site, new photos added, decision made on URL strategy, etc.)
 
 Keep `pending-changes.md` for the running to-do list of things you want to do next. Keep `change-log.md` for what's actually been done.
+
+## Recent decisions
+
+- **2026-05-03** — Typography: Fraunces + Plus Jakarta Sans on both sites
+- **2026-05-03** — Build approach: Option A (new build, switch over)
+- **2026-05-03** — Photo strategy: build flexibly with what we have
+- **2026-05-03** — Repo + Netlify connected, structure cleaned
+- **2026-05-01** — Dual-URL strategy committed (Wombat + Tom Carr)
+- **2026-05-01** — Redesign kickoff with v2 prototype
+- **2026-05-03** — Phase 1 (foundation) complete: shared CSS, JS, logo, OG image, header/footer snippets committed
+- **2026-05-03** — Phase 2 complete: SEO/GEO/social infrastructure committed
+- **2026-05-03** — Phase 3 homepage (index-v3.html) committed: real reviews, real podcast episodes, real articles, newsletter wired to Kit. Logo and button fixes applied as page-local CSS overrides of shared stylesheet.
