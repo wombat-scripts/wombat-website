@@ -555,6 +555,43 @@
       .hero { padding-block: 4rem 3rem; }
       .hero__portrait { max-width: 360px; }
     }
+
+    /* ---- FIX 1: logo sizing override ----
+       The shared stylesheet's `img { height: auto }` was collapsing the
+       SVG when its intrinsic dimensions weren't set. Force it. */
+    .nav__brand-mark {
+      width: 36px !important;
+      height: 36px !important;
+      flex: 0 0 auto;
+    }
+    .footer__brand img {
+      width: 40px !important;
+      height: 40px !important;
+      flex: 0 0 auto;
+    }
+
+    /* ---- FIX 2: Book-a-chat CTA contrast ----
+       The nav uses backdrop-filter + a translucent background, which
+       was causing the page tint to bleed through the button. Force
+       the button to render fully opaque and on top of any blur layer. */
+    .nav__cta .btn--primary {
+      background: var(--navy) !important;
+      color: #fff !important;
+      isolation: isolate;
+    }
+    .nav__cta .btn--primary:hover {
+      background: var(--navy-deep) !important;
+      color: #fff !important;
+    }
+
+    /* ---- FIX 3: cooler paper tones ----
+       The brand guide specifies cool blues + white only. Override the
+       warm cream values from styles.css for this page. */
+    :root {
+      --paper: #ffffff;
+      --paper-warm: #f3f6f9;   /* same as --paper-cool, removes the cream */
+      --paper-cool: #f3f6f9;
+    }
   </style>
 </head>
 
