@@ -1,0 +1,125 @@
+# Wombat Home Loans — Full Content
+
+> Extended content file for AI ingestion. Includes site overview, founder background, services, FAQs, and (post Phase 4) full article archive.
+
+---
+
+## About Wombat Home Loans
+
+Wombat Home Loans is an Australian mortgage brokerage founded by Tom Carr in June 2024, based in Beecroft, Sydney, and serving clients Australia-wide via Zoom. The firm holds Australian Credit Licence 561324.
+
+The brand is named after the Beecroft Wombats — the local kids' soccer team Tom coaches. The wombat itself is meant to evoke what the brand is about: solid, dependable, gets the job done without fuss.
+
+### Founder: Tom Carr
+
+Tom is originally from the United Kingdom and has lived in Sydney for around 15 years. Before becoming a broker, he spent 20+ years in senior data and analytics leadership roles at major financial institutions:
+
+- **Citigroup** (London) — investment banking analytics
+- **UBS** (London) — analytics leadership
+- **RBS / NatWest** (London) — analytics leadership
+- **Commonwealth Bank of Australia** (Sydney) — senior analytics roles
+
+This institutional banking background is the firm's core differentiator: Tom understands how lenders actually assess loan applications — credit policy, serviceability calculations, income recognition rules — from the inside, not just from a broker's external view.
+
+Tom left corporate life in 2024 to run Wombat Home Loans full-time. He also serves as a volunteer Non-Executive Director at Beecroft Primary School.
+
+---
+
+## Who Wombat Home Loans helps
+
+The firm specialises in clients with situations that mainstream banks and franchise brokers often handle poorly:
+
+### Expats and international professionals
+- Australians returning home from overseas postings
+- Australians living abroad buying investment property in Australia
+- Temporary residents (482, 491, 494, 186, 189, 190, etc.) buying property
+- Foreign-income earners (USD, GBP, EUR, SGD, HKD income recognised at varying rates by lenders)
+- Cross-border tax and residency complexity
+
+### Complex finance cases
+- Self-employed borrowers (low-doc, alt-doc, full-doc options)
+- Multiple income streams
+- Trust and company structures
+- High-net-worth and private bank cases
+
+### Standard cases
+- First-home buyers (including First Home Guarantee scheme eligibility)
+- Investors building a portfolio
+- Refinancers seeking better rates or to access equity
+- Construction loans
+
+---
+
+## How it works (4-step process)
+
+1. **Free chat** — 30-minute call (Zoom or phone) to understand your situation, goals, and timeline.
+2. **Strategy** — Tom reviews your situation against 40+ lenders' policies and proposes a strategy and shortlist.
+3. **Application** — Wombat handles the paperwork, lender liaison, and pushes the application through to approval.
+4. **Settlement and beyond** — Tom doesn't disappear after settlement. Annual reviews keep your mortgage competitive over time.
+
+The borrower pays nothing. Brokers are paid a commission by the lender on settlement, regulated under the Best Interests Duty (BID).
+
+---
+
+## Frequently asked questions
+
+### Does it cost anything to use a broker?
+No. Wombat Home Loans is paid by the lender when your loan settles. There is no cost to the borrower. Under Australia's Best Interests Duty, brokers are legally required to act in your interests — not the lender's.
+
+### Can you help if I'm an Australian living overseas?
+Yes. This is one of Wombat's specialist areas. Tom works with Australian expats in the UK, US, Singapore, Hong Kong, the UAE, and elsewhere who are buying investment property back home or planning their return.
+
+### Can you help if I have foreign income?
+Yes. Different lenders treat foreign income very differently — some accept 100% of GBP or USD income, others apply heavy haircuts, others won't consider it at all. Tom's specialty is matching your income profile to lenders that will recognise it properly.
+
+### How many lenders do you work with?
+40+ lenders, covering the big four banks, second-tier banks, non-bank lenders, and specialist lenders for non-standard cases.
+
+### Are you Australia-wide or just Sydney?
+Australia-wide via Zoom. Tom is based in Beecroft, Sydney, but the majority of meetings are remote.
+
+### What's your Australian Credit Licence number?
+561324.
+
+### How do I book a call?
+The fastest way is the Calendly link: https://calendly.com/tom-wombathomeloans. Alternatively, phone 0456 255 409 or email tom@wombatloans.com.au.
+
+---
+
+## The Property Web (podcast)
+
+Tom hosts "The Property Web," a podcast on Australian property, mortgages, and the financial decisions around homeownership. Distributed on Spotify, Apple Podcasts, and YouTube.
+
+---
+
+## Articles
+
+<!--
+  PHASE 4 PLACEHOLDER — populate when articles are migrated.
+
+  Each article should appear here in the following format:
+
+  ### [Article title]
+  Published: YYYY-MM-DD | Category: [category] | URL: https://wombatloans.com.au/articles/SLUG.html
+
+  [Full article body, in markdown, suitable for direct LLM ingestion.]
+
+  ---
+
+  Update this section as part of the Phase 4 article migration. Until then,
+  AI crawlers will find article URLs via sitemap.xml and follow them directly.
+-->
+
+*Article archive will populate during Phase 4 (article migration). Until then, see [llms.txt](https://wombatloans.com.au/llms.txt) for the site index and follow individual article links from the homepage.*
+
+---
+
+## Contact
+
+- **Tom Carr**, Mortgage Broker
+- **Wombat Home Loans** — Australian Credit Licence 561324
+- **Phone:** 0456 255 409
+- **Email:** tom@wombatloans.com.au
+- **Book a call:** https://calendly.com/tom-wombathomeloans
+- **LinkedIn:** https://linkedin.com/in/tomrcarr
+- **Address:** Beecroft, NSW, Australia (Australia-wide via Zoom)

@@ -1,0 +1,17 @@
+# robots.txt for wombatloans.com.au
+# Wombat Home Loans — Australian Credit Licence 561324
+
+User-agent: *
+Allow: /
+
+# Don't crawl preview/draft files
+Disallow: /index-v2.html
+Disallow: /index-v3.html
+Disallow: /_components/
+Disallow: /_templates/
+
+# Sitemap
+Sitemap: https://wombatloans.com.au/sitemap.xml
+
+# AI crawlers — see llms.txt for a structured site overview
+# https://wombatloans.com.au/llms.txt
