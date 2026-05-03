@@ -13,25 +13,25 @@
 # When the old wombathomeloans.com.au domain is pointed at Netlify too,
 # every request to it gets 301'd to the equivalent path on wombatloans.com.au.
 # This preserves SEO authority from the old domain.
-
-[[redirects]]
-  from = "https://wombathomeloans.com.au/*"
-  to = "https://wombatloans.com.au/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://www.wombathomeloans.com.au/*"
-  to = "https://wombatloans.com.au/:splat"
-  status = 301
-  force = true
-
+#
+#[[redirects]]
+#  from = "https://wombathomeloans.com.au/*"
+#  to = "https://wombatloans.com.au/:splat"
+#  status = 301
+#  force = true
+#
+#[[redirects]]
+#  from = "https://www.wombathomeloans.com.au/*"
+#  to = "https://wombatloans.com.au/:splat"
+#  status = 301
+#  force = true
+#
 # Force www → root (or root → www, pick one and stick with it)
-[[redirects]]
-  from = "https://www.wombatloans.com.au/*"
-  to = "https://wombatloans.com.au/:splat"
-  status = 301
-  force = true
+#[[redirects]]
+#  from = "https://www.wombatloans.com.au/*"
+#  to = "https://wombatloans.com.au/:splat"
+#  status = 301
+#  force = true
 
 # ─────────────────────────────────────────────────────────────────────
 # HEADERS — security and performance
