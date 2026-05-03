@@ -1,6 +1,6 @@
 # wombat-website
 
-Source for [wombatloans.com.au](https://wombatloans.com.au) — Wombat Home Loans, Tom Carr's Sydney mortgage brokerage.
+Source for [wombathomeloans.com.au](https://wombathomeloans.com.au) — Wombat Home Loans, Tom Carr's Sydney mortgage brokerage.
 
 ## What's in here
 
@@ -15,7 +15,7 @@ Source for [wombatloans.com.au](https://wombatloans.com.au) — Wombat Home Loan
 ## Deployment
 
 - **Host:** Netlify (auto-deploys on push to `main`)
-- **Live URL:** https://wombatloans.com.au
+- **Live URL:** https://wombathomeloans.com.au
 - **Branch previews:** every PR gets its own preview URL automatically
 
 ## Editing workflow
