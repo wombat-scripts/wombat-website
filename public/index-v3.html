@@ -989,53 +989,65 @@
       </div>
 
       <!--
-        TODO Tom: replace these three with real Google review pulls.
-        Structure is ready — just swap the quote text and attribution.
-        Keep each quote ~30-50 words for visual balance.
+        Real client testimonials. Both are published with client permission
+        on Tom's LinkedIn and broker profile. Third card links out to Google
+        Business Profile rather than fabricating a third review.
       -->
       <div class="reviews" data-reveal>
 
         <article class="card review-card">
           <p class="review-card__quote">
-            Tom made what could have been a stressful process feel calm and considered.
-            He explained every option clearly, never rushed us, and got us a sharper rate
-            than the bank we'd been with for fifteen years.
+            As a first-time homebuyer, the process was rather daunting, but Tom patiently walked me through every step,
+            explained all my options, and guided me throughout the entire journey.
+            He even referred me to a buyer's agent to get a second opinion on the property I was considering.
           </p>
           <div class="review-card__attr">
-            <span class="review-card__name">First-home buyers, Inner West</span>
+            <span class="review-card__name">Andrew · First home buyer</span>
             <span aria-label="5 out of 5 stars">★★★★★</span>
           </div>
         </article>
 
         <article class="card review-card">
           <p class="review-card__quote">
-            We're Australian expats in Singapore. Three brokers said no. Tom said
-            "leave it with me," found a lender who actually understood our income,
-            and we settled on the Lower North Shore investment property we wanted.
+            Even with our unique circumstances that made acquiring a home loan more complicated,
+            Tom took the time to understand our specific needs and worked tirelessly to find us
+            the best rates on a loan product that was perfectly suited to us.
           </p>
           <div class="review-card__attr">
-            <span class="review-card__name">Expat investors, Singapore</span>
+            <span class="review-card__name">Prai &amp; Amanda · Complex case</span>
             <span aria-label="5 out of 5 stars">★★★★★</span>
           </div>
         </article>
 
-        <article class="card review-card">
-          <p class="review-card__quote">
-            Annual review picked up that we could save thousands by switching.
-            Tom did all the work, kept it simple, and was honest about the years
-            it wasn't worth moving. That's the bit that builds trust.
+        <!--
+          Third card is a "more reviews" CTA rather than a fabricated quote.
+          Honest > padded. When more named testimonials come in, replace this.
+        -->
+        <article class="card review-card" style="background: linear-gradient(180deg, #fff 0%, var(--paper-cool) 100%);">
+          <p class="review-card__quote" style="font-size: 1.0625rem; font-style: normal; font-family: var(--font-body); font-weight: 400; line-height: 1.5;">
+            Every Wombat Home Loans review on Google sits at five stars. Most clients are
+            first-home buyers, expats, and complex cases — read what they actually said in their own words.
           </p>
           <div class="review-card__attr">
-            <span class="review-card__name">Long-term client, Beecroft</span>
+            <span class="review-card__name">5.0 on Google</span>
             <span aria-label="5 out of 5 stars">★★★★★</span>
           </div>
+          <a class="btn btn--ghost"
+             href="https://www.google.com/maps/place/Wombat+Home+Loans/@-33.7510521,151.0758571,17z/data=!4m6!3m5!1s0xaf820eb4f5bad501:0x7a6605aeacaaaf2a!8m2!3d-33.7510521!4d151.0758571!16s%2Fg%2F11w217xjqz"
+             target="_blank" rel="noopener"
+             style="margin-top: var(--space-4); align-self: flex-start;">
+            Read on Google
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
         </article>
 
       </div>
 
       <p class="text-center" style="margin-top: var(--space-7);">
-        <a class="btn btn--text" href="https://g.page/r/wombatloans/review" target="_blank" rel="noopener">
-          Read all reviews on Google →
+        <a class="btn btn--text"
+           href="https://www.google.com/maps/place/Wombat+Home+Loans/@-33.7510521,151.0758571,17z/data=!4m6!3m5!1s0xaf820eb4f5bad501:0x7a6605aeacaaaf2a!8m2!3d-33.7510521!4d151.0758571!16s%2Fg%2F11w217xjqz"
+           target="_blank" rel="noopener">
+          See all reviews on Google →
         </a>
       </p>
     </div>
@@ -1087,41 +1099,60 @@
       </div>
 
       <!--
-        TODO Tom: wire to real episodes. Three latest, manually curated for now.
-        Structure handles updates — just edit titles, dates, episode numbers.
+        Latest 3 episodes of The Property Web. Source of truth: /podcast.
+        When a new episode goes live, update these three cards.
       -->
       <div class="podcast-grid" data-reveal>
 
-        <article class="card episode-card">
-          <span class="episode-card__num">Episode 24</span>
-          <h3>The expat re-entry playbook: what to set up before you fly home.</h3>
+        <a class="card episode-card"
+           href="https://www.youtube.com/watch?v=vU6CixRWZJw"
+           target="_blank" rel="noopener"
+           style="text-decoration: none; color: inherit;">
+          <span class="episode-card__num">Episode 09 · Wealth building</span>
+          <h3>The missing piece in wealth building.</h3>
           <p class="muted small">
-            Tax residency, lender pre-positioning, foreign currency planning —
-            the four moves that smooth the landing.
+            Roger Sousa (Asperum) on the underrated role of financial defence
+            alongside accumulation — protecting assets and planning for a secure retirement.
           </p>
-          <span class="episode-card__meta">42 min · Latest</span>
-        </article>
+          <span class="episode-card__meta">Feb 2026 · Latest episode</span>
+        </a>
 
-        <article class="card episode-card">
-          <span class="episode-card__num">Episode 23</span>
-          <h3>Stamp duty, schemes and the real first-home buyer maths.</h3>
+        <a class="card episode-card"
+           href="https://www.youtube.com/watch?v=EfSgfX40xwE"
+           target="_blank" rel="noopener"
+           style="text-decoration: none; color: inherit;">
+          <span class="episode-card__num">Episode 08 · PropTech</span>
+          <h3>From coding to co-founding: the PiFi Property story.</h3>
           <p class="muted small">
-            Going beyond the headlines: which scheme actually saves you money,
-            and which ones come with a surprise on the other side.
+            Heshan Jayawardena on building a platform that uncovers hidden potential
+            in properties — and where AI is taking property search next.
           </p>
-          <span class="episode-card__meta">38 min</span>
-        </article>
+          <span class="episode-card__meta">Jan 2026</span>
+        </a>
 
-        <article class="card episode-card">
-          <span class="episode-card__num">Episode 22</span>
-          <h3>Why the Big Four say no — and what it actually means.</h3>
+        <a class="card episode-card"
+           href="https://www.youtube.com/watch?v=ER0dNbZAdz8"
+           target="_blank" rel="noopener"
+           style="text-decoration: none; color: inherit;">
+          <span class="episode-card__num">Episode 07 · Buyer's agent</span>
+          <h3>Navigating property investment.</h3>
           <p class="muted small">
-            A look inside how credit policy gets written, why the same application
-            gets different answers from different desks, and how to read a decline.
+            Tim Watson (Bricks to Wealth) on his move from corporate life to founding
+            a buyer's agency, and what strategic property investment really looks like.
           </p>
-          <span class="episode-card__meta">45 min</span>
-        </article>
+          <span class="episode-card__meta">Dec 2025</span>
+        </a>
 
+      </div>
+
+      <!--
+        Listen-on links — let people pick their platform.
+      -->
+      <div class="cluster" style="justify-content: center; gap: var(--space-5); margin-top: var(--space-6);">
+        <span class="meta">Listen on</span>
+        <a class="btn btn--text" href="https://open.spotify.com/show/6XPN6KyzpNPuAGMpsXlEhh" target="_blank" rel="noopener">Spotify</a>
+        <a class="btn btn--text" href="https://podcasts.apple.com/us/podcast/the-property-web/id1841854828" target="_blank" rel="noopener">Apple Podcasts</a>
+        <a class="btn btn--text" href="https://www.youtube.com/@thepropertyweb" target="_blank" rel="noopener">YouTube</a>
       </div>
 
       <!--
@@ -1208,40 +1239,46 @@
       </div>
 
       <!--
-        TODO Tom: wire to three real featured articles once the article migration
-        in Phase 4 is complete. For now: structure ready, copy is placeholder.
+        Three featured articles from /articles/. Picked to align with niche
+        priorities: expat finance, first-home buyers, refinancing.
       -->
       <div class="articles-grid" data-reveal>
 
-        <article class="card article-card">
-          <span class="article-card__cat">Expat finance</span>
-          <h3>How Australian banks actually treat foreign income (and how to tell which ones are bluffing).</h3>
+        <a class="card article-card"
+           href="/articles/expat-home-loan-guide.html"
+           style="text-decoration: none; color: inherit;">
+          <span class="article-card__cat">Expats &amp; international</span>
+          <h3>The expat home loan guide: foreign income, overseas assets, and currency risk.</h3>
           <p class="muted small">
-            A practical map of which lenders accept full GBP/USD income, which apply haircuts,
-            and which won't look at you. Updated quarterly.
+            Lending to expats involves layers most lenders shy away from.
+            With the right approach a competitive loan is absolutely possible — here's how.
           </p>
-          <span class="article-card__meta">8 min read · Updated April 2026</span>
-        </article>
+          <span class="article-card__meta">Read article →</span>
+        </a>
 
-        <article class="card article-card">
+        <a class="card article-card"
+           href="/articles/guidelines-for-first-time-buyers.html"
+           style="text-decoration: none; color: inherit;">
           <span class="article-card__cat">First home</span>
-          <h3>The First Home Guarantee: who it suits, who it traps, who should look elsewhere.</h3>
+          <h3>Guidelines for first-time buyers: a clear path through the noise.</h3>
           <p class="muted small">
-            The 5% deposit scheme isn't a free lunch. A clear-eyed look at when it makes sense
-            — and when a parental guarantee or a different lender quietly does better.
+            Schemes, deposits, deposit boosters, what banks actually look at —
+            a plain-English starting point if you're approaching your first purchase.
           </p>
-          <span class="article-card__meta">6 min read</span>
-        </article>
+          <span class="article-card__meta">Read article →</span>
+        </a>
 
-        <article class="card article-card">
+        <a class="card article-card"
+           href="/articles/when-to-refinance.html"
+           style="text-decoration: none; color: inherit;">
           <span class="article-card__cat">Refinancing</span>
-          <h3>The two-year refinance check: a simple test you can run on yourself.</h3>
+          <h3>When to refinance — and when not to.</h3>
           <p class="muted small">
-            Three numbers from your last statement. Fifteen minutes. A surprisingly good signal
-            of whether your loan is still pulling its weight.
+            Refinancing isn't always the right move. Rate savings need to outweigh costs,
+            timing matters, and switching at the wrong moment can set you back.
           </p>
-          <span class="article-card__meta">5 min read</span>
-        </article>
+          <span class="article-card__meta">Read article →</span>
+        </a>
 
       </div>
     </div>
