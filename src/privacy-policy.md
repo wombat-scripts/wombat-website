@@ -1,7 +1,7 @@
 ---
 title: "Privacy Policy"
 description: "How Wombat Home Loans collects, uses and protects your personal information."
-layout: page.njk
+layout: base.njk
 permalink: /privacy-policy/
 ---
 
