@@ -1,0 +1,23 @@
+---
+layout: base.njk
+title: Articles — Home Loan Guides & Explainers
+description: Practical guides on home loans, refinancing, expat lending, and property investment from Tom Carr at Wombat Home Loans.
+---
+
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Articles</p>
+    <h1>Guides and explainers</h1>
+    <p class="lede">Practical, jargon-free articles to help you make better decisions about your mortgage.</p>
+
+    <div class="grid grid--3" style="margin-top: var(--space-7);">
+      {% for article in collections.articles %}
+      <a href="{{ article.url }}" class="card" data-reveal style="--reveal-delay: {{ loop.index0 * 60 }}ms; text-decoration: none; color: inherit;">
+        <p class="meta">{{ article.data.category or "Home Loans" }}</p>
+        <h4 style="margin-bottom: var(--space-2);">{{ article.data.title }}</h4>
+        <p class="small" style="color: var(--ink-soft);">{{ article.data.description }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

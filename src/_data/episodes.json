@@ -1,0 +1,27 @@
+[
+  {
+    "number": "09",
+    "category": "Wealth building",
+    "title": "The missing piece in wealth building.",
+    "description": "Roger Sousa (Asperum) on the underrated role of financial defence alongside accumulation — protecting assets and planning for a secure retirement.",
+    "url": "https://www.youtube.com/watch?v=vU6CixRWZJw",
+    "date": "2026-02-01",
+    "latest": true
+  },
+  {
+    "number": "08",
+    "category": "PropTech",
+    "title": "From coding to co-founding: the PiFi Property story.",
+    "description": "Heshan Jayawardena on building a platform that uncovers hidden potential in properties — and where AI is taking property search next.",
+    "url": "https://www.youtube.com/watch?v=EfSgfX40xwE",
+    "date": "2026-01-01"
+  },
+  {
+    "number": "07",
+    "category": "Buyer's agent",
+    "title": "Navigating property investment.",
+    "description": "Tim Watson (Bricks to Wealth) on his move from corporate life to founding a buyer's agency, and what strategic property investment really looks like.",
+    "url": "https://www.youtube.com/watch?v=ER0dNbZAdz8",
+    "date": "2025-12-01"
+  }
+]

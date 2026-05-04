@@ -1,35 +1,24 @@
-# Netlify configuration for wombatloans.com.au
-#
+# Netlify configuration for Wombat Home Loans
 # Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
-  publish = "public"
-  command = ""
+  publish = "_site"
+  command = "npm install && npm run build"
 
 # ─────────────────────────────────────────────────────────────────────
 # REDIRECTS
 # ─────────────────────────────────────────────────────────────────────
-#
-# When the old wombathomeloans.com.au domain is pointed at Netlify too,
-# every request to it gets 301'd to the equivalent path on wombatloans.com.au.
-# This preserves SEO authority from the old domain.
-#
+# Uncomment when ready to consolidate domains.
+
 #[[redirects]]
-#  from = "https://wombathomeloans.com.au/*"
-#  to = "https://wombatloans.com.au/:splat"
+#  from = "https://wombatloans.com.au/*"
+#  to = "https://wombathomeloans.com.au/:splat"
 #  status = 301
 #  force = true
-#
+
 #[[redirects]]
 #  from = "https://www.wombathomeloans.com.au/*"
-#  to = "https://wombatloans.com.au/:splat"
-#  status = 301
-#  force = true
-#
-# Force www → root (or root → www, pick one and stick with it)
-#[[redirects]]
-#  from = "https://www.wombatloans.com.au/*"
-#  to = "https://wombatloans.com.au/:splat"
+#  to = "https://wombathomeloans.com.au/:splat"
 #  status = 301
 #  force = true
 
@@ -45,13 +34,16 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
-# Cache images aggressively — they don't change often
 [[headers]]
   for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Don't cache HTML — we want changes to go live immediately
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 [[headers]]
   for = "/*.html"
   [headers.values]
