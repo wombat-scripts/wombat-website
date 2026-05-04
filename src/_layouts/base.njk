@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ title }} | Wombat Home Loans</title>
+  <meta name="description" content="{{ description or 'Sydney mortgage broker for expats, international professionals and complex finance. 20+ years institutional banking. 40+ lenders. No cost to borrower.' }}">
+  <meta name="author" content="Tom Carr">
+
+  <link rel="canonical" href="https://wombathomeloans.com.au{{ page.url }}">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#1c476a">
+
+  {# Open Graph #}
+  <meta property="og:type" content="{{ ogType or 'website' }}">
+  <meta property="og:site_name" content="Wombat Home Loans">
+  <meta property="og:title" content="{{ ogTitle or title }}">
+  <meta property="og:description" content="{{ description or 'Sydney mortgage broker for expats, international professionals and complex finance.' }}">
+  <meta property="og:url" content="https://wombathomeloans.com.au{{ page.url }}">
+  <meta property="og:image" content="https://wombathomeloans.com.au{{ ogImage or '/assets/og-image.jpg' }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_AU">
+
+  {# Twitter / X #}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ ogTitle or title }}">
+  <meta name="twitter:description" content="{{ description or 'Sydney mortgage broker for expats, international professionals and complex finance.' }}">
+  <meta name="twitter:image" content="https://wombathomeloans.com.au{{ ogImage or '/assets/og-image.jpg' }}">
+
+  {# Fonts #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap">
+
+  {# Stylesheet #}
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  {# Schema markup — injected per-page via block #}
+  {% block schema %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://wombathomeloans.com.au/#tom-carr",
+        "name": "Tom Carr",
+        "jobTitle": "Mortgage Broker",
+        "url": "https://wombathomeloans.com.au/",
+        "image": "https://wombathomeloans.com.au/images/tom-hero-01.jpg",
+        "telephone": "+61456255409",
+        "email": "tom@wombathomeloans.com.au",
+        "sameAs": ["https://linkedin.com/in/tomrcarr"],
+        "worksFor": { "@id": "https://wombathomeloans.com.au/#wombat-home-loans" }
+      },
+      {
+        "@type": "FinancialService",
+        "@id": "https://wombathomeloans.com.au/#wombat-home-loans",
+        "name": "Wombat Home Loans",
+        "url": "https://wombathomeloans.com.au/",
+        "telephone": "+61456255409",
+        "email": "tom@wombathomeloans.com.au",
+        "areaServed": ["Sydney", "Australia"],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "bestRating": "5",
+          "ratingCount": "40"
+        }
+      }
+    ]
+  }
+  </script>
+  {% endblock %}
+
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+  {# ── NAV ── #}
+  {% include "nav.njk" %}
+
+  {# ── MAIN CONTENT ── #}
+  <main>
+    {{ content | safe }}
+  </main>
+
+  {# ── FOOTER ── #}
+  {% include "footer.njk" %}
+
+  <script src="/assets/js/scripts.js" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

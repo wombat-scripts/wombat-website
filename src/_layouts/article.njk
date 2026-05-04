@@ -1,0 +1,46 @@
+---
+layout: base.njk
+ogType: article
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ title }}",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au{{ page.url }}",
+  "datePublished": "{{ date | isoDate }}",
+  "author": {
+    "@type": "Person",
+    "name": "Tom Carr",
+    "url": "https://wombathomeloans.com.au",
+    "jobTitle": "Mortgage Broker"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Wombat Home Loans",
+    "url": "https://wombathomeloans.com.au"
+  }
+}
+</script>
+{% endblock %}
+
+<article class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">{{ category or "Home Loans" }}</p>
+    <h1>{{ title }}</h1>
+    {% if date %}<p class="meta">{{ date | readableDate }}</p>{% endif %}
+
+    <div class="article-body">
+      {{ content | safe }}
+    </div>
+
+    <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--line);">
+      <h3>Questions about {{ category | lower or "your home loan" }}?</h3>
+      <p>Book a free discovery call — no obligation, no jargon.</p>
+      {% cta "Book a free discovery call" %}
+    </div>
+  </div>
+</article>

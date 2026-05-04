@@ -1,0 +1,10 @@
+---
+layout: base.njk
+---
+
+{# Landing pages inherit base but can override nav/footer via blocks.
+   The content is whatever the landing page .njk file defines.
+   Typically these are single-purpose pages for paid campaigns
+   with minimal navigation to keep focus on the CTA. #}
+
+{{ content | safe }}
