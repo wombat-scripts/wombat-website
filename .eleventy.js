@@ -1,6 +1,7 @@
 module.exports = function (eleventyConfig) {
 
   // --- Pass-through copies (not processed, just copied to _site/) ---
+  eleventyConfig.addPassthroughCopy("src/favicon.ico");
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
