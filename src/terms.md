@@ -1,7 +1,7 @@
 ---
 title: "Terms of Use"
 description: "Terms and conditions for using the Wombat Home Loans website."
-layout: page.njk
+layout: base.njk
 permalink: /terms/
 ---
 
