@@ -1,0 +1,95 @@
+---
+title: "The Property Web Podcast"
+description: "Conversations about property, finance and the expat journey in Australia — hosted by Tom Carr."
+layout: page.njk
+permalink: /podcast/
+---
+
+<section class="podcast-hero">
+  <h1>The Property Web</h1>
+  <p class="lead">Conversations about property, finance and the expat journey in Australia — hosted by Tom Carr.</p>
+  <div class="podcast-links">
+    <a href="https://www.youtube.com/@WombatHomeLoans" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://open.spotify.com/show/wombathomeloans" target="_blank" rel="noopener">Spotify</a>
+    <a href="https://podcasts.apple.com/au/podcast/the-property-web" target="_blank" rel="noopener">Apple Podcasts</a>
+  </div>
+</section>
+
+<section class="episodes">
+  <h2>Latest Episodes</h2>
+  {% for episode in episodes | reverse %}
+  <article class="episode-card">
+    <h3>{{ episode.title }}</h3>
+    <p class="episode-meta">Episode {{ episode.number }} · {{ episode.date }}</p>
+    <p>{{ episode.description }}</p>
+    {% if episode.youtube %}
+    <div class="episode-video">
+      <lite-youtube videoid="{{ episode.youtube }}"></lite-youtube>
+    </div>
+    {% endif %}
+    {% if episode.spotify %}
+    <a href="{{ episode.spotify }}" target="_blank" rel="noopener" class="btn-secondary">Listen on Spotify</a>
+    {% endif %}
+  </article>
+  {% endfor %}
+</section>
+
+<style>
+  .podcast-hero {
+    text-align: center;
+    padding: 2rem 0 3rem;
+  }
+  .podcast-hero .lead {
+    font-size: 1.15rem;
+    color: var(--text-muted, #666);
+    max-width: 600px;
+    margin: 0.5rem auto 1.5rem;
+  }
+  .podcast-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .podcast-links a {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    border: 2px solid var(--brand, #2d6a4f);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--brand, #2d6a4f);
+    transition: background 0.2s, color 0.2s;
+  }
+  .podcast-links a:hover {
+    background: var(--brand, #2d6a4f);
+    color: #fff;
+  }
+  .episodes {
+    max-width: 740px;
+    margin: 0 auto;
+  }
+  .episode-card {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 2rem 0;
+  }
+  .episode-card:last-child {
+    border-bottom: none;
+  }
+  .episode-meta {
+    font-size: 0.9rem;
+    color: var(--text-muted, #888);
+  }
+  .episode-video {
+    margin: 1rem 0;
+  }
+  .btn-secondary {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--brand, #2d6a4f);
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: var(--brand, #2d6a4f);
+  }
+</style>
