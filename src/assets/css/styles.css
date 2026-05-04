@@ -517,6 +517,16 @@ blockquote {
 
 .nav__cta { margin-left: var(--space-3); }
 
+.nav__cta .btn--primary {
+  background: var(--navy);
+  color: #fff;
+  isolation: isolate;
+}
+.nav__cta .btn--primary:hover {
+  background: var(--navy-deep);
+  color: #fff;
+}
+
 .nav__toggle {
   display: none;
   width: 44px;
