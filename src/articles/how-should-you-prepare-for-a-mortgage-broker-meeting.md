@@ -1,9 +1,10 @@
 ---
 title: "How Should You Prepare for a Mortgage Broker Meeting?"
 description: "Meeting with a mortgage broker is one of the most important steps in the home buying journey. Coming prepared makes the difference between a productive session and one that requires multiple follow-up"
-date: 2026-01-15
+date: 2025-10-03
 category: "Home Loans"
 layout: article.njk
+thumbnail: "/images/articles/office.png"
 ---
 
 Meeting with a mortgage broker is one of the most important steps in the home buying journey. Coming prepared makes the difference between a productive session and one that requires multiple follow-ups. Here's how to make the most of your time.
