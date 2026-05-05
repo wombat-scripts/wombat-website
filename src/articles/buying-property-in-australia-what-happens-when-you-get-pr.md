@@ -2,9 +2,10 @@
 title: "Buying Property in Australia: What Happens When You Get PR?"
 description: "Moving from a temporary visa to permanent residency? Here's how your property buying rights and foreign purchaser surcharges change in Australia.
 Gaining Australian permanent residency (PR) changes yo"
-date: 2026-01-15
+date: 2026-02-26
 category: "Home Loans"
 layout: article.njk
+thumbnail: "/images/articles/australia.jpg"
 ---
 
 Moving from a temporary visa to permanent residency? Here's how your property buying rights and foreign purchaser surcharges change in Australia.
