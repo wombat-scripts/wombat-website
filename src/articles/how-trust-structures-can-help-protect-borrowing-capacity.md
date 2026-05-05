@@ -4,9 +4,10 @@ description: "Learn how using trusts in property investment can protect borrowin
 
 How Banks Treat Properties in Your Own Name
 When you buy in your person"
-date: 2026-01-15
+date: 2026-02-16
 category: "Home Loans"
 layout: article.njk
+thumbnail: "/images/articles/male_investor.jpg"
 ---
 
 Learn how using trusts in property investment can protect borrowing capacity, preserve cash flow, and support portfolio growth.
