@@ -4,9 +4,10 @@ description: "Who can buy, what you can buy, and the approvals you'll need as a 
 
 Who Counts as a \"Foreign Person\"?
 For residential property rules, you're a"
-date: 2026-01-15
+date: 2025-10-22
 category: "Home Loans"
 layout: article.njk
+thumbnail: "/images/articles/overseas_buyer.jpg"
 ---
 
 Who can buy, what you can buy, and the approvals you'll need as a "foreign person" under Australian law.

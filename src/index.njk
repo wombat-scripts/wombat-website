@@ -283,14 +283,9 @@ description: Sydney mortgage broker for expats, international professionals and 
         </div>
       </article>
       {% endfor %}
-      <article class="card review-card" style="background: linear-gradient(180deg, #fff 0%, var(--paper-cool) 100%);">
-        <p class="review-card__quote" style="font-size: 1.0625rem; font-style: normal; font-family: var(--font-body); font-weight: 400; line-height: 1.5;">Every Wombat Home Loans review on Google sits at five stars. Most clients are first-home buyers, expats, and complex cases — read what they actually said in their own words.</p>
-        <div class="review-card__attr">
-          <span class="review-card__name">5.0 on Google</span>
-          <span aria-label="5 out of 5 stars">★★★★★</span>
-        </div>
-        <a class="btn btn--ghost" href="https://www.google.com/maps/place/Wombat+Home+Loans/@-33.7510521,151.0758571,17z/data=!4m8!3m7!1s0xaf820eb4f5bad501:0x7a6605aeacaaaf2a!8m2!3d-33.7510521!4d151.0758571!9m1!1b1!16s%2Fg%2F11w217xjqz?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D/" target="_blank" rel="noopener" style="margin-top: var(--space-4); align-self: flex-start;">Read on Google <span class="arrow" aria-hidden="true">→</span></a>
-      </article>
+    </div>
+    <div data-reveal style="text-align: center; margin-top: var(--space-6);">
+      <a class="btn btn--ghost" href="https://www.google.com/maps/place/Wombat+Home+Loans/@-33.7510521,151.0758571,17z/data=!4m8!3m7!1s0xaf820eb4f5bad501:0x7a6605aeacaaaf2a!8m2!3d-33.7510521!4d151.0758571!9m1!1b1!16s%2Fg%2F11w217xjqz?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D/" target="_blank" rel="noopener">Read all reviews on Google <span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -317,13 +312,14 @@ description: Sydney mortgage broker for expats, international professionals and 
   <div class="container">
     <div class="cluster" data-reveal style="justify-content: space-between; margin-bottom: var(--space-7); align-items: flex-end;">
       <div style="max-width: 640px;"><span class="eyebrow">The Property Web · podcast</span><h2 class="mb-0">Long-form conversations about <em>how Australian property actually works.</em></h2></div>
-      <a class="btn btn--ghost" href="/podcast/">All episodes <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost" href="/podcast/">All {{ episodes | length }} episodes <span class="arrow" aria-hidden="true">→</span></a>
     </div>
     <div class="podcast-grid" data-reveal>
-      {% for ep in episodes %}
+      {% for ep in episodes | reverse | limit(4) %}
       <a class="card episode-card" href="{{ ep.url }}" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
         <span class="episode-card__num">Episode {{ ep.number }} · {{ ep.category }}</span>
         <h3>{{ ep.title }}</h3>
+        <p class="ep-card__guest" style="font-size: var(--fs-small); color: var(--ink-soft); font-weight: 500; margin: 0;">{{ ep.guest }}{% if ep.role %} · {{ ep.role }}{% endif %}</p>
         <p class="muted small">{{ ep.description }}</p>
         <span class="episode-card__meta">{{ ep.date | readableDate }}{% if ep.latest %} · Latest episode{% endif %}</span>
       </a>

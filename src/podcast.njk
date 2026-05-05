@@ -1,95 +1,185 @@
 ---
-title: "The Property Web Podcast"
-description: "Conversations about property, finance and the expat journey in Australia — hosted by Tom Carr."
+title: "The Property Web — Conversations with the people behind every property transaction"
+description: "Buyer's agents, financial planners, accountants, proptech founders and property lawyers — real conversations about how Australian property actually works. Hosted by Tom Carr."
 layout: base.njk
 permalink: /podcast/
 ---
 
-<section class="podcast-hero">
-  <h1>The Property Web</h1>
-  <p class="lead">Conversations about property, finance and the expat journey in Australia — hosted by Tom Carr.</p>
-  <div class="podcast-links">
-    <a href="https://www.youtube.com/@thepropertyweb" target="_blank" rel="noopener">YouTube</a>
-    <a href="https://open.spotify.com/show/6XPN6KyzpNPuAGMpsXlEhh" target="_blank" rel="noopener">Spotify</a>
-    <a href="https://podcasts.apple.com/us/podcast/the-property-web/id1841854828" target="_blank" rel="noopener">Apple Podcasts</a>
+{% block head %}
+<style>
+  .pod-hero { text-align: center; }
+  .pod-hero .lede { margin-inline: auto; }
+  .pod-platforms { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6); }
+
+  /* Filter bar */
+  .filter-bar { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-7); }
+  .filter-btn {
+    padding: 0.5rem 1.1rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: all var(--motion-fast) var(--easing);
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--steel); color: var(--navy); }
+  .filter-btn.is-active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  .ep-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+
+  .ep-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform var(--motion-fast) var(--easing), box-shadow var(--motion-fast) var(--easing);
+    text-decoration: none;
+    color: inherit;
+  }
+  .ep-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); color: inherit; }
+  .ep-card.is-hidden { display: none; }
+
+  .ep-card__thumb {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    object-fit: cover;
+    background: linear-gradient(135deg, var(--navy), var(--navy-deep));
+  }
+
+  .ep-card__body { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); flex: 1; }
+  .ep-card__num { font-family: var(--font-body); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); }
+  .ep-card__body h3 { font-size: 1.125rem; line-height: 1.35; margin-bottom: 0; }
+  .ep-card__guest { font-size: var(--fs-small); color: var(--ink-soft); font-weight: 500; }
+  .ep-card__desc { font-size: var(--fs-small); color: var(--ink-muted); margin-top: auto; }
+  .ep-card__date { font-size: var(--fs-meta); color: var(--ink-muted); margin-top: var(--space-3); }
+
+  /* Featured latest episode */
+  .ep-featured { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: center; }
+  @media (min-width: 800px) { .ep-featured { grid-template-columns: 1.4fr 1fr; } }
+  .ep-featured__video { aspect-ratio: 16/9; width: 100%; border-radius: var(--radius-md); overflow: hidden; background: var(--navy-deep); }
+  .ep-featured__video iframe { width: 100%; height: 100%; border: 0; }
+</style>
+{% endblock %}
+
+{# ── HERO ── #}
+<section class="section section--dark">
+  <div class="container pod-hero" data-reveal>
+    <span class="eyebrow">The Property Web</span>
+    <h1 class="display" style="max-width: 18ch; margin-inline: auto;">Conversations with the people behind every <em>property transaction.</em></h1>
+    <p class="lede" style="color: var(--blue-pale);">
+      Buyer's agents, financial planners, accountants, proptech founders and property lawyers — real conversations about how Australian property actually works. Hosted by mortgage broker Tom Carr.
+    </p>
+    <div class="pod-platforms">
+      <a class="btn btn--light" href="https://www.youtube.com/@thepropertyweb" target="_blank" rel="noopener">YouTube</a>
+      <a class="btn btn--ghost" style="color: var(--blue-light); border-color: var(--blue-light);" href="https://open.spotify.com/show/6XPN6KyzpNPuAGMpsXlEhh" target="_blank" rel="noopener">Spotify</a>
+      <a class="btn btn--ghost" style="color: var(--blue-light); border-color: var(--blue-light);" href="https://podcasts.apple.com/us/podcast/the-property-web/id1841854828" target="_blank" rel="noopener">Apple Podcasts</a>
+    </div>
   </div>
 </section>
 
-<section class="episodes">
-  <h2>Latest Episodes</h2>
-  {% for episode in episodes | reverse %}
-  <article class="episode-card">
-    <h3>{{ episode.title }}</h3>
-    <p class="episode-meta">Episode {{ episode.number }} · {{ episode.date }}</p>
-    <p>{{ episode.description }}</p>
-    {% if episode.youtube %}
-    <div class="episode-video">
-      <lite-youtube videoid="{{ episode.youtube }}"></lite-youtube>
+{# ── LATEST EPISODE (featured) ── #}
+{% set latest = episodes | last %}
+<section class="section">
+  <div class="container">
+    <div data-reveal style="margin-bottom: var(--space-6);">
+      <span class="eyebrow">Latest episode</span>
     </div>
-    {% endif %}
-    {% if episode.spotify %}
-    <a href="{{ episode.spotify }}" target="_blank" rel="noopener" class="btn-secondary">Listen on Spotify</a>
-    {% endif %}
-  </article>
-  {% endfor %}
+    <div class="ep-featured" data-reveal>
+      <div class="ep-featured__video">
+        {% set videoId = latest.url | replace("https://www.youtube.com/watch?v=", "") | replace("https://youtu.be/", "") %}
+        <iframe src="https://www.youtube.com/embed/{{ videoId }}" title="{{ latest.title }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div>
+        <p class="meta" style="margin-bottom: var(--space-3);">Episode {{ latest.number }} · {{ latest.category }}</p>
+        <h2 style="font-size: var(--fs-h3);">{{ latest.title }}</h2>
+        <p class="ep-card__guest">{{ latest.guest }}{% if latest.role %} · {{ latest.role }}{% endif %}</p>
+        <p style="color: var(--ink-soft); margin-top: var(--space-4);">{{ latest.description }}</p>
+        <p class="meta" style="margin-top: var(--space-4);">{{ latest.date | readableDate }}</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<style>
-  .podcast-hero {
-    text-align: center;
-    padding: 2rem 0 3rem;
-  }
-  .podcast-hero .lead {
-    font-size: 1.15rem;
-    color: var(--text-muted, #666);
-    max-width: 600px;
-    margin: 0.5rem auto 1.5rem;
-  }
-  .podcast-links {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .podcast-links a {
-    display: inline-block;
-    padding: 0.5rem 1.25rem;
-    border: 2px solid var(--brand, #2d6a4f);
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    color: var(--brand, #2d6a4f);
-    transition: background 0.2s, color 0.2s;
-  }
-  .podcast-links a:hover {
-    background: var(--brand, #2d6a4f);
-    color: #fff;
-  }
-  .episodes {
-    max-width: 740px;
-    margin: 0 auto;
-  }
-  .episode-card {
-    border-bottom: 1px solid #e0e0e0;
-    padding: 2rem 0;
-  }
-  .episode-card:last-child {
-    border-bottom: none;
-  }
-  .episode-meta {
-    font-size: 0.9rem;
-    color: var(--text-muted, #888);
-  }
-  .episode-video {
-    margin: 1rem 0;
-  }
-  .btn-secondary {
-    display: inline-block;
-    padding: 0.4rem 1rem;
-    border: 1px solid var(--brand, #2d6a4f);
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    color: var(--brand, #2d6a4f);
-  }
-</style>
+{# ── ALL EPISODES with filter ── #}
+<section class="section section--cool">
+  <div class="container">
+    <div data-reveal style="margin-bottom: var(--space-5);">
+      <span class="eyebrow">All episodes</span>
+      <h2>{{ episodes | length }} conversations <em>and counting.</em></h2>
+    </div>
+
+    {# Build unique categories from episodes #}
+    <div class="filter-bar" data-reveal id="ep-filters">
+      <button class="filter-btn is-active" data-filter="all">All Episodes</button>
+      {% set cats = [] %}
+      {% for ep in episodes %}
+        {% if ep.category not in cats %}
+          {% set cats = (cats.push(ep.category), cats) %}
+        {% endif %}
+      {% endfor %}
+      {% for cat in cats | sort %}
+        <button class="filter-btn" data-filter="{{ cat }}">{{ cat }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="ep-grid" data-reveal id="ep-grid">
+      {% for ep in episodes | reverse %}
+      <a class="card ep-card" href="{{ ep.url }}" target="_blank" rel="noopener" data-category="{{ ep.category }}">
+        <div class="ep-card__body">
+          <span class="ep-card__num">Episode {{ ep.number }} · {{ ep.category }}</span>
+          <h3>{{ ep.title }}</h3>
+          <p class="ep-card__guest">{{ ep.guest }}{% if ep.role %} · {{ ep.role }}{% endif %}</p>
+          <p class="ep-card__desc">{{ ep.description }}</p>
+          <span class="ep-card__date">{{ ep.date | readableDate }}</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ── SUBSCRIBE CTA ── #}
+<section class="section section--dark">
+  <div class="container" style="text-align: center;" data-reveal>
+    <h2 style="color: #fff; font-size: var(--fs-h2);">New episode every fortnight.</h2>
+    <p style="color: var(--blue-pale); max-width: 50ch; margin-inline: auto;">Subscribe on your favourite platform — or book a call if you want to talk about your own property situation.</p>
+    <div class="pod-platforms" style="margin-top: var(--space-5);">
+      <a class="btn btn--light" href="https://www.youtube.com/@thepropertyweb" target="_blank" rel="noopener">YouTube</a>
+      <a class="btn btn--ghost" style="color: var(--blue-light); border-color: var(--blue-light);" href="https://open.spotify.com/show/6XPN6KyzpNPuAGMpsXlEhh" target="_blank" rel="noopener">Spotify</a>
+      <a class="btn btn--ghost" style="color: var(--blue-light); border-color: var(--blue-light);" href="https://podcasts.apple.com/us/podcast/the-property-web/id1841854828" target="_blank" rel="noopener">Apple Podcasts</a>
+    </div>
+    <div style="margin-top: var(--space-7);">
+      <a class="btn btn--primary btn--lg" href="https://calendly.com/tom-wombathomeloans" target="_blank" rel="noopener">Book a free discovery call <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+{% block scripts %}
+<script>
+(function() {
+  var filters = document.getElementById('ep-filters');
+  var grid = document.getElementById('ep-grid');
+  if (!filters || !grid) return;
+
+  filters.addEventListener('click', function(e) {
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    filters.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('is-active'); });
+    btn.classList.add('is-active');
+    var cat = btn.getAttribute('data-filter');
+    grid.querySelectorAll('.ep-card').forEach(function(card) {
+      if (cat === 'all' || card.getAttribute('data-category') === cat) {
+        card.classList.remove('is-hidden');
+      } else {
+        card.classList.add('is-hidden');
+      }
+    });
+  });
+})();
+</script>
+{% endblock %}
