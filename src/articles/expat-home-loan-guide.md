@@ -1,9 +1,10 @@
 ---
 title: "Getting a home loan as an Australian expat: what the banks don't tell you"
 description: "Lending to expats involves foreign income, overseas assets, and currency risk. Most lenders shy away — but with the right approach, a competitive loan is absolutely possible."
-date: 2026-01-15
+date: 2025-10-12
 category: "Expats & International Buyers"
 layout: article.njk
+thumbnail: "/images/articles/woman_professional_sydney_view.jpg"
 ---
 
 If you're an Australian living and working abroad, getting a home loan in Australia is not impossible — it's just more complicated. Most major banks are conservative when it comes to expat lending, but specialist lenders and a good broker can make the difference between a frustrating dead end and a competitive loan.
