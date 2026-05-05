@@ -1,9 +1,10 @@
 ---
 title: "Fixed vs variable rate: what to consider when choosing your home loan"
 description: "There's no universal right answer — but there is a right answer for your situation. Walk through the trade-offs of fixed and variable rates for Australian home loans."
-date: 2026-01-15
+date: 2025-11-10
 category: "Strategy"
 layout: article.njk
+thumbnail: "/images/articles/home_money.png"
 ---
 
 The fixed vs variable question is one of the most common decisions borrowers face — and one of the most misunderstood. It's not really about predicting where rates will go (nobody does that reliably). It's about understanding your own situation, priorities, and risk tolerance, and choosing a structure that serves you well regardless of what happens next.
