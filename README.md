@@ -6,7 +6,7 @@ Source for [wombathomeloans.com.au](https://wombathomeloans.com.au) — Wombat H
 
 | Folder | What it is |
 |---|---|
-| `public/` | Everything Netlify serves to the world. HTML, images, assets. |
+| `public/` | Everything Netlify serves to the world. HTML, images, assets etc. |
 | `public/images/` | Web-optimised photos. High-res originals stay in Drive. |
 | `public/articles/` | One HTML file per article. |
 | `docs/` | Briefing, brand notes, change log. **Not deployed.** |
