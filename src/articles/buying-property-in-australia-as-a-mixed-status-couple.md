@@ -2,9 +2,10 @@
 title: "Buying Property in Australia as a Mixed-Status Couple"
 description: "Can one partner be a citizen and the other a foreign buyer? Here's how surcharges and approvals apply when couples co-own property in Australia.
 When one partner is an Australian citizen or permanent"
-date: 2026-01-15
+date: 2026-03-08
 category: "Home Loans"
 layout: article.njk
+thumbnail: "/images/articles/couple_buying_property.jpg"
 ---
 
 Can one partner be a citizen and the other a foreign buyer? Here's how surcharges and approvals apply when couples co-own property in Australia.
