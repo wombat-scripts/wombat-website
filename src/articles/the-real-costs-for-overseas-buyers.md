@@ -4,9 +4,10 @@ description: "Approval fees, state surcharges and ongoing charges — a practica
 
 ATO Approval Fees (FIRB Residential Applications)
 Residential application fees are tiered to t"
-date: 2026-01-15
+date: 2026-03-18
 category: "Home Loans"
 layout: article.njk
+thumbnail: "/images/articles/property_costs.jpg"
 ---
 
 Approval fees, state surcharges and ongoing charges — a practical guide for foreign buyers in Australia.
