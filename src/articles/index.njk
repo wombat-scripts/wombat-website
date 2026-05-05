@@ -53,9 +53,9 @@ description: Practical guides on home loans, refinancing, expat lending, and pro
 
     <div class="grid grid--3" id="article-grid">
       {% for article in collections.articles %}
-      <a href="{{ article.url }}" class="card article-card-filtered" data-category="{{ article.data.category or 'Home Loans' }}" data-reveal style="--reveal-delay: {{ loop.index0 * 60 }}ms; text-decoration: none; color: inherit;">
+      <a href="{{ article.url }}" class="card article-card-filtered" data-category="{{ article.data.category or 'Home Loans' }}" data-reveal style="--reveal-delay: {{ loop.index0 * 60 }}ms; text-decoration: none; color: inherit; overflow: hidden;">
         {% if article.data.thumbnail %}
-        <img class="article-card__thumb" src="{{ article.data.thumbnail }}" alt="" loading="lazy" decoding="async">
+        <img src="{{ article.data.thumbnail }}" alt="" loading="lazy" decoding="async" style="aspect-ratio: 16/9; width: calc(100% + 3rem); object-fit: cover; margin: -1.5rem -1.5rem 1rem; display: block;">
         {% endif %}
         <p class="meta">{{ article.data.category or "Home Loans" }}</p>
         <h4 style="margin-bottom: var(--space-2);">{{ article.data.title }}</h4>
