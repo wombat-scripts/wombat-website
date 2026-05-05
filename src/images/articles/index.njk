@@ -1,0 +1,92 @@
+---
+layout: base.njk
+title: Articles — Home Loan Guides & Explainers
+description: Practical guides on home loans, refinancing, expat lending, and property investment from Tom Carr at Wombat Home Loans.
+---
+
+{% block head %}
+<style>
+  .filter-bar { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-7); }
+  .filter-btn {
+    padding: 0.5rem 1.1rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: all var(--motion-fast) var(--easing);
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--steel); color: var(--navy); }
+  .filter-btn.is-active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .article-card-filtered.is-hidden { display: none; }
+  .article-card-filtered { overflow: hidden; display: flex; flex-direction: column; }
+  .article-card__thumb { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; display: block; border-radius: var(--radius-md) var(--radius-md) 0 0; margin: calc(-1 * var(--space-5)) calc(-1 * var(--space-5)) var(--space-4); width: calc(100% + var(--space-5) * 2); }
+</style>
+{% endblock %}
+
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Articles</p>
+    <h1>Guides and explainers</h1>
+    <p class="lede">Practical, jargon-free articles to help you make better decisions about your mortgage.</p>
+
+    {# Build unique categories #}
+    <div class="filter-bar" style="margin-top: var(--space-6);" id="article-filters">
+      <button class="filter-btn is-active" data-filter="all">All Articles</button>
+      {% set cats = [] %}
+      {% for article in collections.articles %}
+        {% set cat = article.data.category or "Home Loans" %}
+        {% if cat not in cats %}
+          {% set cats = (cats.push(cat), cats) %}
+        {% endif %}
+      {% endfor %}
+      {% for cat in cats | sort %}
+        <button class="filter-btn" data-filter="{{ cat }}">{{ cat }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="grid grid--3" id="article-grid">
+      {% for article in collections.articles %}
+      <a href="{{ article.url }}" class="card article-card-filtered" data-category="{{ article.data.category or 'Home Loans' }}" data-reveal style="--reveal-delay: {{ loop.index0 * 60 }}ms; text-decoration: none; color: inherit;">
+        {% if article.data.thumbnail %}
+        <img class="article-card__thumb" src="{{ article.data.thumbnail }}" alt="" loading="lazy" decoding="async">
+        {% endif %}
+        <p class="meta">{{ article.data.category or "Home Loans" }}</p>
+        <h4 style="margin-bottom: var(--space-2);">{{ article.data.title }}</h4>
+        <p class="small" style="color: var(--ink-soft);">{{ article.data.description }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% block scripts %}
+<script>
+(function() {
+  var filters = document.getElementById('article-filters');
+  var grid = document.getElementById('article-grid');
+  if (!filters || !grid) return;
+
+  filters.addEventListener('click', function(e) {
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    filters.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('is-active'); });
+    btn.classList.add('is-active');
+    var cat = btn.getAttribute('data-filter');
+    grid.querySelectorAll('.article-card-filtered').forEach(function(card) {
+      if (cat === 'all' || card.getAttribute('data-category') === cat) {
+        card.classList.remove('is-hidden');
+      } else {
+        card.classList.add('is-hidden');
+      }
+    });
+  });
+})();
+</script>
+{% endblock %}
