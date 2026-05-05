@@ -25,6 +25,8 @@ description: Practical guides on home loans, refinancing, expat lending, and pro
   .filter-btn:hover { border-color: var(--steel); color: var(--navy); }
   .filter-btn.is-active { background: var(--navy); color: #fff; border-color: var(--navy); }
   .article-card-filtered.is-hidden { display: none; }
+  .article-card-filtered { overflow: hidden; display: flex; flex-direction: column; }
+  .article-card__thumb { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; display: block; border-radius: var(--radius-md) var(--radius-md) 0 0; margin: calc(-1 * var(--space-5)) calc(-1 * var(--space-5)) var(--space-4); width: calc(100% + var(--space-5) * 2); }
 </style>
 {% endblock %}
 
@@ -52,6 +54,9 @@ description: Practical guides on home loans, refinancing, expat lending, and pro
     <div class="grid grid--3" id="article-grid">
       {% for article in collections.articles %}
       <a href="{{ article.url }}" class="card article-card-filtered" data-category="{{ article.data.category or 'Home Loans' }}" data-reveal style="--reveal-delay: {{ loop.index0 * 60 }}ms; text-decoration: none; color: inherit;">
+        {% if article.data.thumbnail %}
+        <img class="article-card__thumb" src="{{ article.data.thumbnail }}" alt="" loading="lazy" decoding="async">
+        {% endif %}
         <p class="meta">{{ article.data.category or "Home Loans" }}</p>
         <h4 style="margin-bottom: var(--space-2);">{{ article.data.title }}</h4>
         <p class="small" style="color: var(--ink-soft);">{{ article.data.description }}</p>
