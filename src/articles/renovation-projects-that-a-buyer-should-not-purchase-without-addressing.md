@@ -1,9 +1,10 @@
 ---
 title: "Renovation Projects That a Buyer Should Not Purchase Without Addressing"
 description: "When considering buying a home, it's important to differentiate between renovation issues that are deal-breakers if not addressed, and those that can be negotiated as part of the sale. Not all problem"
-date: 2026-01-15
+date: 2026-04-20
 category: "Home Loans"
 layout: article.njk
+thumbnail: "/images/articles/freestanding_house.jpg"
 ---
 
 When considering buying a home, it's important to differentiate between renovation issues that are deal-breakers if not addressed, and those that can be negotiated as part of the sale. Not all problems are created equal — some need to be resolved before you proceed, others can be leveraged in your favour.
