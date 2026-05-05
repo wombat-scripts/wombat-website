@@ -317,13 +317,14 @@ description: Sydney mortgage broker for expats, international professionals and 
   <div class="container">
     <div class="cluster" data-reveal style="justify-content: space-between; margin-bottom: var(--space-7); align-items: flex-end;">
       <div style="max-width: 640px;"><span class="eyebrow">The Property Web · podcast</span><h2 class="mb-0">Long-form conversations about <em>how Australian property actually works.</em></h2></div>
-      <a class="btn btn--ghost" href="/podcast/">All episodes <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost" href="/podcast/">All {{ episodes | length }} episodes <span class="arrow" aria-hidden="true">→</span></a>
     </div>
     <div class="podcast-grid" data-reveal>
-      {% for ep in episodes %}
+      {% for ep in episodes | reverse | limit(4) %}
       <a class="card episode-card" href="{{ ep.url }}" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
         <span class="episode-card__num">Episode {{ ep.number }} · {{ ep.category }}</span>
         <h3>{{ ep.title }}</h3>
+        <p class="ep-card__guest" style="font-size: var(--fs-small); color: var(--ink-soft); font-weight: 500; margin: 0;">{{ ep.guest }}{% if ep.role %} · {{ ep.role }}{% endif %}</p>
         <p class="muted small">{{ ep.description }}</p>
         <span class="episode-card__meta">{{ ep.date | readableDate }}{% if ep.latest %} · Latest episode{% endif %}</span>
       </a>
