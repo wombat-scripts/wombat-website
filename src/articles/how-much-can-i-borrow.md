@@ -1,9 +1,10 @@
 ---
 title: "How much can I actually borrow? A straight-talking guide to borrowing capacity"
 description: "Online calculators give you a number, but lenders look at far more than your income. Here's what actually drives your borrowing capacity — and how to improve it before you apply."
-date: 2026-01-15
+date: 2025-09-18
 category: "First Home Buyers"
 layout: article.njk
+thumbnail: "/images/articles/home_money.png"
 ---
 
 You've punched your income into an online calculator and got back a number with a lot of zeros. That's great — but it's not the full picture. Lenders assess borrowing capacity through a far more detailed lens, and understanding what they look for is the first step to getting the best possible outcome.
