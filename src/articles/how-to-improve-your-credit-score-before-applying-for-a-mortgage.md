@@ -1,9 +1,10 @@
 ---
 title: "How to Improve Your Credit Score Before Applying for a Mortgage"
 description: "When you're contemplating the purchase of a home, your credit score becomes more than just a number — it's a reflection of your financial reliability and can be the key to unlocking favourable mortgag"
-date: 2026-01-15
+date: 2025-12-19
 category: "Home Loans"
 layout: article.njk
+thumbnail: "/images/articles/young_couple_house.jpg"
 ---
 
 When you're contemplating the purchase of a home, your credit score becomes more than just a number — it's a reflection of your financial reliability and can be the key to unlocking favourable mortgage terms.
