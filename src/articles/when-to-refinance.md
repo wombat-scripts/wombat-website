@@ -1,9 +1,10 @@
 ---
 title: "When does it actually make sense to refinance? A practical framework"
 description: "Refinancing isn't always the right move. Rate savings need to outweigh costs, timing matters, and switching at the wrong moment can set you back. Here's how to think it through."
-date: 2026-01-15
+date: 2025-11-01
 category: "Refinancing"
 layout: article.njk
+thumbnail: "/images/articles/couple_buying_property.jpg"
 ---
 
 Refinancing gets a lot of attention — and rightly so. For many borrowers, switching lenders is one of the most effective ways to reduce the cost of their mortgage. But it's not always the right move, and the timing and numbers matter a lot more than most people realise.
