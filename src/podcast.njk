@@ -11,6 +11,26 @@ permalink: /podcast/
   .pod-hero .lede { margin-inline: auto; }
   .pod-platforms { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6); }
 
+  /* Filter bar */
+  .filter-bar { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-7); }
+  .filter-btn {
+    padding: 0.5rem 1.1rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: all var(--motion-fast) var(--easing);
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--steel); color: var(--navy); }
+  .filter-btn.is-active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
   .ep-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 
   .ep-card {
@@ -22,6 +42,7 @@ permalink: /podcast/
     color: inherit;
   }
   .ep-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); color: inherit; }
+  .ep-card.is-hidden { display: none; }
 
   .ep-card__thumb {
     aspect-ratio: 16 / 9;
@@ -62,7 +83,7 @@ permalink: /podcast/
 </section>
 
 {# ── LATEST EPISODE (featured) ── #}
-{% set latest = episodes | reverse | first %}
+{% set latest = episodes | last %}
 <section class="section">
   <div class="container">
     <div data-reveal style="margin-bottom: var(--space-6);">
@@ -84,17 +105,31 @@ permalink: /podcast/
   </div>
 </section>
 
-{# ── ALL EPISODES ── #}
+{# ── ALL EPISODES with filter ── #}
 <section class="section section--cool">
   <div class="container">
-    <div data-reveal style="margin-bottom: var(--space-7);">
+    <div data-reveal style="margin-bottom: var(--space-5);">
       <span class="eyebrow">All episodes</span>
       <h2>{{ episodes | length }} conversations <em>and counting.</em></h2>
     </div>
-    <div class="ep-grid" data-reveal>
+
+    {# Build unique categories from episodes #}
+    <div class="filter-bar" data-reveal id="ep-filters">
+      <button class="filter-btn is-active" data-filter="all">All Episodes</button>
+      {% set cats = [] %}
+      {% for ep in episodes %}
+        {% if ep.category not in cats %}
+          {% set cats = (cats.push(ep.category), cats) %}
+        {% endif %}
+      {% endfor %}
+      {% for cat in cats | sort %}
+        <button class="filter-btn" data-filter="{{ cat }}">{{ cat }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="ep-grid" data-reveal id="ep-grid">
       {% for ep in episodes | reverse %}
-      {% if not loop.first %}
-      <a class="card ep-card" href="{{ ep.url }}" target="_blank" rel="noopener">
+      <a class="card ep-card" href="{{ ep.url }}" target="_blank" rel="noopener" data-category="{{ ep.category }}">
         <div class="ep-card__body">
           <span class="ep-card__num">Episode {{ ep.number }} · {{ ep.category }}</span>
           <h3>{{ ep.title }}</h3>
@@ -103,7 +138,6 @@ permalink: /podcast/
           <span class="ep-card__date">{{ ep.date | readableDate }}</span>
         </div>
       </a>
-      {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -124,3 +158,28 @@ permalink: /podcast/
     </div>
   </div>
 </section>
+
+{% block scripts %}
+<script>
+(function() {
+  var filters = document.getElementById('ep-filters');
+  var grid = document.getElementById('ep-grid');
+  if (!filters || !grid) return;
+
+  filters.addEventListener('click', function(e) {
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    filters.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('is-active'); });
+    btn.classList.add('is-active');
+    var cat = btn.getAttribute('data-filter');
+    grid.querySelectorAll('.ep-card').forEach(function(card) {
+      if (cat === 'all' || card.getAttribute('data-category') === cat) {
+        card.classList.remove('is-hidden');
+      } else {
+        card.classList.add('is-hidden');
+      }
+    });
+  });
+})();
+</script>
+{% endblock %}
