@@ -2,9 +2,10 @@
 title: "Split Loans Explained"
 description: "When they make sense and how to use them well.
 Interest rates move in cycles, and whenever the market enters a period of uncertainty, borrowers naturally start looking for ways to balance stability wi"
-date: 2026-01-15
+date: 2026-01-28
 category: "Home Loans"
 layout: article.njk
+thumbnail: "/images/articles/rentvestor.jpg"
 ---
 
 When they make sense and how to use them well.
