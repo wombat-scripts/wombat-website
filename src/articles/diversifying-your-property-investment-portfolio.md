@@ -1,9 +1,10 @@
 ---
 title: "Diversifying Your Property Investment Portfolio"
 description: "Property investment in Australia has long been a favoured route for building wealth. But as with any investment class, concentration in one area carries risk. Diversification is the key to mitigating"
-date: 2026-01-15
+date: 2026-02-06
 category: "Home Loans"
 layout: article.njk
+thumbnail: "/images/articles/growing_wealth.png"
 ---
 
 Property investment in Australia has long been a favoured route for building wealth. But as with any investment class, concentration in one area carries risk. Diversification is the key to mitigating that risk and potentially enhancing long-term returns.
