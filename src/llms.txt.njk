@@ -10,11 +10,12 @@ eleventyExcludeFromCollections: true
 
 Wombat Home Loans is run by Tom Carr, a Sydney-based mortgage broker with 20+ years of institutional banking experience (Citigroup, UBS, RBS, Commonwealth Bank). Tom helps clients navigate the Australian property market — particularly expats and international professionals buying their first Australian home.
 
-Wombat Home Loans is a credit representative of Finsure Finance & Insurance Pty Ltd (Australian Credit Licence 384704).
-
+- Credit Representative Number: 559744
+- Australian Credit Licence: 561324
 - Location: Beecroft, Sydney, NSW, Australia
 - Access to 40+ lenders
 - No cost to borrowers (commission-paid by lenders)
+- 5.0 Google rating
 
 ## Services
 
@@ -22,27 +23,38 @@ Wombat Home Loans is a credit representative of Finsure Finance & Insurance Pty 
 - Refinancing
 - Expat and non-resident lending
 - First-home buyer guidance
+- Complex finance (foreign income, visa holders, cross-border)
 - Construction and renovation loans
 - Borrowing capacity assessments
+- Annual loan health checks
+
+## The Property Web — Interview Series
+
+Tom hosts The Property Web, a fortnightly interview series featuring buyer's agents, financial planners, accountants, proptech founders and property lawyers. {{ episodes | length }} episodes published. Available on YouTube, Spotify, and Apple Podcasts.
+
+{% for ep in episodes | reverse %}- Episode {{ ep.number }}: {{ ep.title }} ({{ ep.guest }}, {{ ep.role }}) — {{ ep.date | readableDate }}
+{% endfor %}
+
+## Articles
+
+{% for article in collections.articles %}- [{{ article.data.title }}](https://wombathomeloans.com.au{{ article.url }}) — {{ article.data.category or "Home Loans" }}
+{% endfor %}
 
 ## Contact
 
 - Website: https://wombathomeloans.com.au
 - Book a call: https://calendly.com/tom-wombathomeloans
-- Email: tom@wombathomeloans.com.au
-- Phone: 0402 969 820
+- Email: hello@wombathomeloans.com.au
+- Phone: 0456 255 409
 - LinkedIn: https://linkedin.com/in/tomrcarr
-
-## Content
-
-- Articles and guides: https://wombathomeloans.com.au/articles/
-- Podcast (The Property Web): https://wombathomeloans.com.au/podcast/
-- Newsletter: Wombat Wrap (subscribe via website)
+- Podcast: https://wombathomeloans.com.au/podcast/
 
 ## Key pages
 
 - [Home](https://wombathomeloans.com.au/)
 - [Articles](https://wombathomeloans.com.au/articles/)
 - [Podcast](https://wombathomeloans.com.au/podcast/)
+- [Expat Home Loans](https://wombathomeloans.com.au/landing/expat-home-loans/)
 - [Privacy Policy](https://wombathomeloans.com.au/privacy-policy/)
 - [Terms of Use](https://wombathomeloans.com.au/terms/)
+- [Dispute Resolution](https://wombathomeloans.com.au/dispute-resolution/)
