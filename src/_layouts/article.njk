@@ -51,7 +51,7 @@ ogType: article
     </div>
 
     {# ── Related articles ── #}
-    {% set related = collections.articles | reject("url", page.url) | limit(3) %}
+    {% set related = [] %}{% for a in collections.articles %}{% if a.url != page.url %}{% set related = (related.push(a), related) %}{% endif %}{% endfor %}{% set related = related | limit(3) %}
     {% if related.length %}
     <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--line);">
       <h3>You might also find useful</h3>
