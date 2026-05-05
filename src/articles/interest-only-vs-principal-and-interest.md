@@ -1,9 +1,10 @@
 ---
 title: "Interest-only vs principal & interest: which loan structure suits investors?"
 description: "The right structure depends on your cash flow, tax position, and investment strategy — not just the rate. Here's a breakdown for Australian property investors."
-date: 2026-01-15
+date: 2025-12-01
 category: "Property Investors"
 layout: article.njk
+thumbnail: "/images/articles/male_investor.jpg"
 ---
 
 One of the most common questions property investors ask is whether to take out an interest-only (IO) loan or a principal and interest (P&I) loan. The honest answer: it depends — on your cash flow, your tax situation, your investment strategy, and how long you intend to hold the property. Here's a clear-eyed breakdown of both.
