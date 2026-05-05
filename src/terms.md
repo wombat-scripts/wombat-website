@@ -5,6 +5,9 @@ layout: base.njk
 permalink: /terms/
 ---
 
+<div class="section">
+<div class="container container--narrow">
+
 # Terms of Use
 
 **Last updated:** May 2026
@@ -53,5 +56,8 @@ If you have any questions about these terms, please contact us:
 
 **Tom Carr**
 Wombat Home Loans
-Email: [tom@wombathomeloans.com.au](mailto:tom@wombathomeloans.com.au)
-Phone: 0402 969 820
+Email: [hello@wombathomeloans.com.au](mailto:hello@wombathomeloans.com.au)
+Phone: 0456 255 409
+
+</div>
+</div>
