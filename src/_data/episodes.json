@@ -1,27 +1,113 @@
 [
   {
-    "number": "09",
-    "category": "Wealth building",
-    "title": "The missing piece in wealth building.",
-    "description": "Roger Sousa (Asperum) on the underrated role of financial defence alongside accumulation — protecting assets and planning for a secure retirement.",
-    "url": "https://www.youtube.com/watch?v=vU6CixRWZJw",
-    "date": "2026-02-01",
+    "number": "11",
+    "guest": "Mark Horvat",
+    "role": "Buyer's Agent, The Acquiry",
+    "category": "Buyer's agent",
+    "title": "Inspecting, not speculating: a guide to blue chip property.",
+    "description": "Mark Horvat on why the 'best' investment isn't always the one with the highest yield — and how to evaluate property like an insider.",
+    "url": "https://www.youtube.com/watch?v=kwiY6Z9PX2g",
+    "date": "2026-04-10",
     "latest": true
   },
   {
+    "number": "10",
+    "guest": "Molly Lim",
+    "role": "Accountant, Above Advisory",
+    "category": "Tax & structure",
+    "title": "Tax, trusts, and structuring for internationals.",
+    "description": "Molly Lim on the trust myth, the hidden renovation tax trap, and how ambitious professionals should structure property ownership in Australia.",
+    "url": "https://www.youtube.com/watch?v=0DFCiVRtAxE",
+    "date": "2026-03-12"
+  },
+  {
+    "number": "09",
+    "guest": "Roger Sousa",
+    "role": "Financial Adviser, Asperum",
+    "category": "Wealth building",
+    "title": "The missing piece in wealth building.",
+    "description": "Roger Sousa on the underrated role of financial defence alongside accumulation — protecting assets and planning for a secure retirement.",
+    "url": "https://www.youtube.com/watch?v=vU6CixRWZJw",
+    "date": "2026-02-15"
+  },
+  {
     "number": "08",
+    "guest": "Heshan Jayawardena",
+    "role": "Co-Founder, PiFi Property",
     "category": "PropTech",
     "title": "From coding to co-founding: the PiFi Property story.",
     "description": "Heshan Jayawardena on building a platform that uncovers hidden potential in properties — and where AI is taking property search next.",
     "url": "https://www.youtube.com/watch?v=EfSgfX40xwE",
-    "date": "2026-01-01"
+    "date": "2026-01-28"
   },
   {
     "number": "07",
+    "guest": "Tim Watson",
+    "role": "Buyer's Agent, Bricks to Wealth",
     "category": "Buyer's agent",
     "title": "Navigating property investment.",
-    "description": "Tim Watson (Bricks to Wealth) on his move from corporate life to founding a buyer's agency, and what strategic property investment really looks like.",
+    "description": "Tim Watson on his move from corporate life to founding a buyer's agency, and what strategic property investment really looks like.",
     "url": "https://www.youtube.com/watch?v=ER0dNbZAdz8",
-    "date": "2025-12-01"
+    "date": "2025-12-15"
+  },
+  {
+    "number": "06",
+    "guest": "Alesha Masaud",
+    "role": "Founder, TaxApp",
+    "category": "Accounting & tech",
+    "title": "From accountant to app founder: Alesha Masaud's story behind TaxApp.",
+    "description": "Alesha on her journey from Pakistan to Sydney, the challenges of building a digital-first accounting platform, and property investment insights.",
+    "url": "https://www.youtube.com/watch?v=fznpycKoZRE",
+    "date": "2025-11-12"
+  },
+  {
+    "number": "05",
+    "guest": "Scott Palmer",
+    "role": "Financial Planner",
+    "category": "Financial planning",
+    "title": "From the UK to Australia: how financial planner Scott Palmer made the move.",
+    "description": "Scott Palmer on the nuances of financial planning across borders, early investment habits, and navigating pensions and wealth management.",
+    "url": "https://www.youtube.com/watch?v=aGq8DJH1XWo",
+    "date": "2025-10-29"
+  },
+  {
+    "number": "04",
+    "guest": "Rohit Gehlot",
+    "role": "Buyer's Agent",
+    "category": "Buyer's agent",
+    "title": "Unlocking property potential: insights from Rohit Gehlot.",
+    "description": "Rohit on going from corporate employee to buyer's agent, building a property portfolio, and what's happening in the Melbourne market.",
+    "url": "https://www.youtube.com/watch?v=nB9KZNuLFpE",
+    "date": "2025-10-15"
+  },
+  {
+    "number": "03",
+    "guest": "Wilson Tran",
+    "role": "Property Lawyer",
+    "category": "Property law",
+    "title": "From dreams to reality: Wilson Tran's legal path.",
+    "description": "Wilson Tran on the legal side of property — what buyers need to know before contracts are signed, and common mistakes to avoid.",
+    "url": "https://www.youtube.com/watch?v=Q6qMdO14GjM",
+    "date": "2025-10-01"
+  },
+  {
+    "number": "02",
+    "guest": "Janet Chiang",
+    "role": "Real Estate Agent",
+    "category": "Real estate",
+    "title": "Navigating Australian real estate: Janet Chiang's story.",
+    "description": "Janet Chiang on the realities of buying and selling in the Australian market — and what first-time buyers often get wrong.",
+    "url": "https://www.youtube.com/watch?v=Jj8MIxwdjGw",
+    "date": "2025-09-16"
+  },
+  {
+    "number": "01",
+    "guest": "Sarah Pyke",
+    "role": "Accountant",
+    "category": "Accounting",
+    "title": "From corporate to accounting entrepreneur: Sarah Pyke's story.",
+    "description": "Sarah Pyke on leaving the corporate world, building an accounting practice, and the financial foundations that matter when buying property.",
+    "url": "https://www.youtube.com/watch?v=xDIU5UzojRA",
+    "date": "2025-09-03"
   }
 ]
