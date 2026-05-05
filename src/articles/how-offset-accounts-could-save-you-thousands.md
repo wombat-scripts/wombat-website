@@ -2,10 +2,11 @@
 title: "How Offset Accounts Could Save You Thousands on Your Home Loan"
 description: "Including an offset account in your home loan strategy could potentially save you thousands of dollars over the life of your loan. Here's how they work and when they make sense.
 
-What Are Offset Accou"
-date: 2026-01-15
+What Are Offset Accounts"
+date: 2026-01-08
 category: "Home Loans"
 layout: article.njk
+thumbnail: "/images/articles/growing_wealth.png"
 ---
 
 Including an offset account in your home loan strategy could potentially save you thousands of dollars over the life of your loan. Here's how they work and when they make sense.
