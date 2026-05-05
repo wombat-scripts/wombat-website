@@ -1,9 +1,10 @@
 ---
 title: "How to Handle a Mortgage After a Job Loss"
 description: "The mortgage doesn't stop when your paycheck does. Losing a job while carrying a home loan is stressful — but it's a situation lenders have seen before, and there are real options available if you act"
-date: 2026-01-15
+date: 2026-04-08
 category: "Home Loans"
 layout: article.njk
+thumbnail: "/images/articles/family_finances.png"
 ---
 
 The mortgage doesn't stop when your paycheck does. Losing a job while carrying a home loan is stressful — but it's a situation lenders have seen before, and there are real options available if you act quickly.
