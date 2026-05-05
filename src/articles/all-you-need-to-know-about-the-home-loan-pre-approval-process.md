@@ -1,9 +1,10 @@
 ---
 title: "All You Need to Know About the Home Loan Pre-Approval Process"
 description: "In Australia, the loan pre-approval process — also known as conditional approval or approval in principle — is a preliminary step in the home buying journey that tells you how much a lender is willing"
-date: 2026-01-15
+date: 2025-09-25
 category: "Home Loans"
 layout: article.njk
+thumbnail: "/images/articles/young_couple_house.jpg"
 ---
 
 In Australia, the loan pre-approval process — also known as conditional approval or approval in principle — is a preliminary step in the home buying journey that tells you how much a lender is willing to lend you, subject to certain conditions.
