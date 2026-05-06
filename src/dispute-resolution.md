@@ -12,17 +12,18 @@ permalink: /dispute-resolution/
 
 This policy provides information about our internal dispute resolution (IDR) process. Our IDR service is provided to you free of charge.
 
-Wombat Home Loans Pty Ltd | Credit Representative Number 559744 | Australian Credit Licence 561324 (we/us/our) believes that it is essential for us to have the ability, authority and proper training to hear and respond appropriately to any complaints or disputes raised by our customers.
+Loans Only Pty Ltd | ACN 648 040 199 | Australian Credit Licence 561324 (we/us/our) believes that it is essential for us to have the ability, authority and proper training to hear and respond appropriately to any complaints or disputes raised by our customers.
 
 ## How you may lodge a complaint
 
 You can lodge complaints by contacting:
 
-**Customer Complaints Officer**
-Wombat Home Loans Pty Ltd
-12 Argyll Place, Cheltenham, NSW 2119
-T: [0456 255 409](tel:+61456255409)
-E: [hello@wombathomeloans.com.au](mailto:hello@wombathomeloans.com.au)
+Customer Complaints Officer
+Loans Only Pty Ltd
+PO Box 615
+Carina QLD 4152
+T: 1800 084 010
+E: hello@loansonly.com
 
 You may also lodge a complaint by speaking to any representative of our business who will refer you to the Complaints Officer. You should explain the details of your complaint as clearly as you can. You may do this verbally or in writing.
 
@@ -35,42 +36,40 @@ To assist complainants who might need additional assistance to lodge a complaint
 - allow representatives to lodge complaints on behalf of complainants, including financial counsellors, legal representatives, family members and friends.
 
 ## Dealing with complaints
-
 Our process for dealing with complaints is as follows:
 
-**Acknowledgement:** We will acknowledge receipt of your complaint promptly — that is, within one business day of receiving it, or as soon as practicable.
+Acknowledgement: We will acknowledge receipt of your complaint promptly – that is, within one business day of receiving it, or as soon as practicable.
 
-**Assessment and investigation:** We will review your complaint carefully and promptly, taking such steps and reviewing such documents as reasonably necessary.
+Assessment and investigation: We will review your complaint carefully and promptly, taking such steps and reviewing such documents as reasonably necessary.
 
-**IDR response:** We will provide an 'IDR response', which is a written communication that sets out the final outcome of your complaint through our IDR process and your right to take your complaint to AFCA if you are not satisfied with the IDR response. If we reject or partially reject your complaint, we will clearly set out the reasons for our decision.
+IDR response: We will provide an ‘IDR response’, which is a written communication that sets out the final outcome of your complaint through our IDR process and your right to take your complaint to AFCA if you are not satisfied with the IDR response. If we reject or partially reject your complaint, we will clearly set out the reasons for our decision.
 
 ## Response timeframes
-
 Generally, we will provide an IDR response to you no later than 30 calendar days after receiving the complaint. However, for some specific types of credit-related complaints, the following response timeframes apply:
 
-- **Credit-related complaints involving default notices:** No later than 21 calendar days after receiving the complaint.
-- **Credit-related complaints involving hardship notices or requests to postpone enforcement proceedings:** No later than 21 calendar days after receiving the complaint. Exceptions apply if we do not have sufficient information to make a decision, or if we reach an agreement with you.
+- Credit-related complaints involving default notices: No later than 21 calendar days after receiving the complaint;
+- Credit-related complaints involving hardship notices or requests to postpone enforcement proceedings: No later than 21 calendar days after receiving the complaint. Exceptions apply
+- if we do not have sufficient information to make a decision, or if we reach an agreement with you.
 
 We do not need to provide an IDR response to you if we close your complaint by the end of the fifth business day after receipt because we have:
 
-1. resolved the complaint to your satisfaction; or
-2. given you an explanation and/or apology and we can take no further action to reasonably address your complaint.
+- resolved the complaint to your satisfaction; or
+- given you an explanation and/or apology we can take no further action to reasonably address your complaint.
 
 However, we must provide a written IDR response for complaints closed by the end of the fifth business day after receipt if:
 
-1. the complainant requests a written response; or
-2. the complaint is about hardship.
+- the complainant requests a written response; or
+- the complaint is about hardship.
 
-## Our external dispute resolution scheme — AFCA
+## Our external dispute resolution scheme – AFCA
 
 If we do not reach agreement on your complaint, you may refer your complaint to the Australian Financial Complaints Authority (AFCA).
 
 You can contact the AFCA scheme:
 
-- by phone on [1800 931 678](tel:1800931678)
-- by email at [info@afca.org.au](mailto:info@afca.org.au)
-- in writing to GPO Box 3, Melbourne VIC 3001
-- online at [www.afca.org.au](https://www.afca.org.au)
+- by phone on 1800 931 678;
+- by email at info@afca.org.au; or
+- in writing to GPO Box 3, Melbourne VIC 3001.
 
 The AFCA scheme is a free service established to provide you with an independent mechanism to resolve specific complaints.
 
