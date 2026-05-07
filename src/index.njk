@@ -126,6 +126,16 @@ description: Sydney mortgage broker for expats, international professionals and 
   /* Cooler paper tones override */
   :root { --paper: #ffffff; --paper-warm: #f3f6f9; --paper-cool: #f3f6f9; }
 
+  /* Welcome video section */
+  .video-intro__wrapper { max-width: 800px; margin-inline: auto; text-align: center; }
+  .video-intro__embed { position: relative; aspect-ratio: 16 / 9; border-radius: var(--radius-lg); overflow: hidden; background: var(--navy-deep); box-shadow: var(--shadow-xl); cursor: pointer; }
+  .video-intro__thumb { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease; }
+  .video-intro__embed:hover .video-intro__thumb { opacity: 0.85; }
+  .video-intro__play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; z-index: 2; }
+  .video-intro__play svg { width: 72px; height: 72px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3)); transition: transform 0.2s ease; }
+  .video-intro__embed:hover .video-intro__play svg { transform: scale(1.08); }
+  .video-intro__caption { margin-top: var(--space-4); color: var(--ink-muted); }
+
   @media (max-width: 640px) { .hero { padding-block: 4rem 3rem; } .hero__portrait { max-width: 360px; } }
 </style>
 {% endblock %}
@@ -214,6 +224,24 @@ description: Sydney mortgage broker for expats, international professionals and 
       <span class="marquee__item lender-name">Pepper Money</span><span class="marquee__item lender-name">·</span>
       <span class="marquee__item lender-name">Liberty</span><span class="marquee__item lender-name">·</span>
       <span class="marquee__item lender-name">+ 25 more</span><span class="marquee__item lender-name">·</span>
+    </div>
+  </div>
+</section>
+
+{# ── WELCOME VIDEO ── #}
+<section class="section video-intro" aria-label="Welcome video from Tom">
+  <div class="container" style="max-width: 800px;">
+    <div class="video-intro__wrapper" data-reveal>
+      <div class="video-intro__embed" id="videoEmbed">
+        <img src="/images/tom-hero-01.jpg" alt="Watch: A quick welcome from Tom" class="video-intro__thumb" loading="lazy" width="800" height="450">
+        <button class="video-intro__play" aria-label="Play welcome video" onclick="
+          var w=document.getElementById('videoEmbed');
+          w.innerHTML='<iframe src=&quot;https://www.youtube.com/embed/YHhouWUaMUI?autoplay=1&amp;rel=0&amp;modestbranding=1&quot; title=&quot;Welcome to Wombat Home Loans&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen style=&quot;position:absolute;inset:0;width:100%;height:100%;&quot;></iframe>';
+        ">
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="36" fill="rgba(28,71,106,0.85)"/><polygon points="28,22 52,36 28,50" fill="#fff"/></svg>
+        </button>
+      </div>
+      <p class="video-intro__caption muted small">Forty seconds with Tom — what Wombat does, and how it works.</p>
     </div>
   </div>
 </section>
