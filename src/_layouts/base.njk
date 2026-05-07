@@ -55,17 +55,42 @@
         "image": "https://wombathomeloans.com.au/images/tom-hero-01.jpg",
         "telephone": "+61456255409",
         "email": "tom@wombathomeloans.com.au",
-        "sameAs": ["https://linkedin.com/in/tomrcarr"],
+        "sameAs": ["https://linkedin.com/in/tomrcarr", "https://www.youtube.com/@thepropertyweb"],
         "worksFor": { "@id": "https://wombathomeloans.com.au/#wombat-home-loans" }
       },
       {
-        "@type": "FinancialService",
+        "@type": ["FinancialService", "MortgageBroker"],
         "@id": "https://wombathomeloans.com.au/#wombat-home-loans",
         "name": "Wombat Home Loans",
         "url": "https://wombathomeloans.com.au/",
         "telephone": "+61456255409",
         "email": "tom@wombathomeloans.com.au",
-        "areaServed": ["Sydney", "Australia"],
+        "description": "Sydney mortgage broker specialising in complex finance for expats, international professionals, first home buyers and property investors. 20+ years institutional banking experience. Access to 40+ lenders. No cost to borrower.",
+        "founder": { "@id": "https://wombathomeloans.com.au/#tom-carr" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Sydney",
+          "addressRegion": "NSW",
+          "addressCountry": "AU"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -33.7511,
+          "longitude": 151.0759
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Sydney" },
+          { "@type": "Country", "name": "Australia" }
+        ],
+        "serviceType": ["Mortgage Broking", "Home Loans", "Expat Lending", "Refinancing", "Investment Loans", "First Home Buyer Loans"],
+        "priceRange": "Free to borrower (commission-paid by lender)",
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        },
+        "sameAs": ["https://www.google.com/maps/place/Wombat+Home+Loans/"],
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "5.0",
