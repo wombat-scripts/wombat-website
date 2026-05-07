@@ -5,6 +5,42 @@ layout: base.njk
 permalink: /podcast/
 ---
 
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "The Property Web — Podcast",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/podcast/",
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": {{ episodes | length }},
+    "itemListElement": [
+      {%- for ep in episodes %}
+      {%- set vidId = ep.url | replace("https://www.youtube.com/watch?v=", "") | replace("https://youtu.be/", "") %}
+      {
+        "@type": "VideoObject",
+        "position": {{ loop.index }},
+        "name": "{{ ep.title }}",
+        "description": "{{ ep.description }}",
+        "thumbnailUrl": "https://img.youtube.com/vi/{{ vidId }}/maxresdefault.jpg",
+        "uploadDate": "{{ ep.date }}",
+        "contentUrl": "{{ ep.url }}",
+        "embedUrl": "https://www.youtube.com/embed/{{ vidId }}",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Wombat Home Loans",
+          "url": "https://wombathomeloans.com.au/"
+        }
+      }{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    ]
+  }
+}
+</script>
+{% endblock %}
+
 {% block head %}
 <style>
   .pod-hero { text-align: center; }
