@@ -130,6 +130,8 @@ permalink: /podcast/
     <div class="ep-grid" data-reveal id="ep-grid">
       {% for ep in episodes | reverse %}
       <a class="card ep-card" href="{{ ep.url }}" target="_blank" rel="noopener" data-category="{{ ep.category }}">
+        {% set vidId = ep.url | replace("https://www.youtube.com/watch?v=", "") | replace("https://youtu.be/", "") %}
+        <img class="ep-card__thumb" src="https://img.youtube.com/vi/{{ vidId }}/mqdefault.jpg" alt="{{ ep.title }}" loading="lazy" width="320" height="180">
         <div class="ep-card__body">
           <span class="ep-card__num">Episode {{ ep.number }} · {{ ep.category }}</span>
           <h3>{{ ep.title }}</h3>
