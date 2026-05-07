@@ -83,7 +83,7 @@ permalink: /podcast/
 </section>
 
 {# ── LATEST EPISODE (featured) ── #}
-{% set latest = episodes | last %}
+{% set latest = episodes | first %}
 <section class="section">
   <div class="container">
     <div data-reveal style="margin-bottom: var(--space-6);">
