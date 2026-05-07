@@ -8,19 +8,24 @@
 # ─────────────────────────────────────────────────────────────────────
 # REDIRECTS
 # ─────────────────────────────────────────────────────────────────────
-# Uncomment when ready to consolidate domains.
 
-#[[redirects]]
-#  from = "https://wombatloans.com.au/*"
-#  to = "https://wombathomeloans.com.au/:splat"
-#  status = 301
-#  force = true
+[[redirects]]
+  from = "https://wombatloans.com.au/*"
+  to = "https://wombathomeloans.com.au/:splat"
+  status = 301
+  force = true
 
-#[[redirects]]
-#  from = "https://www.wombathomeloans.com.au/*"
-#  to = "https://wombathomeloans.com.au/:splat"
-#  status = 301
-#  force = true
+[[redirects]]
+  from = "https://www.wombatloans.com.au/*"
+  to = "https://wombathomeloans.com.au/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.wombathomeloans.com.au/*"
+  to = "https://wombathomeloans.com.au/:splat"
+  status = 301
+  force = true
 
 # ─────────────────────────────────────────────────────────────────────
 # HEADERS — security and performance
