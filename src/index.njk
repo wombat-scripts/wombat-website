@@ -272,19 +272,19 @@ description: Sydney mortgage broker for expats, international professionals and 
     <div class="story__row stack-lg" style="margin-bottom: var(--space-7);" data-reveal>
       <div class="story__copy"><h3>From Citi, UBS and RBS in London — to the broker side of the table.</h3><p>Twenty years in senior data and analytics roles at Citigroup, UBS, the Royal Bank of Scotland, and later Commonwealth Bank in Sydney. I've sat in the rooms where credit policy gets written, and seen exactly how banks decide who's a good risk and who isn't.</p><p>That insider view is the real value. Most rejection letters aren't "you can't afford this" — they're "you applied to the wrong lender for your situation." Knowing the difference is most of the job.</p></div>
       <div class="story__media">
-        <img src="/images/tom-corporate.jpg" alt="Tom Carr in a corporate setting" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
+        <img src="/images/tom-corporate.jpg" alt="Tom Carr in a corporate setting" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;">
       </div>
     </div>
     <div class="story__row story__row--reverse stack-lg" style="margin-bottom: var(--space-7);" data-reveal>
       <div class="story__copy"><h3>I live where you live. Sydney local. Runner. School volunteer.</h3><p>"Wombat" comes from the Beecroft Wombats — our kids soccer team I used to coach. I'm originally from the UK, but Sydney's been home for around fifteen years, and Beecroft for most of those. I served as a volunteer non-executive director at the local primary school.</p><p>None of which is the reason to choose a broker. But it's the reason I built this business the way I did: people I'd want to bump into at Saturday parkrun deserve advice that holds up in daylight.</p></div>
       <div class="story__media">
-        <img src="/images/tom-community.jpg" alt="Tom Carr in the Community" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
+        <img src="/images/tom-community.jpg" alt="Tom Carr in the Community" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;">
       </div>
     </div>
     <div class="story__row stack-lg" data-reveal>
       <div class="story__copy"><h3>I don't disappear at settlement.</h3><p>Most brokers move on once the loan settles — that's when they get paid. Wombat works on an annual review model: every year I check your loan against the market, run the numbers, and tell you whether it's still the right deal. Most years it is. Sometimes it isn't. Either way you'll know.</p><p>And it costs you nothing. Lenders pay brokers for introducing the loan; the borrower never sees a bill. Australia's Best Interests Duty makes that more than a vibe — it's a legal requirement that I act in <em>your</em> interests, not the bank's.</p></div>
       <div class="story__media">
-        <img src="/images/tom-candid.jpg" alt="Tom Carr, relaxed portrait" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
+        <img src="/images/tom-candid.jpg" alt="Tom Carr, relaxed portrait" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;">
       </div>
     </div>
   </div>
@@ -320,17 +320,69 @@ description: Sydney mortgage broker for expats, international professionals and 
       {% endfor %}
       </div>
       <div class="reviews-nav">
-        <button aria-label="Previous reviews" onclick="var c=this.closest('.reviews-wrap').querySelector('.reviews');c.scrollBy({left:-(c.querySelector('.review-card').offsetWidth+20),behavior:'smooth'})">
+        <button class="reviews-prev" aria-label="Previous reviews">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <a class="btn btn--ghost" href="https://www.google.com/maps/place/Wombat+Home+Loans/@-33.7510521,151.0758571,17z/data=!4m8!3m7!1s0xaf820eb4f5bad501:0x7a6605aeacaaaf2a!8m2!3d-33.7510521!4d151.0758571!9m1!1b1!16s%2Fg%2F11w217xjqz?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D/" target="_blank" rel="noopener">Read all reviews on Google <span class="arrow" aria-hidden="true">→</span></a>
-        <button aria-label="Next reviews" onclick="var c=this.closest('.reviews-wrap').querySelector('.reviews');c.scrollBy({left:c.querySelector('.review-card').offsetWidth+20,behavior:'smooth'})">
+        <button class="reviews-next" aria-label="Next reviews">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+(function() {
+  var track = document.querySelector('.reviews');
+  if (!track) return;
+  var cards = Array.from(track.querySelectorAll('.review-card'));
+  var idx = 0;
+  var total = cards.length;
+
+  function getStep() {
+    return cards[0].offsetWidth + 20;
+  }
+
+  function scrollTo(i) {
+    idx = ((i % total) + total) % total;
+    track.scrollTo({ left: idx * getStep(), behavior: 'smooth' });
+  }
+
+  document.querySelector('.reviews-next').addEventListener('click', function() { scrollTo(idx + 1); });
+  document.querySelector('.reviews-prev').addEventListener('click', function() { scrollTo(idx - 1); });
+
+  track.style.scrollSnapType = 'none';
+  // Duplicate cards for seamless looping
+  cards.forEach(function(card) { track.appendChild(card.cloneNode(true)); });
+  cards.forEach(function(card) { track.appendChild(card.cloneNode(true)); });
+  // Start at the first set
+  track.scrollLeft = 0;
+
+  // When scroll ends near the clones, silently reset position
+  var scrollTimer;
+  track.addEventListener('scroll', function() {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function() {
+      var step = getStep();
+      var maxOriginal = total * step;
+      if (track.scrollLeft >= maxOriginal * 2) {
+        track.style.scrollBehavior = 'auto';
+        track.scrollLeft -= maxOriginal;
+        track.style.scrollBehavior = 'smooth';
+        idx = Math.round(track.scrollLeft / step) % total;
+      } else if (track.scrollLeft <= 0) {
+        track.style.scrollBehavior = 'auto';
+        track.scrollLeft += maxOriginal;
+        track.style.scrollBehavior = 'smooth';
+        idx = Math.round(track.scrollLeft / step) % total;
+      } else {
+        idx = Math.round(track.scrollLeft / step) % total;
+      }
+    }, 100);
+  });
+})();
+</script>
 
 {# ── 6. NEWSLETTER ── #}
 <section id="newsletter" class="section section--warm">
@@ -422,6 +474,12 @@ description: Sydney mortgage broker for expats, international professionals and 
   <div class="container">
     <div class="closing" data-reveal>
       <div>
+        <img src="/images/tom-candid.jpg"
+             alt="Tom Carr"
+             loading="lazy"
+             style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
+      </div>
+      <div>
         <span class="eyebrow">Let's start</span>
         <h2>Book the call. Twenty minutes. <em>Genuinely no obligation.</em></h2>
         <p style="font-size: 1.125rem; max-width: 50ch; color: rgba(255,255,255,0.85);">Tell me your situation. I'll tell you what's possible — even if the answer is "not yet," and even if the answer is "use someone else." Zero cost, zero pressure, zero salesy follow-up sequences.</p>
@@ -429,12 +487,6 @@ description: Sydney mortgage broker for expats, international professionals and 
           <a class="btn btn--light btn--lg" href="https://calendly.com/tom-wombathomeloans" target="_blank" rel="noopener">Book a discovery call <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn btn--text" style="color: #fff; border-color: rgba(255,255,255,0.4);" href="tel:+61456255409">Or call 0456 255 409</a>
         </div>
-      </div>
-      <div>
-        <img src="/images/tom_booking.jpg"
-             alt="Tom Carr"
-             loading="lazy"
-             style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
       </div>
     </div>
   </div>
