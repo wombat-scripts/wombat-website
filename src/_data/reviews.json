@@ -1,14 +1,32 @@
 [
   {
     "name": "Prai & Amanda",
-    "segment": "First home buyers",
-    "text": "Even with our unique circumstances that made acquiring a home loan more complicated, Tom took the time to understand our specific needs and worked tirelessly to find us the best rates on a loan product that was perfectly suited to us.",
+    "segment": "First Bome Buyers",
+    "text": "Even with our unique circumstances that made acquiring a home loan more complicated, Tom took the time to understand our specific needs and worked tirelessly to find us the best rates on a loan product that was perfectly suited to us. Throughout the process, Tom was incredibly easy to communicate with — always responsive, approachable, and willing to go above and beyond.",
     "rating": 5
   },
   {
-    "name": "Rihaan & Reshma",
-    "segment": "First home buyers",
-    "text": "Absolutely genuine and trustworthy person. He patiently guided us and shared valuable advice. He has excellent knowledge of the market and took the time to clearly understand our long-term goals from the very beginning. Even though he could have earned more by pushing us towards an investment property, he genuinely put our best interests first and helped us buy our first home in Australia.",
+    "name": "Andrew",
+    "segment": "First Home Buyer",
+    "text": "As a first-time homebuyer, the process was rather daunting, but Tom patiently walked me through every step, explained all my options, and guided me throughout the entire journey. He even referred me to a buyer's agent to get a second opinion on the property I was considering.",
+    "rating": 5
+  },
+  {
+    "name": "Lars",
+    "segment": "Bridging Finance",
+    "text": "Tom went above and beyond in terms of his service and the advice he provided to us. He had created some very clear and detailed financial scenarios for us, so that it was easy for us to understand and make a decision. He provided very honest and transparent advice.",
+    "rating": 5
+  },
+  {
+    "name": "Olga",
+    "segment": "Downsizer",
+    "text": "Tom delivered excellent advice. He took the time to understand our unique financial needs and patiently explained every available option in clear, straightforward terms. His commitment to transparency was evident from start to finish.",
+    "rating": 5
+  },
+  {
+    "name": "Abhi",
+    "segment": "Home Buyer",
+    "text": "Tom's amazing! Very approachable, friendly and knows his stuff. He brought our home ownership ambition a few years forward with his advice in every step of the process.",
     "rating": 5
   },
   {
@@ -19,14 +37,26 @@
   },
   {
     "name": "Chandan",
-    "segment": "SMSF investor",
+    "segment": "SMSF Investor",
     "text": "Tom is very professional, friendly, and always quick to respond to every query. He followed up on every detail diligently, making the whole process smooth and reducing the stress involved. Highly recommended!",
+    "rating": 5
+  },
+  {
+    "name": "Gary",
+    "segment": "Overseas Investor",
+    "text": "Very professional service by Tom. Highly recommend.",
     "rating": 5
   },
   {
     "name": "Cameron",
     "segment": "Investor",
     "text": "Tom was very helpful as it was my first time working with a mortgage broker and buying a rentvest property. He went above and beyond providing sage counsel through the process. We experienced a few hiccoughs along the journey but Tom was very diligent in finding alternative solutions.",
+    "rating": 4
+  },
+  {
+    "name": "Rihaan & Reshma",
+    "segment": "First Home Buyers",
+    "text": "Absolutely genuine and trustworthy person. He has excellent knowledge of the market and took the time to clearly understand our long-term goals from the very beginning. Even though he could have earned more by pushing us towards an investment property, he genuinely put our best interests first and helped us buy our first home in Australia.",
     "rating": 5
   },
   {
@@ -37,7 +67,7 @@
   },
   {
     "name": "Nic & Tracey",
-    "segment": "SMSF investor",
+    "segment": "SMSF Investors",
     "text": "Great working with Tom for our first SMSF property. Always available to provide advice on the steps required and kept great communication in regards to progress. Would definitely recommend for anyone looking for a home loan, in particular SMSF type.",
     "rating": 5
   }
