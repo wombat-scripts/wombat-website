@@ -336,50 +336,22 @@ description: Sydney mortgage broker for expats, international professionals and 
 (function() {
   var track = document.querySelector('.reviews');
   if (!track) return;
-  var cards = Array.from(track.querySelectorAll('.review-card'));
-  var idx = 0;
-  var total = cards.length;
+  var step = function() { return track.querySelector('.review-card').offsetWidth + 20; };
 
-  function getStep() {
-    return cards[0].offsetWidth + 20;
-  }
+  document.querySelector('.reviews-next').addEventListener('click', function() {
+    if (track.scrollLeft + track.offsetWidth >= track.scrollWidth - 10) {
+      track.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      track.scrollBy({ left: step(), behavior: 'smooth' });
+    }
+  });
 
-  function scrollTo(i) {
-    idx = ((i % total) + total) % total;
-    track.scrollTo({ left: idx * getStep(), behavior: 'smooth' });
-  }
-
-  document.querySelector('.reviews-next').addEventListener('click', function() { scrollTo(idx + 1); });
-  document.querySelector('.reviews-prev').addEventListener('click', function() { scrollTo(idx - 1); });
-
-  track.style.scrollSnapType = 'none';
-  // Duplicate cards for seamless looping
-  cards.forEach(function(card) { track.appendChild(card.cloneNode(true)); });
-  cards.forEach(function(card) { track.appendChild(card.cloneNode(true)); });
-  // Start at the first set
-  track.scrollLeft = 0;
-
-  // When scroll ends near the clones, silently reset position
-  var scrollTimer;
-  track.addEventListener('scroll', function() {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(function() {
-      var step = getStep();
-      var maxOriginal = total * step;
-      if (track.scrollLeft >= maxOriginal * 2) {
-        track.style.scrollBehavior = 'auto';
-        track.scrollLeft -= maxOriginal;
-        track.style.scrollBehavior = 'smooth';
-        idx = Math.round(track.scrollLeft / step) % total;
-      } else if (track.scrollLeft <= 0) {
-        track.style.scrollBehavior = 'auto';
-        track.scrollLeft += maxOriginal;
-        track.style.scrollBehavior = 'smooth';
-        idx = Math.round(track.scrollLeft / step) % total;
-      } else {
-        idx = Math.round(track.scrollLeft / step) % total;
-      }
-    }, 100);
+  document.querySelector('.reviews-prev').addEventListener('click', function() {
+    if (track.scrollLeft <= 10) {
+      track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+    } else {
+      track.scrollBy({ left: -step(), behavior: 'smooth' });
+    }
   });
 })();
 </script>
