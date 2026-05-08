@@ -336,22 +336,33 @@ description: Sydney mortgage broker for expats, international professionals and 
 (function() {
   var track = document.querySelector('.reviews');
   if (!track) return;
-  var step = function() { return track.querySelector('.review-card').offsetWidth + 20; };
+  var busy = false;
+
+  function step() { return track.querySelector('.review-card').offsetWidth + 20; }
 
   document.querySelector('.reviews-next').addEventListener('click', function() {
-    if (track.scrollLeft + track.offsetWidth >= track.scrollWidth - 10) {
-      track.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      track.scrollBy({ left: step(), behavior: 'smooth' });
-    }
+    if (busy) return;
+    busy = true;
+    track.scrollBy({ left: step(), behavior: 'smooth' });
+    setTimeout(function() {
+      track.appendChild(track.querySelector('.review-card'));
+      track.style.scrollBehavior = 'auto';
+      track.scrollLeft -= step();
+      track.style.scrollBehavior = 'smooth';
+      busy = false;
+    }, 400);
   });
 
   document.querySelector('.reviews-prev').addEventListener('click', function() {
-    if (track.scrollLeft <= 10) {
-      track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
-    } else {
-      track.scrollBy({ left: -step(), behavior: 'smooth' });
-    }
+    if (busy) return;
+    busy = true;
+    var last = track.querySelectorAll('.review-card');
+    track.insertBefore(last[last.length - 1], track.firstChild);
+    track.style.scrollBehavior = 'auto';
+    track.scrollLeft += step();
+    track.style.scrollBehavior = 'smooth';
+    track.scrollBy({ left: -step(), behavior: 'smooth' });
+    setTimeout(function() { busy = false; }, 400);
   });
 })();
 </script>
