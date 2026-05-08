@@ -91,16 +91,20 @@ description: Sydney mortgage broker for expats, international professionals and 
   /* Tools strip */
   .tools-strip { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
   .tool-card { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6); background: linear-gradient(180deg, #fff, var(--paper-cool)); }
+  .tool-card__icon { width: 44px; height: 44px; padding: 10px; background: var(--navy-deep); border-radius: var(--radius-sm); color: #fff; }
   .tool-card h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
   .tool-card p { font-size: var(--fs-small); color: var(--ink-soft); margin: 0; }
   .tool-card__link { margin-top: auto; padding-top: var(--space-4); }
 
   /* Articles preview */
   .articles-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .article-card { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); }
+  .article-card { display: flex; flex-direction: column; gap: var(--space-3); overflow: hidden; }
+  .article-card__thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+  .article-card__body { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
   .article-card__cat { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel); }
   .article-card h3 { font-size: 1.1875rem; line-height: 1.35; margin-bottom: var(--space-2); }
   .article-card__meta { font-size: var(--fs-meta); color: var(--ink-muted); margin-top: auto; }
+  .article-card__body .article-card__meta { padding-top: var(--space-2); }
 
   /* FAQ */
   .faq { max-width: var(--container-narrow); margin-inline: auto; }
