@@ -63,9 +63,10 @@ description: Sydney mortgage broker for expats, international professionals and 
   .process__step p { font-size: var(--fs-small); color: var(--ink-soft); }
 
   /* Reviews */
+  .reviews-wrap { overflow: hidden; }
   .reviews { display: flex; gap: var(--space-5); overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: var(--space-4); }
   .reviews::-webkit-scrollbar { display: none; }
-  .review-card { padding: var(--space-6); display: flex; flex-direction: column; flex: 0 0 calc((100% - var(--space-5) * 2) / 3); scroll-snap-align: start; min-width: 280px; }
+  .review-card { padding: var(--space-6); display: flex; flex-direction: column; flex: 0 0 calc(33.333% - var(--space-5) * 2 / 3); scroll-snap-align: start; min-width: 300px; }
   .review-card__quote { font-family: var(--font-display); font-size: 1.25rem; font-weight: 300; line-height: 1.45; color: var(--navy-deep); margin: 0 0 var(--space-5); font-variation-settings: "opsz" 80, "SOFT" 50; }
   .review-card__quote::before { content: "\201C"; display: block; font-size: 3rem; line-height: 0.6; color: var(--blue-light); margin-bottom: var(--space-3); }
   .review-card__attr { margin-top: auto; font-size: var(--fs-small); color: var(--ink-muted); display: flex; justify-content: space-between; gap: var(--space-3); }
@@ -303,7 +304,8 @@ description: Sydney mortgage broker for expats, international professionals and 
 <section id="reviews" class="section section--cool">
   <div class="container">
     <div data-reveal style="margin-bottom: var(--space-7); max-width: 700px;"><span class="eyebrow">Reviews · 5.0 on Google</span><h2>The clients who already lived through it.</h2></div>
-    <div class="reviews" data-reveal>
+    <div class="reviews-wrap" data-reveal>
+      <div class="reviews">
       {% for review in reviews %}
       <article class="card review-card">
         <p class="review-card__quote">{{ review.text }}</p>
@@ -313,6 +315,7 @@ description: Sydney mortgage broker for expats, international professionals and 
         </div>
       </article>
       {% endfor %}
+      </div>
     </div>
     <div data-reveal style="text-align: center; margin-top: var(--space-6);">
       <a class="btn btn--ghost" href="https://www.google.com/maps/place/Wombat+Home+Loans/@-33.7510521,151.0758571,17z/data=!4m8!3m7!1s0xaf820eb4f5bad501:0x7a6605aeacaaaf2a!8m2!3d-33.7510521!4d151.0758571!9m1!1b1!16s%2Fg%2F11w217xjqz?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D/" target="_blank" rel="noopener">Read all reviews on Google <span class="arrow" aria-hidden="true">→</span></a>
