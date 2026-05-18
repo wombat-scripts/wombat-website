@@ -1,0 +1,483 @@
+---
+layout: landing.njk
+title: Getting Mortgage-Ready Before You Land
+description: A practical guide for international professionals buying property in Australia. Understand how your visa status shapes your lending options — and what to do before you arrive.
+date: 2026-05-18
+category: Expats & International Buyers
+thumbnail: /images/articles/getting-mortgage-ready.jpg
+---
+
+{# ── Page-specific styles (only for components not in shared styles.css) ── #}
+{% block head %}
+<style>
+  /* Callout box */
+  .callout {
+    background: var(--paper-cool);
+    border-left: 3px solid var(--steel);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--space-5) var(--space-5);
+    margin: var(--space-6) 0;
+  }
+  .callout .eyebrow { margin-bottom: var(--space-2); }
+  .callout .eyebrow::before { display: none; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* Path cards — extend .card */
+  .path-card { border-top: 3px solid var(--steel); }
+  .path-card h3 { margin-top: 0; }
+
+  /* Checklist */
+  .check-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+  .check-num {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--blue-pale);
+    color: var(--navy);
+    border-radius: var(--radius-md);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .check-item h4 { margin-bottom: var(--space-1); }
+  .check-item p { margin-bottom: 0; }
+
+  /* Timeline */
+  .timeline { padding-left: 28px; position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 9px; top: 6px; bottom: 6px;
+    width: 2px; background: var(--blue-pale);
+  }
+  .tl-item { position: relative; margin-bottom: var(--space-6); }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-item::before {
+    content: ''; position: absolute;
+    left: -28px; top: 5px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--paper);
+    border: 3px solid var(--steel);
+  }
+  .tl-item:first-child::before { background: var(--steel); }
+  .tl-when {
+    font-family: var(--font-body);
+    font-weight: 600; color: var(--steel);
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-1);
+  }
+  .tl-item h4 { margin-bottom: var(--space-1); }
+  .tl-item p { margin-bottom: 0; }
+
+  /* FAQ accordion */
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    padding: var(--space-4) var(--space-7) var(--space-4) 0;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 1rem; font-weight: 600;
+    color: var(--navy-deep);
+    cursor: pointer; position: relative;
+    line-height: var(--lh-tight);
+  }
+  .faq-q::after {
+    content: '+'; position: absolute;
+    right: 0; top: 50%; transform: translateY(-50%);
+    font-size: 1.4rem; color: var(--steel);
+    transition: transform var(--motion-fast) var(--easing);
+  }
+  .faq-q[aria-expanded="true"]::after { content: '−'; }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height var(--motion-mid) var(--easing);
+  }
+  .faq-a.open { max-height: 300px; }
+  .faq-a p { padding-bottom: var(--space-4); }
+
+  /* Table */
+  .table-wrap {
+    overflow-x: auto;
+    margin: var(--space-5) 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+  }
+  .table-wrap table {
+    width: 100%; border-collapse: collapse;
+    font-size: var(--fs-small);
+  }
+  .table-wrap thead { background: var(--navy); color: #fff; }
+  .table-wrap th {
+    padding: var(--space-3) var(--space-4);
+    text-align: left; font-weight: 600;
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .table-wrap td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--line);
+  }
+  .table-wrap tbody tr:nth-child(even) { background: var(--paper-cool); }
+  .table-wrap td:first-child { font-weight: 600; color: var(--navy); }
+</style>
+{% endblock %}
+
+{# ── Hero ── #}
+<section class="section section--dark" style="padding-block: clamp(5rem, 10vw, 9rem);">
+  <div class="container container--narrow" style="text-align: center;">
+    <p class="eyebrow">Free Guide</p>
+    <h1 class="display">Getting Mortgage-Ready <em>Before You Land</em></h1>
+    <p class="lede" style="margin-inline: auto; color: var(--blue-pale);">
+      A practical guide for international professionals buying property in Australia. What your visa status means for your home loan — and what to do about it before you arrive.
+    </p>
+    <p class="meta" style="color: rgba(255,255,255,0.5);">Updated May 2026 · Wombat Home Loans</p>
+  </div>
+</section>
+
+{# ── The Big Picture ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Big Picture</p>
+    <h2>Your visa status changes everything</h2>
+
+    <p>If you're moving to Australia and planning to buy property, here's the thing most people don't realise until they're already here: your visa status fundamentally changes what kind of home loan you can get, how much you can borrow, and what it will cost you.</p>
+
+    <p>Australian lenders don't just look at your income and credit history — they treat your visa status as a primary factor in deciding whether to lend, how much to lend, and at what rate. The more permanent your right to stay, the more willing lenders are to work with you.</p>
+
+    <div class="callout">
+      <p class="eyebrow">Key Insight</p>
+      <p>Many people assume that once they have a job offer and a visa, getting a mortgage will be straightforward. In reality, your visa category is often the single biggest factor in determining your borrowing options — sometimes more important than your salary or savings.</p>
+    </div>
+  </div>
+</section>
+
+{# ── Three Paths ── #}
+<section class="section section--cool" id="visa-paths">
+  <div class="container container--narrow">
+    <p class="eyebrow">Know Your Path</p>
+    <h2>Three paths to property — <em>which one are you?</em></h2>
+    <p class="lede">Your journey to an Australian home loan falls into one of three broad paths, each with very different lending outcomes.</p>
+  </div>
+
+  <div class="container" style="margin-top: var(--space-6);">
+    <div class="grid grid--3">
+      <div class="card path-card">
+        <h3>Path A: Citizen or Permanent Resident</h3>
+        <p>If you hold (or will hold by settlement) Australian citizenship or a permanent residency visa, you're in the strongest position.</p>
+        <ul>
+          <li>Full range of lenders — major banks and non-bank lenders</li>
+          <li>Borrow up to 95% of property value (with LMI) or 80% without</li>
+          <li>Competitive standard interest rates</li>
+          <li>No FIRB approval required</li>
+          <li>Access to First Home Owner Grant and stamp duty concessions</li>
+        </ul>
+      </div>
+      <div class="card path-card">
+        <h3>Path B: Temporary Visa Holder</h3>
+        <p>This is where most newcomers on employer-sponsored, skilled worker, or student visas find themselves. It's more complex — but far from impossible.</p>
+        <ul>
+          <li>Most major banks will not lend to you, or will impose significant restrictions</li>
+          <li>Typically 10–20% minimum deposit required</li>
+          <li>Interest rates may be 0.5–1.5% higher than standard rates</li>
+          <li>FIRB approval usually required</li>
+          <li>Specialist and non-bank lenders become important</li>
+        </ul>
+      </div>
+      <div class="card path-card">
+        <h3>Path C: Non-Resident (Buying from Overseas)</h3>
+        <p>Want to buy an Australian property before you move? It's the most restrictive path, but still achievable with the right preparation.</p>
+        <ul>
+          <li>Very few Australian lenders will consider you</li>
+          <li>Deposits of 20–40% commonly required</li>
+          <li>Interest rates at a premium</li>
+          <li>FIRB approval mandatory — generally limited to new properties only</li>
+          <li>Foreign buyer stamp duty and land tax surcharges apply in most states</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container container--narrow" style="margin-top: var(--space-6);">
+    <div class="callout">
+      <p class="eyebrow">PR Timeline Tip</p>
+      <p>If your permanent residency is being processed but hasn't been granted yet, some lenders will consider you as a PR applicant — but most will want to see the grant letter before formal approval. Timing your property search around your PR grant date can save you significant hassle and cost.</p>
+    </div>
+  </div>
+</section>
+
+{# ── Comparison Table ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">At a Glance</p>
+    <h2>Visa status vs mortgage</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Factor</th><th>Citizen / PR</th><th>Temporary Visa</th><th>Non-Resident</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Lender access</td><td>Full range</td><td>Limited</td><td>Very limited</td></tr>
+          <tr><td>Max LVR</td><td>Up to 95%</td><td>80–90%</td><td>60–80%</td></tr>
+          <tr><td>Minimum deposit</td><td>5%</td><td>10–20%</td><td>20–40%</td></tr>
+          <tr><td>Interest rates</td><td>Standard</td><td>Higher</td><td>Premium</td></tr>
+          <tr><td>FIRB required?</td><td>No</td><td>Usually yes</td><td>Yes</td></tr>
+          <tr><td>Property type</td><td>Any</td><td>Restrictions may apply</td><td>New only (generally)</td></tr>
+          <tr><td>Govt. grants</td><td>Eligible</td><td>Limited / none</td><td>None</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{# ── What Lenders Look At ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">Beyond the Visa</p>
+    <h2>What lenders actually look at</h2>
+
+    <p>Beyond your visa status, several factors determine whether your loan gets approved — and where newcomers often trip up.</p>
+
+    <h3>Income verification</h3>
+    <p>Lenders want stable, verifiable income. Australian income (payslips and tax returns) is the gold standard. Foreign income is more complex — some lenders discount it by 20–40%, meaning they count less of it towards your borrowing power. Self-employed applicants need two years of financials.</p>
+
+    <h3>Credit history</h3>
+    <p>Your overseas credit score does not transfer to Australia — you start with a blank slate. This can work in your favour (no negative history), but it also means no positive history for lenders to assess. Some lenders accept an international credit report as supporting evidence. Building local credit starts the moment you open an Australian bank account.</p>
+
+    <h3>Savings history</h3>
+    <p>Lenders want to see genuine savings — typically 3–6 months of regular saving behaviour. Money in your overseas account counts, but you'll need to demonstrate it wasn't a recent lump sum (e.g. a gift) unless you can document the source.</p>
+
+    <h3>Existing debts</h3>
+    <p>Overseas credit cards, car loans, student loans, and any other debts reduce your borrowing power. Australian lenders factor in your global debts, not just Australian ones. Pay down what you can before applying.</p>
+  </div>
+</section>
+
+{# ── The Numbers ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Numbers</p>
+    <h2>Deposit, costs &amp; what to budget</h2>
+
+    <p>As a general rule, aim for at least 20% of the purchase price if you can. At 80% LVR, you avoid Lenders Mortgage Insurance (LMI), access more lenders, and secure better rates.</p>
+
+    <h3>Additional costs to budget for</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Cost</th><th>Typical Range</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Stamp duty</td><td>$15,000 – $40,000+</td><td>Varies by state and property value. First-home concessions may apply for citizens/PRs.</td></tr>
+          <tr><td>Foreign buyer surcharge</td><td>7–8% of purchase price</td><td>Applies to non-residents and some temporary visa holders. Varies by state.</td></tr>
+          <tr><td>FIRB application fee</td><td>$14,700 – $28,200+</td><td>Required for temporary visa holders and non-residents.</td></tr>
+          <tr><td>Legal / conveyancing</td><td>$1,500 – $3,500</td><td>Solicitor or conveyancer to handle the legal transfer.</td></tr>
+          <tr><td>Building &amp; pest inspection</td><td>$500 – $1,000</td><td>Strongly recommended before purchase.</td></tr>
+          <tr><td>Lenders Mortgage Insurance</td><td>$5,000 – $30,000+</td><td>Only if borrowing above 80% LVR. Can be capitalised into the loan.</td></tr>
+          <tr><td>Loan application fees</td><td>$0 – $600</td><td>Some lenders charge an establishment fee.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <p class="eyebrow">Worked Example</p>
+      <p>A professional on a temporary visa buying a $900,000 apartment in Sydney as their home might face approximately $233,000 in upfront costs — that's $180,000 deposit (20%), ~$35,000 stamp duty, ~$14,700 FIRB fee, ~$2,500 legal fees, and ~$700 for inspections — before factoring in any foreign buyer surcharge.</p>
+    </div>
+  </div>
+</section>
+
+{# ── Checklist ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">Your Pre-Arrival Checklist</p>
+    <h2>Getting mortgage-ready</h2>
+    <p class="lede">The more you do before you land, the smoother the process will be.</p>
+
+    <div class="stack-lg" style="margin-top: var(--space-6);">
+      <div class="check-item">
+        <div class="check-num">1</div>
+        <div>
+          <h4>Understand your visa pathway</h4>
+          <p>Know which visa you'll hold on arrival and whether you have a pathway to permanent residency. This determines your entire lending landscape.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-num">2</div>
+        <div>
+          <h4>Gather your financial documents</h4>
+          <p>Assemble 3–6 months of bank statements, payslips (or tax returns if self-employed), proof of savings, details of existing debts, and your employment contract or job offer letter.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-num">3</div>
+        <div>
+          <h4>Get a credit report from your home country</h4>
+          <p>Download a copy from your local credit bureau. Some Australian lenders accept international credit reports as supporting documentation.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-num">4</div>
+        <div>
+          <h4>Open an Australian bank account</h4>
+          <p>You can open accounts with most major Australian banks while still overseas. This starts your local banking history and makes transferring your deposit easier.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-num">5</div>
+        <div>
+          <h4>Start saving visibly</h4>
+          <p>Even if you already have the deposit, start making regular transfers into your Australian account to build a genuine savings trail that lenders want to see.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-num">6</div>
+        <div>
+          <h4>Research currency transfer options</h4>
+          <p>Moving a large deposit across currencies? The exchange rate matters enormously. Specialist FX providers often beat standard bank rates by thousands of dollars.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-num">7</div>
+        <div>
+          <h4>Reduce your debts</h4>
+          <p>Pay down credit cards, close unused credit facilities, and clear personal loans where possible. Every dollar of debt reduces your borrowing capacity.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-num">8</div>
+        <div>
+          <h4>Talk to a specialist mortgage broker</h4>
+          <p>Not all brokers understand expat and temporary visa lending. Engage a specialist early — ideally 3–6 months before your move.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ── Common Mistakes ── #}
+<section class="section section--dark">
+  <div class="container container--narrow">
+    <p class="eyebrow">Learn From Others</p>
+    <h2>Common mistakes <em>(and how to avoid them)</em></h2>
+
+    <ol>
+      <li><strong>Assuming your home-country mortgage experience translates directly.</strong> Australian lending is heavily regulated by APRA and operates differently. Loan structures, assessment criteria, and terminology may be unfamiliar.</li>
+      <li><strong>Rushing to buy on a temporary visa.</strong> If you have a clear pathway to PR and can wait, you may save tens of thousands in FIRB fees, foreign buyer surcharges, and higher interest rates. Renting for 12–18 months can be a smart financial decision.</li>
+      <li><strong>Not accounting for foreign buyer surcharges.</strong> Several states charge an additional stamp duty surcharge of 7–8% for foreign buyers. On a $900,000 property, that's $63,000–$72,000 on top of regular stamp duty.</li>
+      <li><strong>Using your everyday bank for the currency transfer.</strong> Standard banks typically offer poor exchange rates on large transfers. On a $200,000 AUD transfer, a specialist FX provider could save you $3,000–$8,000.</li>
+      <li><strong>Not engaging a broker who understands expat lending.</strong> Many brokers rarely deal with temporary visa holders or foreign income and may tell you it's "too hard." A specialist knows which lenders fit your situation.</li>
+      <li><strong>Forgetting to factor in ongoing costs.</strong> Strata fees, council rates, water rates, insurance, and body corporate fees differ from what you may be used to. Budget for these before committing.</li>
+    </ol>
+  </div>
+</section>
+
+{# ── Timeline ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">Plan Ahead</p>
+    <h2>Timeline: when to start what</h2>
+    <p class="lede">Planning ahead makes a real difference. Here's a suggested timeline based on what we see work well for our clients.</p>
+
+    <div class="timeline" style="margin-top: var(--space-6);">
+      <div class="tl-item">
+        <div class="tl-when">6+ months before arrival</div>
+        <h4>Lay the groundwork</h4>
+        <p>Clarify your visa pathway. Open an Australian bank account. Start saving visibly. Gather financial documents. Get a credit report. Research FX providers.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">3–6 months before</div>
+        <h4>Get a preliminary assessment</h4>
+        <p>Engage a specialist mortgage broker. Understand your borrowing power. Start reducing overseas debts. If on a temporary visa, begin FIRB research.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">1–3 months before</div>
+        <h4>Lock in your strategy</h4>
+        <p>Get pre-approval (if your visa and documents support it). Arrange your deposit transfer strategy. Engage a solicitor/conveyancer. Lodge your FIRB application if needed.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">On arrival</div>
+        <h4>Hit the ground running</h4>
+        <p>Complete your 100-point ID check in person. Finalise employment details with your broker. Begin your property search with confidence. Apply for a Tax File Number.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">First 3 months</div>
+        <h4>Build your local profile</h4>
+        <p>Build Australian credit history (phone contract, credit card). Collect payslips. Work with your broker to submit a formal loan application once you have a property in mind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ── FAQ ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">Your Questions Answered</p>
+    <h2>Frequently asked questions</h2>
+
+    <div style="margin-top: var(--space-5);">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Can I get a mortgage before I arrive in Australia?</button>
+        <div class="faq-a"><p>It's possible but difficult. Most lenders require you to be physically present for identity verification (the "100-point ID check"). Some brokers can arrange pre-approval subject to completing ID on arrival, but formal approval typically requires you to be in the country.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">I'm on a temporary visa — can I buy an existing house?</button>
+        <div class="faq-a"><p>Yes, but only as your principal place of residence, and you'll need FIRB approval. You'll also likely face a foreign buyer stamp duty surcharge. If your visa expires or you leave Australia, you may be required to sell the property.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Do I need a Tax File Number (TFN) to get a mortgage?</button>
+        <div class="faq-a"><p>Not strictly required for the mortgage application itself, but you'll need one for Australian employment, and lenders will want to see your Australian income. Apply for your TFN as soon as you arrive — it can take 2–4 weeks.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">What about buying with my partner if we have different visa statuses?</button>
+        <div class="faq-a"><p>This is common and manageable. If one partner is a citizen or PR and the other is on a temporary visa, some lenders will assess based on the stronger visa status. However, FIRB rules may still apply. Specialist broker advice is essential here.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Is it better to rent first and then buy?</button>
+        <div class="faq-a"><p>Often, yes — especially if you're on a temporary visa with a PR pathway. Renting for 12–18 months lets you build local credit, collect Australian payslips, wait for your PR grant, and understand the local market before committing. It can save you significant money on FIRB fees and surcharges.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">How does the First Home Owner Grant work for newcomers?</button>
+        <div class="faq-a"><p>The FHOG is available to Australian citizens and permanent residents purchasing or building a new home (not established properties). The grant amount varies by state — typically $10,000–$30,000. Temporary visa holders are generally not eligible.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ── CTA ── #}
+<section class="section section--dark" style="text-align: center;">
+  <div class="container container--narrow">
+    <h2>Ready to get started?</h2>
+    <p class="lede" style="margin-inline: auto; color: var(--blue-pale);">
+      Every situation is different — your visa type, income structure, deposit size, and timeline all affect your options. The best time to start the conversation is well before you need the loan.
+    </p>
+    <div style="margin-top: var(--space-5);">
+      {% cta "Book a free discovery call" %}
+    </div>
+    <p class="meta" style="margin-top: var(--space-5); color: rgba(255,255,255,0.4);">
+      Or call <a href="tel:+61456255409">0456 255 409</a>
+    </p>
+  </div>
+</section>
+
+{# ── FAQ script ── #}
+{% block scripts %}
+<script>
+  function toggleFaq(btn) {
+    var answer = btn.nextElementSibling;
+    var isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(function(a) { a.classList.remove('open'); });
+    document.querySelectorAll('.faq-q').forEach(function(q) { q.setAttribute('aria-expanded', 'false'); });
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+</script>
+{% endblock %}
