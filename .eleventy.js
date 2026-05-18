@@ -34,7 +34,7 @@ module.exports = function (eleventyConfig) {
   // All articles, newest first
   eleventyConfig.addCollection("articles", (collectionApi) => {
     return collectionApi
-      .getFilteredByGlob("src/articles/*.md")
+      .getFilteredByGlob("src/articles/*.{md,njk}")
       .sort((a, b) => b.date - a.date);
   });
 
