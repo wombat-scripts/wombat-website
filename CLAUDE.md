@@ -8,6 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm start        # dev server with live reload (Eleventy --serve)
 npm run build    # production build → outputs to _site/
 No linter or test suite. There is no CI beyond Netlify's build step.
+```
 
 Architecture
 Eleventy (11ty) v3 static site. Input: src/. Output: _site/. Deployed to Netlify on push to main (~30 seconds).
