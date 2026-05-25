@@ -22,6 +22,30 @@
   force = true
 
 [[redirects]]
+  from = "https://wombatlending.com.au/*"
+  to = "https://wombathomeloans.com.au/:splat"
+  status = 301
+  force = true
+  
+[[redirects]]
+  from = "https://www.wombatlending.com.au/*"
+  to = "https://wombathomeloans.com.au/:splat"
+  status = 301
+  force = true
+  
+[[redirects]]
+  from = "https://wombatfinancial.com.au/*"
+  to = "https://wombathomeloans.com.au/:splat"
+  status = 301
+  force = true
+  
+[[redirects]]
+  from = "https://www.wombatfinancial.com.au/*"
+  to = "https://wombathomeloans.com.au/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "https://www.wombathomeloans.com.au/*"
   to = "https://wombathomeloans.com.au/:splat"
   status = 301
