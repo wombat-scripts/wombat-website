@@ -393,38 +393,11 @@ description: Sydney mortgage broker for expats, international professionals and 
 <section class="section">
   <div class="container">
     <div class="cluster" data-reveal style="justify-content: space-between; margin-bottom: var(--space-7); align-items: flex-end;">
-      <div style="max-width: 640px;"><span class="eyebrow">The Property Web · podcast</span><h2 class="mb-0">Long-form conversations about <em>how Australian property actually works.</em></h2></div>
-      <a class="btn btn--ghost" href="/podcast/">All {{ episodes | length }} episodes <span class="arrow" aria-hidden="true">→</span></a>
-    </div>
-    <div class="podcast-grid" data-reveal>
-      {% for ep in episodes | reverse | limit(4) %}
-      <a class="card episode-card" href="{{ ep.url }}" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
-        <span class="episode-card__num">Episode {{ ep.number }} · {{ ep.category }}</span>
-        <h3>{{ ep.title }}</h3>
-        <p class="ep-card__guest" style="font-size: var(--fs-small); color: var(--ink-soft); font-weight: 500; margin: 0;">{{ ep.guest }}{% if ep.role %} · {{ ep.role }}{% endif %}</p>
-        <p class="muted small">{{ ep.description }}</p>
-        <span class="episode-card__meta">{{ ep.date | readableDate }}{% if ep.latest %} · Latest episode{% endif %}</span>
-      </a>
-      {% endfor %}
-    </div>
-    <div class="cluster" style="justify-content: center; gap: var(--space-5); margin-top: var(--space-6);">
-      <span class="meta">Listen on</span>
-      <a class="btn btn--text" href="https://open.spotify.com/show/6XPN6KyzpNPuAGMpsXlEhh" target="_blank" rel="noopener" data-umami-event="podcast-click" data-umami-event-platform="spotify">Spotify</a>
-      <a class="btn btn--text" href="https://podcasts.apple.com/us/podcast/the-property-web/id1841854828" target="_blank" rel="noopener" data-umami-event="podcast-click" data-umami-event-platform="apple">Apple Podcasts</a>
-      <a class="btn btn--text" href="https://www.youtube.com/@thepropertyweb" target="_blank" rel="noopener" data-umami-event="podcast-click" data-umami-event-platform="youtube">YouTube</a>
-    </div>
-  </div>
-</section>
-
-{# ── PODCAST EPISODE SCROLLER ── #}
-<section class="section section--cool">
-  <div class="container">
-    <div class="cluster" data-reveal style="justify-content: space-between; margin-bottom: var(--space-7); align-items: flex-end;">
       <div style="max-width: 640px;">
-        <span class="eyebrow">All episodes</span>
-        <h2 class="mb-0">Every conversation, <em>in one place.</em></h2>
+        <span class="eyebrow">The Property Web · podcast</span>
+        <h2 class="mb-0">Long-form conversations about <em>how Australian property actually works.</em></h2>
       </div>
-      <a class="btn btn--ghost" href="/podcast/">Browse all episodes <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost" href="/podcast/">All {{ episodes | length }} episodes <span class="arrow" aria-hidden="true">→</span></a>
     </div>
     <div class="reviews-wrap" data-reveal>
       <div class="reviews" id="podcast-scroller">
@@ -451,6 +424,12 @@ description: Sydney mortgage broker for expats, international professionals and 
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
+    </div>
+    <div class="cluster" style="justify-content: center; gap: var(--space-5); margin-top: var(--space-5);">
+      <span class="meta">Listen on</span>
+      <a class="btn btn--text" href="https://open.spotify.com/show/6XPN6KyzpNPuAGMpsXlEhh" target="_blank" rel="noopener" data-umami-event="podcast-click" data-umami-event-platform="spotify">Spotify</a>
+      <a class="btn btn--text" href="https://podcasts.apple.com/us/podcast/the-property-web/id1841854828" target="_blank" rel="noopener" data-umami-event="podcast-click" data-umami-event-platform="apple">Apple Podcasts</a>
+      <a class="btn btn--text" href="https://www.youtube.com/@thepropertyweb" target="_blank" rel="noopener" data-umami-event="podcast-click" data-umami-event-platform="youtube">YouTube</a>
     </div>
   </div>
 </section>
