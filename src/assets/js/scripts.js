@@ -131,4 +131,61 @@
     el.textContent = String(new Date().getFullYear());
   });
 
+   /* ---------------------------------------------------------------------------
+   6. Search overlay
+   --------------------------------------------------------------------------- */
+
+function initSearchOverlay() {
+  const overlay   = document.querySelector("[data-search-overlay]");
+  const openBtns  = document.querySelectorAll("[data-search-open]");
+  const closeBtns = document.querySelectorAll("[data-search-close]");
+
+  if (!overlay || !openBtns.length) return;
+
+  let pagefindInitialised = false;
+
+  function openSearch() {
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    if (!pagefindInitialised && window.PagefindUI) {
+      new window.PagefindUI({
+        element: "#search-global",
+        showImages: false,
+        resetStyles: true,
+        excerptLength: 20,
+        showEmptyFilters: false,
+      });
+      pagefindInitialised = true;
+    }
+
+    setTimeout(() => {
+      const input = overlay.querySelector(".pagefind-ui__search-input");
+      if (input) input.focus();
+    }, 120);
+  }
+
+  function closeSearch() {
+    overlay.classList.remove("is-open");
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  openBtns.forEach((btn) => btn.addEventListener("click", openSearch));
+  closeBtns.forEach((btn) => btn.addEventListener("click", closeSearch));
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && overlay.classList.contains("is-open")) {
+      closeSearch();
+    }
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initSearchOverlay);
+} else {
+  initSearchOverlay();
+}
+
 })();
