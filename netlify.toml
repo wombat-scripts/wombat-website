@@ -3,7 +3,7 @@
 
 [build]
   publish = "_site"
-  command = "npm install && npm run build"
+  command = "npm install && npm run build && npx pagefind --site _site"
 
 # ─────────────────────────────────────────────────────────────────────
 # REDIRECTS
