@@ -35,6 +35,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection("articles", (collectionApi) => {
     return collectionApi
       .getFilteredByGlob("src/articles/*.{md,njk}")
+      .filter((item) => !item.filePathStem.endsWith("/index"))
       .sort((a, b) => b.date - a.date);
   });
 
