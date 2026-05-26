@@ -897,7 +897,7 @@ blockquote {
 .search-overlay .pagefind-ui__search-input {
   width: 100%;
   padding-left: 2.75rem;
-  padding: 0.9rem 1.2rem 2.75rem;
+  padding: 0.9rem 1.2rem 0.9rem 2rem;
   font-family: var(--font-body);
   font-size: 1rem;
   color: var(--ink);
