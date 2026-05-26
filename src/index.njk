@@ -416,6 +416,45 @@ description: Sydney mortgage broker for expats, international professionals and 
   </div>
 </section>
 
+{# ── PODCAST EPISODE SCROLLER ── #}
+<section class="section section--cool">
+  <div class="container">
+    <div class="cluster" data-reveal style="justify-content: space-between; margin-bottom: var(--space-7); align-items: flex-end;">
+      <div style="max-width: 640px;">
+        <span class="eyebrow">All episodes</span>
+        <h2 class="mb-0">Every conversation, <em>in one place.</em></h2>
+      </div>
+      <a class="btn btn--ghost" href="/podcast/">Browse all episodes <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+    <div class="reviews-wrap" data-reveal>
+      <div class="reviews" id="podcast-scroller">
+        {% for ep in episodes | reverse %}
+        <a href="{{ ep.url }}"
+           target="_blank"
+           rel="noopener"
+           class="card"
+           style="text-decoration: none; color: inherit; flex: 0 0 calc((100% - var(--space-5) * 2) / 3); min-width: 280px; display: flex; flex-direction: column;">
+          <span style="font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); margin-bottom: var(--space-2); display: block;">Episode {{ ep.number }} · {{ ep.category }}</span>
+          <h4 style="margin-bottom: var(--space-3);">{{ ep.title }}</h4>
+          <p style="font-size: var(--fs-small); color: var(--ink-soft); font-weight: 500; margin-bottom: var(--space-2);">{{ ep.guest }}{% if ep.role %} · {{ ep.role }}{% endif %}</p>
+          <p class="small" style="color: var(--ink-soft); flex: 1;">{{ ep.description }}</p>
+          <span style="font-size: var(--fs-meta); color: var(--ink-muted); margin-top: var(--space-4); display: block;">{{ ep.date | readableDate }}</span>
+        </a>
+        {% endfor %}
+      </div>
+      <div class="reviews-nav">
+        <button id="podcast-prev" aria-label="Previous episodes">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <a class="btn btn--ghost btn--sm" href="/podcast/">All episodes →</a>
+        <button id="podcast-next" aria-label="Next episodes">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
 {# ── 8. TOOLS ── #}
 <section class="section section--cool">
   <div class="container">
@@ -559,6 +598,17 @@ description: Sydney mortgage broker for expats, international professionals and 
   var scroller = document.getElementById('articles-scroller');
   var prev = document.getElementById('articles-prev');
   var next = document.getElementById('articles-next');
+  if (!scroller || !prev || !next) return;
+  var card = scroller.querySelector('.card');
+  function getStep() { return card ? card.offsetWidth + 20 : 320; }
+  prev.addEventListener('click', function() { scroller.scrollBy({ left: -getStep(), behavior: 'smooth' }); });
+  next.addEventListener('click', function() { scroller.scrollBy({ left: getStep(), behavior: 'smooth' }); });
+})();
+
+(function() {
+  var scroller = document.getElementById('podcast-scroller');
+  var prev = document.getElementById('podcast-prev');
+  var next = document.getElementById('podcast-next');
   if (!scroller || !prev || !next) return;
   var card = scroller.querySelector('.card');
   function getStep() { return card ? card.offsetWidth + 20 : 320; }
