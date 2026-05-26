@@ -5,6 +5,8 @@ description: Practical guides on home loans, refinancing, expat lending, and pro
 ---
 
 {% block head %}
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
 <style>
   .filter-bar { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-7); }
   .filter-btn {
@@ -27,6 +29,78 @@ description: Practical guides on home loans, refinancing, expat lending, and pro
   .article-card-filtered.is-hidden { display: none; }
   .article-card-filtered { overflow: hidden; display: flex; flex-direction: column; }
   .article-card__thumb { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; display: block; border-radius: var(--radius-md) var(--radius-md) 0 0; margin: calc(-1 * var(--space-5)) calc(-1 * var(--space-5)) var(--space-4); width: calc(100% + var(--space-5) * 2); }
+
+  /* ── Pagefind search ── */
+  #search { margin-bottom: var(--space-7); }
+  .pagefind-ui__search-input {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    outline: none;
+    transition: border-color var(--motion-fast) var(--easing),
+                box-shadow var(--motion-fast) var(--easing);
+  }
+  .pagefind-ui__search-input:focus {
+    border-color: var(--steel);
+    box-shadow: 0 0 0 3px rgba(91,130,160,0.15);
+  }
+  .pagefind-ui__search-clear {
+    background: none;
+    border: none;
+    color: var(--ink-muted);
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+  .pagefind-ui__results-area { margin-top: var(--space-5); }
+  .pagefind-ui__result {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .pagefind-ui__result-link {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+  }
+  .pagefind-ui__result-link:hover { color: var(--steel); }
+  .pagefind-ui__result-excerpt {
+    font-size: var(--fs-small);
+    color: var(--ink-soft);
+    line-height: var(--lh-relaxed);
+  }
+  .pagefind-ui__result-excerpt mark {
+    background: var(--blue-pale);
+    color: var(--navy);
+    border-radius: 2px;
+    padding: 0 2px;
+  }
+  .pagefind-ui__button {
+    margin-top: var(--space-5);
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    font-weight: 600;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+  }
+  .pagefind-ui__button:hover { background: var(--navy-deep); }
+  .pagefind-ui__message {
+    font-size: var(--fs-small);
+    color: var(--ink-muted);
+    margin-top: var(--space-3);
+  }
 </style>
 {% endblock %}
 
@@ -36,8 +110,10 @@ description: Practical guides on home loans, refinancing, expat lending, and pro
     <h1>Guides and explainers</h1>
     <p class="lede">Practical, jargon-free articles to help you make better decisions about your mortgage.</p>
 
+    <div id="search" style="margin-top: var(--space-6); max-width: 560px;"></div>
+
     {# Build unique categories #}
-    <div class="filter-bar" style="margin-top: var(--space-6);" id="article-filters">
+    <div class="filter-bar" id="article-filters">
       <button class="filter-btn is-active" data-filter="all">All Articles</button>
       {% set cats = [] %}
       {% for article in collections.articles %}
@@ -69,6 +145,15 @@ description: Practical guides on home loans, refinancing, expat lending, and pro
 </section>
 
 {% block scripts %}
+<script>
+  new PagefindUI({
+    element: "#search",
+    showImages: false,
+    resetStyles: true,
+    excerptLength: 20,
+    showEmptyFilters: false
+  });
+</script>
 <script>
 (function() {
   var filters = document.getElementById('article-filters');
