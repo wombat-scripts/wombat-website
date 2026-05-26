@@ -1,5 +1,16 @@
 [
   {
+    "number": "12",
+    "guest": "Joy Ford",
+    "role": "Accountant & SMSF Specialist, Beyond Taxation",
+    "category": "Accountant",
+    "title": "Architecting Wealth: Joy Ford Starts With Tax.",
+    "description": "Joy Ford on why tax planning — not tax minimisation — is the foundation of every smart property and business decision.",
+    "url": "https://www.youtube.com/watch?v=KTkHlKflgU0",
+    "date": "2026-05-21",
+    "latest": true
+  },
+  {
     "number": "11",
     "guest": "Mark Horvat",
     "role": "Buyer's Agent, The Acquiry",
@@ -8,7 +19,6 @@
     "description": "Mark Horvat on why the 'best' investment isn't always the one with the highest yield — and how to evaluate property like an insider.",
     "url": "https://www.youtube.com/watch?v=kwiY6Z9PX2g",
     "date": "2026-04-10",
-    "latest": true
   },
   {
     "number": "10",
