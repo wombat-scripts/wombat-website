@@ -7,8 +7,6 @@ layout: article.njk
 thumbnail: "/images/articles/office.png"
 ---
 
-# Exchange of Contracts, 66W Certificates, and Finance Approval — What First-Time Buyers Need to Know
-
 *First Home Buyers*
 
 You've found the perfect property. You want to move fast, lock it down, and make sure no one else swoops in. But you also want the certainty that your finance is fully approved before you're locked into anything.
