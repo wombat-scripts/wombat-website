@@ -446,7 +446,7 @@ description: Sydney mortgage broker for expats, international professionals and 
     </div>
     <div class="reviews-wrap" data-reveal>
       <div class="reviews" id="articles-scroller">
-        {% for article in collections.articles | reverse %}
+        {% for article in collections.articles %}
         <a href="{{ article.url }}"
            class="card review-card"
            style="text-decoration: none; color: inherit; flex: 0 0 calc((100% - var(--space-5) * 2) / 3); min-width: 280px; display: flex; flex-direction: column;">
