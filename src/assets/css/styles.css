@@ -585,7 +585,7 @@ blockquote {
     font-size: 1.125rem;
   }
   .nav__links a::after { display: none; }
-  .nav__cta { margin-left: 0; margin-top: var(--space-4); width: 100%; }
+  .nav__cta { margin-left: 0; margin-top: var(--space-4); width: 100%; display: flex; justify-content: center; }
   .nav.is-open .nav__links {
     transform: translateY(0);
     opacity: 1;
