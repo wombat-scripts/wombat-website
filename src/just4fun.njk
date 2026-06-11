@@ -1,0 +1,139 @@
+---
+title: "Just4Fun — The Wombat Arcade"
+description: "Three tiny retro games starring the Wombat. Save a deposit, out-negotiate a seller, build a tower. Definitely not financial advice."
+layout: base.njk
+permalink: /just4fun/
+---
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+  .arcade-section { background: #060b38; padding-block: clamp(3rem, 6vw, 5rem); min-height: 80vh; }
+  .arcade-wrap { max-width: 460px; margin-inline: auto; font-family: "Press Start 2P", monospace; color: var(--blue-pale); }
+  .arcade-wrap, .arcade-wrap * { box-sizing: border-box; }
+
+  /* CRT vibes */
+  .crt { position: relative; border: 4px solid #1c476a; border-radius: 12px; background: #060b38; padding: 1.25rem; box-shadow: 0 0 0 4px #060b38, 0 0 40px rgba(80,127,169,0.35); overflow: hidden; }
+  .crt::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 3px); border-radius: 8px; }
+
+  .arcade-title { font-size: clamp(1.1rem, 4.5vw, 1.6rem); color: #97bcd7; text-align: center; line-height: 1.6; margin: 0 0 0.25rem; text-shadow: 3px 3px 0 #1c476a; }
+  .arcade-sub { font-size: 0.55rem; text-align: center; color: #507fa9; letter-spacing: 0.2em; margin-bottom: 1.5rem; }
+  .blink { animation: arcblink 1.2s steps(1) infinite; }
+  @keyframes arcblink { 50% { opacity: 0; } }
+
+  #menuWombat { display: block; margin: 0 auto 1.25rem; image-rendering: pixelated; }
+
+  .cart { display: block; width: 100%; text-align: left; background: #0b1448; border: 3px solid #1c476a; border-radius: 8px; padding: 0.85rem; margin-bottom: 0.85rem; cursor: pointer; color: inherit; font: inherit; transition: transform 0.08s; }
+  .cart:hover, .cart:focus-visible { border-color: #97bcd7; transform: translate(-2px, -2px); box-shadow: 4px 4px 0 #1c476a; outline: none; }
+  .cart-row { display: flex; gap: 0.85rem; align-items: center; }
+  .cart canvas { image-rendering: pixelated; border: 2px solid #1c476a; border-radius: 4px; flex: 0 0 auto; }
+  .cart h2 { font-size: 0.7rem; color: #fdfcfa; margin: 0 0 0.5rem; line-height: 1.5; }
+  .cart p { font-size: 0.5rem; color: #97bcd7; margin: 0; line-height: 1.8; }
+
+  #arcadeStage { display: none; }
+  .stage-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+  #hudTitle { font-size: 0.6rem; color: #97bcd7; }
+  #btnBack { font: inherit; font-size: 0.5rem; background: none; border: 2px solid #1c476a; color: #97bcd7; padding: 0.4rem 0.6rem; border-radius: 4px; cursor: pointer; }
+  #btnBack:hover { border-color: #97bcd7; }
+  #arcadeCanvas { width: 100%; height: auto; display: block; image-rendering: pixelated; border: 3px solid #1c476a; border-radius: 6px; background: #060b38; touch-action: none; }
+  .stage-hint { font-size: 0.45rem; color: #507fa9; text-align: center; margin-top: 0.6rem; line-height: 1.9; }
+
+  #arcadeOverlay { display: none; position: absolute; inset: 0; background: rgba(6,11,56,0.93); z-index: 5; border-radius: 8px; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 1.5rem; }
+  #ovTitle { font-size: 1rem; color: #c89a4a; margin: 0 0 1rem; text-shadow: 2px 2px 0 #1c476a; }
+  #ovLine { font-size: 0.55rem; color: #cadbe5; line-height: 2; margin: 0 0 0.75rem; max-width: 34ch; }
+  #ovBest { font-size: 0.5rem; color: #97bcd7; margin: 0 0 1.25rem; min-height: 1em; }
+  .ov-cta { font-size: 0.5rem; color: #060b38; background: #c89a4a; text-decoration: none; padding: 0.7rem 0.9rem; border-radius: 4px; line-height: 1.7; display: inline-block; margin-bottom: 1.1rem; }
+  .ov-cta:hover { background: #97bcd7; }
+  .ov-btns { display: flex; gap: 0.75rem; }
+  .ov-btns button { font: inherit; font-size: 0.5rem; background: none; border: 2px solid #507fa9; color: #cadbe5; padding: 0.6rem 0.8rem; border-radius: 4px; cursor: pointer; }
+  .ov-btns button:hover { border-color: #97bcd7; }
+
+  .arcade-fineprint { font-size: 0.45rem; color: #507fa9; text-align: center; margin-top: 1.5rem; line-height: 2; }
+  .arcade-fineprint a { color: #97bcd7; }
+</style>
+
+<section class="arcade-section">
+  <div class="container">
+    <div class="arcade-wrap">
+
+      <h1 class="arcade-title">WOMBAT ARCADE</h1>
+      <p class="arcade-sub">JUST4FUN <span class="blink">▮</span></p>
+
+      <div class="crt" style="position: relative;">
+
+        {# ── MENU ── #}
+        <div id="arcadeMenu">
+          <canvas id="menuWombat" width="112" height="90" aria-hidden="true"></canvas>
+
+          <button class="cart" data-game="dash">
+            <div class="cart-row">
+              <canvas width="110" height="80" aria-hidden="true"></canvas>
+              <div>
+                <h2>DEPOSIT DASH</h2>
+                <p>Catch the coins. Dodge the rate rises. Mind the brunch. First to $100k buys.</p>
+              </div>
+            </div>
+          </button>
+
+          <button class="cart" data-game="pong">
+            <div class="cart-row">
+              <canvas width="110" height="80" aria-hidden="true"></canvas>
+              <div>
+                <h2>BUYER vs SELLER</h2>
+                <p>The classic negotiation. First to five settles the deal. The vendor plays dirty.</p>
+              </div>
+            </div>
+          </button>
+
+          <button class="cart" data-game="stack">
+            <div class="cart-row">
+              <canvas width="110" height="80" aria-hidden="true"></canvas>
+              <div>
+                <h2>THE STACK</h2>
+                <p>Build the tower, floor by swinging floor. Sloppy drops get trimmed by the certifier.</p>
+              </div>
+            </div>
+          </button>
+        </div>
+
+        {# ── GAME STAGE ── #}
+        <div id="arcadeStage">
+          <div class="stage-bar">
+            <span id="hudTitle">GAME</span>
+            <button id="btnBack" type="button">← ARCADE</button>
+          </div>
+          <canvas id="arcadeCanvas" aria-label="Wombat arcade game"></canvas>
+          <p class="stage-hint">ARROWS / DRAG TO MOVE · SPACE / TAP TO DROP · ESC FOR MENU</p>
+        </div>
+
+        {# ── END SCREEN ── #}
+        <div id="arcadeOverlay">
+          <h2 id="ovTitle">GAME OVER</h2>
+          <p id="ovLine"></p>
+          <p id="ovBest"></p>
+          <a class="ov-cta"
+             href="https://calendly.com/tom-wombathomeloans"
+             target="_blank" rel="noopener"
+             data-umami-event="book-a-call"
+             data-umami-event-location="just4fun">
+            THE REAL-LIFE VERSION IS MY ACTUAL JOB →
+          </a>
+          <div class="ov-btns">
+            <button id="btnAgain" type="button">PLAY AGAIN</button>
+            <button id="btnMenu" type="button">ARCADE</button>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="arcade-fineprint">
+        JUST GAMES — DEFINITELY NOT FINANCIAL ADVICE.<br>
+        MORTGAGES ARE OVER <a href="/">HERE</a>.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<script src="/assets/js/arcade.js" defer></script>
