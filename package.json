@@ -1,12 +1,15 @@
 {
   "name": "wombat-website",
   "version": "2.0.0",
-  "description": "Wombat Home Loans — Tom Carr, Sydney Mortgage Broker",
+  "description": "Wombat Home Loans \u2014 Tom Carr, Sydney Mortgage Broker",
   "scripts": {
     "start": "npx @11ty/eleventy --serve",
     "build": "npx @11ty/eleventy"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
   }
 }
