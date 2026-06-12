@@ -5,6 +5,9 @@
   publish = "_site"
   command = "npm install && npm run build && npx pagefind --site _site"
 
+[functions]
+  directory = "netlify/functions"
+
 # ─────────────────────────────────────────────────────────────────────
 # REDIRECTS
 # ─────────────────────────────────────────────────────────────────────
