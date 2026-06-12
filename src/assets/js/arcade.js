@@ -203,13 +203,27 @@
     stopGame();
     overlayEl.style.display = 'none';
     stageEl.style.display = 'none';
+    var sp = document.getElementById('scorePanel');
+    if (sp) sp.style.display = 'none';
     menuEl.style.display = 'block';
   }
-  function endGame(title, line, bestLine) {
+  var pendingScore = null;
+  var lbRow = document.getElementById('lbRow');
+  var lbInitials = document.getElementById('lbInitials');
+  var lbStatus = document.getElementById('lbStatus');
+  function endGame(title, line, bestLine, scoreInfo) {
     stopGame();
     ovTitle.textContent = title;
     ovLine.textContent = line;
     ovBest.textContent = bestLine || '';
+    pendingScore = scoreInfo || null;
+    if (lbRow) {
+      lbRow.style.display = pendingScore ? 'flex' : 'none';
+      if (lbStatus) lbStatus.textContent = '';
+      if (pendingScore && lbInitials) {
+        try { lbInitials.value = localStorage.getItem('wombatInitials') || ''; } catch (e) {}
+      }
+    }
     overlayEl.style.display = 'flex';
   }
 
@@ -287,7 +301,7 @@
           var bests = loadBests(), bestLine;
           if (!bests.dash || secs < bests.dash) { saveBest('dash', secs); bestLine = 'NEW BEST TIME!'; }
           else { bestLine = 'BEST: ' + bests.dash + 's'; }
-          endGame('DEPOSIT SAVED!', pick(winLines).replace('{T}', secs), bestLine);
+          endGame('DEPOSIT SAVED!', pick(winLines).replace('{T}', secs), bestLine, { game: 'dash', score: secs });
         } else if (lives <= 0) {
           endGame('GAME OVER', pick(loseLines), loadBests().dash ? 'BEST: ' + loadBests().dash + 's' : '');
         }
@@ -458,7 +472,7 @@
           var bests = loadBests(), bestLine;
           if (!bests.stack || n > bests.stack) { saveBest('stack', n); bestLine = 'NEW RECORD!'; }
           else { bestLine = 'BEST: ' + bests.stack; }
-          endGame('TOWER DOWN', pick(n < 4 ? lowLines : lines).replace('{N}', nStr), bestLine);
+          endGame('TOWER DOWN', pick(n < 4 ? lowLines : lines).replace('{N}', nStr), bestLine, n >= 1 ? { game: 'stack', score: n } : null);
           return;
         }
         dropFlash = null;
@@ -678,7 +692,7 @@
                 var b = loadBests(), bestLine;
                 if (!b.openhome || score > b.openhome) { saveBest('openhome', score); bestLine = 'NEW HIGH SCORE!'; }
                 else { bestLine = 'BEST: ' + b.openhome; }
-                endGame('CORNERED', pick(loseLines), bestLine);
+                endGame('CORNERED', pick(loseLines), bestLine, score >= 10 ? { game: 'openhome', score: score } : null);
                 return;
               }
               resetPositions();
@@ -692,7 +706,7 @@
           var finalScore = score + lives * 200;
           if (!b2.openhome || finalScore > b2.openhome) { saveBest('openhome', finalScore); bestLine2 = 'NEW HIGH SCORE!'; }
           else { bestLine2 = 'BEST: ' + b2.openhome; }
-          endGame('SOLD TO YOU!', pick(winLines), bestLine2);
+          endGame('SOLD TO YOU!', pick(winLines), bestLine2, { game: 'openhome', score: finalScore });
         }
       },
       draw: function () {
@@ -801,7 +815,7 @@
             var b = loadBests(), m = Math.round(dist / 10), bestLine;
             if (!b.waiver || m > b.waiver) { saveBest('waiver', m); bestLine = 'NEW BEST: ' + m + 'm'; }
             else { bestLine = 'BEST: ' + b.waiver + 'm'; }
-            endGame('DECLINED', pick(loseLines), bestLine);
+            endGame('DECLINED', pick(loseLines), bestLine, m >= 10 ? { game: 'waiver', score: m } : null);
             return;
           }
         }
@@ -815,7 +829,7 @@
             if (gotten >= LETTERS.length) {
               var b2 = loadBests();
               var waivers = (b2.waivers || 0) + 1; saveBest('waivers', waivers);
-              endGame('LMI WAIVED!', pick(winLines), 'WAIVERS WON: ' + waivers);
+              endGame('LMI WAIVED!', pick(winLines), 'WAIVERS WON: ' + waivers, Math.round(dist / 10) >= 10 ? { game: 'waiver', score: Math.round(dist / 10) } : null);
               return;
             }
           }
@@ -881,7 +895,7 @@
     var BOX = (W - (BCOLS * (BW + BGAP) - BGAP)) / 2, BOY = 64;
     var ROWCOL = ['A', 'O', 'E', 'C', 'V'];
     var PW = 64, PH = 8;
-    var px, ball, bricks, lives, remaining, serveT;
+    var px, ball, bricks, lives, remaining, serveT, t;
 
     var winLines = [
       'Renovated! Flip it or hold it? Ask your accountant, not me.',
@@ -900,7 +914,7 @@
     return {
       title: 'THE RENOVATOR',
       init: function () {
-        px = W / 2; lives = 3; bricks = []; remaining = 0;
+        px = W / 2; lives = 3; bricks = []; remaining = 0; t = 0;
         for (var r = 0; r < BROWS; r++) {
           for (var c = 0; c < BCOLS; c++) {
             bricks.push({ x: BOX + c * (BW + BGAP), y: BOY + r * (BH + BGAP), col: ROWCOL[r], alive: true });
@@ -910,6 +924,7 @@
         serve();
       },
       update: function (dt) {
+        t += dt;
         if (keys.ArrowLeft || keys.a) px -= 280 * dt;
         if (keys.ArrowRight || keys.d) px += 280 * dt;
         if (pointer.x !== null && pointer.down) px += (pointer.x - px) * Math.min(1, 14 * dt);
@@ -945,7 +960,7 @@
         if (remaining <= 0) {
           var bst = loadBests();
           var renos = (bst.renos || 0) + 1; saveBest('renos', renos);
-          endGame('RENOVATED!', pick(winLines), 'RENOS DONE: ' + renos);
+          var clearSecs = Math.round(t); endGame('RENOVATED!', pick(winLines), 'RENOS DONE: ' + renos + (clearSecs >= 10 ? ' / ' + clearSecs + 's' : ''), clearSecs >= 10 ? { game: 'reno', score: clearSecs } : null);
           return;
         }
 
@@ -1062,6 +1077,77 @@
   document.getElementById('btnAgain').addEventListener('click', function () { startGame(currentName); });
   document.getElementById('btnMenu').addEventListener('click', toMenu);
   document.getElementById('btnBack').addEventListener('click', toMenu);
+
+  /* ---------- Leaderboard ---------- */
+  var GAME_META = {
+    dash: { name: 'DEPOSIT DASH', fmt: function (v) { return v + 's'; } },
+    stack: { name: 'THE STACK', fmt: function (v) { return v + ' FL'; } },
+    openhome: { name: 'OPEN HOME', fmt: function (v) { return v + ' PTS'; } },
+    waiver: { name: 'WAIVER WOMBAT', fmt: function (v) { return v + 'm'; } },
+    reno: { name: 'THE RENOVATOR', fmt: function (v) { return v + 's'; } }
+  };
+  function escapeHtml(x) {
+    return String(x).replace(/[&<>"']/g, function (c) { return '&#' + c.charCodeAt(0) + ';'; });
+  }
+  var btnSubmit = document.getElementById('btnSubmit');
+  if (btnSubmit) {
+    btnSubmit.addEventListener('click', function () {
+      if (!pendingScore) return;
+      var name = (lbInitials.value || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 3);
+      if (!name) { lbStatus.textContent = 'ENTER INITIALS'; return; }
+      try { localStorage.setItem('wombatInitials', name); } catch (e) {}
+      lbStatus.textContent = 'SENDING...';
+      btnSubmit.disabled = true;
+      fetch('/api/leaderboard', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ game: pendingScore.game, name: name, score: pendingScore.score })
+      }).then(function (r) { if (!r.ok) throw new Error('bad'); return r.json(); })
+        .then(function (res) {
+          lbStatus.textContent = res.rank ? 'ON THE BOARD! RANK #' + res.rank : 'GOOD. NOT TOP-25 GOOD.';
+          pendingScore = null;
+          btnSubmit.disabled = false;
+        })
+        .catch(function () {
+          lbStatus.textContent = 'BOARD UNAVAILABLE';
+          btnSubmit.disabled = false;
+        });
+    });
+  }
+  var scorePanel = document.getElementById('scorePanel');
+  var scoreList = document.getElementById('scoreList');
+  var btnScores = document.getElementById('btnScores');
+  if (btnScores) {
+    btnScores.addEventListener('click', function () {
+      menuEl.style.display = 'none';
+      scorePanel.style.display = 'block';
+      scoreList.innerHTML = '<p class="lb-empty">DIALLING THE BANK...</p>';
+      fetch('/api/leaderboard')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var html = '';
+          for (var g in GAME_META) {
+            html += '<h3>' + GAME_META[g].name + '</h3>';
+            var list = (data[g] || []).slice(0, 5);
+            if (!list.length) { html += '<p class="lb-empty">NO SCORES YET. BE FIRST.</p>'; continue; }
+            html += '<ol class="lb-list">';
+            for (var i = 0; i < list.length; i++) {
+              html += '<li><span>' + escapeHtml(list[i].n) + '</span><span>' + GAME_META[g].fmt(list[i].s) + '</span></li>';
+            }
+            html += '</ol>';
+          }
+          html += '<p class="lb-empty">BUYER vs SELLER SETTLES IN PRIVATE.</p>';
+          scoreList.innerHTML = html;
+        })
+        .catch(function () {
+          scoreList.innerHTML = '<p class="lb-empty">BOARD UNAVAILABLE. THE INTERN UNPLUGGED IT.</p>';
+        });
+    });
+    document.getElementById('btnScoresBack').addEventListener('click', function () {
+      scorePanel.style.display = 'none';
+      menuEl.style.display = 'block';
+    });
+  }
 
   var hero = document.getElementById('menuWombat');
   if (hero) {
