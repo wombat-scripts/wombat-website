@@ -30,12 +30,12 @@ permalink: /just4fun/
   .cart:hover, .cart:focus-visible { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--acc, #1c476a), 0 0 18px color-mix(in srgb, var(--acc) 35%, transparent); outline: none; }
   .cart-row { display: flex; gap: 0.85rem; align-items: center; }
   .cart canvas { image-rendering: pixelated; border: 2px solid #1c476a; border-radius: 4px; flex: 0 0 auto; }
-  .cart h2 { font-size: 0.7rem; color: #fdfcfa; margin: 0 0 0.5rem; line-height: 1.5; }
-  .cart p { font-size: 0.5rem; color: #97bcd7; margin: 0; line-height: 1.8; }
+  .cart h2 { font-size: 0.95rem; margin: 0 0 0.55rem; line-height: 1.35; text-shadow: 2px 2px 0 rgba(6,11,56,0.9); }
+  .cart p { font-size: 0.55rem; color: #97bcd7; margin: 0; line-height: 1.85; }
 
   #arcadeStage { display: none; }
   .stage-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
-  #hudTitle { font-size: 0.6rem; color: #97bcd7; }
+  #hudTitle { font-size: 0.75rem; color: #f2b94b; }
   #btnBack { font: inherit; font-size: 0.5rem; background: none; border: 2px solid #1c476a; color: #97bcd7; padding: 0.4rem 0.6rem; border-radius: 4px; cursor: pointer; }
   #btnBack:hover { border-color: #97bcd7; }
   #arcadeCanvas { width: 100%; height: auto; display: block; image-rendering: pixelated; border: 3px solid #1c476a; border-radius: 6px; background: #060b38; touch-action: none; }
@@ -50,6 +50,23 @@ permalink: /just4fun/
   .ov-btns { display: flex; gap: 0.75rem; }
   .ov-btns button { font: inherit; font-size: 0.5rem; background: none; border: 2px solid #507fa9; color: #cadbe5; padding: 0.6rem 0.8rem; border-radius: 4px; cursor: pointer; }
   .ov-btns button:hover { border-color: #97bcd7; }
+
+  .menu-btn { display: block; width: 100%; font: inherit; font-size: 0.75rem; text-align: center; background: none; border: 3px solid #f2b94b; color: #f2b94b; padding: 0.85rem; border-radius: 8px; cursor: pointer; margin-top: 0.35rem; text-shadow: 2px 2px 0 rgba(6,11,56,0.9); }
+  .menu-btn:hover, .menu-btn:focus-visible { background: rgba(242,185,75,0.12); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 #f2b94b; outline: none; }
+  #scorePanel { display: none; }
+  #scorePanel h2 { font-size: 0.95rem; color: #f2b94b; text-align: center; margin: 0 0 1rem; text-shadow: 2px 2px 0 #1c476a; }
+  #scoreList h3 { font-size: 0.7rem; color: #5fc9f2; margin: 1.1rem 0 0.5rem; }
+  .lb-list { list-style: none; counter-reset: lb; margin: 0; padding: 0; }
+  .lb-list li { counter-increment: lb; display: flex; justify-content: space-between; font-size: 0.6rem; color: #cadbe5; padding: 0.3rem 0.2rem; border-bottom: 1px solid #1c476a; }
+  .lb-list li::before { content: counter(lb) "."; color: #507fa9; margin-right: 0.6rem; }
+  .lb-list li span:first-of-type { flex: 1; }
+  .lb-empty { font-size: 0.5rem; color: #507fa9; line-height: 1.9; }
+  #lbRow { display: none; gap: 0.5rem; align-items: center; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap; }
+  #lbInitials { font: inherit; font-size: 0.75rem; width: 4.2ch; text-align: center; text-transform: uppercase; background: #060b38; border: 2px solid #507fa9; color: #f2b94b; padding: 0.45rem 0.2rem; border-radius: 4px; }
+  #lbInitials:focus { border-color: #f2b94b; outline: none; }
+  #btnSubmit { font: inherit; font-size: 0.5rem; background: none; border: 2px solid #5fd39a; color: #5fd39a; padding: 0.55rem 0.7rem; border-radius: 4px; cursor: pointer; }
+  #btnSubmit:hover { background: rgba(95,211,154,0.12); }
+  #lbStatus { width: 100%; text-align: center; font-size: 0.5rem; color: #f2b94b; min-height: 1em; margin: 0; }
 
   .arcade-fineprint { font-size: 0.45rem; color: #507fa9; text-align: center; margin-top: 1.5rem; line-height: 2; }
   .arcade-fineprint a { color: #97bcd7; }
@@ -127,6 +144,8 @@ permalink: /just4fun/
               </div>
             </div>
           </button>
+
+          <button class="menu-btn" id="btnScores" type="button">★ HIGH SCORES ★</button>
         </div>
 
         {# ── GAME STAGE ── #}
@@ -139,11 +158,23 @@ permalink: /just4fun/
           <p class="stage-hint">ARROWS / SWIPE / DRAG TO MOVE · SPACE / TAP TO JUMP+DROP · ESC FOR MENU</p>
         </div>
 
+        {# ── HIGH SCORES ── #}
+        <div id="scorePanel">
+          <h2>HIGH SCORES</h2>
+          <div id="scoreList"></div>
+          <button class="menu-btn" id="btnScoresBack" type="button" style="margin-top:1.25rem;">← ARCADE</button>
+        </div>
+
         {# ── END SCREEN ── #}
         <div id="arcadeOverlay">
           <h2 id="ovTitle">GAME OVER</h2>
           <p id="ovLine"></p>
           <p id="ovBest"></p>
+          <div id="lbRow">
+            <input id="lbInitials" maxlength="3" placeholder="AAA" aria-label="Your initials" autocomplete="off">
+            <button id="btnSubmit" type="button">SUBMIT SCORE</button>
+            <p id="lbStatus"></p>
+          </div>
           <a class="ov-cta"
              href="https://calendly.com/tom-wombathomeloans"
              target="_blank" rel="noopener"
@@ -168,4 +199,4 @@ permalink: /just4fun/
   </div>
 </section>
 
-<script src="/assets/js/arcade.js" defer></script>
+<script src="/assets/js/arcade.js?v=3" defer></script>
