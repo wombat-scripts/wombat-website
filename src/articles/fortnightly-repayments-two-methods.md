@@ -4,7 +4,7 @@ description: "Two lenders can both offer 'fortnightly repayments' and mean compl
 date: 2026-07-08
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/home_money.png"
+thumbnail: "/images/articles/calculations_lady"
 ---
 
 Ask most people why fortnightly repayments beat monthly ones and you'll hear something about interest compounding, or paying the bank "more often so less builds up." It sounds plausible. It's also not really the reason — and depending on how your lender does the maths, switching to fortnightly might save you precisely nothing.
