@@ -1,7 +1,7 @@
 ---
 title: "Offset vs redraw: same maths, very different products"
 description: "An offset account and a redraw facility save you interest in exactly the same way — but they differ on tax, control and cost, and picking the wrong one can be a six-figure mistake."
-date: 2026-07-08
+date: 2026-07-01
 category: "Home Loans"
 layout: article.njk
 thumbnail: "/images/articles/office_meeting_2.jpg"
