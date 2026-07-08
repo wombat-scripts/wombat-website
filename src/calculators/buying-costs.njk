@@ -1,0 +1,159 @@
+---
+title: "Stamp duty & cost of buying calculator"
+description: "Estimate stamp duty and the full upfront cost of buying a property in any Australian state — including first home buyer exemptions and concessions, government fees and legals."
+layout: base.njk
+permalink: /calculators/buying-costs/
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Stamp Duty & Cost of Buying Calculator",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/calculators/buying-costs/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+  "provider": { "@type": "MortgageBroker", "name": "Wombat Home Loans", "url": "https://wombathomeloans.com.au/" }
+}
+</script>
+{% endblock %}
+
+<section class="section section--tight">
+  <div class="container">
+    <p class="calc-breadcrumb"><a href="/calculators/">← All calculators</a></p>
+    <span class="eyebrow">Cost of buying</span>
+    <h1>The price is never <em>just the price.</em></h1>
+    <p class="lede">Stamp duty, government fees, conveyancing, inspections — the costs on top of the purchase price that your deposit also has to cover. Pick your state, set the price, and see the real number. First home buyer concessions included.</p>
+  </div>
+</section>
+
+<section class="section section--cool section--tight" data-calc="buyingcosts">
+  <div class="container">
+    <div class="calc-grid">
+
+      {# ── Inputs ── #}
+      <div class="calc-card calc-panel">
+
+        <div class="calc-field">
+          <div class="calc-field__head"><label>State or territory</label></div>
+          <div class="seg seg--wrap" id="s-state" role="group" aria-label="State or territory">
+            <button type="button" data-value="NSW" aria-pressed="true">NSW</button>
+            <button type="button" data-value="VIC" aria-pressed="false">VIC</button>
+            <button type="button" data-value="QLD" aria-pressed="false">QLD</button>
+            <button type="button" data-value="WA" aria-pressed="false">WA</button>
+            <button type="button" data-value="SA" aria-pressed="false">SA</button>
+            <button type="button" data-value="TAS" aria-pressed="false">TAS</button>
+            <button type="button" data-value="ACT" aria-pressed="false">ACT</button>
+            <button type="button" data-value="NT" aria-pressed="false">NT</button>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="s-price-input">Purchase price</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="s-price-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Purchase price">
+          </div>
+          <input class="calc-range" id="s-price" type="range" min="100000" max="3000000" step="10000" value="900000" aria-label="Purchase price slider">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head"><label>Who's buying?</label></div>
+          <div class="seg" id="s-buyer" role="group" aria-label="Buyer type">
+            <button type="button" data-value="fhb" aria-pressed="false">First home buyer</button>
+            <button type="button" data-value="oo" aria-pressed="true">Owner-occupier</button>
+            <button type="button" data-value="inv" aria-pressed="false">Investor</button>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head"><label>Property type</label></div>
+          <div class="seg" id="s-type" role="group" aria-label="Property type">
+            <button type="button" data-value="established" aria-pressed="true">Established</button>
+            <button type="button" data-value="new" aria-pressed="false">Brand new</button>
+          </div>
+          <p class="calc-field__hint">Matters more than you'd think — in some states, first home buyers pay zero duty on new builds at any price.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="s-legal-input">Conveyancing / legal fees</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="s-legal-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Conveyancing and legal fees">
+          </div>
+          <input class="calc-range" id="s-legal" type="range" min="0" max="5000" step="100" value="1800" aria-label="Legal fees slider">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="s-inspect-input">Building &amp; pest inspections</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="s-inspect-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Building and pest inspection cost">
+          </div>
+          <input class="calc-range" id="s-inspect" type="range" min="0" max="2000" step="50" value="600" aria-label="Inspections slider">
+        </div>
+
+      </div>
+
+      {# ── Results ── #}
+      <div class="stack-lg">
+
+        <div class="calc-card">
+          <div class="calc-hero-stat">
+            <span class="calc-hero-stat__label">Estimated upfront costs</span>
+            <span class="calc-hero-stat__value" id="s-hero">$0</span>
+            <p class="calc-hero-stat__note" id="s-hero-note"></p>
+          </div>
+          <div class="calc-stats">
+            <div class="calc-stat">
+              <span class="calc-stat__label">Stamp duty</span>
+              <span class="calc-stat__value" id="s-stat-duty">$0</span>
+            </div>
+            <div class="calc-stat" id="s-saving-wrap" style="background: rgba(47, 125, 92, 0.08);">
+              <span class="calc-stat__label">Concession saving you</span>
+              <span class="calc-stat__value" id="s-stat-saving" style="color: var(--success);">$0</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">Government fees (approx.)</span>
+              <span class="calc-stat__value" id="s-stat-fees">$0</span>
+            </div>
+          </div>
+          <p class="calc-field__hint" id="s-note" style="margin-top: var(--space-4);"></p>
+        </div>
+
+        <div class="calc-card">
+          <h3>Where the upfront money goes</h3>
+          <div class="calc-chart calc-chart--short" style="max-width: 420px; margin-inline: auto;"><canvas id="s-chart-split" role="img" aria-label="Doughnut chart of upfront buying costs: stamp duty, government fees, legals and inspections"></canvas></div>
+          <p class="calc-field__hint" id="s-reviewed" style="text-align: center; margin-top: var(--space-4);"></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="calc-assumptions" data-reveal>
+      <details>
+        <summary>Assumptions behind this calculator</summary>
+        <ul>
+          <li>Duty rates are held in a data file reviewed against official state revenue sources — the "last reviewed" date is shown above. States change rates and concessions at budget time, so always confirm with the official calculator (linked above) before exchanging contracts.</li>
+          <li>First home buyer concessional zones use a close approximation; exact figures come from each state's own calculator. Eligibility rules (residence requirements, prior ownership, citizenship, and in the ACT an income test) always apply.</li>
+          <li>Not included: foreign purchaser surcharges, first home owner cash grants, off-the-plan concessions, vacant land rates, lenders mortgage insurance, moving costs, and lender fees.</li>
+          <li>Government fees are an estimate of transfer and mortgage registration fees, which vary with price in some states.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+{% include "calc-cta.njk" %}
+
+{% block scripts %}
+<script>window.WOMBAT_DUTY = {{ stampduty | dump | safe }};</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<script src="/assets/js/calculators.js?v=20260709" defer></script>
+{% endblock %}

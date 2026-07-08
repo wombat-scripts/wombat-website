@@ -1,0 +1,91 @@
+{
+  "_readme": "Stamp duty data for the buying-costs calculator. All rates verified against official state revenue sources on the lastReviewed date. Brackets are [upperCap, baseDuty, marginalPercent] — duty = base + pct% of (value - previousCap). null cap = top bracket. Review annually after state budgets (May–July). Bump the ?v= on calculators.js in src/calculators/*.njk when this changes (the data is inlined into the page at build time).",
+  "states": {
+    "NSW": {
+      "name": "New South Wales",
+      "lastReviewed": "2026-07-08",
+      "ratesYear": "2026–27 (CPI-indexed annually)",
+      "officialCalc": "https://www.apps09.revenue.nsw.gov.au/erevenue/calculators/landsalesimple.php",
+      "regFees": 380,
+      "surchargePct": 9,
+      "general": [[18000, 0, 1.25], [38000, 225, 1.5], [103000, 525, 1.75], [387000, 1662, 3.5], [1290000, 11602, 4.5], [null, 52237, 5.5]],
+      "premium": { "threshold": 3870000, "base": 194137, "pct": 7 },
+      "fhb": { "exemptTo": 800000, "taperTo": 1000000, "base": "general", "note": "First Home Buyers Assistance Scheme: no duty up to $800,000 (new or established), concessional duty to $1m. Vacant land: exempt to $350,000." }
+    },
+    "VIC": {
+      "name": "Victoria",
+      "lastReviewed": "2026-07-08",
+      "ratesYear": "current",
+      "officialCalc": "https://www.sro.vic.gov.au/buying-property/land-transfer-stamp-duty/land-transfer-stamp-duty-calculator",
+      "regFees": 1500,
+      "surchargePct": 8,
+      "general": [[25000, 0, 1.4], [130000, 350, 2.4], [960000, 2870, 6], [null, 0, 0]],
+      "vicFlat": { "from": 960000, "to": 2000000, "pct": 5.5, "overBase": 110000, "overPct": 6.5 },
+      "ppr": { "upTo": 550000, "brackets": [[25000, 0, 1.4], [130000, 350, 2.4], [440000, 2870, 5], [550000, 18370, 6]] },
+      "fhb": { "exemptTo": 600000, "taperTo": 750000, "base": "ppr", "note": "Full exemption to $600,000, sliding-scale concession to $750,000 (principal place of residence)." }
+    },
+    "QLD": {
+      "name": "Queensland",
+      "lastReviewed": "2026-07-08",
+      "ratesYear": "current",
+      "officialCalc": "https://qro.qld.gov.au/duties/transfer-duty/calculate/",
+      "regFees": 250,
+      "surchargePct": 8,
+      "general": [[5000, 0, 0], [75000, 0, 1.5], [540000, 1050, 3.5], [1000000, 17325, 4.5], [null, 38025, 5.75]],
+      "home": [[350000, 0, 1], [540000, 3500, 3.5], [1000000, 10150, 4.5], [null, 30850, 5.75]],
+      "fhb": { "exemptTo": 700000, "taperTo": 800000, "base": "home", "newBuildExemptAll": true, "note": "Established homes: no duty to $700,000, phasing out at $800,000. Brand-new homes and land to build on: no duty at any price (from 1 May 2025). Citizenship/PR requirements apply from 1 Aug 2026." }
+    },
+    "WA": {
+      "name": "Western Australia",
+      "lastReviewed": "2026-07-08",
+      "ratesYear": "current (residential rate)",
+      "officialCalc": "https://apps.osr.wa.gov.au/portal/0/calculators/transferduty",
+      "regFees": 350,
+      "surchargePct": 7,
+      "general": [[120000, 0, 1.9], [150000, 2280, 2.85], [360000, 3135, 3.8], [725000, 11115, 4.75], [null, 28453, 5.15]],
+      "fhb": { "exemptTo": 500000, "taperTo": 700000, "base": "general", "note": "First home owner rate: no duty to $500,000, concessional rate to $700,000 in metro/Peel ($750,000 elsewhere in WA). Metro thresholds used here." }
+    },
+    "SA": {
+      "name": "South Australia",
+      "lastReviewed": "2026-07-08",
+      "ratesYear": "current",
+      "officialCalc": "https://revenuesa.sa.gov.au/stamp-duty/calculate-stamp-duty",
+      "regFees": 650,
+      "surchargePct": 7,
+      "general": [[12000, 0, 1], [30000, 120, 2], [50000, 480, 3], [100000, 1080, 3.5], [200000, 2830, 4], [250000, 6830, 4.25], [300000, 8955, 4.75], [500000, 11330, 5], [null, 21330, 5.5]],
+      "fhb": { "newBuildOnly": true, "note": "New homes, off-the-plan and land to build on: no duty for first home buyers at any price (since June 2024). Established homes: no first-home relief in SA." }
+    },
+    "TAS": {
+      "name": "Tasmania",
+      "lastReviewed": "2026-07-08",
+      "ratesYear": "current",
+      "officialCalc": "https://www.sro.tas.gov.au/property-transfer-duties",
+      "regFees": 250,
+      "surchargePct": 8,
+      "general": [[3000, 50, 0], [25000, 50, 1.75], [75000, 435, 2.25], [200000, 1560, 3.5], [375000, 5935, 4], [725000, 12935, 4.25], [null, 27810, 4.5]],
+      "fhb": { "none": true, "note": "Tasmania's first-home duty exemption (established homes to $750,000) ended for transactions completed after 30 June 2026. Check for new announcements." }
+    },
+    "ACT": {
+      "name": "ACT",
+      "lastReviewed": "2026-07-08",
+      "ratesYear": "from 1 July 2025 (2026–27 update pending on ACT Revenue site)",
+      "officialCalc": "https://www.revenue.act.gov.au/help-and-resources/calculators/calculate-your-conveyance-duty",
+      "regFees": 450,
+      "surchargePct": 0,
+      "general": [[200000, 0, 1.2], [300000, 2400, 2.2], [500000, 4600, 3.4], [750000, 11400, 4.32], [1000000, 22200, 5.9], [1455000, 36950, 6.4], [null, 0, 0]],
+      "home": [[260000, 0, 0.28], [300000, 728, 2.2], [500000, 1608, 3.4], [750000, 8408, 4.32], [1000000, 19208, 5.9], [1455000, 33958, 6.4], [null, 0, 0]],
+      "flatOverTotal": { "threshold": 1455000, "pct": 4.54 },
+      "fhb": { "exemptAllIncomeTested": true, "note": "Home Buyer Concession Scheme: no duty at any price from 1 July 2026 — but it's income-tested (household income cap applies), and not limited to first-home buyers. We've assumed you qualify." }
+    },
+    "NT": {
+      "name": "Northern Territory",
+      "lastReviewed": "2026-07-08",
+      "ratesYear": "current",
+      "officialCalc": "https://treasury.nt.gov.au/dtf/territory-revenue-office",
+      "regFees": 165,
+      "surchargePct": 0,
+      "ntFormula": { "upTo": 525000, "quadratic": 0.06571441, "linear": 15, "flatBands": [[3000000, 4.95], [5000000, 5.75], [null, 5.95]] },
+      "fhb": { "none": true, "note": "No first-home duty concession in the NT — but the HomeGrown Territory grant ($50,000, new homes) and the house-and-land package exemption may apply. Worth checking." }
+    }
+  }
+}

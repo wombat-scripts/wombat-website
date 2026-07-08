@@ -775,12 +775,447 @@
     update();
   }
 
+  /* ══════════════════════════════════════════════════════════════════════
+     5. LVR BANDS
+     ══════════════════════════════════════════════════════════════════════ */
+  function initLvr() {
+    var ready = false;
+    var cb = function () { if (ready) update(); };
+
+    var mode    = bindSeg('l-mode', cb);
+    var price   = bindMoney('l-price', 'l-price-input', cb);
+    var deposit = bindMoney('l-deposit', 'l-deposit-input', cb);
+    var value   = bindMoney('l-value', 'l-value-input', cb);
+    var balance = bindMoney('l-balance', 'l-balance-input', cb);
+
+    var BANDS = [
+      { max: 60,  label: '60% or under',  desc: 'The pointy end — lenders compete hardest here.' },
+      { max: 70,  label: '60–70%',        desc: 'Very strong. Most sharp pricing tiers include you.' },
+      { max: 80,  label: '70–80%',        desc: 'The standard sweet spot — no LMI, good rates.' },
+      { max: 90,  label: '80–90%',        desc: 'LMI territory — unless your profession earns a waiver.' },
+      { max: 999, label: 'Over 90%',      desc: 'Possible, but pricier — fewer lenders, LMI, loadings.' }
+    ];
+
+    function update() {
+      var buying = mode.value === 'buy';
+      $('l-buy-wrap').hidden = !buying;
+      $('l-refi-wrap').hidden = buying;
+
+      var pv = buying ? price.value : value.value;
+      var loan = buying ? Math.max(0, price.value - deposit.value) : balance.value;
+      var lvr = pv > 0 ? loan / pv * 100 : 0;
+      var equity = Math.max(0, pv - loan);
+
+      setStat('l-hero', lvr, function (v) { return (Math.round(v * 10) / 10) + '%'; });
+
+      var band = BANDS.find(function (b) { return lvr <= b.max; }) || BANDS[BANDS.length - 1];
+      setText('l-hero-note', band.desc + (buying ? '' : ' (Based on your estimated value — a bank valuation may differ.)'));
+
+      setStat('l-stat-loan', loan);
+      setStat('l-stat-equity', equity);
+      setText('l-stat-lmi', lvr <= 80 ? 'Unlikely' : (lvr <= 90 ? 'Likely (waivers exist)' : 'Very likely'));
+
+      // Ladder highlight
+      var rows = document.querySelectorAll('#l-ladder [data-band]');
+      rows.forEach(function (row, i) {
+        row.classList.toggle('is-active', BANDS[i] === band);
+      });
+
+      // Distance to next band down
+      var nudgeEl = $('l-nudge');
+      var thresholds = [90, 80, 70, 60];
+      var target = null;
+      for (var i = 0; i < thresholds.length; i++) {
+        if (lvr > thresholds[i]) { target = thresholds[i]; break; }
+      }
+      if (target && pv > 0) {
+        var extra = loan - target / 100 * pv;
+        var word = buying ? 'deposit' : 'equity (or loan paydown)';
+        var bonus = target === 80 ? ' — under 80% means no LMI and, usually, sharper pricing' : ' — each band down usually improves the rates on offer';
+        nudgeEl.textContent = 'Another ' + fmt$(extra) + ' of ' + word + ' takes you under ' + target + '%' + bonus + '.';
+        nudgeEl.parentElement.hidden = false;
+      } else {
+        nudgeEl.parentElement.hidden = true;
+      }
+
+      upsertChart('lSplit', 'l-chart-split', {
+        type: 'doughnut',
+        data: {
+          labels: ['Loan', buying ? 'Your deposit' : 'Your equity'],
+          datasets: [{
+            data: [Math.round(loan), Math.round(equity)],
+            backgroundColor: [C.navy, C.blueLight],
+            borderColor: '#fdfcfa',
+            borderWidth: 3,
+            hoverOffset: 6
+          }]
+        },
+        options: {
+          maintainAspectRatio: false,
+          cutout: '62%',
+          plugins: {
+            legend: { position: 'bottom' },
+            tooltip: { callbacks: { label: function (ctx) { return ctx.label + ': ' + fmt$(ctx.parsed); } } }
+          }
+        }
+      });
+    }
+
+    ready = true;
+    update();
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════
+     6. OFFSET vs BASIC LOAN
+     ══════════════════════════════════════════════════════════════════════ */
+  function initOffsetCompare() {
+    var ready = false;
+    var cb = function () { if (ready) update(); };
+
+    var loan    = bindMoney('o-loan', 'o-loan-input', cb);
+    var term    = bindRange('o-term', 'o-term-out', fmtYears, cb);
+    var rate    = bindRange('o-rate', 'o-rate-out', fmtPct, cb);
+    var prem    = bindRange('o-prem', 'o-prem-out', function (v) { return '+' + fmtPct(v); }, cb);
+    var fee     = bindMoney('o-fee', 'o-fee-input', cb);
+    var start   = bindMoney('o-start', 'o-start-input', cb);
+    var monthly = bindMoney('o-monthly', 'o-monthly-input', cb);
+    var alt     = bindSeg('o-alt', cb);
+    var sav     = bindRange('o-sav', 'o-sav-out', fmtPct, cb);
+    var tax     = bindSeg('o-tax', cb);
+
+    /* Simulate both scenarios. Returns { costOffset, costBasic, series, months }
+       cost = interest + fees − after-tax earnings. */
+    function simulate(startBal, monthlyAdd) {
+      var P = loan.value, years = term.value, n = years * 12;
+      var rBasic = rate.value / 100 / 12;
+      var rOffset = (rate.value + prem.value) / 100 / 12;
+      var savAfterTax = sav.value / 100 / 12 * (1 - (+tax.value) / 100);
+      var redraw = alt.value === 'redraw';
+
+      var payO = pmt(P, rate.value + prem.value, years, 12);
+      var payB = pmt(P, rate.value, years, 12);
+      /* Fair comparison: the offset product forces a higher minimum repayment,
+         so the basic-loan borrower banks that cash difference each month. */
+      var payDiff = Math.max(0, payO - payB);
+
+      var balO = P, off = Math.min(startBal, P), costO = 0;
+      var balB = P, savBal = startBal, funds = startBal, costB = 0;
+      var series = [0], labels = ['Now'];
+
+      for (var m = 1; m <= n; m++) {
+        if (balO > 0.005) {
+          var intO = Math.max(0, balO - Math.min(off, balO)) * rOffset;
+          costO += intO + fee.value / 12;
+          var pO = Math.min(payO, balO + intO);
+          balO = balO + intO - pO;
+          off += monthlyAdd;
+        }
+        if (balB > 0.005) {
+          if (redraw) {
+            var intB = Math.max(0, balB - Math.min(funds, balB)) * rBasic;
+            costB += intB;
+            var pB = Math.min(payB, balB + intB);
+            balB = balB + intB - pB;
+            funds += monthlyAdd + payDiff;
+          } else {
+            var intB2 = balB * rBasic;
+            costB += intB2;
+            var pB2 = Math.min(payB, balB + intB2);
+            balB = balB + intB2 - pB2;
+            savBal += monthlyAdd + payDiff;
+            costB -= savBal * savAfterTax;
+            savBal += savBal * (sav.value / 100 / 12);
+          }
+        }
+        if (m % 12 === 0) {
+          series.push(Math.round(costB - costO));
+          labels.push('Yr ' + (m / 12));
+        }
+      }
+      return { costOffset: costO, costBasic: costB, series: series, labels: labels };
+    }
+
+    /* Break-even constant balance: the smallest steady offset balance where
+       the two setups cost the same (no monthly additions, to isolate the
+       effect). The cost gap isn't monotonic — money above the remaining loan
+       balance earns nothing in an offset — so scan up, then refine. */
+    function breakEven() {
+      function diff(B) { var r = simulate(B, 0); return r.costBasic - r.costOffset; }
+      if (diff(0) >= 0) return 0;
+      var step = Math.max(2000, loan.value / 200);
+      var prev = 0;
+      for (var B = step; B <= loan.value; B += step) {
+        if (diff(B) >= 0) {
+          var lo = prev, hi = B;
+          for (var i = 0; i < 25; i++) {
+            var mid = (lo + hi) / 2;
+            if (diff(mid) >= 0) hi = mid; else lo = mid;
+          }
+          return hi;
+        }
+        prev = B;
+      }
+      return null; // offset never wins at any steady balance
+    }
+
+    function update() {
+      var redraw = alt.value === 'redraw';
+      $('o-sav-wrap').hidden = redraw;
+
+      var r = simulate(start.value, monthly.value);
+      var advantage = r.costBasic - r.costOffset;
+
+      setStat('o-hero', Math.abs(advantage));
+      setText('o-hero-label', advantage >= 0 ? 'The offset leaves you ahead by' : 'The offset costs you');
+      if (redraw) {
+        setText('o-hero-note', advantage >= 0
+          ? 'Surprising — check the inputs. With savings in redraw, the basic loan does the same interest maths at a lower rate.'
+          : 'Extra repayments with redraw give you the same interest saving as an offset — at the basic loan\'s lower rate and no package fee. What the offset buys instead: instant access, cleaner tax treatment if this home ever becomes an investment, and no lender discretion over your redraw.');
+      } else {
+        setText('o-hero-note', advantage >= 0
+          ? 'Your savings work harder cancelling ' + fmtPct(rate.value + prem.value) + ' loan interest (tax-free) than earning ' + fmtPct(sav.value) + ' taxed in a savings account — enough to beat the rate premium and fee.'
+          : 'At this balance, the rate premium and fee cost more than the offset saves you versus a savings account. Grow the balance and watch it flip.');
+      }
+
+      setStat('o-stat-offset', r.costOffset);
+      setStat('o-stat-basic', r.costBasic);
+      var be = breakEven();
+      setText('o-stat-breakeven', redraw ? 'n/a' : (be === null ? 'Never' : fmt$(be)));
+
+      upsertChart('oDiff', 'o-chart-diff', {
+        type: 'line',
+        data: {
+          labels: r.labels,
+          datasets: [{
+            label: 'Offset advantage',
+            data: r.series,
+            borderColor: C.navy,
+            borderWidth: 2.5,
+            pointRadius: 0,
+            pointHitRadius: 12,
+            tension: 0.3,
+            fill: {
+              target: 'origin',
+              above: 'rgba(47, 125, 92, 0.12)',
+              below: 'rgba(184, 68, 60, 0.10)'
+            }
+          }]
+        },
+        options: {
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          scales: {
+            y: { ticks: { callback: moneyTick } },
+            x: { grid: { display: false }, ticks: { maxTicksLimit: 9 } }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function (ctx) {
+                  var v = ctx.parsed.y;
+                  return (v >= 0 ? 'Offset ahead by ' : 'Offset behind by ') + fmt$(Math.abs(v));
+                }
+              }
+            }
+          }
+        }
+      });
+
+      upsertChart('oCost', 'o-chart-cost', {
+        type: 'bar',
+        data: {
+          labels: ['Net cost over the term'],
+          datasets: [
+            {
+              label: 'Offset package (' + fmtPct(rate.value + prem.value) + ' + fee)',
+              data: [Math.round(r.costOffset)],
+              backgroundColor: C.navy,
+              borderRadius: 8,
+              barPercentage: 0.6
+            },
+            {
+              label: redraw ? 'Basic loan + redraw (' + fmtPct(rate.value) + ')' : 'Basic loan + savings account',
+              data: [Math.round(r.costBasic)],
+              backgroundColor: C.blueLight,
+              borderRadius: 8,
+              barPercentage: 0.6
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          indexAxis: 'y',
+          scales: {
+            x: { ticks: { callback: moneyTick }, beginAtZero: true },
+            y: { grid: { display: false } }
+          },
+          plugins: {
+            tooltip: { callbacks: { label: function (ctx) { return ctx.dataset.label + ': ' + fmt$(ctx.parsed.x); } } }
+          }
+        }
+      });
+    }
+
+    ready = true;
+    update();
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════
+     7. COST OF BUYING (stamp duty + upfront costs)
+     Duty data is inlined by Eleventy from src/_data/stampduty.json.
+     ══════════════════════════════════════════════════════════════════════ */
+  function initBuyingCosts() {
+    var DATA = window.WOMBAT_DUTY;
+    if (!DATA) return;
+    var ready = false;
+    var cb = function () { if (ready) update(); };
+
+    var state  = bindSeg('s-state', cb);
+    var price  = bindMoney('s-price', 's-price-input', cb);
+    var buyer  = bindSeg('s-buyer', cb);
+    var ptype  = bindSeg('s-type', cb);
+    var legal  = bindMoney('s-legal', 's-legal-input', cb);
+    var inspect = bindMoney('s-inspect', 's-inspect-input', cb);
+
+    function bracketDuty(brackets, V) {
+      var prev = 0;
+      for (var i = 0; i < brackets.length; i++) {
+        var cap = brackets[i][0] === null ? Infinity : brackets[i][0];
+        if (V <= cap || i === brackets.length - 1) {
+          return brackets[i][1] + brackets[i][2] / 100 * (V - prev);
+        }
+        prev = cap;
+      }
+      return 0;
+    }
+
+    /* Duty before any first-home concession. ownerOcc affects QLD/VIC/ACT. */
+    function baseDuty(code, V, ownerOcc) {
+      var st = DATA.states[code];
+      if (st.ntFormula) {
+        var f = st.ntFormula;
+        if (V <= f.upTo) {
+          var v = V / 1000;
+          return f.quadratic * v * v + f.linear * v;
+        }
+        for (var i = 0; i < f.flatBands.length; i++) {
+          var cap = f.flatBands[i][0] === null ? Infinity : f.flatBands[i][0];
+          if (V <= cap) return V * f.flatBands[i][1] / 100;
+        }
+      }
+      if (st.flatOverTotal && V > st.flatOverTotal.threshold) {
+        return V * st.flatOverTotal.pct / 100;
+      }
+      if (code === 'VIC') {
+        if (ownerOcc && st.ppr && V <= st.ppr.upTo) return bracketDuty(st.ppr.brackets, V);
+        var vf = st.vicFlat;
+        if (V > vf.from && V <= vf.to) return V * vf.pct / 100;
+        if (V > vf.to) return vf.overBase + vf.overPct / 100 * (V - vf.to);
+        return bracketDuty(st.general, V);
+      }
+      if (st.premium && V > st.premium.threshold) {
+        return st.premium.base + st.premium.pct / 100 * (V - st.premium.threshold);
+      }
+      var table = (ownerOcc && st.home) ? st.home : st.general;
+      return bracketDuty(table, V);
+    }
+
+    /* Duty after first-home buyer relief (approximated with a linear taper
+       between the exemption cap and the cut-off — matches VIC exactly and
+       tracks NSW/QLD/WA closely). */
+    function fhbDuty(code, V, isNew) {
+      var st = DATA.states[code];
+      var cfg = st.fhb;
+      var full = baseDuty(code, V, true);
+      if (!cfg || cfg.none) return { duty: full, note: cfg ? cfg.note : '' };
+      if (cfg.exemptAllIncomeTested) return { duty: 0, note: cfg.note };
+      if (cfg.newBuildOnly) return { duty: isNew ? 0 : full, note: cfg.note };
+      if (cfg.newBuildExemptAll && isNew) return { duty: 0, note: cfg.note };
+      if (V <= cfg.exemptTo) return { duty: 0, note: cfg.note };
+      if (V <= cfg.taperTo) {
+        var t = (V - cfg.exemptTo) / (cfg.taperTo - cfg.exemptTo);
+        return { duty: full * t, note: cfg.note + ' (Concessional zone — this is an estimate; the official calculator gives the exact figure.)' };
+      }
+      return { duty: full, note: cfg.note };
+    }
+
+    function update() {
+      var code = state.value;
+      var st = DATA.states[code];
+      var V = price.value;
+      var isFhb = buyer.value === 'fhb';
+      var ownerOcc = buyer.value !== 'inv';
+      var isNew = ptype.value === 'new';
+
+      var duty, note;
+      if (isFhb) {
+        var res = fhbDuty(code, V, isNew);
+        duty = res.duty;
+        note = res.note;
+      } else {
+        duty = baseDuty(code, V, ownerOcc);
+        note = (st.home || (code === 'VIC' && st.ppr))
+          ? (ownerOcc ? 'Includes the owner-occupier / home concession rate.' : 'Investor rate (no home concession).')
+          : '';
+      }
+      duty = Math.max(0, Math.round(duty));
+      var saving = Math.max(0, Math.round(baseDuty(code, V, ownerOcc) - duty));
+
+      var total = duty + st.regFees + legal.value + inspect.value;
+
+      setStat('s-hero', total);
+      setText('s-hero-note', 'On top of your ' + fmt$(V) + ' purchase in ' + st.name +
+        (st.surchargePct ? '. (Foreign buyers add a ' + st.surchargePct + '% surcharge — not included here.)' : '.'));
+
+      setStat('s-stat-duty', duty);
+      setStat('s-stat-saving', saving);
+      $('s-saving-wrap').hidden = saving <= 0;
+      setStat('s-stat-fees', st.regFees);
+      setText('s-note', note || '');
+
+      var reviewed = $('s-reviewed');
+      reviewed.innerHTML = st.name + ' rates last reviewed <strong>' +
+        new Date(st.lastReviewed).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' }) +
+        '</strong> (' + st.ratesYear + '). For a to-the-dollar figure, cross-check with the <a href="' + st.officialCalc +
+        '" target="_blank" rel="noopener">official ' + code + ' calculator</a>.';
+
+      upsertChart('sSplit', 's-chart-split', {
+        type: 'doughnut',
+        data: {
+          labels: ['Stamp duty', 'Government fees (approx.)', 'Conveyancing / legal', 'Inspections'],
+          datasets: [{
+            data: [duty, st.regFees, Math.round(legal.value), Math.round(inspect.value)],
+            backgroundColor: [C.navy, C.steel, C.blueLight, C.bluePale],
+            borderColor: '#fdfcfa',
+            borderWidth: 3,
+            hoverOffset: 6
+          }]
+        },
+        options: {
+          maintainAspectRatio: false,
+          cutout: '62%',
+          plugins: {
+            legend: { position: 'bottom' },
+            tooltip: { callbacks: { label: function (ctx) { return ctx.label + ': ' + fmt$(ctx.parsed); } } }
+          }
+        }
+      });
+    }
+
+    ready = true;
+    update();
+  }
+
   /* ── Dispatch ──────────────────────────────────────────────────────────── */
   var inits = {
     repayments: initRepayments,
     borrowing: initBorrowing,
     extra: initExtra,
-    refinance: initRefinance
+    refinance: initRefinance,
+    lvr: initLvr,
+    offsetcompare: initOffsetCompare,
+    buyingcosts: initBuyingCosts
   };
   var kind = root.dataset.calc;
   if (inits[kind]) inits[kind]();

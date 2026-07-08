@@ -1,0 +1,195 @@
+---
+title: "Offset vs basic home loan calculator"
+description: "Offset accounts usually cost a higher rate plus an annual fee. See whether yours actually pays for itself — including the break-even balance and a comparison with a basic loan."
+layout: base.njk
+permalink: /calculators/offset-vs-basic/
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Offset vs Basic Home Loan Calculator",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/calculators/offset-vs-basic/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+  "provider": { "@type": "MortgageBroker", "name": "Wombat Home Loans", "url": "https://wombathomeloans.com.au/" }
+}
+</script>
+{% endblock %}
+
+<section class="section section--tight">
+  <div class="container">
+    <p class="calc-breadcrumb"><a href="/calculators/">← All calculators</a></p>
+    <span class="eyebrow">Offset vs basic</span>
+    <h1>The offset account: brilliant tool, <em>or expensive habit?</em></h1>
+    <p class="lede">Banks push offset packages hard — and charge for them, through a higher rate and often an annual fee. Whether the offset actually pays for itself depends on one thing: how much money sits in it. This calculator finds your break-even.</p>
+  </div>
+</section>
+
+<section class="section section--cool section--tight" data-calc="offsetcompare">
+  <div class="container">
+    <div class="calc-grid">
+
+      {# ── Inputs ── #}
+      <div class="calc-card calc-panel">
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="o-loan-input">Loan amount</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="o-loan-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Loan amount">
+          </div>
+          <input class="calc-range" id="o-loan" type="range" min="50000" max="3000000" step="10000" value="600000" aria-label="Loan amount slider">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="o-term">Loan term</label>
+            <span class="calc-field__value" id="o-term-out"></span>
+          </div>
+          <input class="calc-range" id="o-term" type="range" min="5" max="30" step="1" value="25">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="o-rate">Basic loan rate</label>
+            <span class="calc-field__value" id="o-rate-out"></span>
+          </div>
+          <input class="calc-range" id="o-rate" type="range" min="3" max="10" step="0.05" value="5.60">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="o-prem">Offset loan's rate premium</label>
+            <span class="calc-field__value" id="o-prem-out"></span>
+          </div>
+          <input class="calc-range" id="o-prem" type="range" min="0" max="0.6" step="0.05" value="0.15">
+          <p class="calc-field__hint">How much more the offset product's rate is. 0.10–0.30% is typical.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="o-fee-input">Offset package annual fee</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="o-fee-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Annual package fee">
+          </div>
+          <input class="calc-range" id="o-fee" type="range" min="0" max="750" step="5" value="395" aria-label="Annual fee slider">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="o-start-input">Savings you'd hold in it today</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="o-start-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Starting savings balance">
+          </div>
+          <input class="calc-range" id="o-start" type="range" min="0" max="500000" step="5000" value="30000" aria-label="Starting savings slider">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="o-monthly-input">Savings added per month</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="o-monthly-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Monthly savings added">
+          </div>
+          <input class="calc-range" id="o-monthly" type="range" min="0" max="10000" step="100" value="1000" aria-label="Monthly savings slider">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head"><label>On the basic loan, your savings would go…</label></div>
+          <div class="seg" id="o-alt" role="group" aria-label="Alternative for savings on the basic loan">
+            <button type="button" data-value="savings" aria-pressed="true">Into a savings account</button>
+            <button type="button" data-value="redraw" aria-pressed="false">Into the loan (redraw)</button>
+          </div>
+        </div>
+
+        <div id="o-sav-wrap">
+          <div class="calc-field">
+            <div class="calc-field__head">
+              <label for="o-sav">Savings account rate</label>
+              <span class="calc-field__value" id="o-sav-out"></span>
+            </div>
+            <input class="calc-range" id="o-sav" type="range" min="0" max="7" step="0.05" value="4.25">
+          </div>
+
+          <div class="calc-field">
+            <div class="calc-field__head"><label>Your marginal tax rate</label></div>
+            <div class="seg" id="o-tax" role="group" aria-label="Marginal tax rate">
+              <button type="button" data-value="32" aria-pressed="false">32%</button>
+              <button type="button" data-value="39" aria-pressed="true">39%</button>
+              <button type="button" data-value="47" aria-pressed="false">47%</button>
+            </div>
+            <p class="calc-field__hint">Savings interest is taxed at your marginal rate. Offset "interest saved" isn't taxed at all — that asymmetry is the offset's secret weapon.</p>
+          </div>
+        </div>
+
+      </div>
+
+      {# ── Results ── #}
+      <div class="stack-lg">
+
+        <div class="calc-card">
+          <div class="calc-hero-stat">
+            <span class="calc-hero-stat__label" id="o-hero-label">The offset leaves you ahead by</span>
+            <span class="calc-hero-stat__value" id="o-hero">$0</span>
+            <p class="calc-hero-stat__note" id="o-hero-note"></p>
+          </div>
+          <div class="calc-stats">
+            <div class="calc-stat">
+              <span class="calc-stat__label">Net cost — offset package</span>
+              <span class="calc-stat__value" id="o-stat-offset">$0</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">Net cost — basic loan</span>
+              <span class="calc-stat__value" id="o-stat-basic">$0</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">Break-even offset balance</span>
+              <span class="calc-stat__value" id="o-stat-breakeven">—</span>
+            </div>
+          </div>
+          <p class="calc-field__hint" style="margin-top: var(--space-4);">Break-even is the balance you'd need to keep in the offset, on average, just to cover the rate premium and fee. Below it, the basic loan wins.</p>
+        </div>
+
+        <div class="calc-card">
+          <h3>Who's ahead, year by year</h3>
+          <p class="calc-field__hint" style="margin: 0 0 var(--space-4);">Green means the offset is winning; red means you're paying for a feature that isn't paying you back.</p>
+          <div class="calc-chart"><canvas id="o-chart-diff" role="img" aria-label="Line chart of the offset package's cumulative advantage or disadvantage over the loan term"></canvas></div>
+        </div>
+
+        <div class="calc-card">
+          <h3>Total cost over the loan, side by side</h3>
+          <div class="calc-chart calc-chart--short"><canvas id="o-chart-cost" role="img" aria-label="Bar chart comparing total net cost of the offset package and the basic loan"></canvas></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="calc-assumptions" data-reveal>
+      <details>
+        <summary>Assumptions behind this calculator</summary>
+        <ul>
+          <li>Net cost = loan interest + fees, minus after-tax interest earned on savings. Rates stay constant; savings grow by your monthly amount in both scenarios.</li>
+          <li>The offset product's higher rate means a higher minimum repayment — to keep the comparison fair, the basic-loan borrower banks that cash difference each month too. Both scenarios spend the same money.</li>
+          <li>The "redraw" comparison pays your savings into the basic loan as extra repayments — mathematically this matches an offset's interest saving at the lower basic rate, which is why the offset rarely wins on pure numbers there. What the offset buys instead: instant access to your money, no lender discretion over redraw, and — if this home might become an investment property later — preserved tax deductibility of the loan. That last one can be worth more than everything else on this page; it's a conversation worth having.</li>
+          <li>Savings account interest is taxed at your selected marginal rate (including Medicare levy); offset benefits are untaxed.</li>
+          <li>Some lenders offer offset at little or no premium — which changes this answer entirely, and is exactly the kind of thing a broker goes looking for.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+{% include "calc-cta.njk" %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<script src="/assets/js/calculators.js?v=20260709" defer></script>
+{% endblock %}

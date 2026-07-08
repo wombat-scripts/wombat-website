@@ -1,0 +1,160 @@
+---
+title: "LVR calculator — what's your loan to value ratio?"
+description: "Work out your LVR (loan to value ratio), see which pricing band you land in, whether LMI applies, and how much more deposit or equity would drop you into a cheaper band."
+layout: base.njk
+permalink: /calculators/lvr/
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "LVR Calculator",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/calculators/lvr/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+  "provider": { "@type": "MortgageBroker", "name": "Wombat Home Loans", "url": "https://wombathomeloans.com.au/" }
+}
+</script>
+{% endblock %}
+
+<section class="section section--tight">
+  <div class="container">
+    <p class="calc-breadcrumb"><a href="/calculators/">← All calculators</a></p>
+    <span class="eyebrow">LVR</span>
+    <h1>One ratio, and the banks <em>price everything off it.</em></h1>
+    <p class="lede">Your loan to value ratio is the simplest number in lending — loan divided by property value — and one of the most consequential. It decides whether you pay lenders mortgage insurance, and which rate tier you're offered. Small moves across a band boundary can be worth real money.</p>
+  </div>
+</section>
+
+<section class="section section--cool section--tight" data-calc="lvr">
+  <div class="container">
+    <div class="calc-grid">
+
+      {# ── Inputs ── #}
+      <div class="calc-card calc-panel">
+
+        <div class="calc-field">
+          <div class="calc-field__head"><label>What are you doing?</label></div>
+          <div class="seg" id="l-mode" role="group" aria-label="Buying or refinancing">
+            <button type="button" data-value="buy" aria-pressed="true">Buying</button>
+            <button type="button" data-value="refi" aria-pressed="false">Refinancing / reviewing</button>
+          </div>
+        </div>
+
+        <div id="l-buy-wrap">
+          <div class="calc-field">
+            <div class="calc-field__head">
+              <label for="l-price-input">Purchase price</label>
+            </div>
+            <div class="calc-affix">
+              <input class="calc-input" id="l-price-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Purchase price">
+            </div>
+            <input class="calc-range" id="l-price" type="range" min="100000" max="3000000" step="10000" value="1000000" aria-label="Purchase price slider">
+          </div>
+
+          <div class="calc-field">
+            <div class="calc-field__head">
+              <label for="l-deposit-input">Your deposit</label>
+            </div>
+            <div class="calc-affix">
+              <input class="calc-input" id="l-deposit-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Deposit amount">
+            </div>
+            <input class="calc-range" id="l-deposit" type="range" min="0" max="2000000" step="10000" value="200000" aria-label="Deposit slider">
+            <p class="calc-field__hint">Remember stamp duty and costs come out of your savings too — see the <a href="/calculators/buying-costs/">cost of buying calculator</a>.</p>
+          </div>
+        </div>
+
+        <div id="l-refi-wrap" hidden>
+          <div class="calc-field">
+            <div class="calc-field__head">
+              <label for="l-value-input">Estimated property value</label>
+            </div>
+            <div class="calc-affix">
+              <input class="calc-input" id="l-value-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Estimated property value">
+            </div>
+            <input class="calc-range" id="l-value" type="range" min="100000" max="3000000" step="10000" value="1200000" aria-label="Property value slider">
+          </div>
+
+          <div class="calc-field">
+            <div class="calc-field__head">
+              <label for="l-balance-input">Loan balance</label>
+            </div>
+            <div class="calc-affix">
+              <input class="calc-input" id="l-balance-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Loan balance">
+            </div>
+            <input class="calc-range" id="l-balance" type="range" min="0" max="3000000" step="10000" value="700000" aria-label="Loan balance slider">
+          </div>
+        </div>
+
+      </div>
+
+      {# ── Results ── #}
+      <div class="stack-lg">
+
+        <div class="calc-card">
+          <div class="calc-hero-stat">
+            <span class="calc-hero-stat__label">Your loan to value ratio</span>
+            <span class="calc-hero-stat__value" id="l-hero">0%</span>
+            <p class="calc-hero-stat__note" id="l-hero-note"></p>
+          </div>
+          <div class="calc-stats">
+            <div class="calc-stat">
+              <span class="calc-stat__label">Loan amount</span>
+              <span class="calc-stat__value" id="l-stat-loan">$0</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">Your equity</span>
+              <span class="calc-stat__value" id="l-stat-equity">$0</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">LMI payable?</span>
+              <span class="calc-stat__value" id="l-stat-lmi">—</span>
+            </div>
+          </div>
+          <p class="calc-field__hint" style="margin-top: var(--space-4);" hidden><strong id="l-nudge"></strong></p>
+        </div>
+
+        <div class="calc-card">
+          <h3>The LVR bands, and where you sit</h3>
+          <p class="calc-field__hint" style="margin: 0 0 var(--space-4);">Lenders don't price on a smooth curve — they price in steps. Cross a boundary and the whole loan gets repriced.</p>
+          <div class="lvr-ladder" id="l-ladder">
+            <div class="lvr-band" data-band="60"><span class="lvr-band__range">≤ 60%</span><span class="lvr-band__desc">The pointy end — lenders compete hardest here</span></div>
+            <div class="lvr-band" data-band="70"><span class="lvr-band__range">60–70%</span><span class="lvr-band__desc">Very strong — most sharp pricing tiers include you</span></div>
+            <div class="lvr-band" data-band="80"><span class="lvr-band__range">70–80%</span><span class="lvr-band__desc">The standard sweet spot — no LMI, good rates</span></div>
+            <div class="lvr-band" data-band="90"><span class="lvr-band__range">80–90%</span><span class="lvr-band__desc">LMI territory — unless your profession earns a waiver</span></div>
+            <div class="lvr-band" data-band="999"><span class="lvr-band__range">90%+</span><span class="lvr-band__desc">Possible, but pricier — fewer lenders, LMI, rate loadings</span></div>
+          </div>
+          <p class="calc-field__hint" style="margin-top: var(--space-4);">Work in banking or financial services? Some lenders waive LMI up to 90% for your profession — <a href="/articles/lmi-waiver-bank-employees/">here's how that works</a>.</p>
+        </div>
+
+        <div class="calc-card">
+          <h3>Loan vs your stake</h3>
+          <div class="calc-chart calc-chart--short" style="max-width: 420px; margin-inline: auto;"><canvas id="l-chart-split" role="img" aria-label="Doughnut chart showing loan versus deposit or equity"></canvas></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="calc-assumptions" data-reveal>
+      <details>
+        <summary>Assumptions behind this calculator</summary>
+        <ul>
+          <li>LVR = loan ÷ property value. When buying, we assume the loan is price minus deposit — if some of your deposit goes to stamp duty and costs, your real LVR will be a touch higher.</li>
+          <li>When refinancing, the lender's valuation is what counts, and it can come in below (or above) your estimate — this is often the make-or-break of a refinance.</li>
+          <li>Band boundaries and their pricing effects vary by lender; 60/70/80/90 are the common tiers. LMI is typically required above 80% LVR unless waived.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+{% include "calc-cta.njk" %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<script src="/assets/js/calculators.js?v=20260709" defer></script>
+{% endblock %}

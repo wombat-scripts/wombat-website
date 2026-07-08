@@ -6,6 +6,15 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-07-08 — Calculators v2: buying costs, LVR, offset vs basic
+
+Three new calculators. (1) **Stamp duty & cost of buying** (`/calculators/buying-costs/`) — duty for all 8 states/territories with FHB exemptions/concessions, owner-occupier vs investor rates (QLD home concession, VIC PPR, ACT owner-occ tables, NT formula, NSW premium duty), plus government fees, legals and inspections. All rates live in `src/_data/stampduty.json` with per-state `lastReviewed` dates and official-calculator links shown on the page — review the file annually after state budgets. Rates verified against official sources 8 July 2026 (incl. NSW 2026–27 CPI-indexed brackets, TAS FHB exemption ending 30 June 2026, ACT HBCS cap removal from 1 July 2026). (2) **LVR** (`/calculators/lvr/`) — buy/refinance modes, pricing-band ladder, LMI flag, distance-to-next-band nudge, link to the bank-employee LMI waiver article. (3) **Offset vs basic** (`/calculators/offset-vs-basic/`) — models the offset rate premium + fee against a savings account (after tax) or redraw, with a bisection-solved break-even offset balance.
+
+**Files added:** `src/calculators/buying-costs.njk`, `lvr.njk`, `offset-vs-basic.njk`, `src/_data/stampduty.json`
+**Files changed:** `src/assets/js/calculators.js` (three new modules + duty engine), `src/assets/css/styles.css` (LVR ladder, wrapping seg control), `src/calculators/index.njk` (three new hub cards), `src/llms.txt.njk`, `src/_layouts/base.njk` + all calculator pages (asset version bump to ?v=20260709)
+
+---
+
 ## 2026-07-08 — Calculator fixes: segmented buttons + accelerated repayments (follow-up 2)
 
 (1) Segmented-control buttons (Weekly/Fortnightly/Monthly etc.) were rendering as unstyled browser buttons — the CSS targeted a `.seg__btn` class the markup didn't have. Selectors now also cover `.seg > button`, with hover and pressed states. (2) The repayments calculator now offers two fortnightly/weekly calculation methods: **Standard** (monthly amount split pro-rata — annual total unchanged, no savings) and **Accelerated** (half the monthly repayment per fortnight / quarter per week — 13 monthly repayments a year). Accelerated mode shows interest saved + payoff-sooner stats and a comparison line on the balance chart, with a call-out that not all lenders calculate it this way. Verified against reference figures ($650k @ 5.75%/30y: accelerated fortnightly $1,897, total interest $567,874, $147,686 saved vs monthly). `calculators.js` is now also version-tagged (`?v=20260708-2`) in all calculator pages, and `styles.css` bumped to the same version in `base.njk`.
