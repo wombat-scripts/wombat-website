@@ -900,7 +900,7 @@
 
       var balO = P, off = Math.min(startBal, P), costO = 0;
       var balB = P, savBal = startBal, funds = startBal, costB = 0;
-      var series = [0], labels = ['Now'];
+      var seriesO = [0], seriesB = [0], labels = ['Now'];
 
       for (var m = 1; m <= n; m++) {
         if (balO > 0.005) {
@@ -928,11 +928,12 @@
           }
         }
         if (m % 12 === 0) {
-          series.push(Math.round(costB - costO));
+          seriesO.push(Math.round(costO));
+          seriesB.push(Math.round(costB));
           labels.push('Yr ' + (m / 12));
         }
       }
-      return { costOffset: costO, costBasic: costB, series: series, labels: labels };
+      return { costOffset: costO, costBasic: costB, seriesO: seriesO, seriesB: seriesB, labels: labels };
     }
 
     /* Break-even constant balance: the smallest steady offset balance where
@@ -986,20 +987,35 @@
         type: 'line',
         data: {
           labels: r.labels,
-          datasets: [{
-            label: 'Offset advantage',
-            data: r.series,
-            borderColor: C.navy,
-            borderWidth: 2.5,
-            pointRadius: 0,
-            pointHitRadius: 12,
-            tension: 0.3,
-            fill: {
-              target: 'origin',
-              above: 'rgba(47, 125, 92, 0.12)',
-              below: 'rgba(184, 68, 60, 0.10)'
+          datasets: [
+            {
+              label: 'Offset package — running cost',
+              data: r.seriesO,
+              borderColor: C.navy,
+              borderWidth: 2.5,
+              pointRadius: 0,
+              pointHitRadius: 12,
+              tension: 0.3,
+              fill: false
+            },
+            {
+              label: (redraw ? 'Basic loan + redraw' : 'Basic loan + savings account') + ' — running cost',
+              data: r.seriesB,
+              borderColor: C.steel,
+              borderDash: [6, 5],
+              borderWidth: 2,
+              pointRadius: 0,
+              pointHitRadius: 12,
+              tension: 0.3,
+              /* Shade the gap between the two lines: green where the basic
+                 loan costs more (offset winning), red where it costs less. */
+              fill: {
+                target: '-1',
+                above: 'rgba(47, 125, 92, 0.12)',
+                below: 'rgba(184, 68, 60, 0.10)'
+              }
             }
-          }]
+          ]
         },
         options: {
           maintainAspectRatio: false,
@@ -1009,12 +1025,13 @@
             x: { grid: { display: false }, ticks: { maxTicksLimit: 9 } }
           },
           plugins: {
-            legend: { display: false },
             tooltip: {
               callbacks: {
-                label: function (ctx) {
-                  var v = ctx.parsed.y;
-                  return (v >= 0 ? 'Offset ahead by ' : 'Offset behind by ') + fmt$(Math.abs(v));
+                label: function (ctx) { return ctx.dataset.label + ': ' + fmt$(ctx.parsed.y); },
+                footer: function (items) {
+                  if (items.length < 2) return '';
+                  var gap = items[1].parsed.y - items[0].parsed.y;
+                  return gap >= 0 ? 'Offset ahead by ' + fmt$(gap) : 'Offset behind by ' + fmt$(-gap);
                 }
               }
             }
