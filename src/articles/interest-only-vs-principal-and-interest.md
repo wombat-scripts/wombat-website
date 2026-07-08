@@ -4,7 +4,7 @@ description: "The right structure depends on your cash flow, tax position, and i
 date: 2025-12-01
 category: "Property Investors"
 layout: article.njk
-thumbnail: "/images/articles/male_investor.jpg"
+thumbnail: "/images/articles/calculations_man.jpg"
 ---
 
 One of the most common questions property investors ask is whether to take out an interest-only (IO) loan or a principal and interest (P&I) loan. The honest answer: it depends — on your cash flow, your tax situation, your investment strategy, and how long you intend to hold the property. Here's a clear-eyed breakdown of both.
