@@ -1152,7 +1152,8 @@ input[type="range"].calc-range::-moz-range-thumb {
   border-radius: var(--radius-pill);
 }
 
-.seg__btn {
+.seg__btn,
+.seg > button {
   padding: 0.45rem 0.95rem;
   font-family: var(--font-body);
   font-size: var(--fs-meta);
@@ -1166,8 +1167,19 @@ input[type="range"].calc-range::-moz-range-thumb {
               color var(--motion-fast) var(--easing);
 }
 
-.seg__btn[aria-pressed="true"] {
+.seg__btn:hover,
+.seg > button:hover {
+  color: var(--navy);
+}
+
+.seg__btn[aria-pressed="true"],
+.seg > button[aria-pressed="true"] {
   background: var(--navy);
+  color: #fff;
+}
+
+.seg__btn[aria-pressed="true"]:hover,
+.seg > button[aria-pressed="true"]:hover {
   color: #fff;
 }
 

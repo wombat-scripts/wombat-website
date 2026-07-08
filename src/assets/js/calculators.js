@@ -81,14 +81,16 @@
 
   /* Period-by-period simulation.
      opts: ioYears (interest-only period), extra (extra per period),
-           offset (constant offset balance). Returns yearly-sampled arrays. */
+           offset (constant offset balance), payment (explicit per-period
+           payment override, e.g. accelerated fortnightly = monthly / 2).
+     Returns yearly-sampled arrays. */
   function schedule(P, annualPct, years, perYear, opts) {
     opts = opts || {};
     var r = annualPct / 100 / perYear;
     var ioPeriods = Math.round((opts.ioYears || 0) * perYear);
     var extra = opts.extra || 0;
     var offset = Math.min(opts.offset || 0, P);
-    var basePay = pmt(P, annualPct, years - (opts.ioYears || 0), perYear);
+    var basePay = opts.payment || pmt(P, annualPct, years - (opts.ioYears || 0), perYear);
 
     var bal = P, totalInterest = 0, i = 0;
     var balances = [P], interests = [0];
@@ -269,6 +271,7 @@
     var rate    = bindRange('r-rate', 'r-rate-out', fmtPct, cb);
     var term    = bindRange('r-term', 'r-term-out', fmtYears, cb);
     var freq    = bindSeg('r-freq', cb);
+    var method  = bindSeg('r-method', cb);
     var rtype   = bindSeg('r-type', cb);
     var ioYears = bindRange('r-io', 'r-io-out', fmtYears, cb);
 
@@ -278,53 +281,95 @@
       $('r-io-wrap').hidden = !isIO;
 
       var per = FREQ[freq.value];
+      var isMonthly = freq.value === 'monthly';
+      $('r-method-wrap').hidden = isMonthly;
+      var isAcc = !isMonthly && method.value === 'acc';
+
       var io = isIO ? Math.min(ioYears.value, term.value - 1) : 0;
-      var s = schedule(P, rate.value, term.value, per, { ioYears: io });
+      var std = schedule(P, rate.value, term.value, per, { ioYears: io });
+      var s = std;
+      if (isAcc) {
+        var monthlyPay = pmt(P, rate.value, term.value - io, 12);
+        var divisor = (per === 26) ? 2 : 4;
+        s = schedule(P, rate.value, term.value, per, { ioYears: io, payment: monthlyPay / divisor });
+      }
+
       var ioPay = P * rate.value / 100 / per;
       var perLabel = { weekly: 'per week', fortnightly: 'per fortnight', monthly: 'per month' }[freq.value];
+      var perWord = { weekly: 'week', fortnightly: 'fortnight', monthly: 'month' }[freq.value];
 
       setStat('r-hero', isIO ? ioPay : s.payment);
       setText('r-hero-label', isIO
         ? 'Repayments ' + perLabel + ' during the interest-only period'
         : 'Repayments ' + perLabel);
-      setText('r-hero-note', isIO
-        ? 'Stepping up to ' + fmt$(s.payment) + ' ' + perLabel + ' once the interest-only period ends.'
-        : 'Principal and interest over ' + fmtYears(term.value) + ' at ' + fmtPct(rate.value) + '.');
+      if (isIO) {
+        setText('r-hero-note', 'Stepping up to ' + fmt$(s.payment) + ' ' + perLabel + ' once the interest-only period ends.');
+      } else if (isAcc) {
+        setText('r-hero-note', 'That’s your monthly repayment split in ' + ((per === 26) ? 'half and paid every fortnight' : 'four and paid every week') +
+          ' — which quietly makes one extra monthly repayment a year, so the loan ends early.');
+      } else {
+        setText('r-hero-note', 'Principal and interest over ' + fmtYears(term.value) + ' at ' + fmtPct(rate.value) + '.');
+      }
 
       setStat('r-stat-interest', s.totalInterest);
       setStat('r-stat-total', P + s.totalInterest);
       setText('r-stat-payments', fmtNum(s.periods) + ' payments');
 
-      var years = Math.ceil(s.periods / per);
+      // Accelerated-vs-standard comparison stats
+      var accStats = $('r-acc-stats');
+      if (accStats) {
+        accStats.hidden = !isAcc;
+        if (isAcc) {
+          setStat('r-stat-saved', std.totalInterest - s.totalInterest);
+          var monthsSaved = (std.periods - s.periods) / per * 12;
+          setText('r-stat-sooner', yearsMonths(monthsSaved) + ' sooner');
+        }
+      }
+
+      var years = Math.ceil(std.periods / per);
       var labels = yearLabels(years);
+      var datasets = [
+        {
+          label: isAcc ? 'Loan balance — accelerated' : 'Loan balance',
+          data: s.balances,
+          borderColor: C.navy,
+          backgroundColor: 'rgba(28, 71, 106, 0.10)',
+          fill: true,
+          tension: 0.35,
+          pointRadius: 0,
+          pointHitRadius: 12,
+          borderWidth: 2.5
+        },
+        {
+          label: 'Interest paid so far',
+          data: s.interests,
+          borderColor: C.gold,
+          borderDash: [6, 5],
+          fill: false,
+          tension: 0.35,
+          pointRadius: 0,
+          pointHitRadius: 12,
+          borderWidth: 2
+        }
+      ];
+      if (isAcc) {
+        datasets.splice(1, 0, {
+          label: 'Balance — standard method',
+          data: std.balances,
+          borderColor: C.steel,
+          borderDash: [6, 5],
+          fill: false,
+          tension: 0.35,
+          pointRadius: 0,
+          pointHitRadius: 12,
+          borderWidth: 2
+        });
+      }
       upsertChart('rBalance', 'r-chart-balance', {
         type: 'line',
         data: {
           labels: labels,
-          datasets: [
-            {
-              label: 'Loan balance',
-              data: s.balances,
-              borderColor: C.navy,
-              backgroundColor: 'rgba(28, 71, 106, 0.10)',
-              fill: true,
-              tension: 0.35,
-              pointRadius: 0,
-              pointHitRadius: 12,
-              borderWidth: 2.5
-            },
-            {
-              label: 'Interest paid so far',
-              data: s.interests,
-              borderColor: C.gold,
-              borderDash: [6, 5],
-              fill: false,
-              tension: 0.35,
-              pointRadius: 0,
-              pointHitRadius: 12,
-              borderWidth: 2
-            }
-          ]
+          datasets: datasets
         },
         options: {
           maintainAspectRatio: false,

@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-07-08 — Calculator fixes: segmented buttons + accelerated repayments (follow-up 2)
+
+(1) Segmented-control buttons (Weekly/Fortnightly/Monthly etc.) were rendering as unstyled browser buttons — the CSS targeted a `.seg__btn` class the markup didn't have. Selectors now also cover `.seg > button`, with hover and pressed states. (2) The repayments calculator now offers two fortnightly/weekly calculation methods: **Standard** (monthly amount split pro-rata — annual total unchanged, no savings) and **Accelerated** (half the monthly repayment per fortnight / quarter per week — 13 monthly repayments a year). Accelerated mode shows interest saved + payoff-sooner stats and a comparison line on the balance chart, with a call-out that not all lenders calculate it this way. Verified against reference figures ($650k @ 5.75%/30y: accelerated fortnightly $1,897, total interest $567,874, $147,686 saved vs monthly). `calculators.js` is now also version-tagged (`?v=20260708-2`) in all calculator pages, and `styles.css` bumped to the same version in `base.njk`.
+
+**Files changed:** `src/assets/css/styles.css`, `src/assets/js/calculators.js`, `src/calculators/*.njk`, `src/_layouts/base.njk`
+
+---
+
 ## 2026-07-08 — Cache-busting + fact find CTA (follow-up)
 
 Two changes after the calculators launch. (1) `/assets/*` is served with a one-year immutable cache (netlify.toml), so returning visitors were getting the old `styles.css` and seeing unstyled calculators. `base.njk` now versions the stylesheet and script URLs (`?v=20260708`) — bump this whenever either file changes. (2) The homepage hero's "Read my story" text link is replaced with a "Get started in 2 minutes" button linking to the Middle fact find portal (umami event: `start-fact-find`).
