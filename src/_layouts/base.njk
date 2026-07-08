@@ -40,8 +40,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap">
 
-  {# Stylesheet #}
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  {# Stylesheet — bump ?v= whenever styles.css changes (assets are cached for
+     a year via netlify.toml, so a new URL is what forces browsers to refetch) #}
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260708">
 
   {# Schema markup — injected per-page via block #}
   {% block schema %}
@@ -124,7 +125,7 @@
   {# ── FOOTER ── #}
   {% include "footer.njk" %}
 
-  <script src="/assets/js/scripts.js" defer></script>
+  <script src="/assets/js/scripts.js?v=20260708" defer></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

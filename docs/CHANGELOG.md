@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-07-08 — Cache-busting + fact find CTA (follow-up)
+
+Two changes after the calculators launch. (1) `/assets/*` is served with a one-year immutable cache (netlify.toml), so returning visitors were getting the old `styles.css` and seeing unstyled calculators. `base.njk` now versions the stylesheet and script URLs (`?v=20260708`) — bump this whenever either file changes. (2) The homepage hero's "Read my story" text link is replaced with a "Get started in 2 minutes" button linking to the Middle fact find portal (umami event: `start-fact-find`).
+
+**Files changed:** `src/_layouts/base.njk`, `src/index.njk`
+
+---
+
 ## 2026-07-08 — Calculators section (v1)
 
 New `/calculators/` section: hub page plus four interactive calculators, each with live charts (Chart.js via CDN, loaded only on calculator pages). Repayments (P&I / interest-only, weekly/fortnightly/monthly), borrowing power (2025–26 tax rates, HEM-style expense floor, 3.8%/mo credit card assessment, 3% APRA buffer, rate-sensitivity chart), extra repayments & offset (baseline vs boosted balance curves), and refinance savings (break-even and cumulative net position). Shared CTA + disclaimer include on every page.
