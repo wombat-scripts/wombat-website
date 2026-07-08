@@ -1,0 +1,202 @@
+---
+title: "Borrowing power calculator"
+description: "Estimate how much you could borrow for a home loan — including the 3% APRA assessment buffer and lender expense benchmarks most calculators quietly skip."
+layout: base.njk
+permalink: /calculators/borrowing-power/
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Borrowing Power Calculator",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/calculators/borrowing-power/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+  "provider": { "@type": "MortgageBroker", "name": "Wombat Home Loans", "url": "https://wombathomeloans.com.au/" }
+}
+</script>
+{% endblock %}
+
+<section class="section section--tight">
+  <div class="container">
+    <p class="calc-breadcrumb"><a href="/calculators/">← All calculators</a></p>
+    <span class="eyebrow">Borrowing power</span>
+    <h1>How much would a lender <em>actually let me borrow?</em></h1>
+    <p class="lede">Most borrowing calculators flatter you. This one works the way a lender does — after-tax income, benchmark living expenses, your other commitments, and the 3% serviceability buffer on top of the interest rate. Fewer surprises later.</p>
+  </div>
+</section>
+
+<section class="section section--cool section--tight" data-calc="borrowing">
+  <div class="container">
+    <div class="calc-grid">
+
+      {# ── Inputs ── #}
+      <div class="calc-card calc-panel">
+
+        <div class="calc-field">
+          <div class="calc-field__head"><label>Applicants</label></div>
+          <div class="seg" id="b-applicants" role="group" aria-label="Number of applicants">
+            <button type="button" data-value="1" aria-pressed="false">Just me</button>
+            <button type="button" data-value="2" aria-pressed="true">Two of us</button>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="b-inc1-input">Your income (gross, per year)</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="b-inc1-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Applicant one gross annual income">
+          </div>
+          <input class="calc-range" id="b-inc1" type="range" min="0" max="500000" step="5000" value="150000" aria-label="Applicant one income slider">
+        </div>
+
+        <div class="calc-field" id="b-inc2-wrap">
+          <div class="calc-field__head">
+            <label for="b-inc2-input">Second income (gross, per year)</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="b-inc2-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Applicant two gross annual income">
+          </div>
+          <input class="calc-range" id="b-inc2" type="range" min="0" max="500000" step="5000" value="100000" aria-label="Applicant two income slider">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="b-rental-input">Rental income (per year, if any)</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="b-rental-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Annual rental income">
+          </div>
+          <input class="calc-range" id="b-rental" type="range" min="0" max="150000" step="1000" value="0" aria-label="Rental income slider">
+          <p class="calc-field__hint">Lenders only count about 80% of rent, to allow for vacancies and costs — we do the same.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="b-deps">Dependants</label>
+            <span class="calc-field__value" id="b-deps-out"></span>
+          </div>
+          <input class="calc-range" id="b-deps" type="range" min="0" max="5" step="1" value="0">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="b-expenses-input">Living expenses (per month)</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="b-expenses-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Monthly living expenses">
+          </div>
+          <input class="calc-range" id="b-expenses" type="range" min="1000" max="15000" step="100" value="4000" aria-label="Living expenses slider">
+          <p class="calc-field__hint" id="b-hem-note"></p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="b-debts-input">Other loan repayments (per month)</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="b-debts-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Other monthly loan repayments">
+          </div>
+          <input class="calc-range" id="b-debts" type="range" min="0" max="10000" step="50" value="0" aria-label="Other loan repayments slider">
+          <p class="calc-field__hint">Car loans, personal loans, HECS repayments — anything that leaves your account monthly.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="b-cc-input">Credit card limits (total)</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="b-cc-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Total credit card limits">
+          </div>
+          <input class="calc-range" id="b-cc" type="range" min="0" max="100000" step="1000" value="10000" aria-label="Credit card limits slider">
+          <p class="calc-field__hint">Lenders assess the <em>limit</em>, not the balance — even if you pay it off in full every month. A $20k limit you never use still shrinks your borrowing power.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="b-rate">Interest rate</label>
+            <span class="calc-field__value" id="b-rate-out"></span>
+          </div>
+          <input class="calc-range" id="b-rate" type="range" min="4" max="9" step="0.05" value="5.75">
+          <p class="calc-field__hint">Lenders test you at this rate <strong>plus 3%</strong> — the APRA serviceability buffer. We apply it automatically.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="b-deposit-input">Your deposit</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="b-deposit-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Deposit amount">
+          </div>
+          <input class="calc-range" id="b-deposit" type="range" min="0" max="1000000" step="10000" value="200000" aria-label="Deposit slider">
+        </div>
+
+      </div>
+
+      {# ── Results ── #}
+      <div class="stack-lg">
+
+        <div class="calc-card">
+          <div class="calc-hero-stat">
+            <span class="calc-hero-stat__label">Estimated borrowing power</span>
+            <span class="calc-hero-stat__value" id="b-hero">$0</span>
+            <p class="calc-hero-stat__note" id="b-hero-note"></p>
+          </div>
+          <div class="calc-stats">
+            <div class="calc-stat">
+              <span class="calc-stat__label">Property budget (loan + deposit)</span>
+              <span class="calc-stat__value" id="b-stat-budget">$0</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">Monthly repayment at your rate</span>
+              <span class="calc-stat__value" id="b-stat-repay">$0</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">Assessment rate used</span>
+              <span class="calc-stat__value" id="b-stat-assess">0%</span>
+            </div>
+          </div>
+          <p class="calc-field__hint" style="margin-top: var(--space-4);">Budget excludes stamp duty and purchase costs — set aside roughly 4–5% of the price for those.</p>
+        </div>
+
+        <div class="calc-card">
+          <h3>Where your monthly income goes</h3>
+          <p class="calc-field__hint" style="margin: 0 0 var(--space-4);">This is your household's monthly income, sliced the way a lender's servicing calculator slices it. The navy segment is what's left to service a loan.</p>
+          <div class="calc-chart calc-chart--short" style="max-width: 420px; margin-inline: auto;"><canvas id="b-chart-split" role="img" aria-label="Doughnut chart of monthly income allocation across tax, living expenses, commitments and loan capacity"></canvas></div>
+        </div>
+
+        <div class="calc-card">
+          <h3>How rates move your number</h3>
+          <p class="calc-field__hint" style="margin: 0 0 var(--space-4);">Your borrowing power isn't a fixed number — every rate move re-draws it. This is why pre-approvals go stale and why timing matters.</p>
+          <div class="calc-chart"><canvas id="b-chart-sens" role="img" aria-label="Line chart of estimated borrowing power across a range of interest rates"></canvas></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="calc-assumptions" data-reveal>
+      <details>
+        <summary>Assumptions behind this calculator</summary>
+        <ul>
+          <li>Income is taxed at 2025–26 Australian resident rates including the Medicare levy and low income tax offset; HECS/HELP and other offsets aren't modelled.</li>
+          <li>Living expenses use the higher of your figure and a simplified household benchmark (as lenders do with HEM).</li>
+          <li>Credit cards are assessed at 3.8% of the total limit per month; rental income is shaded to 80%.</li>
+          <li>The loan is assessed over 30 years at your rate plus a 3% buffer, principal &amp; interest.</li>
+          <li>Real lenders differ enormously — especially with bonus income, RSUs, foreign income and self-employment. That's the gap a broker closes.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+{% include "calc-cta.njk" %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<script src="/assets/js/calculators.js" defer></script>
+{% endblock %}

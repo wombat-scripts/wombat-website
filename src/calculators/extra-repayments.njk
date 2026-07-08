@@ -1,0 +1,151 @@
+---
+title: "Extra repayments & offset calculator"
+description: "See how extra home loan repayments or an offset account balance could cut years off your mortgage and save you serious interest — with charts that show the gap."
+layout: base.njk
+permalink: /calculators/extra-repayments/
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Extra Repayments & Offset Calculator",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/calculators/extra-repayments/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+  "provider": { "@type": "MortgageBroker", "name": "Wombat Home Loans", "url": "https://wombathomeloans.com.au/" }
+}
+</script>
+{% endblock %}
+
+<section class="section section--tight">
+  <div class="container">
+    <p class="calc-breadcrumb"><a href="/calculators/">← All calculators</a></p>
+    <span class="eyebrow">Extra repayments &amp; offset</span>
+    <h1>The quiet superpower of <em>Australian mortgages.</em></h1>
+    <p class="lede">Every dollar above the minimum — paid in extra, or parked in an offset account — attacks the principal directly. The effect compounds for decades, and it's usually the cheapest "investment return" you'll ever get: your mortgage rate, tax-free.</p>
+  </div>
+</section>
+
+<section class="section section--cool section--tight" data-calc="extra">
+  <div class="container">
+    <div class="calc-grid">
+
+      {# ── Inputs ── #}
+      <div class="calc-card calc-panel">
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="e-amount-input">Loan balance</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="e-amount-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Loan balance in dollars">
+          </div>
+          <input class="calc-range" id="e-amount" type="range" min="50000" max="3000000" step="10000" value="600000" aria-label="Loan balance slider">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="e-rate">Interest rate</label>
+            <span class="calc-field__value" id="e-rate-out"></span>
+          </div>
+          <input class="calc-range" id="e-rate" type="range" min="3" max="10" step="0.05" value="5.75">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="e-term">Years remaining</label>
+            <span class="calc-field__value" id="e-term-out"></span>
+          </div>
+          <input class="calc-range" id="e-term" type="range" min="1" max="40" step="1" value="28">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="e-extra-input">Extra repayment (per month)</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="e-extra-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Extra monthly repayment">
+          </div>
+          <input class="calc-range" id="e-extra" type="range" min="0" max="5000" step="50" value="500" aria-label="Extra repayment slider">
+          <p class="calc-field__hint">Even $100 a month makes a visible dent — try it.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="e-offset-input">Offset account balance</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="e-offset-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Offset account balance">
+          </div>
+          <input class="calc-range" id="e-offset" type="range" min="0" max="500000" step="5000" value="20000" aria-label="Offset balance slider">
+          <p class="calc-field__hint">Money in an offset reduces the balance interest is charged on — while staying available whenever you need it. We assume it stays put for the life of the loan.</p>
+        </div>
+
+      </div>
+
+      {# ── Results ── #}
+      <div class="stack-lg">
+
+        <div class="calc-card">
+          <div class="calc-hero-stat">
+            <span class="calc-hero-stat__label">Interest you'd save</span>
+            <span class="calc-hero-stat__value" id="e-hero">$0</span>
+            <p class="calc-hero-stat__note" id="e-hero-note"></p>
+          </div>
+          <div class="calc-stats">
+            <div class="calc-stat">
+              <span class="calc-stat__label">Mortgage-free</span>
+              <span class="calc-stat__value" id="e-stat-time">—</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">New payoff time</span>
+              <span class="calc-stat__value" id="e-stat-payoff">—</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">Interest — minimum only</span>
+              <span class="calc-stat__value" id="e-stat-base-int">$0</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">Interest — your plan</span>
+              <span class="calc-stat__value" id="e-stat-new-int">$0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-card">
+          <h3>Two futures, one loan</h3>
+          <p class="calc-field__hint" style="margin: 0 0 var(--space-4);">The dotted line is coasting on minimum repayments. The solid line is you, with a plan. The gap between them is your money.</p>
+          <div class="calc-chart"><canvas id="e-chart-balance" role="img" aria-label="Line chart comparing loan balance over time with and without extra repayments and offset"></canvas></div>
+        </div>
+
+        <div class="calc-card">
+          <h3>Total interest, side by side</h3>
+          <div class="calc-chart calc-chart--short"><canvas id="e-chart-interest" role="img" aria-label="Bar chart comparing total interest with and without extra repayments"></canvas></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="calc-assumptions" data-reveal>
+      <details>
+        <summary>Assumptions behind this calculator</summary>
+        <ul>
+          <li>The interest rate stays constant, repayments are monthly, and the extra amount is paid every month from now until the loan is cleared.</li>
+          <li>The offset balance stays constant for the life of the loan (in reality it moves around — this is a "steady state" picture).</li>
+          <li>No fees, no redraws, and no rate changes are modelled. Fixed-rate loans often cap extra repayments — variable loans generally don't.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+{% include "calc-cta.njk" %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<script src="/assets/js/calculators.js" defer></script>
+{% endblock %}

@@ -1,0 +1,153 @@
+---
+title: "Home loan repayment calculator"
+description: "Estimate your home loan repayments — weekly, fortnightly or monthly, principal & interest or interest-only — with charts showing your balance and total interest over time."
+layout: base.njk
+permalink: /calculators/repayments/
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Home Loan Repayment Calculator",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/calculators/repayments/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+  "provider": { "@type": "MortgageBroker", "name": "Wombat Home Loans", "url": "https://wombathomeloans.com.au/" }
+}
+</script>
+{% endblock %}
+
+<section class="section section--tight">
+  <div class="container">
+    <p class="calc-breadcrumb"><a href="/calculators/">← All calculators</a></p>
+    <span class="eyebrow">Repayments</span>
+    <h1>What will this loan <em>actually cost me?</em></h1>
+    <p class="lede">Move the sliders and watch the repayment change in real time. The charts underneath show the bit most calculators hide: how slowly the balance falls early on, and how much of the total ends up as interest.</p>
+  </div>
+</section>
+
+<section class="section section--cool section--tight" data-calc="repayments">
+  <div class="container">
+    <div class="calc-grid">
+
+      {# ── Inputs ── #}
+      <div class="calc-card calc-panel">
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="r-amount-input">Loan amount</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="r-amount-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Loan amount in dollars">
+          </div>
+          <input class="calc-range" id="r-amount" type="range" min="50000" max="3000000" step="10000" value="650000" aria-label="Loan amount slider">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="r-rate">Interest rate</label>
+            <span class="calc-field__value" id="r-rate-out"></span>
+          </div>
+          <input class="calc-range" id="r-rate" type="range" min="3" max="10" step="0.05" value="5.75">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="r-term">Loan term</label>
+            <span class="calc-field__value" id="r-term-out"></span>
+          </div>
+          <input class="calc-range" id="r-term" type="range" min="5" max="40" step="1" value="30">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head"><label>Repayment frequency</label></div>
+          <div class="seg" id="r-freq" role="group" aria-label="Repayment frequency">
+            <button type="button" data-value="weekly" aria-pressed="false">Weekly</button>
+            <button type="button" data-value="fortnightly" aria-pressed="false">Fortnightly</button>
+            <button type="button" data-value="monthly" aria-pressed="true">Monthly</button>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head"><label>Repayment type</label></div>
+          <div class="seg" id="r-type" role="group" aria-label="Repayment type">
+            <button type="button" data-value="pi" aria-pressed="true">Principal &amp; interest</button>
+            <button type="button" data-value="io" aria-pressed="false">Interest-only</button>
+          </div>
+        </div>
+
+        <div class="calc-field" id="r-io-wrap" hidden>
+          <div class="calc-field__head">
+            <label for="r-io">Interest-only period</label>
+            <span class="calc-field__value" id="r-io-out"></span>
+          </div>
+          <input class="calc-range" id="r-io" type="range" min="1" max="10" step="1" value="5">
+          <p class="calc-field__hint">After this, the loan reverts to principal &amp; interest over the remaining term — so repayments step up.</p>
+        </div>
+
+      </div>
+
+      {# ── Results ── #}
+      <div class="stack-lg">
+
+        <div class="calc-card">
+          <div class="calc-hero-stat">
+            <span class="calc-hero-stat__label" id="r-hero-label">Repayments per month</span>
+            <span class="calc-hero-stat__value" id="r-hero">$0</span>
+            <p class="calc-hero-stat__note" id="r-hero-note"></p>
+          </div>
+          <div class="calc-stats">
+            <div class="calc-stat">
+              <span class="calc-stat__label">Total interest</span>
+              <span class="calc-stat__value" id="r-stat-interest">$0</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">Total you'll repay</span>
+              <span class="calc-stat__value" id="r-stat-total">$0</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">Number of repayments</span>
+              <span class="calc-stat__value" id="r-stat-payments">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-card">
+          <h3>Your balance over time</h3>
+          <p class="calc-field__hint" style="margin: 0 0 var(--space-4);">The solid line is what you still owe; the dotted line is the interest you've paid so far. Notice how they cross — that's the loan's midlife.</p>
+          <div class="calc-chart"><canvas id="r-chart-balance" role="img" aria-label="Line chart of loan balance and cumulative interest over the loan term"></canvas></div>
+        </div>
+
+        <div class="calc-card">
+          <h3>Where the money goes</h3>
+          <div class="calc-chart calc-chart--short" style="max-width: 420px; margin-inline: auto;"><canvas id="r-chart-split" role="img" aria-label="Doughnut chart splitting total repayments into principal and interest"></canvas></div>
+          <p class="calc-field__hint" id="r-split-note" style="text-align: center; margin-top: var(--space-4);"></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="calc-assumptions" data-reveal>
+      <details>
+        <summary>Assumptions behind this calculator</summary>
+        <ul>
+          <li>The interest rate stays the same for the whole term (real rates move — that's rather the point of an annual review).</li>
+          <li>Repayments are calculated in arrears with interest charged at the same frequency as repayments.</li>
+          <li>No account is taken of fees, offset balances, redraw, or rate changes at the end of a fixed period.</li>
+          <li>Interest-only figures assume the loan reverts to principal &amp; interest over the remaining term.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+{% include "calc-cta.njk" %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<script src="/assets/js/calculators.js" defer></script>
+{% endblock %}

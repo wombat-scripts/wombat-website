@@ -6,6 +6,28 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-07-08 — Calculators section (v1)
+
+New `/calculators/` section: hub page plus four interactive calculators, each with live charts (Chart.js via CDN, loaded only on calculator pages). Repayments (P&I / interest-only, weekly/fortnightly/monthly), borrowing power (2025–26 tax rates, HEM-style expense floor, 3.8%/mo credit card assessment, 3% APRA buffer, rate-sensitivity chart), extra repayments & offset (baseline vs boosted balance curves), and refinance savings (break-even and cumulative net position). Shared CTA + disclaimer include on every page.
+
+**Files added:**
+
+- `src/calculators/index.njk` — hub page with four cards
+- `src/calculators/repayments.njk`, `borrowing-power.njk`, `extra-repayments.njk`, `refinance.njk`
+- `src/assets/js/calculators.js` — shared calculation engine + Chart.js theme (vanilla JS)
+- `src/_includes/calc-cta.njk` — shared "book a call" CTA + compliance disclaimer
+
+**Files changed:**
+
+- `src/assets/css/styles.css` — new section 8 (calculator layout, sliders, segmented controls, stats, hub cards)
+- `src/_includes/nav.njk` — Calculators added to main nav (after Reviews)
+- `src/_includes/footer.njk` — Calculators added to Tools list
+- `src/llms.txt.njk` — Calculators section with URLs
+
+Sitemap picks the new pages up automatically (generated from collections). Future candidates noted on the hub: stamp duty, first-home schemes, SMSF.
+
+---
+
 ## 2026-05-03 — Phase 1: Foundation
 
 Built the shared infrastructure that every page will hang off. No live-site changes; this is groundwork. New files only — nothing existing touched.

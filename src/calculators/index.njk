@@ -1,0 +1,79 @@
+---
+title: "Home loan calculators — repayments, borrowing power & more"
+description: "Free, visual home loan calculators. Estimate your repayments, borrowing power, refinance savings and how much extra repayments or an offset could save you."
+layout: base.njk
+permalink: /calculators/
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Home Loan Calculators — Wombat Home Loans",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/calculators/",
+  "isPartOf": { "@id": "https://wombathomeloans.com.au/#wombat-home-loans" }
+}
+</script>
+{% endblock %}
+
+<section class="section section--tight">
+  <div class="container">
+    <span class="eyebrow" data-reveal>Calculators</span>
+    <h1 data-reveal>Run the numbers <em>before anyone runs them for you.</em></h1>
+    <p class="lede" data-reveal>Four free tools, no email address required, no sales call triggered. Move the sliders, watch the charts, and get a feel for what's possible — then, if you want the numbers turned into a strategy, you know where I am.</p>
+  </div>
+</section>
+
+<section class="section section--cool section--tight">
+  <div class="container">
+    <div class="grid grid--2">
+
+      <a class="card calc-hub-card" href="/calculators/repayments/" data-reveal>
+        <span class="calc-hub-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg>
+        </span>
+        <h3>Loan repayments</h3>
+        <p>What a loan actually costs, week to week and over its life. Principal &amp; interest or interest-only, with a chart of your balance falling over time.</p>
+        <span class="calc-hub-card__go">Open calculator →</span>
+      </a>
+
+      <a class="card calc-hub-card" href="/calculators/borrowing-power/" data-reveal>
+        <span class="calc-hub-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M6 20v-6"/><path d="M18 20V4"/><path d="M3 20h18"/></svg>
+        </span>
+        <h3>Borrowing power</h3>
+        <p>A realistic estimate of what lenders might let you borrow — including the 3% assessment buffer they apply and the expense benchmarks they use.</p>
+        <span class="calc-hub-card__go">Open calculator →</span>
+      </a>
+
+      <a class="card calc-hub-card" href="/calculators/extra-repayments/" data-reveal>
+        <span class="calc-hub-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7L13 15l-4-4-6 6"/><path d="M21 7h-6"/><path d="M21 7v6"/></svg>
+        </span>
+        <h3>Extra repayments &amp; offset</h3>
+        <p>The quiet superpower of Australian mortgages. See how a bit extra each month — or money parked in an offset — cuts years and serious interest off your loan.</p>
+        <span class="calc-hub-card__go">Open calculator →</span>
+      </a>
+
+      <a class="card calc-hub-card" href="/calculators/refinance/" data-reveal>
+        <span class="calc-hub-card__icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+        </span>
+        <h3>Refinance savings</h3>
+        <p>Is your loyalty tax showing? Compare your current rate with a new one, see the monthly saving, and find your break-even point after switching costs.</p>
+        <span class="calc-hub-card__go">Open calculator →</span>
+      </a>
+
+    </div>
+
+    <p class="muted" style="margin-top: var(--space-6); font-size: var(--fs-small);" data-reveal>
+      More calculators are on the way — stamp duty, first-home buyer schemes and SMSF lending
+      are next on the list. If there's one you'd find useful,
+      <a href="mailto:tom@wombathomeloans.com.au">tell me</a> and I'll bump it up the queue.
+    </p>
+  </div>
+</section>
+
+{% include "calc-cta.njk" %}

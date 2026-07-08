@@ -1,0 +1,166 @@
+---
+title: "Refinance savings calculator"
+description: "Compare your current home loan rate with a new one. See the monthly saving, your break-even point after switching costs, and what refinancing is worth over time."
+layout: base.njk
+permalink: /calculators/refinance/
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Refinance Savings Calculator",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/calculators/refinance/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+  "provider": { "@type": "MortgageBroker", "name": "Wombat Home Loans", "url": "https://wombathomeloans.com.au/" }
+}
+</script>
+{% endblock %}
+
+<section class="section section--tight">
+  <div class="container">
+    <p class="calc-breadcrumb"><a href="/calculators/">← All calculators</a></p>
+    <span class="eyebrow">Refinance</span>
+    <h1>Is your bank charging you a <em>loyalty tax?</em></h1>
+    <p class="lede">Banks reserve their sharpest rates for new customers, and quietly let existing ones drift. Put your current rate against a better one, count the switching costs honestly, and see exactly when the move starts paying for itself.</p>
+  </div>
+</section>
+
+<section class="section section--cool section--tight" data-calc="refinance">
+  <div class="container">
+    <div class="calc-grid">
+
+      {# ── Inputs ── #}
+      <div class="calc-card calc-panel">
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="f-balance-input">Current loan balance</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="f-balance-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Current loan balance">
+          </div>
+          <input class="calc-range" id="f-balance" type="range" min="50000" max="3000000" step="10000" value="550000" aria-label="Loan balance slider">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="f-term">Years remaining</label>
+            <span class="calc-field__value" id="f-term-out"></span>
+          </div>
+          <input class="calc-range" id="f-term" type="range" min="1" max="35" step="1" value="25">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="f-old-rate">Your current rate</label>
+            <span class="calc-field__value" id="f-old-rate-out"></span>
+          </div>
+          <input class="calc-range" id="f-old-rate" type="range" min="3" max="10" step="0.05" value="6.10">
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="f-new-rate">The new rate</label>
+            <span class="calc-field__value" id="f-new-rate-out"></span>
+          </div>
+          <input class="calc-range" id="f-new-rate" type="range" min="3" max="10" step="0.05" value="5.60">
+          <p class="calc-field__hint">Not sure what you could get? That's rather my department.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="f-upfront-input">Switching costs (one-off)</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="f-upfront-input" type="text" inputmode="numeric" autocomplete="off" aria-label="One-off switching costs">
+          </div>
+          <input class="calc-range" id="f-upfront" type="range" min="0" max="3000" step="50" value="700" aria-label="Switching costs slider">
+          <p class="calc-field__hint">Discharge fee, mortgage registration, maybe an application or valuation fee. $600–$1,000 is typical.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="f-fee-input">New loan's annual fee</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="f-fee-input" type="text" inputmode="numeric" autocomplete="off" aria-label="New loan annual fee">
+          </div>
+          <input class="calc-range" id="f-fee" type="range" min="0" max="750" step="5" value="0" aria-label="Annual fee slider">
+          <p class="calc-field__hint">Package loans often charge ~$395/year. Enter the <em>difference</em> if your current loan has one too.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="f-cashback-input">Cashback offer (if any)</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="f-cashback-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Refinance cashback amount">
+          </div>
+          <input class="calc-range" id="f-cashback" type="range" min="0" max="5000" step="100" value="0" aria-label="Cashback slider">
+        </div>
+
+      </div>
+
+      {# ── Results ── #}
+      <div class="stack-lg">
+
+        <div class="calc-card">
+          <div class="calc-hero-stat">
+            <span class="calc-hero-stat__label">Saving per month</span>
+            <span class="calc-hero-stat__value" id="f-hero">$0</span>
+            <p class="calc-hero-stat__note" id="f-hero-note"></p>
+          </div>
+          <div class="calc-stats">
+            <div class="calc-stat">
+              <span class="calc-stat__label">Break-even point</span>
+              <span class="calc-stat__value" id="f-stat-breakeven">—</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">Better off after 5 years</span>
+              <span class="calc-stat__value" id="f-stat-5yr">$0</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat__label">Better off over full term</span>
+              <span class="calc-stat__value" id="f-stat-term">$0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-card">
+          <h3>Repayments, side by side</h3>
+          <div class="calc-chart calc-chart--short"><canvas id="f-chart-compare" role="img" aria-label="Bar chart comparing monthly repayments on the current and new loan"></canvas></div>
+        </div>
+
+        <div class="calc-card">
+          <h3>When switching starts paying for itself</h3>
+          <p class="calc-field__hint" style="margin: 0 0 var(--space-4);">Your running position after all switching costs. Red is the hole the fees dig; green is you climbing out of it and pulling ahead.</p>
+          <div class="calc-chart"><canvas id="f-chart-cumulative" role="img" aria-label="Line chart of cumulative net savings after refinancing, crossing break-even"></canvas></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="calc-assumptions" data-reveal>
+      <details>
+        <summary>Assumptions behind this calculator</summary>
+        <ul>
+          <li>Both loans are compared over the same remaining term with monthly principal &amp; interest repayments — an apples-to-apples comparison.</li>
+          <li>Rates stay constant, and the repayment saving isn't reinvested or paid into the new loan (doing so would save you even more — see the <a href="/calculators/extra-repayments/">extra repayments calculator</a>).</li>
+          <li>Watch for: fixed-rate break costs on your current loan, lenders mortgage insurance if your equity is under 20%, and cashbacks that paper over an uncompetitive rate.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+{% include "calc-cta.njk" %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<script src="/assets/js/calculators.js" defer></script>
+{% endblock %}
