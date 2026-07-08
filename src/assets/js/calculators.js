@@ -971,7 +971,7 @@
       if (redraw) {
         setText('o-hero-note', advantage >= 0
           ? 'Surprising — check the inputs. With savings in redraw, the basic loan does the same interest maths at a lower rate.'
-          : 'Extra repayments with redraw give you the same interest saving as an offset — at the basic loan\'s lower rate and no package fee. What the offset buys instead: instant access, cleaner tax treatment if this home ever becomes an investment, and no lender discretion over your redraw.');
+          : 'That\'s the price of the rate premium and package fee over the life of the loan. A dollar in redraw cuts your interest exactly like a dollar in offset — so with the interest saving matched, the offset\'s extra cost has nothing left to earn back. What that money buys is flexibility, not returns: instant access, no lender discretion over redraw, and cleaner tax treatment if this home ever becomes an investment.');
       } else {
         setText('o-hero-note', advantage >= 0
           ? 'Your savings work harder cancelling ' + fmtPct(rate.value + prem.value) + ' loan interest (tax-free) than earning ' + fmtPct(sav.value) + ' taxed in a savings account — enough to beat the rate premium and fee.'
@@ -981,7 +981,10 @@
       setStat('o-stat-offset', r.costOffset);
       setStat('o-stat-basic', r.costBasic);
       var be = breakEven();
-      setText('o-stat-breakeven', redraw ? 'n/a' : (be === null ? 'Never' : fmt$(be)));
+      setText('o-stat-breakeven', redraw ? 'None' : (be === null ? 'None' : fmt$(be)));
+      setText('o-be-note', redraw
+        ? 'There\'s no break-even against redraw: the same dollars save the same interest either way, so no offset balance can claw back the higher rate and fee. The comparison that CAN flip is against a savings account — try the other toggle.'
+        : 'Break-even is the balance you\'d need to keep in the offset, on average, just to cover the rate premium and fee. Below it, the basic loan wins.');
 
       upsertChart('oDiff', 'o-chart-diff', {
         type: 'line',
