@@ -331,25 +331,31 @@
       setStat('r-stat-total', P + s.totalInterest);
       setText('r-stat-payments', fmtNum(s.periods) + ' payments');
 
-      // Accelerated-vs-standard comparison stats (isolated from any extra)
+      // Accelerated-vs-standard comparison stats (isolated from any extra).
+      // NB: toggle display directly — the .calc-stats { display:grid } rule in
+      // styles.css overrides the [hidden] attribute, so `hidden` won't hide it.
       var accStats = $('r-acc-stats');
       if (accStats) {
-        accStats.hidden = !isAcc;
         if (isAcc) {
+          accStats.style.display = 'grid';
           setStat('r-stat-saved', std.totalInterest - base.totalInterest);
           var monthsSaved = (std.periods - base.periods) / per * 12;
           setText('r-stat-sooner', yearsMonths(monthsSaved) + ' sooner');
+        } else {
+          accStats.style.display = 'none';
         }
       }
 
       // Extra-repayments comparison stats (this plan with vs without the extra)
       var extraStats = $('r-extra-stats');
       if (extraStats) {
-        extraStats.hidden = !(extraAmt > 0);
         if (extraAmt > 0) {
+          extraStats.style.display = 'grid';
           setStat('r-stat-extra-saved', base.totalInterest - s.totalInterest);
           var extraMonthsSaved = (base.periods - s.periods) / per * 12;
           setText('r-stat-extra-sooner', yearsMonths(extraMonthsSaved) + ' sooner');
+        } else {
+          extraStats.style.display = 'none';
         }
       }
 
