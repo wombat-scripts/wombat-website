@@ -274,6 +274,7 @@
     var method  = bindSeg('r-method', cb);
     var rtype   = bindSeg('r-type', cb);
     var ioYears = bindRange('r-io', 'r-io-out', fmtYears, cb);
+    var extra   = bindMoney('r-extra', 'r-extra-input', cb);
 
     function update() {
       var P = amount.value;
@@ -294,35 +295,61 @@
         s = schedule(P, rate.value, term.value, per, { ioYears: io, payment: monthlyPay / divisor });
       }
 
+      /* Manual extra repayments — layered on top of whichever plan is selected
+         (standard, accelerated or monthly). `base` is that plan WITHOUT the
+         extra; `s` becomes what the borrower actually pays. Works for any
+         lender, so it covers the case where accelerated isn't on offer. */
+      var extraAmt = extra.value;
+      var base = s;
+      if (extraAmt > 0) {
+        s = schedule(P, rate.value, term.value, per, { ioYears: io, payment: base.payment, extra: extraAmt });
+      }
+
       var ioPay = P * rate.value / 100 / per;
       var perLabel = { weekly: 'per week', fortnightly: 'per fortnight', monthly: 'per month' }[freq.value];
       var perWord = { weekly: 'week', fortnightly: 'fortnight', monthly: 'month' }[freq.value];
+      setText('r-extra-per', perLabel);
 
-      setStat('r-hero', isIO ? ioPay : s.payment);
+      setStat('r-hero', isIO ? ioPay : base.payment + extraAmt);
       setText('r-hero-label', isIO
         ? 'Repayments ' + perLabel + ' during the interest-only period'
         : 'Repayments ' + perLabel);
       if (isIO) {
-        setText('r-hero-note', 'Stepping up to ' + fmt$(s.payment) + ' ' + perLabel + ' once the interest-only period ends.');
+        setText('r-hero-note', 'Stepping up to ' + fmt$(base.payment + extraAmt) + ' ' + perLabel + ' once the interest-only period ends.');
       } else if (isAcc) {
         setText('r-hero-note', 'That’s your monthly repayment split in ' + ((per === 26) ? 'half and paid every fortnight' : 'four and paid every week') +
           ' — which quietly makes one extra monthly repayment a year, so the loan ends early.');
       } else {
         setText('r-hero-note', 'Principal and interest over ' + fmtYears(term.value) + ' at ' + fmtPct(rate.value) + '.');
       }
+      if (extraAmt > 0 && !isIO) {
+        setText('r-hero-note', 'Includes an extra ' + fmt$(extraAmt) + ' ' + perLabel +
+          ' on top of the ' + fmt$(base.payment) + ' repayment — every dollar of it coming straight off your principal.');
+      }
 
       setStat('r-stat-interest', s.totalInterest);
       setStat('r-stat-total', P + s.totalInterest);
       setText('r-stat-payments', fmtNum(s.periods) + ' payments');
 
-      // Accelerated-vs-standard comparison stats
+      // Accelerated-vs-standard comparison stats (isolated from any extra)
       var accStats = $('r-acc-stats');
       if (accStats) {
         accStats.hidden = !isAcc;
         if (isAcc) {
-          setStat('r-stat-saved', std.totalInterest - s.totalInterest);
-          var monthsSaved = (std.periods - s.periods) / per * 12;
+          setStat('r-stat-saved', std.totalInterest - base.totalInterest);
+          var monthsSaved = (std.periods - base.periods) / per * 12;
           setText('r-stat-sooner', yearsMonths(monthsSaved) + ' sooner');
+        }
+      }
+
+      // Extra-repayments comparison stats (this plan with vs without the extra)
+      var extraStats = $('r-extra-stats');
+      if (extraStats) {
+        extraStats.hidden = !(extraAmt > 0);
+        if (extraAmt > 0) {
+          setStat('r-stat-extra-saved', base.totalInterest - s.totalInterest);
+          var extraMonthsSaved = (base.periods - s.periods) / per * 12;
+          setText('r-stat-extra-sooner', yearsMonths(extraMonthsSaved) + ' sooner');
         }
       }
 
@@ -356,6 +383,18 @@
         datasets.splice(1, 0, {
           label: 'Balance — standard method',
           data: std.balances,
+          borderColor: C.steel,
+          borderDash: [6, 5],
+          fill: false,
+          tension: 0.35,
+          pointRadius: 0,
+          pointHitRadius: 12,
+          borderWidth: 2
+        });
+      } else if (extraAmt > 0) {
+        datasets.splice(1, 0, {
+          label: 'Balance — without extra',
+          data: base.balances,
           borderColor: C.steel,
           borderDash: [6, 5],
           fill: false,

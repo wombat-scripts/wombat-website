@@ -98,6 +98,17 @@ permalink: /calculators/repayments/
           <p class="calc-field__hint">After this, the loan reverts to principal &amp; interest over the remaining term — so repayments step up.</p>
         </div>
 
+        <div class="calc-field" id="r-extra-wrap">
+          <div class="calc-field__head">
+            <label for="r-extra-input">Extra repayments <span id="r-extra-per">per month</span></label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="r-extra-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Extra repayment amount in dollars">
+          </div>
+          <input class="calc-range" id="r-extra" type="range" min="0" max="2000" step="25" value="0" aria-label="Extra repayment slider">
+          <p class="calc-field__hint">Anything you pay on top of the minimum comes straight off your principal — so it works with any lender, even one that doesn't offer an accelerated option. Leave it at $0 to ignore. (During an interest-only period, extra repayments start once the loan reverts to principal &amp; interest.)</p>
+        </div>
+
       </div>
 
       {# ── Results ── #}
@@ -133,6 +144,16 @@ permalink: /calculators/repayments/
               <span class="calc-stat__value" id="r-stat-sooner" style="color: var(--success);">—</span>
             </div>
           </div>
+          <div class="calc-stats" id="r-extra-stats" hidden style="margin-top: var(--space-3);">
+            <div class="calc-stat" style="background: rgba(47, 125, 92, 0.08);">
+              <span class="calc-stat__label">Interest saved with extra repayments</span>
+              <span class="calc-stat__value" id="r-stat-extra-saved" style="color: var(--success);">$0</span>
+            </div>
+            <div class="calc-stat" style="background: rgba(47, 125, 92, 0.08);">
+              <span class="calc-stat__label">Mortgage-free</span>
+              <span class="calc-stat__value" id="r-stat-extra-sooner" style="color: var(--success);">—</span>
+            </div>
+          </div>
         </div>
 
         <div class="calc-card">
@@ -159,6 +180,7 @@ permalink: /calculators/repayments/
           <li>No account is taken of fees, offset balances, redraw, or rate changes at the end of a fixed period.</li>
           <li>Interest-only figures assume the loan reverts to principal &amp; interest over the remaining term.</li>
           <li>"Standard" fortnightly/weekly repayments split the monthly amount pro-rata (annual total unchanged). "Accelerated" pays half the monthly repayment per fortnight or a quarter per week — some lenders offer this by default, others don't, so confirm how yours calculates it.</li>
+          <li>Extra repayments are added to every repayment for the life of the loan and applied straight to the principal — a real-world lump sum or a rate change will shift the numbers.</li>
         </ul>
       </details>
     </div>
@@ -169,5 +191,5 @@ permalink: /calculators/repayments/
 
 {% block scripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
-<script src="/assets/js/calculators.js?v=20260709-3" defer></script>
+<script src="/assets/js/calculators.js?v=20260714-1" defer></script>
 {% endblock %}
