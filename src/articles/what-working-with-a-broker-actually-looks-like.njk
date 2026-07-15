@@ -1,0 +1,326 @@
+---
+layout: landing.njk
+title: "What Working With a Mortgage Broker Actually Looks Like"
+description: "Do you shop around for a loan and get pre-approved before speaking to a broker? No — and you're not alone in wondering. Here's the process from first hello to settlement, step by step."
+date: 2026-07-15
+category: First Home Buyers
+thumbnail: /images/articles/couple_signing_2.jpg
+---
+
+{# ── Page-specific styles (only for components not in shared styles.css) ── #}
+{% block head %}
+<style>
+  /* Callout box */
+  .callout {
+    background: var(--paper-cool);
+    border-left: 3px solid var(--steel);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--space-5);
+    margin: var(--space-6) 0;
+  }
+  .callout .eyebrow { margin-bottom: var(--space-2); }
+  .callout .eyebrow::before { display: none; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* Client question quote */
+  .client-q {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+    line-height: var(--lh-tight);
+    color: var(--navy-deep);
+    border-left: 3px solid var(--blue-pale);
+    padding-left: var(--space-5);
+    margin: var(--space-6) 0;
+  }
+  .client-q footer {
+    font-family: var(--font-body);
+    font-size: var(--fs-meta);
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: var(--space-3);
+  }
+
+  /* Timeline */
+  .timeline { padding-left: 28px; position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 9px; top: 6px; bottom: 6px;
+    width: 2px; background: var(--blue-pale);
+  }
+  .tl-item { position: relative; margin-bottom: var(--space-7); }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-item::before {
+    content: ''; position: absolute;
+    left: -28px; top: 5px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--paper);
+    border: 3px solid var(--steel);
+  }
+  .tl-item:first-child::before { background: var(--steel); }
+  .tl-when {
+    font-family: var(--font-body);
+    font-weight: 600; color: var(--steel);
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-1);
+  }
+  .tl-item h3 { margin-bottom: var(--space-2); margin-top: 0; }
+  .tl-item p:last-child { margin-bottom: 0; }
+
+  /* Table */
+  .table-wrap {
+    overflow-x: auto;
+    margin: var(--space-5) 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+  }
+  .table-wrap table {
+    width: 100%; border-collapse: collapse;
+    font-size: var(--fs-small);
+  }
+  .table-wrap thead { background: var(--navy); color: #fff; }
+  .table-wrap th {
+    padding: var(--space-3) var(--space-4);
+    text-align: left; font-weight: 600;
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .table-wrap td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--line);
+  }
+  .table-wrap tbody tr:nth-child(even) { background: var(--paper-cool); }
+  .table-wrap td:first-child { font-weight: 600; color: var(--navy); }
+
+  /* FAQ accordion */
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    padding: var(--space-4) var(--space-7) var(--space-4) 0;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 1rem; font-weight: 600;
+    color: var(--navy-deep);
+    cursor: pointer; position: relative;
+    line-height: var(--lh-tight);
+  }
+  .faq-q::after {
+    content: '+'; position: absolute;
+    right: 0; top: 50%; transform: translateY(-50%);
+    font-size: 1.4rem; color: var(--steel);
+    transition: transform var(--motion-fast) var(--easing);
+  }
+  .faq-q[aria-expanded="true"]::after { content: '−'; }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height var(--motion-mid) var(--easing);
+  }
+  .faq-a.open { max-height: 300px; }
+  .faq-a p { padding-bottom: var(--space-4); }
+</style>
+{% endblock %}
+
+{# ── Hero ── #}
+<section class="section section--dark" style="padding-block: clamp(5rem, 10vw, 9rem);">
+  <div class="container container--narrow" style="text-align: center;">
+    <p class="eyebrow">First Home Buyers</p>
+    <h1 class="display">What Working With a Mortgage Broker <em>Actually Looks Like</em></h1>
+    <p class="lede" style="margin-inline: auto; color: var(--blue-pale);">
+      Bank first? Pre-approval first? Broker first? Nobody explains the order things happen in — so here it is, from first hello to settlement day.
+    </p>
+    <p class="meta" style="color: rgba(255,255,255,0.5);">Updated July 2026 · Wombat Home Loans</p>
+  </div>
+</section>
+
+{# ── The question ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Question Everyone Asks</p>
+    <h2>"Do we find a loan first, <em>then</em> come to you?"</h2>
+
+    <p>A client emailed me recently with a question I've heard, in one form or another, dozens of times:</p>
+
+    <blockquote class="client-q">
+      "My partner and I are a bit confused about the process. Do we search around for the best bank loan first, and then get pre-approved, before we come and speak to you?"
+      <footer>— A first home buyer, last week</footer>
+    </blockquote>
+
+    <p>It's a completely reasonable question — and if it's your first time buying, the honest answer is that nobody ever explains what working with a broker actually involves, or what order things happen in.</p>
+
+    <p>The short version: <strong>you don't need to do anything before speaking to a broker.</strong> No bank shopping, no pre-approval, no spreadsheet of rates. In fact, doing those things first can actively work against you. The broker conversation isn't the step <em>after</em> you've found a loan — it's the step that finds the loan.</p>
+
+    <div class="callout">
+      <p class="eyebrow">Key Insight</p>
+      <p>Comparing lenders and arranging pre-approval <strong>is the broker's job</strong>. That's the service. Coming to a broker with a pre-approval already in hand is a bit like marinating a steak before taking it to a restaurant.</p>
+    </div>
+
+    <p>Banks advertise directly to you, so it's natural to assume the process starts with picking one. And "pre-approval" sounds like a ticket you need to hold before anyone serious will talk to you — like turning up to an interview with your CV. Neither is true. Here's how it actually runs.</p>
+  </div>
+</section>
+
+{# ── The process timeline ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Process</p>
+    <h2>From first hello to keys in hand — <em>step by step</em></h2>
+    <p class="lede">Four steps. The first one requires nothing from you but a conversation.</p>
+
+    <div class="timeline" style="margin-top: var(--space-6);">
+
+      <div class="tl-item">
+        <p class="tl-when">Step 1 · The starting point</p>
+        <h3>We talk — before you've done anything</h3>
+        <p>The first meeting is a conversation, not an application. We discuss what you're trying to achieve — first home, upgrade, investment — and I'll give you an initial view of your borrowing capacity. You'll walk away knowing roughly what's realistic, which makes everything that follows less stressful.</p>
+        <p style="margin-top: var(--space-3);">This costs you nothing and commits you to nothing. The earlier this happens, the better — even if you're six or twelve months from buying, knowing your position early gives you time to fix anything that needs fixing.</p>
+      </div>
+
+      <div class="tl-item">
+        <p class="tl-when">Step 2 · The groundwork</p>
+        <h3>You share your details, I search the market</h3>
+        <p>Next, you share the supporting details — payslips, financial information, ID — through a secure fact find portal (no emailing bank statements around, please). With the full picture, I can match your situation against policies and products across 40+ lenders.</p>
+        <p style="margin-top: var(--space-3);">This is the "shopping around" you were planning to do yourself — except it covers far more of the market, and it accounts for the thing rate-comparison websites can't see: <strong>lender policy</strong>. The sharpest advertised rate is irrelevant if that lender's credit policy doesn't suit how you're paid, what you've saved, or what you're buying. Matching policy to person is most of the job.</p>
+      </div>
+
+      <div class="tl-item">
+        <p class="tl-when">Step 3 · Finance ready</p>
+        <h3>We agree an option and I arrange pre-approval</h3>
+        <p>We meet again, go through the shortlist, and once you're comfortable with a direction, I submit a pre-approval application on your behalf. This is the point where pre-approval enters the picture — as an output of the process, not a prerequisite for it.</p>
+        <p style="margin-top: var(--space-3);">Pre-approval makes you "finance ready": you know your budget with confidence, agents take you seriously, and you can bid at auction or negotiate on a private sale knowing where your ceiling is. For the finer detail, see the full guide to <a href="/articles/all-you-need-to-know-about-the-home-loan-pre-approval-process/">the pre-approval process</a>.</p>
+      </div>
+
+      <div class="tl-item">
+        <p class="tl-when">Step 4 · The home straight</p>
+        <h3>You buy, I get you to settlement</h3>
+        <p>Once you've found a property and had an offer accepted, I take the loan through to unconditional (formal) approval — the version that actually funds your purchase — and coordinate with your conveyancer through to settlement day.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{# ── DIY caution ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">Before You DIY</p>
+    <h2>A word of caution about <em>shopping around yourself</em></h2>
+
+    <p>If you apply for pre-approval directly with a bank, that's a formal credit application, and it leaves a hard enquiry on your credit file. Apply with two or three banks to "compare," and you've stacked up multiple enquiries in a short window — which lenders can read as a warning sign, and which can genuinely dent your credit score right when you need it strongest.</p>
+
+    <div class="callout">
+      <p class="eyebrow">The Rule of Thumb</p>
+      <p>Browsing rates online is harmless. Lodging applications to compare offers is not. Let one person run one well-chosen application instead.</p>
+    </div>
+
+    <p>There's one more difference worth knowing. Mortgage brokers are bound by a legal <strong>Best Interests Duty</strong> — we're required by law to act in your best interests when recommending a loan. Banks, when selling you their own products directly, are not. That's not a criticism of banks; it's just a structural fact about who is obliged to be on your side of the table.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Going direct to a bank</th>
+            <th>Working with a broker</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Products compared</td>
+            <td>One lender's menu</td>
+            <td>40+ lenders, matched to your situation</td>
+          </tr>
+          <tr>
+            <td>Cost to you</td>
+            <td>Free</td>
+            <td>Free — the lender pays the broker</td>
+          </tr>
+          <tr>
+            <td>Legally required to act in your best interests</td>
+            <td>No</td>
+            <td>Yes — Best Interests Duty</td>
+          </tr>
+          <tr>
+            <td>Credit file impact of comparing</td>
+            <td>One enquiry per bank you apply with</td>
+            <td>One enquiry, once we've chosen together</td>
+          </tr>
+          <tr>
+            <td>Who chases the paperwork</td>
+            <td>You</td>
+            <td>Your broker</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{# ── FAQ ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">Common Questions</p>
+    <h2>The things everyone wants to ask <em>(so just ask)</em></h2>
+
+    <div style="margin-top: var(--space-5);">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">What does a broker cost me?</button>
+        <div class="faq-a"><p>Nothing — and I know how that sounds. Brokers are paid a standard commission by whichever lender you end up choosing, and the rates and products you get through a broker are the same as (and often better than) going direct. If you refinance away within roughly the first two years, the lender claws that commission back from the broker — which means I'm financially incentivised to get the loan right the first time and support you long after settlement. Your interests and mine point the same direction.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Do I need pre-approval before I start looking at properties?</button>
+        <div class="faq-a"><p>You can browse any time, but before you make an offer or bid at auction, yes — pre-approval is what tells you your real budget and makes agents take you seriously. The good news: it's step three of the process, arranged for you, not something you need before your first conversation.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Do brokers really get the same rates as going to the bank directly?</button>
+        <div class="faq-a"><p>Yes — brokers access the same products and pricing as the bank's own channels, and can often request pricing discounts on your behalf. Special policies (like LMI waivers for certain professions and industries) are also available through brokers, not just through the bank's internal teams.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">How early is too early to have the first chat?</button>
+        <div class="faq-a"><p>There's no such thing. Even if buying is a year or more away, an early conversation tells you exactly what to work on — deposit size, spending patterns, credit history — so that when you're ready, everything is already in place. The costly mistake is leaving it until after you've found a property you love.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">What do I need to bring to the first meeting?</button>
+        <div class="faq-a"><p>Just your questions and your rough plans. No paperwork is required for the first chat — documents come later, through a secure portal, once you've decided to go ahead.</p></div>
+      </div>
+    </div>
+
+    <p style="margin-top: var(--space-6);">Want to do some homework first? These are good next reads: <a href="/articles/guidelines-for-first-time-buyers/">guidelines for first-time buyers</a>, <a href="/articles/all-you-need-to-know-about-the-home-loan-pre-approval-process/">the pre-approval process</a>, and <a href="/articles/how-much-can-i-borrow/">how much can I borrow?</a></p>
+  </div>
+</section>
+
+{# ── CTA ── #}
+<section class="section section--dark" style="text-align: center;">
+  <div class="container container--narrow">
+    <h2>The first step is <em>just a conversation</em></h2>
+    <p class="lede" style="margin-inline: auto; color: var(--blue-pale);">
+      Bring your questions and your rough plans — nothing else required. If you're not sure whether you're even ready to start, that's precisely what the first conversation is for.
+    </p>
+    <div style="margin-top: var(--space-5);">
+      {% cta "Book a free discovery call" %}
+    </div>
+    <p class="meta" style="margin-top: var(--space-5); color: rgba(255,255,255,0.4);">
+      Or call <a href="tel:+61456255409" style="color: rgba(255,255,255,0.5);">0456 255 409</a>
+    </p>
+    <p class="meta" style="margin-top: var(--space-7); color: rgba(255,255,255,0.25); font-size: var(--fs-meta);">
+      Wombat Home Loans is a credit representative (no. 559744) of Australian Credit Licence 561324. This article is general information only and does not constitute personal financial or credit advice.
+    </p>
+  </div>
+</section>
+
+{# ── FAQ script ── #}
+{% block scripts %}
+<script>
+  function toggleFaq(btn) {
+    var answer = btn.nextElementSibling;
+    var isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(function(a) { a.classList.remove('open'); });
+    document.querySelectorAll('.faq-q').forEach(function(q) { q.setAttribute('aria-expanded', 'false'); });
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+</script>
+{% endblock %}
