@@ -4,7 +4,7 @@ description: "Work at a bank in data, digital, strategy or tech? You likely qual
 date: 2026-06-11
 category: "First Home Buyers"
 layout: article.njk
-thumbnail: "/images/articles/woman_professional_sydney_view.jpg"
+thumbnail: "/images/articles/calculations_man.jpg"
 ---
 
 *First Home Buyers*
