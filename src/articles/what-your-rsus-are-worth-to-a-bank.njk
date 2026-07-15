@@ -1,0 +1,385 @@
+---
+layout: landing.njk
+title: "What Your RSUs Are Worth to a Bank"
+description: "Your total comp says $250k. The bank might see $160k — or $230k — depending entirely on which lender you ask. Here's how RSUs, ESS and equity income are really assessed for a home loan in Australia."
+date: 2026-07-15
+category: Complex Finance
+thumbnail: /images/articles/professional_city_1.jpg
+---
+
+{# ── Page-specific styles (only for components not in shared styles.css) ── #}
+{% block head %}
+<style>
+  /* Callout box */
+  .callout {
+    background: var(--paper-cool);
+    border-left: 3px solid var(--steel);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--space-5);
+    margin: var(--space-6) 0;
+  }
+  .callout .eyebrow { margin-bottom: var(--space-2); }
+  .callout .eyebrow::before { display: none; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* Lens cards — extend .card */
+  .lens-card { border-top: 3px solid var(--steel); }
+  .lens-card h3 { margin-top: 0; }
+  .lens-label {
+    display: inline-block;
+    font-size: var(--fs-meta);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: var(--space-3);
+    background: var(--blue-pale);
+    color: var(--navy);
+  }
+
+  /* Numbered checklist */
+  .check-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: var(--space-4);
+    align-items: start;
+    margin-bottom: var(--space-5);
+  }
+  .check-item:last-child { margin-bottom: 0; }
+  .check-num {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--blue-pale);
+    color: var(--navy);
+    border-radius: var(--radius-md);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .check-item h4 { margin-bottom: var(--space-1); margin-top: 0; }
+  .check-item p { margin-bottom: 0; }
+
+  /* Table */
+  .table-wrap {
+    overflow-x: auto;
+    margin: var(--space-5) 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+  }
+  .table-wrap table {
+    width: 100%; border-collapse: collapse;
+    font-size: var(--fs-small);
+  }
+  .table-wrap thead { background: var(--navy); color: #fff; }
+  .table-wrap th {
+    padding: var(--space-3) var(--space-4);
+    text-align: left; font-weight: 600;
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .table-wrap td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--line);
+  }
+  .table-wrap tbody tr:nth-child(even) { background: var(--paper-cool); }
+  .table-wrap td:first-child { font-weight: 600; color: var(--navy); }
+
+  /* FAQ accordion */
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    padding: var(--space-4) var(--space-7) var(--space-4) 0;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 1rem; font-weight: 600;
+    color: var(--navy-deep);
+    cursor: pointer; position: relative;
+    line-height: var(--lh-tight);
+  }
+  .faq-q::after {
+    content: '+'; position: absolute;
+    right: 0; top: 50%; transform: translateY(-50%);
+    font-size: 1.4rem; color: var(--steel);
+    transition: transform var(--motion-fast) var(--easing);
+  }
+  .faq-q[aria-expanded="true"]::after { content: '−'; }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height var(--motion-mid) var(--easing);
+  }
+  .faq-a.open { max-height: 300px; }
+  .faq-a p { padding-bottom: var(--space-4); }
+</style>
+{% endblock %}
+
+{# ── Hero ── #}
+<section class="section section--dark" style="padding-block: clamp(5rem, 10vw, 9rem);">
+  <div class="container container--narrow" style="text-align: center;">
+    <p class="eyebrow">Complex Finance</p>
+    <h1 class="display">What Your RSUs Are Worth <em>to a Bank</em></h1>
+    <p class="lede" style="margin-inline: auto; color: var(--blue-pale);">
+      Your total comp says $250k. One lender sees $160k. Another sees $230k. Same payslip, same person — a borrowing gap worth hundreds of thousands of dollars.
+    </p>
+    <p class="meta" style="color: rgba(255,255,255,0.5);">Updated July 2026 · Wombat Home Loans</p>
+  </div>
+</section>
+
+{# ── The problem ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Problem</p>
+    <h2>Two views of the <em>same payslip</em></h2>
+
+    <p>If you work in tech, banking, fintech or consulting, there's a good chance a serious slice of your pay doesn't arrive as salary. It arrives as equity — RSUs vesting quarterly, an employee share scheme, maybe performance rights. On your offer letter, it's all one number: total compensation.</p>
+
+    <p>Banks don't read offer letters. They read credit policy. And under credit policy, your compensation splits into pieces that are treated completely differently: base salary counts in full, while equity income might be counted at a discount, counted only partially, or — at many lenders — not counted at all.</p>
+
+    <p>The result is one of the strangest experiences in Australian lending: a professional earning $250k total comp can be assessed as earning anywhere from $160k to $230k depending purely on which lender assesses them. That's not a rounding difference — it can move your borrowing capacity by hundreds of thousands of dollars.</p>
+
+    <div class="callout">
+      <p class="eyebrow">Key Insight</p>
+      <p>A bank lends against income it believes will keep arriving. Salary is a promise from your employer. Equity is a promise from your employer <em>multiplied by a share price</em> — and it's that second variable that makes lenders nervous. The entire game is demonstrating that your equity income is a pattern, not a windfall.</p>
+    </div>
+  </div>
+</section>
+
+{# ── Three lenses ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Three Lenses</p>
+    <h2>How a lender can see your equity — <em>income, asset, or invisible</em></h2>
+    <p class="lede">Every parcel of equity you hold lands in one of three buckets. Knowing which is which explains almost every confusing lending outcome.</p>
+  </div>
+
+  <div class="container" style="margin-top: var(--space-6);">
+    <div class="grid grid--3">
+      <div class="card lens-card">
+        <span class="lens-label">Lens 1</span>
+        <h3>As income</h3>
+        <p>Vested RSUs with a consistent multi-year history can be assessed as recurring income — usually averaged over two financial years and then discounted ("shaded") for share price risk.</p>
+        <ul>
+          <li>Vested shares only — always</li>
+          <li>Typically two years of vesting history required</li>
+          <li>Commonly counted at 60–80% of value, and only by some lenders</li>
+          <li>Employer generally needs to be publicly listed</li>
+        </ul>
+      </div>
+      <div class="card lens-card">
+        <span class="lens-label">Lens 2</span>
+        <h3>As an asset</h3>
+        <p>Vested shares you're holding can be sold to fund your deposit, or shown as evidence of savings and financial position — even at lenders that won't count the income stream.</p>
+        <ul>
+          <li>Sale proceeds can form part or all of a deposit</li>
+          <li>Timing matters — funds should be settled and visible before application</li>
+          <li>Selling can trigger capital gains tax, so plan the timing with your accountant</li>
+        </ul>
+      </div>
+      <div class="card lens-card">
+        <span class="lens-label">Lens 3</span>
+        <h3>As invisible</h3>
+        <p>Some equity simply doesn't exist in a lender's eyes — no matter how real it feels on your wealth dashboard.</p>
+        <ul>
+          <li>Unvested grants — never counted, at any lender</li>
+          <li>Equity in private or pre-IPO companies — almost always excluded</li>
+          <li>Options that are underwater or unexercised</li>
+          <li>A one-off vesting spike with no history behind it</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ── Worked example ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">A Worked Example</p>
+    <h2>Same person, <em>three different incomes</em></h2>
+
+    <p>Take a fairly typical package for a senior professional at a listed tech or financial services company: $160k base, around $60k a year in vesting RSUs, and a $30k cash bonus. Here's how differently that can be assessed (illustrative figures only — every lender's policy differs and changes over time):</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Your offer letter</th>
+            <th>Conservative lender</th>
+            <th>Equity-friendly lender</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Base salary</td>
+            <td>$160,000</td>
+            <td>$160,000</td>
+            <td>$160,000</td>
+          </tr>
+          <tr>
+            <td>RSU vesting income</td>
+            <td>$60,000</td>
+            <td>$0 — policy excludes equity</td>
+            <td>~$48,000 (80%, two-year average)</td>
+          </tr>
+          <tr>
+            <td>Cash bonus</td>
+            <td>$30,000</td>
+            <td>$0–15,000</td>
+            <td>~$24,000 (80%)</td>
+          </tr>
+          <tr>
+            <td>Assessable income</td>
+            <td>$250,000</td>
+            <td>$160,000–175,000</td>
+            <td>~$232,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>That gap in assessable income flows straight through to borrowing capacity — routinely a difference in the hundreds of thousands of dollars. Same person, same payslips, same deposit. The only variable is where the application landed.</p>
+
+    <div class="callout">
+      <p class="eyebrow">Why This Is a Broker Problem</p>
+      <p>There's no public list of which lenders accept equity income, at what shading, with what documentation. It lives in credit policy documents and BDM conversations. Matching an equity-heavy income to the right lender is precisely the kind of policy-matching work a broker does — the rate comparison sites can't see it at all.</p>
+    </div>
+  </div>
+</section>
+
+{# ── What determines it ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Assessment</p>
+    <h2>What determines whether your equity <em>counts</em></h2>
+
+    <div style="margin-top: var(--space-6);">
+      <div class="check-item">
+        <span class="check-num">1</span>
+        <div>
+          <h4>Vesting history — usually two years</h4>
+          <p>Most lenders that accept RSU income want to see roughly two financial years of consistent vesting. A brand-new grant, however large, generally won't count until it has a track record. Some lenders will consider history from a previous employer in the same industry.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">2</span>
+        <div>
+          <h4>A listed employer</h4>
+          <p>Shares in a company listed on the ASX, NASDAQ, NYSE or another major exchange have a verifiable market price. Equity in a private or pre-IPO company generally doesn't count as income, regardless of the last funding round's valuation.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">3</span>
+        <div>
+          <h4>Stock stability</h4>
+          <p>Equity in large, established companies tends to be assessed more generously than equity in volatile or thinly traded stocks, which some lenders will discount heavily or decline to count.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">4</span>
+        <div>
+          <h4>Currency</h4>
+          <p>If your RSUs vest in USD (very common with US tech employers), some lenders apply a foreign-currency discount on top of the standard equity shading. The order and size of those two haircuts differs by lender — another reason outcomes vary so much.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">5</span>
+        <div>
+          <h4>Documentation</h4>
+          <p>The single most important document is your <strong>ESS Annual Tax Statement</strong> from your share plan platform (Shareworks, Fidelity, E*Trade, Computershare and similar), for each of the last two financial years. Alongside it: tax returns showing the employee share scheme income, your current grant letter and vesting schedule, and payslips. The vesting schedule matters because it shows the income is set to continue.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ── Practical playbook ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">Getting Ahead of It</p>
+    <h2>If buying is on your horizon, <em>start here</em></h2>
+
+    <p><strong>Don't assume — ask early.</strong> The worst version of this story is finding out at pre-approval time that your chosen lender ignores 40% of your income. An early conversation maps your actual compensation against actual lender policy before you're emotionally committed to a budget. (If you're new to the process itself, here's <a href="/articles/what-working-with-a-broker-actually-looks-like/">what working with a broker actually looks like</a>.)</p>
+
+    <p><strong>Keep your equity paperwork tidy.</strong> Download your ESS statements each financial year and keep your grant letters and vesting schedules somewhere findable. Lenders verify everything, and clean documentation is the difference between a smooth assessment and weeks of back-and-forth.</p>
+
+    <p><strong>Be careful with job moves.</strong> Changing employers usually resets your vesting history to zero in a lender's eyes — even if your new package is bigger. If you're weighing a move and a purchase in the same 12 months, the sequencing genuinely matters and is worth thinking through first.</p>
+
+    <p><strong>If you're selling shares for the deposit, plan the timing.</strong> Sale proceeds need to be settled, in your account, and traceable before the application. And selling vested shares can crystallise capital gains tax — talk to your accountant about timing before you sell, not after.</p>
+
+    <p><strong>Don't forget the rest of your profile.</strong> Equity-heavy professionals often qualify for other policy advantages too — if you work for a bank or financial institution, you may also be eligible for an <a href="/articles/lmi-waiver-bank-employees/">LMI waiver at up to 90% LVR</a>. These policies stack in useful ways when the whole picture is structured properly.</p>
+  </div>
+</section>
+
+{# ── FAQ ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">Common Questions</p>
+    <h2>The questions I hear <em>every week</em></h2>
+
+    <div style="margin-top: var(--space-5);">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Do unvested RSUs count for anything at all?</button>
+        <div class="faq-a"><p>As income, no — no lender counts unvested equity, because you don't have it yet and won't if you leave. Where a future vesting schedule helps is as supporting evidence: it shows a lender that your existing vested income stream is set to continue, which strengthens the case for counting the history you do have.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">My RSUs are in USD. Does that matter?</button>
+        <div class="faq-a"><p>Yes. Some lenders apply a foreign-currency discount on top of the standard equity shading, some convert at a conservative exchange rate, and some treat US-listed equity the same as ASX-listed. It's one more dimension where lender choice changes the outcome materially.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">What about options, ESPP or performance rights?</button>
+        <div class="faq-a"><p>They're all assessed more cautiously than RSUs. Options only have value if exercised and in the money; discounted share purchase plans are usually seen as a benefit rather than income; performance rights carry an extra layer of uncertainty. Vested RSUs from a listed employer are the strongest form of equity income in a lender's eyes.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">I'm at a pre-IPO company. Am I stuck?</button>
+        <div class="faq-a"><p>Your equity almost certainly won't count as income or deposit until there's a liquidity event — but your base salary is assessed normally, and your borrowing capacity is built on that. The strategy conversation becomes about what's achievable on base now versus what changes post-IPO or post-secondary sale.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Should I sell my vested shares before applying?</button>
+        <div class="faq-a"><p>It depends what job the shares are doing. If they're your deposit, they generally need to be sold and settled before the application — with capital gains tax timing planned alongside your accountant. If they're evidence of ongoing income, you keep receiving them. Often it's both: sell some for the deposit, keep the vesting stream as income. This is exactly the kind of structuring worth discussing before you act.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Which lenders accept RSU income?</button>
+        <div class="faq-a"><p>The honest answer: it changes, and the detail lives in credit policy rather than on public rate pages. A meaningful minority of lenders will assess vested RSU income with the right history and documentation; most won't, or will only under narrow conditions. Matching your specific equity structure to current policy is the core of what I do — it's a conversation, not a lookup table.</p></div>
+      </div>
+    </div>
+
+    <p style="margin-top: var(--space-6);">Related reading: <a href="/articles/how-much-can-i-borrow/">how much can I borrow?</a> and <a href="/articles/how-should-you-prepare-for-a-mortgage-broker-meeting/">how to prepare for a broker meeting</a>.</p>
+  </div>
+</section>
+
+{# ── CTA ── #}
+<section class="section section--dark" style="text-align: center;">
+  <div class="container container--narrow">
+    <h2>Financially fluent. <em>Mortgage confused?</em></h2>
+    <p class="lede" style="margin-inline: auto; color: var(--blue-pale);">
+      If a meaningful part of your income arrives as equity, your borrowing capacity depends on getting the lender match right. Bring your comp structure — I'll tell you what it's actually worth to a bank.
+    </p>
+    <div style="margin-top: var(--space-5);">
+      {% cta "Book a free discovery call" %}
+    </div>
+    <p class="meta" style="margin-top: var(--space-5); color: rgba(255,255,255,0.4);">
+      Or call <a href="tel:+61456255409" style="color: rgba(255,255,255,0.5);">0456 255 409</a>
+    </p>
+    <p class="meta" style="margin-top: var(--space-7); color: rgba(255,255,255,0.25); font-size: var(--fs-meta);">
+      Wombat Home Loans is a credit representative (no. 559744) of Australian Credit Licence 561324. This article is general information only and does not constitute personal financial, tax or credit advice. Lender policies vary and change without notice; figures shown are illustrative.
+    </p>
+  </div>
+</section>
+
+{# ── FAQ script ── #}
+{% block scripts %}
+<script>
+  function toggleFaq(btn) {
+    var answer = btn.nextElementSibling;
+    var isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(function(a) { a.classList.remove('open'); });
+    document.querySelectorAll('.faq-q').forEach(function(q) { q.setAttribute('aria-expanded', 'false'); });
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+</script>
+{% endblock %}
