@@ -48,8 +48,7 @@
   "embedUrl": "https://www.youtube-nocookie.com/embed/{{ videoId }}",
   "contentUrl": "https://www.youtube.com/watch?v={{ videoId }}"{% if videoUploadDate %},
   "uploadDate": "{{ videoUploadDate }}{% if "T" not in (videoUploadDate | string) %}T09:00:00+10:00{% endif %}"{% endif %}{% if videoDuration %},
-  "duration": "{{ videoDuration }}"{% endif %},
-  "publisher": { "@id": "https://wombathomeloans.com.au/#wombat-home-loans" }
+  "duration": "{{ videoDuration }}"{% endif %}
 }
 </script>
 
