@@ -1,0 +1,85 @@
+{#
+  article-video.njk — "Tom explains this in 90 seconds" block
+  ---------------------------------------------------------
+  Renders only when the article's front matter includes `videoId`.
+
+  Front matter fields (per article):
+    videoId:          "dQw4w9WgXcQ"            (required — YouTube video ID)
+    videoDuration:    "PT1M32S"                (optional — ISO 8601, for schema + label)
+    videoLabel:       "90 seconds"             (optional — human label, defaults below)
+    videoDescription: "Short custom blurb"     (optional — falls back to meta-description)
+    videoUploadDate:  "2026-07-20"             (optional but recommended for schema)
+
+  Include in your article layout, directly after the H1 / article header:
+    {% include "partials/article-video.njk" %}
+
+  No dependencies. Loads a thumbnail only; the YouTube iframe is injected
+  on click, so Lighthouse/page-weight impact is ~zero until someone plays it.
+#}
+{% if videoId %}
+<div class="article-video" data-video-id="{{ videoId }}">
+  <button class="article-video__facade" type="button"
+          aria-label="Play video: {{ videoTitle or title }}">
+    <img class="article-video__thumb"
+         src="https://i.ytimg.com/vi/{{ videoId }}/hqdefault.jpg"
+         srcset="https://i.ytimg.com/vi/{{ videoId }}/hqdefault.jpg 480w,
+                 https://i.ytimg.com/vi/{{ videoId }}/maxresdefault.jpg 1280w"
+         sizes="(max-width: 720px) 100vw, 680px"
+         alt="" loading="lazy" width="480" height="270">
+    <span class="article-video__play" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+    </span>
+  </button>
+  <p class="article-video__caption">
+    <strong>Prefer to watch?</strong>
+    Tom explains this in {{ videoLabel or "about 90 seconds" }}.
+  </p>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": {{ (videoTitle or title) | dump | safe }},
+  "description": {{ (videoDescription or metaDescription or title) | dump | safe }},
+  "thumbnailUrl": "https://i.ytimg.com/vi/{{ videoId }}/maxresdefault.jpg",
+  "embedUrl": "https://www.youtube-nocookie.com/embed/{{ videoId }}",
+  "contentUrl": "https://www.youtube.com/watch?v={{ videoId }}"{% if videoUploadDate %},
+  "uploadDate": "{{ videoUploadDate }}"{% endif %}{% if videoDuration %},
+  "duration": "{{ videoDuration }}"{% endif %},
+  "publisher": {
+    "@type": "Organization",
+    "name": "Wombat Home Loans",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wombathomeloans.com.au/assets/logo-horizontal.svg"
+    }
+  }
+}
+</script>
+
+{# Tiny click-to-load handler. The `data-av-init` guard means this script
+   block is safe even if the partial ever appears twice on a page. #}
+<script>
+(function () {
+  if (document.documentElement.dataset.avInit) return;
+  document.documentElement.dataset.avInit = "1";
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".article-video__facade");
+    if (!btn) return;
+    var wrap = btn.closest(".article-video");
+    var id = wrap.dataset.videoId;
+    var iframe = document.createElement("iframe");
+    iframe.className = "article-video__iframe";
+    iframe.src = "https://www.youtube-nocookie.com/embed/" + id +
+                 "?autoplay=1&rel=0&modestbranding=1";
+    iframe.title = "Video explainer";
+    iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+    iframe.setAttribute("allowfullscreen", "");
+    btn.replaceWith(iframe);
+  });
+})();
+</script>
+{% endif %}

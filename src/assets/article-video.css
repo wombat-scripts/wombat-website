@@ -1,0 +1,98 @@
+/* ------------------------------------------------------------------
+   Article video block — "Tom explains this in 90 seconds"
+   Add to the main stylesheet (or @import). Palette: Wombat navy/steel.
+   Typography inherits from the site (Plus Jakarta Sans for the caption).
+   ------------------------------------------------------------------ */
+
+.article-video {
+  max-width: 680px;
+  margin: 1.75rem 0 2.5rem;
+}
+
+.article-video__facade {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #1c476a; /* Dark Navy */
+  box-shadow: 0 6px 24px rgba(28, 71, 106, 0.18);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.article-video__facade:hover,
+.article-video__facade:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(28, 71, 106, 0.28);
+}
+
+.article-video__facade:focus-visible {
+  outline: 3px solid #507fa9; /* Steel Blue */
+  outline-offset: 3px;
+}
+
+.article-video__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.92;
+}
+
+.article-video__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(28, 71, 106, 0.92); /* Dark Navy */
+  color: #ffffff;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.article-video__facade:hover .article-video__play {
+  background: #507fa9; /* Steel Blue */
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.article-video__play svg {
+  margin-left: 3px; /* optical centring of the triangle */
+}
+
+.article-video__caption {
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+  color: #507fa9; /* Steel Blue */
+}
+
+.article-video__caption strong {
+  color: #1c476a; /* Dark Navy */
+}
+
+.article-video__iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 12px;
+  display: block;
+  box-shadow: 0 6px 24px rgba(28, 71, 106, 0.18);
+}
+
+@media (max-width: 720px) {
+  .article-video {
+    margin: 1.25rem 0 2rem;
+  }
+  .article-video__play {
+    width: 54px;
+    height: 54px;
+  }
+}
