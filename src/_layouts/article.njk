@@ -46,6 +46,8 @@ ogType: article
     <h1>{{ title }}</h1>
     {% if date %}<p class="meta">{{ date | readableDate }} · {{ category or "Home Loans" }}</p>{% endif %}
 
+    {% include "partials/article-video.njk" %}
+
     <div class="article-body">
       {{ content | safe }}
     </div>
