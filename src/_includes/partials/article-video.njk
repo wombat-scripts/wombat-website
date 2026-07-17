@@ -49,14 +49,7 @@
   "contentUrl": "https://www.youtube.com/watch?v={{ videoId }}"{% if videoUploadDate %},
   "uploadDate": "{{ videoUploadDate }}{% if "T" not in (videoUploadDate | string) %}T09:00:00+10:00{% endif %}"{% endif %}{% if videoDuration %},
   "duration": "{{ videoDuration }}"{% endif %},
-  "publisher": {
-    "@type": "Organization",
-    "name": "Wombat Home Loans",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://wombathomeloans.com.au/assets/logo-horizontal.svg"
-    }
-  }
+  "publisher": { "@id": "https://wombathomeloans.com.au/#wombat-home-loans" }
 }
 </script>
 
