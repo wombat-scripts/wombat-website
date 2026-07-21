@@ -47,9 +47,11 @@
   <link rel="preload" as="image" href="/images/tom-hero-01.webp" fetchpriority="high">
   {% endif %}
 
-  {# Stylesheet — bump ?v= whenever styles.css changes (assets are cached for
-     a year via netlify.toml, so a new URL is what forces browsers to refetch) #}
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260721c">
+  {# Stylesheet — inlined at build time so nothing render-blocking remains.
+     ⚠ The CSS source of truth now lives at src/_includes/css/styles.css
+     (Nunjucks can only include from _includes). No ?v= bumping needed:
+     inlined CSS ships fresh with every deploy automatically. #}
+  <style>{% include "css/styles.css" %}</style>
 
   {# Schema markup — injected per-page via block #}
   {% block schema %}
