@@ -36,11 +36,11 @@
   <meta name="twitter:description" content="{{ description or 'Mortgage broker for corporate professionals — bonus income, RSUs, SMSF and first homes.' }}">
   <meta name="twitter:image" content="https://wombathomeloans.com.au{{ ogImage or '/assets/og-image.jpg' }}">
 
-  {# Fonts #}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"></noscript>
+  {# Fonts: self-hosted variable fonts — see @font-face in styles.css.
+     Preloaded so text paints in brand fonts as early as possible. #}
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/pjs-latin-normal.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-latin-normal.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-latin-italic.woff2" crossorigin>
 
   {# Preload the homepage LCP image so mobile paint isn't waiting on it #}
   {% if page.url == "/" %}
@@ -49,8 +49,7 @@
 
   {# Stylesheet — bump ?v= whenever styles.css changes (assets are cached for
      a year via netlify.toml, so a new URL is what forces browsers to refetch) #}
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260721">
-  <link rel="stylesheet" href="/assets/article-video.css?v=20260717">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260721c">
 
   {# Schema markup — injected per-page via block #}
   {% block schema %}
