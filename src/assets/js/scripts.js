@@ -147,6 +147,7 @@ function initSearchOverlay() {
   function openSearch() {
     overlay.classList.add("is-open");
     overlay.setAttribute("aria-hidden", "false");
+    overlay.removeAttribute("inert");
     document.body.style.overflow = "hidden";
 
     if (!pagefindInitialised && window.PagefindUI) {
@@ -169,6 +170,7 @@ function initSearchOverlay() {
   function closeSearch() {
     overlay.classList.remove("is-open");
     overlay.setAttribute("aria-hidden", "true");
+    overlay.setAttribute("inert", "");
     document.body.style.overflow = "";
   }
 
