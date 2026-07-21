@@ -4,7 +4,7 @@ description: "Property investment in Australia has long been a favoured route fo
 date: 2026-02-06
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/growing_wealth.png"
+thumbnail: "/images/articles/growing_wealth.webp"
 ---
 
 Property investment in Australia has long been a favoured route for building wealth. But as with any investment class, concentration in one area carries risk. Diversification is the key to mitigating that risk and potentially enhancing long-term returns.

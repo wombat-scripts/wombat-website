@@ -4,7 +4,7 @@ description: "Business owners and contractors often face extra scrutiny. Here's 
 date: 2025-11-20
 category: "Complex Finance"
 layout: article.njk
-thumbnail: "/images/articles/woman_professional_sydney_view.jpg"
+thumbnail: "/images/articles/woman_professional_sydney_view.webp"
 ---
 
 Self-employment is becoming increasingly common — and yet the home loan process for business owners and contractors often feels like it was designed for someone else. It wasn't always this way, but tighter lending standards mean self-employed borrowers face more scrutiny and more paperwork than their PAYG counterparts. Here's what lenders are actually looking for, and how to present your situation in the strongest possible light.

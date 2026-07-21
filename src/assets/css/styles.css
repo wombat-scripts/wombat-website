@@ -81,14 +81,14 @@ button {
   /* Colour — primary palette (from brand guide) */
   --navy:        #1c476a;   /* primary brand colour */
   --navy-deep:   #060b38;   /* deepest accent, hero backgrounds */
-  --steel:       #507fa9;   /* secondary, links, icons */
+  --steel:       #41688b;   /* secondary, links, icons */
   --blue-light:  #97bcd7;   /* highlights, decorative */
   --blue-pale:   #cadbe5;   /* subtle backgrounds, dividers */
 
   /* Colour — neutrals */
   --ink:         #1a1a1a;   /* primary text */
   --ink-soft:    #4a4a4a;   /* secondary text */
-  --ink-muted:   #767676;   /* meta, captions */
+  --ink-muted:   #6b6b6b;   /* meta, captions */
   --paper:       #fdfcfa;   /* off-white page background, warmer than #fff */
   --paper-warm:  #f6f1ea;   /* subtle warm section background */
   --paper-cool:  #f3f6f9;   /* subtle cool section background */

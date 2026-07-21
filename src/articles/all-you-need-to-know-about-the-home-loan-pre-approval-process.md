@@ -4,7 +4,7 @@ description: "In Australia, the loan pre-approval process — also known as cond
 date: 2025-09-25
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/young_couple_house.jpg"
+thumbnail: "/images/articles/young_couple_house.webp"
 ---
 
 In Australia, the loan pre-approval process — also known as conditional approval or approval in principle — is a preliminary step in the home buying journey that tells you how much a lender is willing to lend you, subject to certain conditions.

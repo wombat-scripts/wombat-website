@@ -4,7 +4,7 @@ description: "An offset account and a redraw facility save you interest in exact
 date: 2026-07-01
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/office_meeting_2.jpg"
+thumbnail: "/images/articles/office_meeting_2.webp"
 ---
 
 Here's a fact that surprises most people: a dollar sitting in an offset account and a dollar paid into your loan and available for redraw save you exactly the same amount of interest. To the cent.

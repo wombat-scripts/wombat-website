@@ -203,7 +203,7 @@ description: Mortgage broker for banking, tech & consulting types — bonus inco
         </div>
       </div>
       <div class="hero__portrait" data-reveal style="--reveal-delay: 120ms;">
-        <img src="/images/tom-hero-01.jpg" alt="Tom Carr, mortgage broker and founder of Wombat Home Loans" width="460" height="575" loading="eager" fetchpriority="high" decoding="async">
+        <img src="/images/tom-hero-01.webp" alt="Tom Carr, mortgage broker and founder of Wombat Home Loans" width="460" height="575" loading="eager" fetchpriority="high" decoding="async">
         <div class="hero__portrait-tag">
           <small>Tom Carr</small>
           Mortgage broker. Ex-banker. Sydney local.
@@ -245,7 +245,7 @@ description: Mortgage broker for banking, tech & consulting types — bonus inco
   <div class="container" style="max-width: 800px;">
     <div class="video-intro__wrapper" data-reveal>
       <div class="video-intro__embed" id="videoEmbed">
-        <img src="/images/tom-video-thumb.jpg" alt="Watch: A quick welcome from Tom" class="video-intro__thumb" loading="lazy" width="800" height="450">
+        <img src="/images/tom-video-thumb.webp" alt="Watch: A quick welcome from Tom" class="video-intro__thumb" loading="lazy" width="800" height="450">
         <button class="video-intro__play" aria-label="Play welcome video" data-umami-event="watch-intro-video" onclick="
           var w=document.getElementById('videoEmbed');
           w.innerHTML='<iframe src=&quot;https://www.youtube.com/embed/YHhouWUaMUI?autoplay=1&amp;rel=0&amp;modestbranding=1&quot; title=&quot;Welcome to Wombat Home Loans&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen style=&quot;position:absolute;inset:0;width:100%;height:100%;&quot;></iframe>';
@@ -279,19 +279,19 @@ description: Mortgage broker for banking, tech & consulting types — bonus inco
     <div class="story__row stack-lg" style="margin-bottom: var(--space-7);" data-reveal>
       <div class="story__copy"><h3>From global investment banks in London — to retail lending in Sydney.</h3><p>Twenty-plus years across analytics, strategy, digital banking, and product leadership at some of the world's largest investment banks — and later Commonwealth Bank in Sydney. I've sat in the rooms where credit policy gets written, and seen exactly how banks decide who's a good risk and who isn't.</p><p>That insider view is the real value. Most of my clients are people like my former colleagues — sharp, financially literate, and still baffled by why a lender said no. Because most rejection letters aren't "you can't afford this" — they're "you applied to the wrong lender for your situation." Knowing the difference is most of the job.</p></div>
       <div class="story__media">
-        <img src="/images/tom-corporate.jpg" alt="Tom Carr in a corporate setting" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
+        <img src="/images/tom-corporate.webp" alt="Tom Carr in a corporate setting" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
       </div>
     </div>
     <div class="story__row story__row--reverse stack-lg" style="margin-bottom: var(--space-7);" data-reveal>
       <div class="story__copy"><h3>I live where you live. Sydney local. Runner. School volunteer.</h3><p>"Wombat" comes from the Beecroft Wombats — our kids soccer team I used to coach. I'm originally from the UK, but Sydney's been home for around fifteen years, and Beecroft for most of those. I served as a volunteer non-executive director at the local primary school.</p><p>None of which is the reason to choose a broker. But it's the reason I built this business the way I did: people I'd want to bump into at Saturday parkrun deserve advice that holds up in daylight.</p></div>
       <div class="story__media">
-        <img src="/images/tom-community.jpg" alt="Tom Carr in the Community" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
+        <img src="/images/tom-community.webp" alt="Tom Carr in the Community" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
       </div>
     </div>
     <div class="story__row stack-lg" data-reveal>
       <div class="story__copy"><h3>I don't disappear at settlement.</h3><p>Most brokers move on once the loan settles — that's when they get paid. Wombat works on an annual review model: every year I check your loan against the market, run the numbers, and tell you whether it's still the right deal. Most years it is. Sometimes it isn't. Either way you'll know.</p><p>And it costs you nothing. Lenders pay brokers for introducing the loan; the borrower never sees a bill. Australia's Best Interests Duty makes that more than a vibe — it's a legal requirement that I act in <em>your</em> interests, not the bank's.</p></div>
       <div class="story__media">
-        <img src="/images/tom-candid.jpg" alt="Tom Carr, relaxed portrait" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
+        <img src="/images/tom-candid.webp" alt="Tom Carr, relaxed portrait" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
       </div>
     </div>
   </div>
@@ -410,7 +410,7 @@ description: Mortgage broker for banking, tech & consulting types — bonus inco
            class="card"
            style="text-decoration: none; color: inherit; flex: 0 0 calc((100% - var(--space-5) * 2) / 3); min-width: 280px; display: flex; flex-direction: column;">
           <span style="font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); margin-bottom: var(--space-2); display: block;">Episode {{ ep.number }} · {{ ep.category }}</span>
-          <h4 style="margin-bottom: var(--space-3);">{{ ep.title }}</h4>
+          <h3 class="h4" style="margin-bottom: var(--space-3);">{{ ep.title }}</h3>
           <p style="font-size: var(--fs-small); color: var(--ink-soft); font-weight: 500; margin-bottom: var(--space-2);">{{ ep.guest }}{% if ep.role %} · {{ ep.role }}{% endif %}</p>
           <p class="small" style="color: var(--ink-soft); flex: 1;">{{ ep.description }}</p>
         </a>
@@ -516,7 +516,7 @@ description: Mortgage broker for banking, tech & consulting types — bonus inco
           </div>
           {% endif %}
           <p class="meta" style="margin-bottom: var(--space-2);">{{ article.data.category or "Home Loans" }}</p>
-          <h4 style="margin-bottom: var(--space-3);">{{ article.data.title }}</h4>
+          <h3 class="h4" style="margin-bottom: var(--space-3);">{{ article.data.title }}</h3>
           <p class="small" style="color: var(--ink-soft); margin-top: auto;">{{ article.data.description }}</p>
           <span class="small" style="color: var(--steel); margin-top: var(--space-3); font-weight: 600;">Read article →</span>
         </a>
@@ -555,7 +555,7 @@ description: Mortgage broker for banking, tech & consulting types — bonus inco
   <div class="container">
     <div class="closing" data-reveal>
       <div>
-        <img src="/images/tom_booking.jpg"
+        <img src="/images/tom_booking.webp"
              alt="Tom Carr"
              loading="lazy"
              style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">

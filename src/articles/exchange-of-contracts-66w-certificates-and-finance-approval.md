@@ -4,7 +4,7 @@ description: "Can you get unconditional finance approval before signing a contra
 date: 2026-05-12
 category: "First Home Buyers"
 layout: article.njk
-thumbnail: "/images/articles/office.png"
+thumbnail: "/images/articles/office.webp"
 ---
 
 *First Home Buyers*

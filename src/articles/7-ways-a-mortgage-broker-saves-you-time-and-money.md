@@ -4,7 +4,7 @@ description: "A mortgage broker can be a valuable ally when it comes to securing
 date: 2025-12-10
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/office.png"
+thumbnail: "/images/articles/office.webp"
 ---
 
 A mortgage broker can be a valuable ally when it comes to securing a home loan. They have the expertise and connections to streamline the process and potentially save you both time and money. Here are seven ways a broker can help.

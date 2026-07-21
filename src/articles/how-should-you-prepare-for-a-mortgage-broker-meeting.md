@@ -4,7 +4,7 @@ description: "Meeting with a mortgage broker is one of the most important steps 
 date: 2025-10-03
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/office.png"
+thumbnail: "/images/articles/office.webp"
 ---
 
 Meeting with a mortgage broker is one of the most important steps in the home buying journey. Coming prepared makes the difference between a productive session and one that requires multiple follow-ups. Here's how to make the most of your time.

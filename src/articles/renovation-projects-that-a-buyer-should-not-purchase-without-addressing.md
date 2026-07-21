@@ -4,7 +4,7 @@ description: "When considering buying a home, it's important to differentiate be
 date: 2026-04-20
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/freestanding_house.jpg"
+thumbnail: "/images/articles/freestanding_house.webp"
 ---
 
 When considering buying a home, it's important to differentiate between renovation issues that are deal-breakers if not addressed, and those that can be negotiated as part of the sale. Not all problems are created equal — some need to be resolved before you proceed, others can be leveraged in your favour.

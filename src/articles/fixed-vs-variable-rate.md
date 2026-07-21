@@ -4,7 +4,7 @@ description: "There's no universal right answer — but there is a right answer 
 date: 2025-11-10
 category: "Strategy"
 layout: article.njk
-thumbnail: "/images/articles/home_money.png"
+thumbnail: "/images/articles/home_money.webp"
 ---
 
 The fixed vs variable question is one of the most common decisions borrowers face — and one of the most misunderstood. It's not really about predicting where rates will go (nobody does that reliably). It's about understanding your own situation, priorities, and risk tolerance, and choosing a structure that serves you well regardless of what happens next.

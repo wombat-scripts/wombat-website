@@ -5,7 +5,7 @@ When one partner is an Australian citizen or permanent"
 date: 2026-03-08
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/couple_buying_property.jpg"
+thumbnail: "/images/articles/couple_buying_property.webp"
 ---
 
 Can one partner be a citizen and the other a foreign buyer? Here's how surcharges and approvals apply when couples co-own property in Australia.

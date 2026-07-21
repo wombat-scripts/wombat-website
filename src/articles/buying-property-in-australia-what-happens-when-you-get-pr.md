@@ -5,7 +5,7 @@ Gaining Australian permanent residency (PR) changes yo"
 date: 2026-02-26
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/australia.jpg"
+thumbnail: "/images/articles/australia.webp"
 ---
 
 Moving from a temporary visa to permanent residency? Here's how your property buying rights and foreign purchaser surcharges change in Australia.

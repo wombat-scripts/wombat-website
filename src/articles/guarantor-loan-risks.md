@@ -5,7 +5,7 @@ Anyone with access to a"
 date: 2026-01-18
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/parents.png"
+thumbnail: "/images/articles/parents.webp"
 ---
 
 Guarantor loans can be an attractive option for borrowers with limited savings — but it's crucial to understand the potential downsides before anyone signs on the dotted line.

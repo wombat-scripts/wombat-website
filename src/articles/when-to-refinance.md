@@ -4,7 +4,7 @@ description: "Refinancing isn't always the right move. Rate savings need to outw
 date: 2025-11-01
 category: "Refinancing"
 layout: article.njk
-thumbnail: "/images/articles/couple_buying_property.jpg"
+thumbnail: "/images/articles/couple_buying_property.webp"
 ---
 
 Refinancing gets a lot of attention — and rightly so. For many borrowers, switching lenders is one of the most effective ways to reduce the cost of their mortgage. But it's not always the right move, and the timing and numbers matter a lot more than most people realise.

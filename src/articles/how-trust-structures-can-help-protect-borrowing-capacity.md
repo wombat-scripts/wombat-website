@@ -7,7 +7,7 @@ When you buy in your person"
 date: 2026-02-16
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/male_investor.jpg"
+thumbnail: "/images/articles/male_investor.webp"
 ---
 
 Learn how using trusts in property investment can protect borrowing capacity, preserve cash flow, and support portfolio growth.

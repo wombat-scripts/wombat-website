@@ -5,7 +5,7 @@ Interest rates move in cycles, and whenever the market enters a period of uncert
 date: 2026-01-28
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/split_home.jpg"
+thumbnail: "/images/articles/split_home.webp"
 ---
 
 When they make sense and how to use them well.

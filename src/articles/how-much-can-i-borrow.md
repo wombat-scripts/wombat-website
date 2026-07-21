@@ -4,7 +4,7 @@ description: "Online calculators give you a number, but lenders look at far more
 date: 2025-09-18
 category: "First Home Buyers"
 layout: article.njk
-thumbnail: "/images/articles/home_money.png"
+thumbnail: "/images/articles/home_money.webp"
 ---
 
 You've punched your income into an online calculator and got back a number with a lot of zeros. That's great — but it's not the full picture. Lenders assess borrowing capacity through a far more detailed lens, and understanding what they look for is the first step to getting the best possible outcome.

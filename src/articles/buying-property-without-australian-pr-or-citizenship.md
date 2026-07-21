@@ -7,7 +7,7 @@ For residential property rules, you're a"
 date: 2025-10-22
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/overseas_buyer.jpg"
+thumbnail: "/images/articles/overseas_buyer.webp"
 ---
 
 Who can buy, what you can buy, and the approvals you'll need as a "foreign person" under Australian law.

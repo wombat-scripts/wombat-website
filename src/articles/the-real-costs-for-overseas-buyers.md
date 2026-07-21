@@ -7,7 +7,7 @@ Residential application fees are tiered to t"
 date: 2026-03-18
 category: "Home Loans"
 layout: article.njk
-thumbnail: "/images/articles/property_costs.jpg"
+thumbnail: "/images/articles/property_costs.webp"
 ---
 
 Approval fees, state surcharges and ongoing charges — a practical guide for foreign buyers in Australia.
