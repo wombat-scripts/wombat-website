@@ -22,10 +22,14 @@ permalink: /podcast/
       {
         "@type": "VideoObject",
         "position": {{ loop.index }},
-        "name": "{{ ep.title }}",
-        "description": "{{ ep.description }}",
+        "name": {{ ep.title | dump | safe }},
+        "description": {{ ep.description | dump | safe }},
         "thumbnailUrl": "https://img.youtube.com/vi/{{ vidId }}/maxresdefault.jpg",
-        "uploadDate": "{{ ep.date }}",
+        {#- uploadDate must be full ISO 8601 *with* a timezone offset, or Google
+            flags it ("missing a timezone" / "invalid datetime"). episodes.json
+            stores date-only values, so add a Sydney-time component; if a full
+            datetime is ever supplied there, it's used verbatim. -#}
+        "uploadDate": "{{ ep.date }}{% if "T" not in (ep.date | string) %}T09:00:00+10:00{% endif %}",
         "contentUrl": "{{ ep.url }}",
         "embedUrl": "https://www.youtube.com/embed/{{ vidId }}",
         "publisher": {
