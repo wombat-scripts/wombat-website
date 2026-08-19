@@ -23,7 +23,8 @@ I'm rebuilding my website ahead of starting paid marketing. Upgrading from an ol
 - Live site: https://wombathomeloans.com.au/
 - Alternative site (has been used for development ideas): https://wombatloans.com.au/
 - Personal site (to be a near replica of wombathomeloans with some extras): https://tomcarr.com.au/ 
-- Calendly: https://calendly.com/tom-wombathomeloans
+- Book a strategy session: https://wombathomeloans.com.au/book/
+- Calendly event: https://calendly.com/tom-wombathomeloans/15-minute-chat
 - LinkedIn: https://linkedin.com/in/tomrcarr
 - Podcast: "The Property Web" - (Spotify, Apple, YouTube) https://www.youtube.com/@thepropertyweb
 - Newsletter: "Wombat Wrap" - https://wombat-home-loans.kit.com/newsletter
