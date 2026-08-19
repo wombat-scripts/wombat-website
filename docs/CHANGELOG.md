@@ -6,6 +6,15 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-19 — Demand path: /book/ plus first-home, investor and refinance landings
+
+Chrome CTAs now go to `/book/` in the same tab (no Calendly profile links). `/book/` embeds the live Strategy Session event (30 minutes, Google Meet). New top-level landings at `/first-home-buyers/`, `/investors/` and `/refinance/` (not under `src/landing/`). `{% cta %}` points at `/book/`; outline variant maps to `btn--ghost`. `site.json` sets `calendly` to `/book/` and `calendlyEvent` to the live URL. Homepage drops SMSF from title/meta, Middle CTA is `btn--text`, process/closing copy is 30 minutes on Google Meet. Footer adds Instagram. `llms.txt` repositioned for corporate professionals; FIRB articles dropped from that file.
+
+**Files added:** `src/book.njk`, `src/first-home-buyers.njk`, `src/investors.njk`, `src/refinance.njk`
+**Files changed:** `.eleventy.js`, `src/_data/site.json`, `src/_includes/nav.njk`, `src/_includes/footer.njk`, `src/_includes/calc-cta.njk`, `src/index.njk`, `src/llms.txt.njk`, `src/podcast.njk`, `src/404.njk`, `src/just4fun.njk`, `CLAUDE.md`
+
+---
+
 ## 2026-07-08 — Calculators v2: buying costs, LVR, offset vs basic
 
 Three new calculators. (1) **Stamp duty & cost of buying** (`/calculators/buying-costs/`) — duty for all 8 states/territories with FHB exemptions/concessions, owner-occupier vs investor rates (QLD home concession, VIC PPR, ACT owner-occ tables, NT formula, NSW premium duty), plus government fees, legals and inspections. All rates live in `src/_data/stampduty.json` with per-state `lastReviewed` dates and official-calculator links shown on the page — review the file annually after state budgets. Rates verified against official sources 8 July 2026 (incl. NSW 2026–27 CPI-indexed brackets, TAS FHB exemption ending 30 June 2026, ACT HBCS cap removal from 1 July 2026). (2) **LVR** (`/calculators/lvr/`) — buy/refinance modes, pricing-band ladder, LMI flag, distance-to-next-band nudge, link to the bank-employee LMI waiver article. (3) **Offset vs basic** (`/calculators/offset-vs-basic/`) — models the offset rate premium + fee against a savings account (after tax) or redraw, with a bisection-solved break-even offset balance.

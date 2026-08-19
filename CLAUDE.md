@@ -32,18 +32,19 @@ Pages are `.njk` files (Nunjucks) or `.md` files (Markdown with Nunjucks process
 | Standard pages | `src/*.njk` | `/page-name/` |
 | Blog articles | `src/articles/*.md` | `/articles/slug/` |
 | Landing pages | `src/landing/*.njk` | `/landing/slug/` |
+| Demand-path pages | `src/book.njk`, `src/first-home-buyers.njk`, `src/investors.njk`, `src/refinance.njk` | `/book/`, `/first-home-buyers/`, `/investors/`, `/refinance/` |
 
 Articles are collected via `.eleventy.js` → `articles` collection, sorted newest-first. Article frontmatter requires: `title`, `description`, `date`, `category`, `layout: article.njk`, `thumbnail`.
 
 ### Shortcodes (defined in `.eleventy.js`)
 
-- `{% cta "Button text" %}` — renders the Calendly CTA button (primary style)
-- `{% cta "Button text", "outline" %}` — outline variant
+- `{% cta "Button text" %}` — renders a same-tab button to `/book/` (primary style)
+- `{% cta "Button text", "ghost" %}` — ghost variant (`outline` also maps to `btn--ghost`)
 - `{% year %}` — current year (used in footer copyright)
 
 ### Global data (`src/_data/site.json`)
 
-Contains: `name`, `url`, `phone`, `phoneLink`, `email`, `calendly`, `linkedin`, `youtube`, `newsletter`, `propertySearch`, `acl`, `crn`, `broker`. Reference in templates as `{{ site.acl }}` etc.
+Contains: `name`, `url`, `phone`, `phoneLink`, `email`, `calendly` (`/book/`), `calendlyEvent` (live Calendly event URL), `linkedin`, `instagram`, `youtube`, `newsletter`, `propertySearch`, `middle`, `acl`, `crn`, `broker`. Reference in templates as `{{ site.acl }}` etc.
 
 ### CSS (`src/assets/css/styles.css`)
 
@@ -66,8 +67,8 @@ Vanilla JS only. Five modules: nav scroll state, marquee duplication, reveal-on-
 - **Australian English** throughout (behaviour, colour, organise, etc.)
 - Voice: warm, conversational, jargon-free, confident but never salesy
 - Tom's background: 20+ years institutional banking (Citi, UBS, RBS → Commonwealth Bank), Sydney-based, moved from the UK
-- Niche: expats, international professionals, complex visa/income situations
-- **Never change:** ACL number (561324), Calendly link, phone (0456 255 409), email
+- Niche: corporate professionals — first homes, next moves, refinancing, complex income
+- **Never change:** ACL number (561324), Calendly event (`https://calendly.com/tom-wombathomeloans/15-minute-chat`), phone (0456 255 409), email (`tom@wombathomeloans.com.au`)
 
 ## When adding a new page
 

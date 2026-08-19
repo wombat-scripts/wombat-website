@@ -41,10 +41,10 @@ module.exports = function (eleventyConfig) {
 
   // --- Shortcodes ---
 
-  // CTA button → Calendly
+  // CTA button → /book/ (same tab). "outline" maps to ghost — btn--outline is unused.
   eleventyConfig.addShortcode("cta", function (text, variant) {
-    const cls = variant === "outline" ? "btn btn--outline" : "btn btn--primary";
-    return `<a href="https://calendly.com/tom-wombathomeloans" class="${cls}">${text || "Book a free discovery call"}</a>`;
+    const cls = (variant === "outline" || variant === "ghost") ? "btn btn--ghost" : "btn btn--primary";
+    return `<a href="/book/" class="${cls}">${text || "Book a free discovery call"}</a>`;
   });
 
   // Current year (for footer copyright)
