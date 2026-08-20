@@ -1,0 +1,211 @@
+---
+title: "Which door can you actually walk?"
+description: "Five questions. Not a lecture about 20%. I'll tell you which deposit path is real this year, and which ones are closed."
+layout: base.njk
+permalink: /which-door/
+date: 2026-08-20
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Which door can you actually walk?",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/which-door/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+  "provider": { "@type": "MortgageBroker", "name": "Wombat Home Loans", "url": "https://wombathomeloans.com.au/" }
+}
+</script>
+{% endblock %}
+
+<section class="section section--tight">
+  <div class="container">
+    <p class="calc-breadcrumb"><a href="/calculators/">← All calculators</a></p>
+    <span class="eyebrow">Deposit paths</span>
+    <h1>Which door can you <em>actually walk?</em></h1>
+    <p class="lede">Five questions. I will tell you which deposit path is worth walking this year.</p>
+    <p>The government 5% scheme. A 90% LMI waiver. HAS plus a normal first mortgage. OwnHome. Or a standard 20% loan if you already have it.</p>
+    <p>This is not an approval. It is the same order I walk in a strategy session.</p>
+  </div>
+</section>
+
+<section class="section section--cool section--tight" data-calc="whichdoor">
+  <div class="container">
+    <div class="calc-grid">
+
+      <form class="calc-card calc-panel" id="wd-form" novalidate>
+
+        <fieldset class="quiz-q">
+          <legend class="quiz-q__legend">1. Are you a first-home buyer in Australia?</legend>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="firstHome" value="yes">
+              <span>Yes, first home here</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="firstHome" value="owned">
+              <span>I have owned in Australia before</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="firstHome" value="unsure">
+              <span>Not sure</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="quiz-q">
+          <legend class="quiz-q__legend">2. Where is the property?</legend>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="location" value="sydney">
+              <span>Sydney, Illawarra, Newcastle or Lake Macquarie</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="location" value="nsw">
+              <span>Other NSW</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="location" value="other">
+              <span>Another state or territory</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="location" value="unsure">
+              <span>Not sure yet</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="quiz-q">
+          <legend class="quiz-q__legend">3. Rough purchase price?</legend>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="price" value="under800">
+              <span>Under $800,000</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="price" value="mid">
+              <span>$800,000 to $1,500,000</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="price" value="over1500">
+              <span>Over $1,500,000</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="price" value="unsure">
+              <span>Not sure yet</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="quiz-q">
+          <legend class="quiz-q__legend">4. Cash you can actually use as a deposit THIS year? (Not locked KiwiSaver. Not equity you cannot access.)</legend>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="cash" value="under3">
+              <span>Under 3% of the price</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="cash" value="about5">
+              <span>About 5%</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="cash" value="about10">
+              <span>About 10%</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="cash" value="about20">
+              <span>20% or more</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="cash" value="unsure">
+              <span>Not sure</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="quiz-q">
+          <legend class="quiz-q__legend">5. Could a lender waive LMI because of your job? (Bank or financial institution, or a listed profession such as doctor, lawyer, accountant. If you do not know, say so.)</legend>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="waiver" value="yes">
+              <span>Yes, probably</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="waiver" value="no">
+              <span>No</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="waiver" value="unsure">
+              <span>I do not know</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="quiz-actions">
+          <button class="btn btn--primary btn--lg" type="submit" id="wd-submit" disabled>See result</button>
+          <p class="calc-field__hint" id="wd-need-all">Pick an answer for each question. Not sure is a real answer.</p>
+        </div>
+      </form>
+
+      <div class="stack-lg">
+        <div class="calc-card" id="wd-result-card">
+          <div id="wd-empty">
+            <div class="calc-hero-stat">
+              <span class="calc-hero-stat__label">Your door</span>
+              <span class="calc-hero-stat__value" style="font-size: clamp(1.75rem, 3vw + 0.4rem, 2.4rem);">Answer five. Get one door.</span>
+            </div>
+            <p class="calc-hero-stat__note">I will name the path that is worth walking, and the ones that look closed. No email. No sales sequence.</p>
+          </div>
+
+          <div id="wd-result" hidden aria-live="polite">
+            <div class="calc-hero-stat">
+              <span class="calc-hero-stat__label">The door that looks open</span>
+              <span class="calc-hero-stat__value" id="wd-headline" style="font-size: clamp(1.75rem, 3vw + 0.4rem, 2.4rem);"></span>
+            </div>
+            <div class="quiz-copy" id="wd-copy"></div>
+            <div class="quiz-doors" id="wd-doors" aria-label="Other doors"></div>
+            <div class="quiz-cta">
+              {% cta "Book a free discovery call" %}
+              <p class="calc-field__hint">Thirty minutes on Google Meet. I will tell you if this door is actually open, including not yet.</p>
+            </div>
+            <button class="btn btn--ghost" type="button" id="wd-reset">Start again</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="calc-assumptions" data-reveal>
+      <details>
+        <summary>Assumptions behind this tool</summary>
+        <ul>
+          <li>This walks the same order I use in a strategy session: 20% first, then a 90% LMI waiver, then the government 5% scheme, then HAS or OwnHome. It is a path-finder, not a credit assessment.</li>
+          <li>Housing Australia price caps used here (from 1 October 2025, still the current published NSW figures in 2026): $1,500,000 for Sydney, Illawarra, Newcastle and Lake Macquarie; $800,000 for the rest of NSW. Other states have their own caps. Confirm the live postcode cap on <a href="https://www.housingaustralia.gov.au/support-buy-home/property-price-caps" target="_blank" rel="noopener">Housing Australia</a>.</li>
+          <li>Cash means money you can actually use as a deposit this year. Locked KiwiSaver and equity you cannot access do not count.</li>
+          <li>An LMI waiver depends on that lender’s occupation list on the day. “Yes, probably” is not a guarantee.</li>
+          <li>Product features change. This is general information, not personal advice.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+{% include "calc-cta.njk" %}
+
+<section class="section section--tight" style="padding-top: 0;">
+  <div class="container">
+    <p class="calc-disclaimer">
+      Product features change. Confirm live scheme caps on
+      <a href="https://www.housingaustralia.gov.au/support-buy-home/property-price-caps" target="_blank" rel="noopener">Housing Australia</a>.
+      This is not personal advice.
+    </p>
+  </div>
+</section>
+
+{% block scripts %}
+<script src="/assets/js/which-door.js?v=20260820" defer></script>
+{% endblock %}

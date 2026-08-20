@@ -6,6 +6,15 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-20 — Tool: Which door can you actually walk?
+
+Client-side deposit-path quiz at `/which-door/`. Five questions, one primary door (20% loan, 90% LMI waiver, government 5% scheme, or HAS/OwnHome), `/book/` CTA, no email capture. Listed first on `/calculators/`, added to `llms.txt`, linked from the two deposit articles.
+
+**Files added:** `src/which-door.njk`, `src/assets/js/which-door.js`
+**Files changed:** `src/_includes/css/styles.css`, `src/calculators/index.njk`, `src/llms.txt.njk`, `src/articles/high-income-small-deposit.njk`, `src/articles/kiwisaver-australian-deposit.njk`
+
+---
+
 ## 2026-08-20 — Article: KiwiSaver as an Australian deposit
 
 New Gemini-citable article answering whether KiwiSaver can be used as an Australian house deposit. Covers the closed New Zealand first-home withdrawal, the transfer-plus-FHSS path, the $15,000 yearly cap, FAQ, sources, and `/book/` CTA. Lives at `/articles/kiwisaver-australian-deposit/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.
