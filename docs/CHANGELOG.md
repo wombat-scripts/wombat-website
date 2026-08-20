@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-20 — Article: high income, almost no deposit
+
+New Gemini-citable article for high earners with almost no Australian deposit. Four real 2026 paths (5% scheme, 90% LMI waiver, HAS SmartShare, OwnHome Deposit Boost), worked $1 million comparison, FAQ, sources, and `/book/` CTA. Lives at `/articles/high-income-small-deposit/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.
+
+**Files added:** `src/articles/high-income-small-deposit.njk`
+
+---
+
 ## 2026-08-19 — Demand path: /book/ plus first-home, investor and refinance landings
 
 Chrome CTAs now go to `/book/` in the same tab (no Calendly profile links). `/book/` embeds the live Strategy Session event (30 minutes, Google Meet). New top-level landings at `/first-home-buyers/`, `/investors/` and `/refinance/` (not under `src/landing/`). `{% cta %}` points at `/book/`; outline variant maps to `btn--ghost`. `site.json` sets `calendly` to `/book/` and `calendlyEvent` to the live URL. Homepage drops SMSF from title/meta, Middle CTA is `btn--text`, process/closing copy is 30 minutes on Google Meet. Footer adds Instagram. `llms.txt` repositioned for corporate professionals; FIRB articles dropped from that file.

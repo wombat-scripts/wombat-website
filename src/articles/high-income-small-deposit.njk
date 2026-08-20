@@ -1,0 +1,543 @@
+---
+layout: landing.njk
+title: "High income, almost no deposit. What actually exists."
+description: "You earn well. Rent is eating you. You do not have 20% in an Australian account. Here are the four real paths in 2026, and what each one costs."
+date: 2026-08-20
+category: First Home Buyers
+author: Tom Carr
+ogType: article
+thumbnail: /images/articles/couple_keys_1.webp
+---
+
+{# ── Page-specific styles (only for components not in shared styles.css) ── #}
+{% block head %}
+<style>
+  /* Callout box */
+  .callout {
+    background: var(--paper-cool);
+    border-left: 3px solid var(--steel);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--space-5);
+    margin: var(--space-6) 0;
+  }
+  .callout .eyebrow { margin-bottom: var(--space-2); }
+  .callout .eyebrow::before { display: none; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* Door / person cards */
+  .lens-card { border-top: 3px solid var(--steel); }
+  .lens-card h3 { margin-top: 0; }
+  .lens-label {
+    display: inline-block;
+    font-size: var(--fs-meta);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: var(--space-3);
+    background: var(--blue-pale);
+    color: var(--navy);
+  }
+
+  /* Numbered checklist */
+  .check-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: var(--space-4);
+    align-items: start;
+    margin-bottom: var(--space-5);
+  }
+  .check-item:last-child { margin-bottom: 0; }
+  .check-num {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--blue-pale);
+    color: var(--navy);
+    border-radius: var(--radius-md);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .check-item h4 { margin-bottom: var(--space-1); margin-top: 0; }
+  .check-item p { margin-bottom: 0; }
+
+  /* Table */
+  .table-wrap {
+    overflow-x: auto;
+    margin: var(--space-5) 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+  }
+  .table-wrap table {
+    width: 100%; border-collapse: collapse;
+    font-size: var(--fs-small);
+  }
+  .table-wrap thead { background: var(--navy); color: #fff; }
+  .table-wrap th {
+    padding: var(--space-3) var(--space-4);
+    text-align: left; font-weight: 600;
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .table-wrap td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--line);
+  }
+  .table-wrap tbody tr:nth-child(even) { background: var(--paper-cool); }
+  .table-wrap td:first-child { font-weight: 600; color: var(--navy); }
+
+  /* FAQ accordion */
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    padding: var(--space-4) var(--space-7) var(--space-4) 0;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 1rem; font-weight: 600;
+    color: var(--navy-deep);
+    cursor: pointer; position: relative;
+    line-height: var(--lh-tight);
+  }
+  .faq-q::after {
+    content: '+'; position: absolute;
+    right: 0; top: 50%; transform: translateY(-50%);
+    font-size: 1.4rem; color: var(--steel);
+    transition: transform var(--motion-fast) var(--easing);
+  }
+  .faq-q[aria-expanded="true"]::after { content: '−'; }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height var(--motion-mid) var(--easing);
+  }
+  .faq-a.open { max-height: 400px; }
+  .faq-a p { padding-bottom: var(--space-4); }
+
+  /* Sources */
+  .sources-list { padding-left: 1.2rem; }
+  .sources-list li { margin-bottom: var(--space-3); }
+</style>
+{% endblock %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "High income, almost no deposit. What actually exists.",
+  "description": "You earn well. Rent is eating you. You do not have 20% in an Australian account. Here are the four real paths in 2026, and what each one costs.",
+  "url": "https://wombathomeloans.com.au/articles/high-income-small-deposit/",
+  "datePublished": "2026-08-20",
+  "dateModified": "2026-08-20",
+  "author": {
+    "@type": "Person",
+    "name": "Tom Carr",
+    "url": "https://wombathomeloans.com.au",
+    "jobTitle": "Mortgage Broker",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Wombat Home Loans"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Wombat Home Loans",
+    "url": "https://wombathomeloans.com.au",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wombathomeloans.com.au/assets/logo-horizontal.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wombathomeloans.com.au/articles/high-income-small-deposit/"
+  }
+}
+</script>
+
+{# ── Hero ── #}
+<section class="section section--dark" style="padding-block: clamp(5rem, 10vw, 9rem);">
+  <div class="container container--narrow" style="text-align: center;">
+    <p class="eyebrow">First Home Buyers</p>
+    <h1 class="display">High income, almost no deposit. <em>What actually exists.</em></h1>
+    <p class="lede" style="margin-inline: auto; color: var(--blue-pale);">
+      You earn well. Rent is eating you. You do not have 20% sitting in an Australian account. Here are the four real paths in 2026, and what each one costs.
+    </p>
+    <p class="meta" style="color: rgba(255,255,255,0.5);">Updated August 2026 · Wombat Home Loans</p>
+  </div>
+</section>
+
+{# ── The same person ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Situation</p>
+    <h2>I keep meeting the <em>same person</em></h2>
+
+    <p>Good job. Pays a fortune in rent. Almost nothing in an Australian savings account. Sometimes the money is in KiwiSaver. Sometimes it is a bonus that lands in September. Sometimes rent simply took it.</p>
+
+    <p>They do not need another lecture about saving 20%.</p>
+
+    <p>They need to know which doors actually open, and what those doors cost.</p>
+
+    <p>There are four I walk, in this order.</p>
+
+    <ol>
+      <li>The government 5% deposit scheme, if the property sits under the price cap and you can get to 5%.</li>
+      <li>A 90% LMI waiver, if your job is on a lender’s approved list and you have about 10%.</li>
+      <li>HAS SmartShare plus a normal first mortgage, if you are genuinely locked out of the first two.</li>
+      <li>OwnHome’s Deposit Boost loan. Same idea: you can service a home, you cannot park 20% in cash.</li>
+    </ol>
+
+    <p>The last two are real. They are also expensive. They are still a path if the alternative is another five years of someone else’s lease.</p>
+
+    <div class="callout">
+      <p class="eyebrow">General Information</p>
+      <p>This is general information, not personal advice. Product features and fees change. Confirm the live terms before you act.</p>
+    </div>
+  </div>
+</section>
+
+{# ── Door 1: 5% scheme ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">Door 1</p>
+    <h2>Try this first: <em>the 5% scheme</em></h2>
+
+    <p>If you are a first home buyer, start here. From 1 October 2025 the federal 5% deposit scheme (the First Home Guarantee, run by Housing Australia) has unlimited places and no income cap. The government guarantees part of the loan so you can borrow up to 95% with no Lenders Mortgage Insurance. One mortgage. Your name on the title. You own the growth and you own the fall.</p>
+
+    <p>You still need 5%, and you still need to service 95%.</p>
+
+    <p>Price caps matter. From 1 October 2025, Housing Australia’s NSW cap is $1,500,000 for the capital city and the named regional centres (Illawarra, Newcastle, Lake Macquarie). The rest of NSW is $800,000. Other states have their own caps. Check the postcode in Housing Australia’s tool before you fall in love with a suburb. Neighbouring streets can sit in different buckets.</p>
+
+    <p>If you can stretch to 5% and the property is under the cap, this usually beats the fancy products on cost and on risk. I only leave this door once it is actually closed.</p>
+
+    <p class="meta">Source: Housing Australia, “Unlimited places, higher property price caps for first home buyers from 1 October 2025.”</p>
+  </div>
+</section>
+
+{# ── Door 2: LMI waiver ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">Door 2</p>
+    <h2>Second door: a <em>90% LMI waiver</em></h2>
+
+    <p>This is not a government scheme. It is a lender policy. Some occupations (bank staff, and a short list of other professionals) can borrow at 90% with no LMI. You put in about 10%. One mortgage. You own 100%.</p>
+
+    <p>If your job is on that list and you have the 10%, this is usually the cleanest small-deposit path. I wrote up the bank-staff version here: <a href="/articles/lmi-waiver-bank-employees/">LMI waivers for bank employees</a>.</p>
+
+    <p>Confirm the occupation list and whether that lender loads the rate before you treat it as a given.</p>
+  </div>
+</section>
+
+{# ── Door 3: HAS SmartShare ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">Door 3</p>
+    <h2>The 2.5% door: <em>HAS SmartShare</em></h2>
+
+    <p>HAS (Home Affordability Solutions, <a href="https://hasloans.com.au" target="_blank" rel="noopener">hasloans.com.au</a>) sells a product called SmartShare. The brochure is simple. You put in 2.5%. HAS puts in up to 17.5% as a second mortgage. A normal lender (ING and MA Money are two that get used) takes the first mortgage at 80%. No LMI on that first loan, because it is sitting at 80%.</p>
+
+    <p>Your name is on the title. HAS is not a co-owner. They hold a registered second mortgage.</p>
+
+    <p>The deposit does not have to be “genuine savings.” HAS says it can come from a gift, an inheritance, the sale of an asset, or a bonus. You still need extra cash for stamp duty (unless a concession applies), conveyancing, inspections, and independent legal advice. The legal advice is compulsory and you pay it. HAS puts that at roughly $400 to $700.</p>
+
+    <h3>What you are actually taking on</h3>
+
+    <p>HAS shares in the growth above 10%. They do not share losses. If the property falls, you still owe them the facility in full.</p>
+
+    <p>There is a three-year minimum term. Refinance or sell earlier and an early-exit fee applies. HAS does not publish the dollar amount on the website. After year 3 you can refinance them out if the first lender will let you. The facility can stay fixed and interest-only for up to five years. HAS says many customers refinance around year 3 to 3.5.</p>
+
+    <p>They also advertise payment assistance in the first 3 to 5 years, which holds the monthly figure down, then the repayment steps up. They do not publish a comparison rate the way a bank does. The share of growth is agreed per customer. There is no public rate card.</p>
+
+    <p>In a $1 million worked example I use with clients (flat 6% across every option, so we are comparing structure, not shopping rates), SmartShare looks like this:</p>
+
+    <ul>
+      <li>Deposit in: $25,000 (2.5%)</li>
+      <li>Day-one debt: about $1,040,000 (a bit over 100% of the price, once fees and advances are in)</li>
+      <li>Monthly in year 1: about $6,347, then about $7,264 once the payment assistance ends</li>
+    </ul>
+
+    <p>Same $1 million house, same 6% assumption, the other doors:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Deposit</th>
+            <th>Day-one debt</th>
+            <th>Monthly (year 1)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Government 5% scheme</td>
+            <td>$50,000</td>
+            <td>$950,000</td>
+            <td>about $5,697</td>
+          </tr>
+          <tr>
+            <td>90% LMI waiver</td>
+            <td>$100,000</td>
+            <td>$900,000</td>
+            <td>about $5,397</td>
+          </tr>
+          <tr>
+            <td>Standard 20%</td>
+            <td>$200,000</td>
+            <td>$800,000</td>
+            <td>about $4,797</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Those year-1 cash costs are not that far apart. The difference is the hole you are in if prices fall, and how much extra you pay over 30 years if you stay in the HAS structure. If growth stays at or under 10%, the modelled 30-year gap between SmartShare and the 5% scheme is roughly $167,000. Most of the extra gap only opens up once growth beats 10% and HAS’s share kicks in.</p>
+
+    <p>That is why I do not lead with HAS. It genuinely lowers the cash barrier. It does it by pushing total debt above the purchase price and putting the downside in a facility that never shares a loss. If you can stretch to 5% or 10%, you usually get a similar three-year cash cost with a lot less of that downside.</p>
+
+    <div class="callout">
+      <p class="eyebrow">When HAS is the conversation</p>
+      <p>HAS is worth a proper look when those other doors are actually shut. High income, tiny Australian cash, property over a scheme cap, job not on an LMI-waiver list. That is the client.</p>
+    </div>
+  </div>
+</section>
+
+{# ── Door 4: OwnHome ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">Door 4</p>
+    <h2>The other expensive door: <em>OwnHome</em></h2>
+
+    <p>OwnHome is a different machine. It is not shared equity, and it is not rent-to-own any more. They lend you the deposit.</p>
+
+    <p>You take a Deposit Boost loan from OwnHome (principal and interest, 15-year term, up to 20% of the price) and a normal 80% first mortgage from a lender. Together that can be 100%. They say you can start at 0% deposit. No LMI. They also say no lock-in, no early-repayment fee, no exit fee.</p>
+
+    <p>The upfront cost is a Low Deposit Premium, advertised from about 2.2% of the property value if you put in nothing, with discounts if you put in 5% or more. On a $1 million purchase, 2.2% is $22,000 before stamp duty and the usual buying costs. You still need cash for those.</p>
+
+    <p>You then service two loans. That is the real gate. OwnHome is built for people whose income can wear both repayments. If you cannot, this door closes even when the deposit door is open.</p>
+
+    <p>A buyer’s agent is included in the OwnHome package. That is a feature, not the reason to choose it.</p>
+
+    <p>I put OwnHome next to HAS, not above the 5% scheme or a clean LMI waiver. Same test: is the cheaper, simpler door actually closed?</p>
+  </div>
+</section>
+
+{# ── $1 million house, four ways ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Comparison</p>
+    <h2>A $1 million house, <em>four ways in</em></h2>
+
+    <p>Same purchase. Same 6% rate used on every option so the comparison is the structure. These are worked-example figures, not a quote and not a rate card.</p>
+
+    <p>If prices rise 10% after three years, everyone has more equity. The 20% buyer has the fattest buffer. The 5% and 10% buyers are fine. The HAS buyer has less of the upside once HAS’s share of growth above 10% is paid, and they still owed HAS in full along the way.</p>
+
+    <p>If prices fall 10%, the 20% buyer still has a buffer. The 10% buyer is close to the line. The 5% buyer is underwater on a single loan. The HAS buyer is underwater on a first mortgage plus a second facility that did not shrink with the house.</p>
+
+    <div class="callout">
+      <p class="eyebrow">The Sentence I Say Out Loud</p>
+      <p>That last sentence is the one I say out loud in the meeting.</p>
+    </div>
+  </div>
+</section>
+
+{# ── Which person fits which door ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">Who Fits Where</p>
+    <h2>Which person fits <em>which door</em></h2>
+  </div>
+
+  <div class="container" style="margin-top: var(--space-6);">
+    <div class="grid grid--2">
+      <div class="card lens-card">
+        <span class="lens-label">The stretched first buyer</span>
+        <p>Secure income, little saved, wants in, wants cash left for a few renovations. If the property is under the government cap, the 5% scheme usually wins on cost and risk. HAS or OwnHome only if that scheme is genuinely closed.</p>
+      </div>
+      <div class="card lens-card">
+        <span class="lens-label">The eligible professional</span>
+        <p>Doctor, lawyer, accountant, bank staff, or whoever is actually on that lender’s list, with about 10% saved. The LMI waiver is usually the best of both worlds.</p>
+      </div>
+      <div class="card lens-card">
+        <span class="lens-label">The high earner with almost no Australian cash</span>
+        <p>This is the person this page is for. The 5% door may fail because the cash is not here yet, or the suburb sits over the cap. The waiver door fails because the job is not on the list. HAS plus a first mortgage, or OwnHome, is then a real conversation. Costly. Honest. Better than pretending 20% is the only adult answer.</p>
+      </div>
+      <div class="card lens-card">
+        <span class="lens-label">The cautious saver</span>
+        <p>Has 20% and values a fat buffer over speed. Skip the rest of this page. Take the ordinary loan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ── First thirty minutes ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">The First Conversation</p>
+    <h2>What I would do in the <em>first thirty minutes</em></h2>
+
+    <div style="margin-top: var(--space-6);">
+      <div class="check-item">
+        <span class="check-num">1</span>
+        <div>
+          <p>Check the 5% scheme postcode cap and whether 5% is actually gettable this year (bonus, accessible super, family gift, sale of something).</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">2</span>
+        <div>
+          <p>Check whether any lender will waive LMI on your occupation at 90%.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">3</span>
+        <div>
+          <p>Only then price HAS (with a named first lender) against OwnHome, side by side, including the step-up after payment assistance and the second-loan repayment.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">4</span>
+        <div>
+          <p>Keep stamp duty in the cash number. The deposit slogan is never the full cash number.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: var(--space-6);">If you want that conversation, <a href="/book/">book a strategy session</a>. Thirty minutes on Google Meet. I will tell you which door is real for you, including “not yet.”</p>
+  </div>
+</section>
+
+{# ── FAQ ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">Common Questions</p>
+    <h2>Common questions</h2>
+
+    <div style="margin-top: var(--space-5);">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Can I buy a home in Australia with a 2.5% deposit?</button>
+        <div class="faq-a"><p>Sometimes. HAS SmartShare is built for that number, plus buying costs. You will have a first mortgage and a HAS second mortgage. You own the title. You do not get a free ride on a price fall. OwnHome can go as low as 0% if you can service two loans and pay the Low Deposit Premium plus stamp duty.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Do I need a 20% deposit to buy in Sydney?</button>
+        <div class="faq-a"><p>No. Plenty of people buy with 5% or 10%. 20% is the cheapest loan and the fattest buffer. It is not the only legal way in.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Is the government 5% deposit scheme still available in 2026?</button>
+        <div class="faq-a"><p>Yes. From 1 October 2025 it has unlimited places and no income cap. The property still has to sit under the cap for that postcode, and you still have to service the loan.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">What is the difference between HAS and OwnHome?</button>
+        <div class="faq-a"><p>HAS is a shared-equity-style second mortgage. They help you reach a 20% effective deposit, they take a share of growth above 10%, and they do not share losses. OwnHome lends you the deposit as a separate 15-year principal-and-interest loan and charges an upfront Low Deposit Premium. No growth share. Two repayments from day one.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Are these products cheap?</button>
+        <div class="faq-a"><p>No. They are cheaper than another decade of rent if buying is otherwise impossible. They are more expensive than the 5% scheme or a 10% LMI waiver when those are available. That is the whole comparison.</p></div>
+      </div>
+    </div>
+
+    <p style="margin-top: var(--space-6);">Related reading: <a href="/articles/renting-in-australia-path-to-buying/">renting in Australia and the path to buying</a>, <a href="/articles/how-much-can-i-borrow/">how much can I actually borrow</a>, and <a href="/articles/what-working-with-a-broker-actually-looks-like/">what working with a broker looks like</a>.</p>
+  </div>
+</section>
+
+{# ── CTA ── #}
+<section class="section section--dark" style="text-align: center;">
+  <div class="container container--narrow">
+    <h2>Financially fluent. <em>Mortgage confused?</em></h2>
+    <p class="lede" style="margin-inline: auto; color: var(--blue-pale);">
+      If the thing stopping you is the deposit, not the income, bring the real numbers. I will tell you which door is open.
+    </p>
+    <div style="margin-top: var(--space-5);">
+      {% cta "Book a free discovery call" %}
+    </div>
+    <p class="meta" style="margin-top: var(--space-5); color: rgba(255,255,255,0.4);">
+      Or call <a href="tel:+61456255409" style="color: rgba(255,255,255,0.5);">0456 255 409</a>
+    </p>
+  </div>
+</section>
+
+{# ── Sources + disclaimer ── #}
+<section class="section section--tight">
+  <div class="container container--narrow">
+    <p class="eyebrow">Sources</p>
+    <h2>Sources</h2>
+    <ul class="sources-list">
+      <li>Housing Australia, Unlimited places, higher property price caps for first home buyers from 1 October 2025 (24 August 2025). NSW capital city and regional centre cap $1,500,000; NSW other $800,000. Regional centres in NSW: Illawarra, Newcastle, Lake Macquarie.</li>
+      <li>HAS SmartShare, <a href="https://hasloans.com.au" target="_blank" rel="noopener">hasloans.com.au</a> and <a href="https://yourhas.com.au/faq" target="_blank" rel="noopener">yourhas.com.au/faq</a>. 2.5% / 17.5% / 80% structure, second mortgage, growth share above 10%, no share of losses, independent legal advice, three-year minimum term, early-exit fee inside three years, payment assistance in the first 3 to 5 years.</li>
+      <li>OwnHome, <a href="https://ownhome.com" target="_blank" rel="noopener">ownhome.com</a>. Deposit Boost loan, 15-year principal and interest, Low Deposit Premium from about 2.2%, 0% to 20% deposit, no LMI, no lock-in or exit fee on their current page.</li>
+      <li>Worked example: $1,000,000 purchase, flat 6% across all four options, held to about three years. Illustrative only. Not a quote.</li>
+    </ul>
+
+    <div class="callout">
+      <p class="eyebrow">General Information</p>
+      <p>General information only. This does not take into account your objectives, financial situation or needs. Credit criteria, fees, charges, terms and conditions apply. Consider getting advice for your own situation before you sign anything.</p>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I buy a home in Australia with a 2.5% deposit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sometimes. HAS SmartShare is built for that number, plus buying costs. You will have a first mortgage and a HAS second mortgage. You own the title. You do not get a free ride on a price fall. OwnHome can go as low as 0% if you can service two loans and pay the Low Deposit Premium plus stamp duty."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a 20% deposit to buy in Sydney?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Plenty of people buy with 5% or 10%. 20% is the cheapest loan and the fattest buffer. It is not the only legal way in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the government 5% deposit scheme still available in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. From 1 October 2025 it has unlimited places and no income cap. The property still has to sit under the cap for that postcode, and you still have to service the loan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between HAS and OwnHome?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HAS is a shared-equity-style second mortgage. They help you reach a 20% effective deposit, they take a share of growth above 10%, and they do not share losses. OwnHome lends you the deposit as a separate 15-year principal-and-interest loan and charges an upfront Low Deposit Premium. No growth share. Two repayments from day one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are these products cheap?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. They are cheaper than another decade of rent if buying is otherwise impossible. They are more expensive than the 5% scheme or a 10% LMI waiver when those are available. That is the whole comparison."
+      }
+    }
+  ]
+}
+</script>
+
+{# ── FAQ script ── #}
+{% block scripts %}
+<script>
+  function toggleFaq(btn) {
+    var answer = btn.nextElementSibling;
+    var isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(function(a) { a.classList.remove('open'); });
+    document.querySelectorAll('.faq-q').forEach(function(q) { q.setAttribute('aria-expanded', 'false'); });
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+</script>
+{% endblock %}
