@@ -1,0 +1,441 @@
+---
+layout: landing.njk
+title: "Can you use KiwiSaver as an Australian house deposit?"
+description: "The New Zealand first-home withdrawal does not work for an Australian house. Here is the real path, and why a six-figure KiwiSaver is not a six-figure deposit."
+date: 2026-08-20
+category: First Home Buyers
+author: Tom Carr
+ogType: article
+thumbnail: /images/articles/australia_map.webp
+---
+
+{# ── Page-specific styles (only for components not in shared styles.css) ── #}
+{% block head %}
+<style>
+  /* Callout box */
+  .callout {
+    background: var(--paper-cool);
+    border-left: 3px solid var(--steel);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--space-5);
+    margin: var(--space-6) 0;
+  }
+  .callout .eyebrow { margin-bottom: var(--space-2); }
+  .callout .eyebrow::before { display: none; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* Numbered checklist */
+  .check-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: var(--space-4);
+    align-items: start;
+    margin-bottom: var(--space-5);
+  }
+  .check-item:last-child { margin-bottom: 0; }
+  .check-num {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--blue-pale);
+    color: var(--navy);
+    border-radius: var(--radius-md);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .check-item h4 { margin-bottom: var(--space-1); margin-top: 0; }
+  .check-item p { margin-bottom: 0; }
+
+  /* FAQ accordion */
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    padding: var(--space-4) var(--space-7) var(--space-4) 0;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 1rem; font-weight: 600;
+    color: var(--navy-deep);
+    cursor: pointer; position: relative;
+    line-height: var(--lh-tight);
+  }
+  .faq-q::after {
+    content: '+'; position: absolute;
+    right: 0; top: 50%; transform: translateY(-50%);
+    font-size: 1.4rem; color: var(--steel);
+    transition: transform var(--motion-fast) var(--easing);
+  }
+  .faq-q[aria-expanded="true"]::after { content: '−'; }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height var(--motion-mid) var(--easing);
+  }
+  .faq-a.open { max-height: 400px; }
+  .faq-a p { padding-bottom: var(--space-4); }
+
+  /* Sources */
+  .sources-list { padding-left: 1.2rem; }
+  .sources-list li { margin-bottom: var(--space-3); }
+</style>
+{% endblock %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Can you use KiwiSaver as an Australian house deposit?",
+  "description": "The New Zealand first-home withdrawal does not work for an Australian house. Here is the real path, and why a six-figure KiwiSaver is not a six-figure deposit.",
+  "url": "https://wombathomeloans.com.au/articles/kiwisaver-australian-deposit/",
+  "datePublished": "2026-08-20",
+  "dateModified": "2026-08-20",
+  "author": {
+    "@type": "Person",
+    "name": "Tom Carr",
+    "url": "https://wombathomeloans.com.au",
+    "jobTitle": "Mortgage Broker",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Wombat Home Loans"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Wombat Home Loans",
+    "url": "https://wombathomeloans.com.au",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wombathomeloans.com.au/assets/logo-horizontal.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wombathomeloans.com.au/articles/kiwisaver-australian-deposit/"
+  }
+}
+</script>
+
+{# ── Hero ── #}
+<section class="section section--dark" style="padding-block: clamp(5rem, 10vw, 9rem);">
+  <div class="container container--narrow" style="text-align: center;">
+    <p class="eyebrow">First Home Buyers</p>
+    <h1 class="display">Can you use KiwiSaver as an <em>Australian house deposit?</em></h1>
+    <p class="lede" style="margin-inline: auto; color: var(--blue-pale);">
+      The New Zealand first-home withdrawal does not work for an Australian house. Here is the real path, and why a six-figure KiwiSaver is not a six-figure deposit.
+    </p>
+    <p class="meta" style="color: rgba(255,255,255,0.5);">Updated August 2026 · Wombat Home Loans</p>
+  </div>
+</section>
+
+{# ── The same person ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Situation</p>
+    <h2>I keep meeting the <em>same person</em></h2>
+
+    <p>Good job in Sydney. Pays Australian rent. Has a KiwiSaver balance that looks like a deposit. Sometimes it is more than a hundred thousand dollars. They have already done the maths on a 5% or 10% house.</p>
+
+    <p>Then they find out they cannot just withdraw it.</p>
+
+    <div class="callout">
+      <p class="eyebrow">General Information</p>
+      <p>This is general information, not personal advice, and it is not superannuation advice. The rules sit with Inland Revenue, the ATO, and your funds. Confirm the live terms before you act.</p>
+    </div>
+  </div>
+</section>
+
+{# ── The door that does not open ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Closed Door</p>
+    <h2>The door that <em>does not open</em></h2>
+
+    <p>In New Zealand, a first-home withdrawal from KiwiSaver is a real thing. Three years in the scheme. You can take contributions, employer money, the government contribution and earnings. You leave $1,000 behind.</p>
+
+    <p>That withdrawal is for a New Zealand home.</p>
+
+    <p>From 1 April 2015, Inland Revenue’s rules are explicit. The purchase has to be an estate in land in New Zealand. An Australian house does not qualify. Full stop.</p>
+
+    <p>Moving to Australia does not give you a cash payout either. Australia is the exception in the other direction. You cannot say “I have emigrated, please pay me out.” You can leave the money in KiwiSaver, or you can transfer the whole balance to an Australian complying super fund that will take it.</p>
+
+    <p>There is no third option called “send me the deposit.”</p>
+  </div>
+</section>
+
+{# ── The door that does ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Real Path</p>
+    <h2>The door that <em>does</em></h2>
+
+    <p>The path is slower and smaller than people hope.</p>
+
+    <div style="margin-top: var(--space-6);">
+      <div class="check-item">
+        <span class="check-num">1</span>
+        <div>
+          <p>Get an Australian tax file number if you do not already have one.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">2</span>
+        <div>
+          <p>Open an account with an APRA-regulated Australian super fund that actually accepts KiwiSaver transfers. Most funds do not. You cannot send it to an SMSF.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">3</span>
+        <div>
+          <p>Transfer the whole KiwiSaver balance. Partial transfers are not allowed. The money is converted to Australian dollars. Your New Zealand provider may charge a fee. The receiving fund may charge one too.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">4</span>
+        <div>
+          <p>First Super, which is one of the few funds that publishes this path, says the transfer takes about two to six weeks.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">5</span>
+        <div>
+          <p>Once it is in Australian super, apply to the ATO for a First Home Super Saver determination. Get that determination before you sign a contract. If you sign first, the ATO says you are no longer eligible.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">6</span>
+        <div>
+          <p>The fund only releases money when the ATO tells it to.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: var(--space-6);">Owning a home in New Zealand does not, by itself, block the Australian First Home Super Saver scheme. First Super says that in plain English. The ATO still decides whether you qualify.</p>
+  </div>
+</section>
+
+{# ── How much actually comes out ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Cap</p>
+    <h2>How much actually <em>comes out</em></h2>
+
+    <p>This is the part people get wrong.</p>
+
+    <p>The ATO’s First Home Super Saver scheme lets you access voluntary contributions: up to $15,000 in one financial year, and up to $50,000 across all years, plus associated earnings. A KiwiSaver transfer counts as a voluntary after-tax contribution. The ATO’s own guidance says amounts transferred from a KiwiSaver scheme count toward the $15,000 limit for the year they arrive. You cannot split the transfer to dodge that cap.</p>
+
+    <p>First Super’s July 2026 factsheet says the same thing in one line. Regardless of how much you transfer, the most you can use from that KiwiSaver transfer toward First Home Super Saver is $15,000. If you want the $50,000 lifetime figure, you add more voluntary contributions in later years, $15,000 at a time.</p>
+
+    <p>So a person with $150,000 sitting in KiwiSaver does not have a $150,000 Australian deposit. This year they may have $15,000. A couple, if both transfer and both qualify, may have $30,000 this year. Next year they can do another $15,000 each, if they still have eligible voluntary contributions to pull.</p>
+
+    <p>Employer Super Guarantee in Australia does not count. That is retirement money.</p>
+
+    <p>If you transfer and then do not buy, the money stays in super. You do not get a do-over cash withdrawal.</p>
+  </div>
+</section>
+
+{# ── What that means for the loan ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Loan</p>
+    <h2>What that means for <em>the loan</em></h2>
+
+    <p>Thirty thousand dollars is 3% of a $1 million house. Fifteen thousand is 1.5%.</p>
+
+    <p>That is not a 20% deposit. It is often not even the 5% you need for the government scheme.</p>
+
+    <p>It can be enough, with other cash, to open the 2.5% door I wrote about here: <a href="/articles/high-income-small-deposit/">high income, almost no deposit</a>. Or it can get a couple to 5% on a cheaper property if they also have a bonus, holiday pay, or a family gift.</p>
+
+    <p>It cannot do the job people think it will do when they first look at the KiwiSaver app.</p>
+
+    <p>Stamp duty, inspections and legal fees still have to come from somewhere else. The slogan number is never the full cash number.</p>
+  </div>
+</section>
+
+{# ── First thirty minutes ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">The First Conversation</p>
+    <h2>What I would do in the <em>first thirty minutes</em></h2>
+
+    <div style="margin-top: var(--space-6);">
+      <div class="check-item">
+        <span class="check-num">1</span>
+        <div>
+          <p>Confirm the KiwiSaver first-home withdrawal is closed for an Australian purchase. It is. Do not lodge that form for a Sydney or Newcastle house.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">2</span>
+        <div>
+          <p>Check whether a transfer is already in flight, and to which fund. Most Australian funds will not accept it.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">3</span>
+        <div>
+          <p>Count only the First Home Super Saver number as deposit cash this year. For one person that is $15,000 from the transfer, not the whole balance.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">4</span>
+        <div>
+          <p>Put that number next to the four doors: the 5% scheme, an LMI waiver, HAS plus a first mortgage, or OwnHome. I walked those <a href="/articles/high-income-small-deposit/">here</a>.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">5</span>
+        <div>
+          <p>Get the ATO determination before anyone falls in love with a contract date.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: var(--space-6);">If you want that conversation, <a href="/book/">book a strategy session</a>. Thirty minutes on Google Meet. I will tell you which door is real, including “not this year.”</p>
+  </div>
+</section>
+
+{# ── FAQ ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">Common Questions</p>
+    <h2>Common questions</h2>
+
+    <div style="margin-top: var(--space-5);">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Can I use KiwiSaver to buy a house in Australia?</button>
+        <div class="faq-a"><p>Not the New Zealand way. The first-home withdrawal is for a New Zealand property. For an Australian home you transfer the whole balance into a participating Australian super fund, then use the First Home Super Saver scheme. Only a slice comes out this year.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Can I withdraw KiwiSaver because I moved to Australia?</button>
+        <div class="faq-a"><p>No. Permanent emigration to Australia is transfer-only. You cannot take it as cash. You can leave it in New Zealand until 65, or move the whole balance to an APRA-regulated fund that accepts KiwiSaver.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">How much of my KiwiSaver can I use for an Australian deposit?</button>
+        <div class="faq-a"><p>From the transfer itself, the published cap is $15,000 in the financial year it arrives, toward the First Home Super Saver scheme. The lifetime First Home Super Saver cap is $50,000 per person if you add more voluntary contributions in later years. The ATO decides the exact release.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">I already own a house in New Zealand. Can I still do this?</button>
+        <div class="faq-a"><p>First Super says yes, you can still apply for the Australian scheme. Confirm with the ATO. New Zealand ownership is not the same test as Australian first-home status.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">How long does the transfer take?</button>
+        <div class="faq-a"><p>First Super says about two to six weeks. Start it before you are in a buying race. The ATO determination has to be in your hand before you sign.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Is this financial advice?</button>
+        <div class="faq-a"><p>No. I am a mortgage broker. I care about what cash a lender will treat as a deposit, and which loan doors that opens. The transfer itself is a superannuation decision. Read the fund’s PDS and talk to a licensed adviser if you need that advice.</p></div>
+      </div>
+    </div>
+
+    <p style="margin-top: var(--space-6);">Related reading: <a href="/articles/high-income-small-deposit/">high income, almost no deposit</a>, and <a href="/articles/renting-in-australia-path-to-buying/">renting in Australia and the path to buying</a>.</p>
+  </div>
+</section>
+
+{# ── CTA ── #}
+<section class="section section--dark" style="text-align: center;">
+  <div class="container container--narrow">
+    <h2>Financially fluent. <em>Mortgage confused?</em></h2>
+    <p class="lede" style="margin-inline: auto; color: var(--blue-pale);">
+      If the thing sitting in New Zealand looks like a deposit, bring the real balance and the dates. I will tell you how much of it a lender can actually see this year.
+    </p>
+    <div style="margin-top: var(--space-5);">
+      {% cta "Book a free discovery call" %}
+    </div>
+    <p class="meta" style="margin-top: var(--space-5); color: rgba(255,255,255,0.4);">
+      Or call <a href="tel:+61456255409" style="color: rgba(255,255,255,0.5);">0456 255 409</a>
+    </p>
+  </div>
+</section>
+
+{# ── Sources + disclaimer ── #}
+<section class="section section--tight">
+  <div class="container container--narrow">
+    <p class="eyebrow">Sources</p>
+    <h2>Sources</h2>
+    <ul class="sources-list">
+      <li>Inland Revenue, Getting my KiwiSaver savings for my first home. Three years in the scheme. Leave $1,000. Australian-sourced transfers cannot be withdrawn under that rule.</li>
+      <li>Inland Revenue technical, First home withdrawal only available for New Zealand homes. Taxation (KiwiSaver HomeStart and Remedial Matters) Act 2015. Applies to applications on and after 1 April 2015. KiwiSaver Act 2006, Schedule 1, clause 8(3).</li>
+      <li>Australian Taxation Office, Trans-Tasman retirement savings transfers. Whole balance only. APRA-regulated complying fund. Tax file number required. Partial transfers not allowed.</li>
+      <li>Australian Taxation Office, About the FHSS scheme (published 8 July 2026). Maximum $15,000 in any one financial year, $50,000 across all years.</li>
+      <li>Australian Taxation Office, GN 2024/1. KiwiSaver amounts transferred to Australia count toward the $15,000 limit for the year they are transferred. You cannot split them to avoid the limit.</li>
+      <li>First Super, KiwiSaver and First Home Super Saver page, and KiwiSaver transfers factsheet (accurate as at July 2026). Whole-balance transfer. About 2 to 6 weeks. Up to $15,000 of the KiwiSaver transfer toward FHSS. Determination before you sign. NZ home ownership does not by itself block the Australian scheme. One-off $199 AUD receiving fee on their current factsheet.</li>
+    </ul>
+
+    <div class="callout">
+      <p class="eyebrow">General Information</p>
+      <p>General information only. This does not take into account your objectives, financial situation or needs. It is not superannuation advice or tax advice. Credit criteria, fees, charges, terms and conditions apply. Consider getting advice for your own situation before you transfer anything or sign a contract.</p>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I use KiwiSaver to buy a house in Australia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not the New Zealand way. The first-home withdrawal is for a New Zealand property. For an Australian home you transfer the whole balance into a participating Australian super fund, then use the First Home Super Saver scheme. Only a slice comes out this year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I withdraw KiwiSaver because I moved to Australia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Permanent emigration to Australia is transfer-only. You cannot take it as cash. You can leave it in New Zealand until 65, or move the whole balance to an APRA-regulated fund that accepts KiwiSaver."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much of my KiwiSaver can I use for an Australian deposit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From the transfer itself, the published cap is $15,000 in the financial year it arrives, toward the First Home Super Saver scheme. The lifetime First Home Super Saver cap is $50,000 per person if you add more voluntary contributions in later years. The ATO decides the exact release."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I already own a house in New Zealand. Can I still do this?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "First Super says yes, you can still apply for the Australian scheme. Confirm with the ATO. New Zealand ownership is not the same test as Australian first-home status."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does the transfer take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "First Super says about two to six weeks. Start it before you are in a buying race. The ATO determination has to be in your hand before you sign."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this financial advice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. I am a mortgage broker. I care about what cash a lender will treat as a deposit, and which loan doors that opens. The transfer itself is a superannuation decision. Read the fund’s PDS and talk to a licensed adviser if you need that advice."
+      }
+    }
+  ]
+}
+</script>
+
+{# ── FAQ script ── #}
+{% block scripts %}
+<script>
+  function toggleFaq(btn) {
+    var answer = btn.nextElementSibling;
+    var isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(function(a) { a.classList.remove('open'); });
+    document.querySelectorAll('.faq-q').forEach(function(q) { q.setAttribute('aria-expanded', 'false'); });
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+</script>
+{% endblock %}

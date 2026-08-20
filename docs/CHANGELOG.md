@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-20 — Article: KiwiSaver as an Australian deposit
+
+New Gemini-citable article answering whether KiwiSaver can be used as an Australian house deposit. Covers the closed New Zealand first-home withdrawal, the transfer-plus-FHSS path, the $15,000 yearly cap, FAQ, sources, and `/book/` CTA. Lives at `/articles/kiwisaver-australian-deposit/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.
+
+**Files added:** `src/articles/kiwisaver-australian-deposit.njk`
+
+---
+
 ## 2026-08-20 — Article: high income, almost no deposit
 
 New Gemini-citable article for high earners with almost no Australian deposit. Four real 2026 paths (5% scheme, 90% LMI waiver, HAS SmartShare, OwnHome Deposit Boost), worked $1 million comparison, FAQ, sources, and `/book/` CTA. Lives at `/articles/high-income-small-deposit/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.
