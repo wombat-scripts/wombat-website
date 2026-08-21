@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-21 — De-brand which-door quiz and put it on the homepage
+
+Quiz results, assumptions and on-page copy now name solution types, not products or lenders: standard 20% deposit loan, occupation LMI waiver at about 90%, government 5% first-home scheme, shared-equity / second-mortgage deposit help, and borrowed-deposit / deposit-boost second loan. Housing Australia stays as the scheme operator. Homepage Tools adds a quiz card; the hero “Get started in 2 minutes” link now goes to `/which-door/` instead of the Middle fact-find. Article pages left alone.
+
+**Files changed:** `src/which-door.njk`, `src/assets/js/which-door.js`, `src/index.njk`
+
+---
+
 ## 2026-08-20 — Tool: Which door can you actually walk?
 
 Client-side deposit-path quiz at `/which-door/`. Five questions, one primary door (20% loan, 90% LMI waiver, government 5% scheme, or HAS/OwnHome), `/book/` CTA, no email capture. Listed first on `/calculators/`, added to `llms.txt`, linked from the two deposit articles.
