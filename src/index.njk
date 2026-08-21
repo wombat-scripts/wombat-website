@@ -95,6 +95,12 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   .tool-card h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
   .tool-card p { font-size: var(--fs-small); color: var(--ink-soft); margin: 0; }
   .tool-card__link { margin-top: auto; padding-top: var(--space-4); }
+  .tool-card.tool-card--quiz { background: var(--navy); color: #fff; border: 0; border-top: 3px solid var(--gold); box-shadow: var(--shadow-lg); }
+  .tool-card--quiz h3 { color: #fff; }
+  .tool-card--quiz p { color: rgba(255, 255, 255, 0.82); }
+  .tool-card--quiz .badge { background: var(--gold); color: var(--navy-deep); }
+  .tool-card--quiz .btn--ghost { color: #fff; border-color: rgba(255, 255, 255, 0.4); }
+  .tool-card--quiz .btn--ghost:hover { background: rgba(255, 255, 255, 0.1); color: #fff; border-color: #fff; }
 
   /* Articles preview */
   .articles-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
@@ -444,15 +450,17 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
     </div>
     <div class="tools-strip" data-reveal>
 
-      <article class="card tool-card" style="border-top: 3px solid var(--navy);">
-        <div class="help-card__icon" style="background: var(--blue-pale); margin-bottom: var(--space-4);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;">
-            <path d="M3 21h18"/><path d="M6 21V8l6-4 6 4v13"/><path d="M10 21v-6h4v6"/>
-          </svg>
+      <article class="card tool-card tool-card--quiz">
+        <div class="tool-card--quiz__doors" aria-hidden="true">
+          <svg class="quiz-door-svg" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 30V12.2A7 7 0 0 1 12 6a7 7 0 0 1 7 6.2V30"/><path d="M4 30h16"/><circle cx="15.3" cy="19" r="1.15" fill="currentColor" stroke="none"/></svg>
+          <svg class="quiz-door-svg" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 30V12.2A7 7 0 0 1 12 6a7 7 0 0 1 7 6.2V30"/><path d="M4 30h16"/><circle cx="15.3" cy="19" r="1.15" fill="currentColor" stroke="none"/></svg>
+          <svg class="quiz-door-svg" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 30V12.2A7 7 0 0 1 12 6a7 7 0 0 1 7 6.2V30"/><path d="M4 30h16"/><circle cx="15.3" cy="19" r="1.15" fill="currentColor" stroke="none"/></svg>
+          <svg class="quiz-door-svg" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 30V12.2A7 7 0 0 1 12 6a7 7 0 0 1 7 6.2V30"/><path d="M4 30h16"/><circle cx="15.3" cy="19" r="1.15" fill="currentColor" stroke="none"/></svg>
+          <svg class="quiz-door-svg" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 30V12.2A7 7 0 0 1 12 6a7 7 0 0 1 7 6.2V30"/><path d="M4 30h16"/><circle cx="15.3" cy="19" r="1.15" fill="currentColor" stroke="none"/></svg>
         </div>
-        <span class="badge" style="background: var(--navy); color: #fff; margin-bottom: var(--space-3);">Deposit path</span>
+        <span class="badge" style="margin-bottom: var(--space-3);">Deposit path</span>
         <h3>Which door can you actually walk?</h3>
-        <p style="color: var(--ink-soft); font-size: var(--fs-small); flex: 1;">Five questions. I will name the deposit path that looks open this year, and the ones that look closed.</p>
+        <p style="font-size: var(--fs-small); flex: 1;">Five questions. I will name the deposit path that looks open this year, and the ones that look closed.</p>
         <a class="btn btn--ghost btn--sm" href="/which-door/" data-umami-event="which-door-click" data-umami-event-location="tools" style="margin-top: var(--space-5);">
           Open the quiz →
         </a>
