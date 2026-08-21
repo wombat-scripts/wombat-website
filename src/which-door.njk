@@ -6,6 +6,14 @@ permalink: /which-door/
 date: 2026-08-20
 ---
 
+{% set doorSvg %}
+<svg class="quiz-door-svg" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M5 30V12.2A7 7 0 0 1 12 6a7 7 0 0 1 7 6.2V30"/>
+  <path d="M4 30h16"/>
+  <circle cx="15.3" cy="19" r="1.15" fill="currentColor" stroke="none"/>
+</svg>
+{% endset %}
+
 {% block schema %}
 <script type="application/ld+json">
 {
@@ -22,7 +30,14 @@ date: 2026-08-20
 </script>
 {% endblock %}
 
-<section class="section section--tight">
+<section class="section section--tight quiz-hero">
+  <div class="quiz-hero__doors" aria-hidden="true">
+    {{ doorSvg | safe }}
+    {{ doorSvg | safe }}
+    {{ doorSvg | safe }}
+    {{ doorSvg | safe }}
+    {{ doorSvg | safe }}
+  </div>
   <div class="container">
     <p class="calc-breadcrumb"><a href="/calculators/">← All calculators</a></p>
     <span class="eyebrow">Deposit paths</span>
@@ -33,14 +48,46 @@ date: 2026-08-20
   </div>
 </section>
 
-<section class="section section--cool section--tight" data-calc="whichdoor">
+<section class="section section--tight" data-calc="whichdoor">
   <div class="container">
     <div class="calc-grid">
 
-      <form class="calc-card calc-panel" id="wd-form" novalidate>
+      <form class="calc-card calc-panel quiz-form" id="wd-form" novalidate>
+        <div class="quiz-form__band">
+          <p class="quiz-form__band-kicker">Five questions</p>
+          <div class="quiz-progress" id="wd-progress" style="--wd-done: 0;">
+            <div class="quiz-progress__bar" role="progressbar" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" aria-labelledby="wd-progress-meta" id="wd-progress-bar">
+              <span class="quiz-progress__bar-fill"></span>
+            </div>
+            <ol class="quiz-progress__steps">
+              <li class="quiz-progress__step is-now" data-step="firstHome">
+                <span class="quiz-progress__mark">{{ doorSvg | safe }}</span>
+                <span class="quiz-progress__num">1</span>
+              </li>
+              <li class="quiz-progress__step" data-step="location">
+                <span class="quiz-progress__mark">{{ doorSvg | safe }}</span>
+                <span class="quiz-progress__num">2</span>
+              </li>
+              <li class="quiz-progress__step" data-step="price">
+                <span class="quiz-progress__mark">{{ doorSvg | safe }}</span>
+                <span class="quiz-progress__num">3</span>
+              </li>
+              <li class="quiz-progress__step" data-step="cash">
+                <span class="quiz-progress__mark">{{ doorSvg | safe }}</span>
+                <span class="quiz-progress__num">4</span>
+              </li>
+              <li class="quiz-progress__step" data-step="waiver">
+                <span class="quiz-progress__mark">{{ doorSvg | safe }}</span>
+                <span class="quiz-progress__num">5</span>
+              </li>
+            </ol>
+            <p class="quiz-progress__meta" id="wd-progress-meta"><span id="wd-progress-count">0</span> of 5 answered</p>
+          </div>
+        </div>
 
+        <div class="quiz-form__body">
         <fieldset class="quiz-q">
-          <legend class="quiz-q__legend">1. Are you a first-home buyer in Australia?</legend>
+          <legend class="quiz-q__legend"><span class="quiz-q__num">1</span> Are you a first-home buyer in Australia?</legend>
           <div class="quiz-options">
             <label class="quiz-option">
               <input type="radio" name="firstHome" value="yes">
@@ -58,7 +105,7 @@ date: 2026-08-20
         </fieldset>
 
         <fieldset class="quiz-q">
-          <legend class="quiz-q__legend">2. Where is the property?</legend>
+          <legend class="quiz-q__legend"><span class="quiz-q__num">2</span> Where is the property?</legend>
           <div class="quiz-options">
             <label class="quiz-option">
               <input type="radio" name="location" value="sydney">
@@ -80,7 +127,7 @@ date: 2026-08-20
         </fieldset>
 
         <fieldset class="quiz-q">
-          <legend class="quiz-q__legend">3. Rough purchase price?</legend>
+          <legend class="quiz-q__legend"><span class="quiz-q__num">3</span> Rough purchase price?</legend>
           <div class="quiz-options">
             <label class="quiz-option">
               <input type="radio" name="price" value="under800">
@@ -102,7 +149,7 @@ date: 2026-08-20
         </fieldset>
 
         <fieldset class="quiz-q">
-          <legend class="quiz-q__legend">4. Cash you can actually use as a deposit THIS year? (Not locked KiwiSaver. Not equity you cannot access.)</legend>
+          <legend class="quiz-q__legend"><span class="quiz-q__num">4</span> Cash you can actually use as a deposit THIS year? (Not locked KiwiSaver. Not equity you cannot access.)</legend>
           <div class="quiz-options">
             <label class="quiz-option">
               <input type="radio" name="cash" value="under3">
@@ -128,7 +175,7 @@ date: 2026-08-20
         </fieldset>
 
         <fieldset class="quiz-q">
-          <legend class="quiz-q__legend">5. Could a lender waive LMI because of your job? (Bank or financial institution, or a listed profession such as doctor, lawyer, accountant. If you do not know, say so.)</legend>
+          <legend class="quiz-q__legend"><span class="quiz-q__num">5</span> Could a lender waive LMI because of your job? (Bank or financial institution, or a listed profession such as doctor, lawyer, accountant. If you do not know, say so.)</legend>
           <div class="quiz-options">
             <label class="quiz-option">
               <input type="radio" name="waiver" value="yes">
@@ -149,30 +196,39 @@ date: 2026-08-20
           <button class="btn btn--primary btn--lg" type="submit" id="wd-submit" disabled>See result</button>
           <p class="calc-field__hint" id="wd-need-all">Pick an answer for each question. Not sure is a real answer.</p>
         </div>
+        </div>
       </form>
 
       <div class="stack-lg">
-        <div class="calc-card" id="wd-result-card">
-          <div id="wd-empty">
-            <div class="calc-hero-stat">
-              <span class="calc-hero-stat__label">Your door</span>
-              <span class="calc-hero-stat__value" style="font-size: clamp(1.75rem, 3vw + 0.4rem, 2.4rem);">Answer five. Get one door.</span>
+        <div class="calc-card quiz-result-card" id="wd-result-card">
+          <div id="wd-empty" class="quiz-empty">
+            <div class="quiz-empty__doors" aria-hidden="true">
+              {{ doorSvg | safe }}
+              {{ doorSvg | safe }}
+              {{ doorSvg | safe }}
+              {{ doorSvg | safe }}
+              {{ doorSvg | safe }}
             </div>
-            <p class="calc-hero-stat__note">I will name the path that is worth walking, and the ones that look closed. No email. No sales sequence.</p>
+            <span class="quiz-empty__kicker">Your door</span>
+            <p class="quiz-empty__title">Answer five. Get one door.</p>
+            <p class="quiz-empty__note">I will name the path that is worth walking, and the ones that look closed. No email. No sales sequence.</p>
           </div>
 
-          <div id="wd-result" hidden aria-live="polite">
-            <div class="calc-hero-stat">
-              <span class="calc-hero-stat__label">The door that looks open</span>
-              <span class="calc-hero-stat__value" id="wd-headline" style="font-size: clamp(1.75rem, 3vw + 0.4rem, 2.4rem);"></span>
+          <div id="wd-result" class="quiz-result" hidden aria-live="polite">
+            <div class="quiz-result__stage">
+              <div class="quiz-result__art" aria-hidden="true">{{ doorSvg | safe }}</div>
+              <p class="quiz-result__kicker" id="wd-kicker">Walk this</p>
+              <p class="quiz-result__stamp" id="wd-headline"></p>
             </div>
-            <div class="quiz-copy" id="wd-copy"></div>
-            <div class="quiz-doors" id="wd-doors" aria-label="Other doors"></div>
-            <div class="quiz-cta">
-              {% cta "Book a free discovery call" %}
-              <p class="calc-field__hint">Thirty minutes on Google Meet. I will tell you if this door is actually open, including not yet.</p>
+            <div class="quiz-result__body">
+              <div class="quiz-copy" id="wd-copy"></div>
+              <div class="quiz-doors" id="wd-doors" aria-label="Other doors"></div>
+              <div class="quiz-cta">
+                {% cta "Book a free discovery call" %}
+                <p class="calc-field__hint">Thirty minutes on Google Meet. I will tell you if this door is actually open, including not yet.</p>
+              </div>
+              <button class="btn btn--ghost" type="button" id="wd-reset">Start again</button>
             </div>
-            <button class="btn btn--ghost" type="button" id="wd-reset">Start again</button>
           </div>
         </div>
       </div>
@@ -207,5 +263,5 @@ date: 2026-08-20
 </section>
 
 {% block scripts %}
-<script src="/assets/js/which-door.js?v=20260821" defer></script>
+<script src="/assets/js/which-door.js?v=20260821b" defer></script>
 {% endblock %}

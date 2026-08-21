@@ -43,12 +43,35 @@
     });
   }
 
+  var DOOR_SVG = '<svg class="quiz-door-svg" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 30V12.2A7 7 0 0 1 12 6a7 7 0 0 1 7 6.2V30"/><path d="M4 30h16"/><circle cx="15.3" cy="19" r="1.15" fill="currentColor" stroke="none"/></svg>';
+
+  function paintProgress(a) {
+    if (!progressEl) return;
+    var done = 0;
+    var markedNow = false;
+    FIELDS.forEach(function (name) {
+      var answered = !!a[name];
+      if (answered) done += 1;
+      var step = progressEl.querySelector('[data-step="' + name + '"]');
+      if (!step) return;
+      step.classList.toggle('is-done', answered);
+      step.classList.toggle('is-now', !answered && !markedNow);
+      if (!answered && !markedNow) markedNow = true;
+    });
+    progressEl.style.setProperty('--wd-done', String(done));
+    if (progressBar) {
+      progressBar.setAttribute('aria-valuenow', String(done));
+    }
+    if (progressCount) progressCount.textContent = String(done);
+  }
+
   function refreshReady() {
     var a = answers();
     var ok = complete(a);
     submitBtn.disabled = !ok;
     if (needAll) needAll.hidden = ok;
     paintSelected();
+    paintProgress(a);
   }
 
   /* ── Door list helpers ─────────────────────────────────────────────────── */
@@ -309,10 +332,14 @@
   var empty = document.getElementById('wd-empty');
   var result = document.getElementById('wd-result');
   var headlineEl = document.getElementById('wd-headline');
+  var kickerEl = document.getElementById('wd-kicker');
   var copyEl = document.getElementById('wd-copy');
   var doorsEl = document.getElementById('wd-doors');
   var resetBtn = document.getElementById('wd-reset');
   var resultCard = document.getElementById('wd-result-card');
+  var progressEl = document.getElementById('wd-progress');
+  var progressBar = document.getElementById('wd-progress-bar');
+  var progressCount = document.getElementById('wd-progress-count');
 
   /* ── Render ────────────────────────────────────────────────────────────── */
 
@@ -323,7 +350,14 @@
     return 'Closed';
   }
 
+  function stampKicker(doors) {
+    if (doors.some(function (d) { return d.status === 'open'; })) return 'Walk this';
+    if (doors.some(function (d) { return d.status === 'check'; })) return 'Check first';
+    return 'Not yet';
+  }
+
   function render(model) {
+    if (kickerEl) kickerEl.textContent = stampKicker(model.doors);
     headlineEl.textContent = model.headline;
     copyEl.innerHTML = model.paragraphs.map(function (p) {
       return '<p>' + p + '</p>';
@@ -332,6 +366,7 @@
     doorsEl.innerHTML = model.doors.map(function (d) {
       return (
         '<div class="quiz-door quiz-door--' + d.status + '">' +
+          '<span class="quiz-door__icon">' + DOOR_SVG + '</span>' +
           '<span class="quiz-door__status">' + statusLabel(d.status) + '</span>' +
           '<span class="quiz-door__name">' + d.name + '</span>' +
           (d.note ? '<span class="quiz-door__note">' + d.note + '</span>' : '') +
@@ -341,13 +376,18 @@
 
     empty.hidden = true;
     result.hidden = false;
+    result.classList.remove('is-in');
+    void result.offsetWidth;
+    result.classList.add('is-in');
   }
 
   function resetQuiz() {
     form.reset();
     empty.hidden = false;
     result.hidden = true;
+    result.classList.remove('is-in');
     headlineEl.textContent = '';
+    if (kickerEl) kickerEl.textContent = 'Walk this';
     copyEl.innerHTML = '';
     doorsEl.innerHTML = '';
     refreshReady();
