@@ -10,7 +10,9 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 Quiz results, assumptions and on-page copy now name solution types, not products or lenders: standard 20% deposit loan, occupation LMI waiver at about 90%, government 5% first-home scheme, shared-equity / second-mortgage deposit help, and borrowed-deposit / deposit-boost second loan. Housing Australia stays as the scheme operator. Homepage Tools adds a quiz card; the hero “Get started in 2 minutes” link now goes to `/which-door/` instead of the Middle fact-find. Article pages left alone.
 
-**Files changed:** `src/which-door.njk`, `src/assets/js/which-door.js`, `src/index.njk`
+Visual lift on the same quiz: navy progress band with five door marks that fill as you answer, solid navy answer chips, a gold-stamp result reveal (320ms fade/slide), dimmed closed doors, and a navy homepage Tools card so the quiz does not look like the newsletter tile. Brand tokens only. No stock photos.
+
+**Files changed:** `src/which-door.njk`, `src/assets/js/which-door.js`, `src/index.njk`, `src/_includes/css/styles.css`
 
 ---
 
