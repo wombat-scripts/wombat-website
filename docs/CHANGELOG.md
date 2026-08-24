@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-24 — Let Calendly data-resize hug the /book/ embed
+
+CSS `min-height: 700px` on the widget was still winning after `widget.js` resized to ~640–680px. Height now comes only from the official inline `height:700px` (initial floor) and `data-resize=true`. Wrapper and iframe hug that height. No overflow, no 1150px floor.
+
+**Files changed:** `src/_includes/css/styles.css`
+
+---
+
 ## 2026-08-24 — Hug the Calendly iframe on /book/
 
 The booking embed no longer uses a 1150px height floor. Official `widget.js` with `data-resize=true` sizes the iframe to the calendar and time slots. A 700px min-height keeps the month visible before the first resize so a date pick does not leave a dead white band above the Middle link.
