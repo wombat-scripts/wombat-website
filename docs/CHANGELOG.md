@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-24 — Cash walk: LVR bands, indicative 6.5%, no bare HIA
+
+Walk LVR is now 70 / 80 / 90 / 95 (default still 90). Annual rate defaults to 6.5% and is labelled indicative only; clear the field to skip IO and P&I. UI copy says Housing Industry Association, not the bare acronym.
+
+**Files changed:** `src/construction/house-and-land-cash.njk`, `src/assets/js/house-and-land-cash-math.js`, `src/assets/js/house-and-land-cash.js`, `tests/house-and-land-cash.test.js`, `tests/construction-hub.test.js`
+
+---
+
 ## 2026-08-24 — Construction hub: building vs buying
 
 Buyer-framed mini hub at `/construction/`. Finished home vs building, three build types, a visible comparison table, and the spec fixture as a labelled example. The NSW cash walk moves to `/construction/house-and-land-cash/`. `/tools/house-and-land-cash/` 301s to the walk. Homepage Tools, `/calculators/`, footer, and `llms.txt` now point at the hub. Extra walk inputs default open. Calculators closer says Strategy Session.

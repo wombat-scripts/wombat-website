@@ -37,13 +37,20 @@ test('cash walk lives under /construction/ and keeps the engine hooks', function
   assert.match(walk, /data-hlc/);
   assert.match(walk, /id="hlc-form"/);
   assert.match(walk, /id="hlc-lvr"/);
+  assert.match(walk, /data-value="70"/);
+  assert.match(walk, /data-value="80"/);
+  assert.match(walk, /data-value="90"/);
+  assert.match(walk, /data-value="95"/);
   assert.match(walk, /id="hlc-fhb"/);
   assert.match(walk, /id="hlc-rate"/);
+  assert.match(walk, /id="hlc-rate"[^>]*value="6\.5"/);
   assert.match(walk, /id="hlc-rent"/);
   assert.match(walk, /id="hlc-stages"/);
+  assert.match(walk, /Housing Industry Association/);
   assert.match(walk, /<details class="hlc-more" open>/);
   assert.match(walk, /Book a Strategy Session/);
   assert.doesNotMatch(walk, /discovery call/i);
+  assert.doesNotMatch(walk, /\bHIA\b/);
   assert.doesNotMatch(walk, /permalink:\s*\/tools\/house-and-land-cash\//);
 });
 
