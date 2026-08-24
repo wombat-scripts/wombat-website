@@ -2074,3 +2074,41 @@ input[type="range"].calc-range::-moz-range-thumb {
     height: 54px;
   }
 }
+
+
+/* -----------------------------------------------------------------------------
+   9. Book page (/book/) — Calendly inline embed
+   -----------------------------------------------------------------------------
+   Tall, unclipped widget so month + times sit in the first view. widget.js
+   with data-resize grows the iframe; the parent must not clip or scroll. */
+
+.book-hero {
+  padding-block: clamp(4rem, 8vw, 7rem) var(--space-6);
+}
+
+.book-embed-section {
+  padding-top: 0;
+}
+
+.book-embed {
+  width: 100%;
+  overflow: visible;
+}
+
+.book-embed .calendly-inline-widget {
+  min-width: 320px;
+  width: 100%;
+  min-height: 1150px;
+  height: 1150px;
+  overflow: visible;
+}
+
+.book-embed .calendly-inline-widget iframe {
+  min-width: 100%;
+  width: 100%;
+  min-height: 1150px;
+}
+
+.book-embed__aside {
+  margin-top: var(--space-5);
+}
