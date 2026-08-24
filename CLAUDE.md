@@ -68,7 +68,7 @@ Vanilla JS only. Five modules: nav scroll state, marquee duplication, reveal-on-
 - Voice: warm, conversational, jargon-free, confident but never salesy
 - Tom's background: 20+ years institutional banking (Citi, UBS, RBS → Commonwealth Bank), Sydney-based, moved from the UK
 - Niche: corporate professionals — first homes, next moves, refinancing, complex income
-- **Never change:** ACL number (561324), Calendly event (`https://calendly.com/tom-wombathomeloans/15-minute-chat`), phone (0456 255 409), email (`tom@wombathomeloans.com.au`)
+- **Never change:** ACL number (561324), Calendly event (`https://calendly.com/tom-wombathomeloans/strategy-session`), phone (0456 255 409), email (`tom@wombathomeloans.com.au`)
 
 ## When adding a new page
 

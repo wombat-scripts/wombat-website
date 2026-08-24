@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-24 — Point /book/ at the live Calendly event slug
+
+Tom renamed the live Calendly event to `strategy-session`. The previous event slug 404s and Calendly does not redirect. `site.calendlyEvent` now uses `https://calendly.com/tom-wombathomeloans/strategy-session`. `/book/` still embeds it with `hide_event_type_details=1` and `hide_gdpr_banner=1`.
+
+**Files changed:** `src/_data/site.json`, `CLAUDE.md`, `docs/briefing.md`
+
+---
+
 ## 2026-08-21 — Visual lift for the which-door quiz
 
 Navy progress band with five door marks that fill as you answer, solid navy answer chips, a gold-stamp result reveal (320ms fade/slide), dimmed closed doors, and a navy homepage Tools card so the quiz does not look like the newsletter tile. Brand tokens only. No stock photos. Generic door names unchanged.
