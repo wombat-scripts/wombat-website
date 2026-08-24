@@ -6,6 +6,15 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-24 — Tool: NSW house and land cash walk
+
+Client-side cash-timing estimator at `/tools/house-and-land-cash/`. Shows when a buyer writes a cheque on a two-contract NSW house-and-land package, and whether they run out of cash. Not an approval, not a max-loan, not a lender comparison. NSW 2026/27 duty on land only; FHBAS concessional band does not invent a dollar. Listed next to the which-door quiz on `/calculators/`, homepage Tools, footer Tools, and `llms.txt`. Not in the homepage hero.
+
+**Files added:** `src/tools/house-and-land-cash.njk`, `src/assets/js/house-and-land-cash-math.js`, `src/assets/js/house-and-land-cash.js`, `tests/house-and-land-cash.test.js`
+**Files changed:** `src/_includes/css/styles.css`, `src/_includes/footer.njk`, `src/calculators/index.njk`, `src/index.njk`, `src/llms.txt.njk`, `package.json`
+
+---
+
 ## 2026-08-24 — Hug the Calendly iframe on /book/
 
 The booking embed no longer uses a 1150px height floor. Official `widget.js` with `data-resize=true` sizes the iframe to the calendar and time slots. A 700px min-height keeps the month visible before the first resize so a date pick does not leave a dead white band above the Middle link.
