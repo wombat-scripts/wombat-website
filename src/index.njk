@@ -95,12 +95,18 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   .tool-card h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
   .tool-card p { font-size: var(--fs-small); color: var(--ink-soft); margin: 0; }
   .tool-card__link { margin-top: auto; padding-top: var(--space-4); }
-  .tool-card.tool-card--quiz { background: var(--navy); color: #fff; border: 0; border-top: 3px solid var(--gold); box-shadow: var(--shadow-lg); }
-  .tool-card--quiz h3 { color: #fff; }
-  .tool-card--quiz p { color: rgba(255, 255, 255, 0.82); }
-  .tool-card--quiz .badge { background: var(--gold); color: var(--navy-deep); }
-  .tool-card--quiz .btn--ghost { color: #fff; border-color: rgba(255, 255, 255, 0.4); }
-  .tool-card--quiz .btn--ghost:hover { background: rgba(255, 255, 255, 0.1); color: #fff; border-color: #fff; }
+  .tool-card.tool-card--quiz,
+  .tool-card.tool-card--build { background: var(--navy); color: #fff; border: 0; border-top: 3px solid var(--gold); box-shadow: var(--shadow-lg); }
+  .tool-card--quiz h3,
+  .tool-card--build h3 { color: #fff; }
+  .tool-card--quiz p,
+  .tool-card--build p { color: rgba(255, 255, 255, 0.82); }
+  .tool-card--quiz .badge,
+  .tool-card--build .badge { background: var(--gold); color: var(--navy-deep); }
+  .tool-card--quiz .btn--ghost,
+  .tool-card--build .btn--ghost { color: #fff; border-color: rgba(255, 255, 255, 0.4); }
+  .tool-card--quiz .btn--ghost:hover,
+  .tool-card--build .btn--ghost:hover { background: rgba(255, 255, 255, 0.1); color: #fff; border-color: #fff; }
 
   /* Articles preview */
   .articles-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
@@ -466,19 +472,19 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
         </a>
       </article>
 
-      <article class="card tool-card" style="border-top: 3px solid var(--steel);">
-        <div class="help-card__icon" style="background: var(--blue-pale); margin-bottom: var(--space-4);">
+      <article class="card tool-card tool-card--build">
+        <div class="help-card__icon" style="background: rgba(255, 255, 255, 0.12); color: #fff; margin-bottom: var(--space-4);">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;">
-            <rect x="3" y="10" width="18" height="11" rx="1"/>
-            <path d="M7 10V7a5 5 0 0 1 10 0v3"/>
-            <path d="M3 15h18"/>
+            <path d="M3 21h18"/>
+            <path d="M5 21V10l7-6 7 6v11"/>
+            <path d="M10 21v-6h4v6"/>
           </svg>
         </div>
-        <span class="badge" style="background: var(--navy); color: #fff; margin-bottom: var(--space-3);">NSW house &amp; land</span>
-        <h3>The cash walk</h3>
-        <p style="color: var(--ink-soft); font-size: var(--fs-small); flex: 1;">Estimate the cash you need at each step of a NSW house-and-land package. This is not a loan offer.</p>
-        <a class="btn btn--ghost btn--sm" href="/tools/house-and-land-cash/" data-umami-event="hlc-click" data-umami-event-location="tools" style="margin-top: var(--space-5);">
-          Open the walk →
+        <span class="badge" style="margin-bottom: var(--space-3);">Construction</span>
+        <h3>Building vs buying</h3>
+        <p style="font-size: var(--fs-small); flex: 1;">You are either buying a finished home, or you are building. Those are different loans.</p>
+        <a class="btn btn--ghost btn--sm" href="/construction/" data-umami-event="construction-click" data-umami-event-location="tools" style="margin-top: var(--space-5);">
+          Open the hub →
         </a>
       </article>
 

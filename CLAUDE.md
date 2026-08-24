@@ -7,10 +7,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```bash
 npm start        # dev server with live reload (Eleventy --serve)
 npm run build    # production build → outputs to _site/
-npm test         # node:test suite for the NSW house-and-land cash walk
+npm test         # node:test suite for the NSW house-and-land cash walk and construction hub
 ```
 
-No linter. There is no CI beyond Netlify's build step. `npm test` covers duty fixtures and cash-walk QA cases for `/tools/house-and-land-cash/`.
+No linter. There is no CI beyond Netlify's build step. `npm test` covers duty fixtures and cash-walk QA cases for `/construction/house-and-land-cash/`, plus a smoke test that the `/construction/` hub template is wired.
 
 ## Architecture
 
@@ -34,7 +34,7 @@ Pages are `.njk` files (Nunjucks) or `.md` files (Markdown with Nunjucks process
 | Blog articles | `src/articles/*.md` | `/articles/slug/` |
 | Landing pages | `src/landing/*.njk` | `/landing/slug/` |
 | Demand-path pages | `src/book.njk`, `src/first-home-buyers.njk`, `src/investors.njk`, `src/refinance.njk` | `/book/`, `/first-home-buyers/`, `/investors/`, `/refinance/` |
-| Tools pages | `src/which-door.njk`, `src/tools/*.njk` | `/which-door/`, `/tools/slug/` |
+| Tools pages | `src/which-door.njk`, `src/construction/*.njk` | `/which-door/`, `/construction/`, `/construction/house-and-land-cash/` |
 
 Articles are collected via `.eleventy.js` → `articles` collection, sorted newest-first. Article frontmatter requires: `title`, `description`, `date`, `category`, `layout: article.njk`, `thumbnail`.
 

@@ -6,6 +6,15 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-24 — Construction hub: building vs buying
+
+Buyer-framed mini hub at `/construction/`. Finished home vs building, three build types, a visible comparison table, and the spec fixture as a labelled example. The NSW cash walk moves to `/construction/house-and-land-cash/`. `/tools/house-and-land-cash/` 301s to the walk. Homepage Tools, `/calculators/`, footer, and `llms.txt` now point at the hub. Extra walk inputs default open. Calculators closer says Strategy Session.
+
+**Files added:** `src/construction/index.njk`, `src/construction/house-and-land-cash.njk`, `tests/construction-hub.test.js`
+**Files changed:** `src/tools/house-and-land-cash.njk` (redirect stub), `src/_includes/css/styles.css`, `src/_includes/footer.njk`, `src/_includes/calc-cta.njk`, `src/calculators/index.njk`, `src/index.njk`, `src/llms.txt.njk`, `src/assets/js/house-and-land-cash.js`, `netlify.toml`, `package.json`, `CLAUDE.md`
+
+---
+
 ## 2026-08-24 — Tool: NSW house and land cash walk
 
 Client-side cash-timing estimator at `/tools/house-and-land-cash/`. Shows when a buyer writes a cheque on a two-contract NSW house-and-land package, and whether they run out of cash. Not an approval, not a max-loan, not a lender comparison. NSW 2026/27 duty on land only; FHBAS concessional band does not invent a dollar. Listed next to the which-door quiz on `/calculators/`, homepage Tools, footer Tools, and `llms.txt`. Not in the homepage hero.

@@ -1,7 +1,7 @@
 /* =============================================================================
    Wombat Home Loans — NSW house-and-land cash walk (UI)
    -----------------------------------------------------------------------------
-   Client-side only. Paints /tools/house-and-land-cash/. No backend.
+   Client-side only. Paints /construction/house-and-land-cash/. No backend.
    Math lives in house-and-land-cash-math.js.
    ============================================================================= */
 

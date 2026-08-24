@@ -54,6 +54,18 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/tools/house-and-land-cash"
+  to = "/construction/house-and-land-cash/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tools/house-and-land-cash/"
+  to = "/construction/house-and-land-cash/"
+  status = 301
+  force = true
+
 # ─────────────────────────────────────────────────────────────────────
 # HEADERS — security and performance
 # ─────────────────────────────────────────────────────────────────────
