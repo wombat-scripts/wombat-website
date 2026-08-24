@@ -177,7 +177,8 @@
     if (depositStage && isFinite(depositPct)) depositStage.pct = depositPct;
 
     var sum = stagePctSum(stages);
-    if (Math.abs(sum - 100) > 0.001) {
+    var depositCapped = errors.some(function (e) { return e.id === 'depositPct'; });
+    if (!depositCapped && Math.abs(sum - 100) > 0.001) {
       errors.push({
         id: 'stages',
         message: 'Stage percentages must add to 100%, including the deposit. They currently add to ' + sum + '%.'

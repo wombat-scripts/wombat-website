@@ -156,6 +156,7 @@ test('builder deposit over 10% is an error', function () {
   var r = H.calculate(fixture({ depositPct: 10.1, lvr: 0.95 }));
   assert.equal(r.ok, false);
   assert.ok(r.errors.some(function (e) { return e.id === 'depositPct'; }));
+  assert.ok(r.errors.every(function (e) { return e.id !== 'stages'; }));
 });
 
 test('builder deposit at 10% is allowed (HBA s8 max) when stages still sum to 100', function () {
