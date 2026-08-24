@@ -244,3 +244,35 @@ test('L is floor of C times LVR', function () {
   assert.equal(r.L, Math.floor(666667 * 0.9));
   assert.equal(r.E, r.C - r.L);
 });
+
+test('80% LVR on the spec package: L 880000 E 220000', function () {
+  var r = H.calculate(fixture({ lvr: 0.8 }));
+  assert.equal(r.ok, true);
+  assert.equal(r.C, 1100000);
+  assert.equal(r.L, 880000);
+  assert.equal(r.E, 220000);
+});
+
+test('70% LVR on the spec package: L 770000 E 330000', function () {
+  var r = H.calculate(fixture({ lvr: 0.7 }));
+  assert.equal(r.ok, true);
+  assert.equal(r.C, 1100000);
+  assert.equal(r.L, 770000);
+  assert.equal(r.E, 330000);
+});
+
+test('LVR other than 70/80/90/95 is rejected', function () {
+  var r = H.calculate(fixture({ lvr: 0.85 }));
+  assert.equal(r.ok, false);
+  assert.ok(r.errors.some(function (e) { return e.id === 'lvr'; }));
+});
+
+test('indicative 6.5% rate produces IO and a 30-year P&I estimate', function () {
+  var r = H.calculate(fixture({ lvr: 0.95, ratePct: 6.5 }));
+  assert.equal(r.ok, true);
+  assert.ok(r.monthly);
+  assert.equal(r.monthly.skippedIO, false);
+  assert.ok(r.piEstimate > 0);
+  var afterLand = r.invoices[0].drawnAfter;
+  assert.ok(Math.abs(r.monthly.rows[0].io - afterLand * 0.065 / 12) < 0.02);
+});

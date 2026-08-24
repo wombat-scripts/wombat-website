@@ -22,6 +22,7 @@
   var HBA_MAX_DEPOSIT_PCT = 10;
   var GENUINE_SAVINGS_PCT = 5;
   var DEFAULT_LVR = 0.9;
+  var ALLOWED_LVRS = [0.7, 0.8, 0.9, 0.95];
   var DEFAULT_LAND_TO_PC = 12;
   var PI_YEARS = 30;
 
@@ -169,7 +170,7 @@
     } else if (depositPct > HBA_MAX_DEPOSIT_PCT) {
       errors.push({
         id: 'depositPct',
-        message: 'Builder deposit cannot be over 10%. That is the Home Building Act s8 maximum (the typical HIA figure is 5%, not the legal cap).'
+        message: 'Builder deposit cannot be over 10%. That is the Home Building Act s8 maximum (a typical Housing Industry Association builder-contract figure is 5%, not the legal cap).'
       });
     }
 
@@ -186,8 +187,8 @@
     }
 
     var lvr = Number(input.lvr);
-    if (lvr !== 0.9 && lvr !== 0.95) {
-      errors.push({ id: 'lvr', message: 'Pick 90% or 95% LVR.' });
+    if (ALLOWED_LVRS.indexOf(lvr) === -1) {
+      errors.push({ id: 'lvr', message: 'Pick 70%, 80%, 90% or 95% LVR.' });
     }
 
     return { errors: errors, stages: stages, depositPct: depositPct };
@@ -486,6 +487,7 @@
     FHBAS_SAMPLES: FHBAS_SAMPLES,
     DEFAULT_STAGES: DEFAULT_STAGES,
     DEFAULT_LVR: DEFAULT_LVR,
+    ALLOWED_LVRS: ALLOWED_LVRS,
     DEFAULT_LAND_TO_PC: DEFAULT_LAND_TO_PC,
     roundCents: roundCents,
     evenSplit: evenSplit,

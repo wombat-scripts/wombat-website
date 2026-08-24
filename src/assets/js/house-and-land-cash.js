@@ -117,7 +117,7 @@
       build: parseMoney(document.getElementById('hlc-build')),
       cash: parseMoney(document.getElementById('hlc-cash')),
       firstHome: fhb === 'yes' ? true : fhb === 'no' ? false : null,
-      lvr: lvrRaw === '95' ? 0.95 : lvrRaw === '90' ? 0.9 : null,
+      lvr: ({ '70': 0.7, '80': 0.8, '90': 0.9, '95': 0.95 })[lvrRaw] || null,
       ratePct: parseOptionalRate(document.getElementById('hlc-rate')),
       weeklyRent: parseMoney(document.getElementById('hlc-rent')),
       landToPcMonths: parseMoney(document.getElementById('hlc-months')) || 12,
