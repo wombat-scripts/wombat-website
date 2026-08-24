@@ -2115,7 +2115,7 @@ input[type="range"].calc-range::-moz-range-thumb {
 }
 
 /* -----------------------------------------------------------------------------
-   10. NSW house-and-land cash walk (/tools/house-and-land-cash/)
+   10. NSW house-and-land cash walk (/construction/house-and-land-cash/)
    ----------------------------------------------------------------------------- */
 
 .hlc-lock {
@@ -2318,6 +2318,18 @@ input[type="range"].calc-range::-moz-range-thumb {
 
 .hlc-sources { margin-top: var(--space-6); }
 
+.hlc-stages-note {
+  margin: 0 0 var(--space-5);
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.calc-breadcrumb__sep {
+  margin: 0 0.4rem;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
 @media (max-width: 600px) {
   .hlc-stage {
     grid-template-columns: 1fr 1fr;
@@ -2329,4 +2341,218 @@ input[type="range"].calc-range::-moz-range-thumb {
   .hlc-table td:nth-child(5) {
     display: none;
   }
+}
+
+/* -----------------------------------------------------------------------------
+   11. Construction hub (/construction/)
+   ----------------------------------------------------------------------------- */
+
+.build-section {
+  scroll-margin-top: 6rem;
+}
+
+.build-section:target {
+  box-shadow: inset 4px 0 0 var(--gold);
+}
+
+.build-lead {
+  max-width: 62ch;
+  margin-bottom: var(--space-6);
+}
+
+.build-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+.build-jump a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.85rem;
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--paper-cool);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+}
+
+.build-jump a:hover {
+  color: #fff;
+  background: var(--navy);
+  border-color: var(--navy);
+}
+
+.build-fork-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  color: inherit;
+  min-height: 100%;
+}
+
+.build-fork-card:hover { color: inherit; }
+
+.build-fork-card h3 { margin-bottom: 0; }
+
+.build-fork-card p {
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+  margin: 0;
+  flex: 1;
+}
+
+.build-fork-card__go {
+  margin-top: var(--space-3);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--steel);
+}
+
+.build-type-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.build-type-card h3 { margin-bottom: 0; }
+
+.build-type-card p {
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+  margin: 0;
+  flex: 1;
+}
+
+.build-type-card .btn { margin-top: var(--space-3); align-self: flex-start; }
+
+.build-type-card--walk {
+  border-color: var(--navy);
+  box-shadow: var(--shadow-md);
+}
+
+.build-aside {
+  margin-top: var(--space-6);
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+  max-width: 70ch;
+}
+
+.build-compare {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.build-compare__head,
+.build-compare__row {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.9fr) 1fr 1fr;
+}
+
+.build-compare__head {
+  background: var(--navy);
+  color: #fff;
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.build-compare__head > * {
+  padding: 0.85rem 1rem;
+}
+
+.build-compare__row {
+  border-top: 1px solid var(--line);
+}
+
+.build-compare__label,
+.build-compare__cell {
+  padding: 1rem;
+}
+
+.build-compare__label {
+  font-weight: 600;
+  color: var(--navy);
+  font-size: var(--fs-small);
+  background: var(--paper-cool);
+}
+
+.build-compare__cell p {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.build-compare__kicker {
+  display: none;
+}
+
+.build-example-stats {
+  margin: var(--space-5) 0;
+}
+
+.tool-card.tool-card--build {
+  background: var(--navy);
+  color: #fff;
+  border: 0;
+  border-top: 3px solid var(--gold);
+  box-shadow: var(--shadow-lg);
+}
+
+.tool-card--build h3 { color: #fff; }
+
+.tool-card--build p { color: rgba(255, 255, 255, 0.82); }
+
+.tool-card--build .badge {
+  background: var(--gold);
+  color: var(--navy-deep);
+}
+
+.tool-card--build .help-card__icon {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.tool-card--build .btn--ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.tool-card--build .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: #fff;
+}
+
+@media (max-width: 720px) {
+  .build-compare__head { display: none; }
+  .build-compare__row {
+    grid-template-columns: 1fr;
+    padding: var(--space-5);
+    gap: var(--space-3);
+  }
+  .build-compare__label,
+  .build-compare__cell {
+    padding: 0;
+    background: transparent;
+  }
+  .build-compare__kicker {
+    display: block;
+    font-size: var(--fs-meta);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 0.25rem;
+  }
+  .build-type-card .btn,
+  .build-hero .cluster .btn,
+  #finished .cluster .btn,
+  #book .btn { width: 100%; }
 }
