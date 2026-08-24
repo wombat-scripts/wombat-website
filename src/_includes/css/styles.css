@@ -2113,3 +2113,220 @@ input[type="range"].calc-range::-moz-range-thumb {
 .book-embed__aside {
   margin-top: var(--space-5);
 }
+
+/* -----------------------------------------------------------------------------
+   10. NSW house-and-land cash walk (/tools/house-and-land-cash/)
+   ----------------------------------------------------------------------------- */
+
+.hlc-lock {
+  margin: 0 0 var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--navy);
+  background: var(--paper-cool);
+  border-left: 3px solid var(--steel);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.hlc-more {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+.hlc-more summary {
+  font-weight: 600;
+  font-size: var(--fs-small);
+  color: var(--navy);
+  cursor: pointer;
+  margin-bottom: var(--space-4);
+}
+
+.hlc-more[open] summary { margin-bottom: var(--space-5); }
+
+.calc-affix--suffix { position: relative; }
+
+.calc-affix--suffix::before { content: none; }
+
+.calc-affix--suffix::after {
+  content: attr(data-suffix);
+  position: absolute;
+  right: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--ink-muted);
+  pointer-events: none;
+}
+
+.calc-input--bare { padding-left: 0.9rem; padding-right: 2.6rem; }
+
+.hlc-stages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.hlc-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(4.5rem, 0.7fr) minmax(4.5rem, 0.7fr);
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.hlc-stage__name {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.hlc-stage__field {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: var(--fs-meta);
+  color: var(--ink-muted);
+}
+
+.hlc-stage__field input {
+  width: 100%;
+  min-width: 0;
+  padding: 0.4rem 0.5rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--navy-deep);
+  background: var(--paper-cool);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.hlc-stage__field input:focus {
+  outline: none;
+  border-color: var(--steel);
+  background: #fff;
+}
+
+.hlc-stage-sum {
+  margin: var(--space-3) 0 0;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--success);
+}
+
+.hlc-stage-sum.is-bad { color: var(--danger); }
+
+.hlc-result--fail .calc-hero-stat__value { color: var(--danger); }
+
+.hlc-result--ok .calc-hero-stat__value { color: var(--success); }
+
+.hlc-flags {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.hlc-flag {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-small);
+  border-radius: var(--radius-md);
+  background: var(--paper-cool);
+  border-left: 3px solid var(--steel);
+}
+
+.hlc-flag--fail {
+  background: rgba(184, 68, 60, 0.08);
+  border-left-color: var(--danger);
+}
+
+.hlc-flag--warn {
+  background: rgba(200, 154, 74, 0.12);
+  border-left-color: var(--gold);
+}
+
+.hlc-flag--note { border-left-color: var(--steel); }
+
+.hlc-samples {
+  margin: var(--space-3) 0 0;
+  padding-left: 1.1rem;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.hlc-table-wrap {
+  overflow-x: auto;
+  margin-top: var(--space-4);
+  -webkit-overflow-scrolling: touch;
+}
+
+.hlc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.hlc-table th,
+.hlc-table td {
+  padding: 0.65rem 0.7rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.hlc-table thead th {
+  font-size: var(--fs-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+
+.hlc-table tbody th {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.hlc-when {
+  display: block;
+  font-weight: 500;
+  font-size: var(--fs-meta);
+  color: var(--ink-muted);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.hlc-month-total,
+.hlc-pi,
+.hlc-savings,
+.hlc-sources {
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.hlc-month-total,
+.hlc-pi { margin-top: var(--space-4); }
+
+.hlc-savings { margin: 0 0 var(--space-5); }
+
+.hlc-sources { margin-top: var(--space-6); }
+
+@media (max-width: 600px) {
+  .hlc-stage {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hlc-stage__name {
+    grid-column: 1 / -1;
+  }
+  .hlc-table th:nth-child(5),
+  .hlc-table td:nth-child(5) {
+    display: none;
+  }
+}

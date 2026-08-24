@@ -1,0 +1,276 @@
+---
+title: "NSW house and land cash walk"
+description: "Estimate the cash you need at each step of a NSW house-and-land package. This is not a loan offer."
+layout: base.njk
+permalink: /tools/house-and-land-cash/
+date: 2026-08-24
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "NSW house and land cash walk",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/tools/house-and-land-cash/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+  "provider": { "@type": "MortgageBroker", "name": "Wombat Home Loans", "url": "https://wombathomeloans.com.au/" }
+}
+</script>
+{% endblock %}
+
+<section class="section section--tight">
+  <div class="container">
+    <p class="calc-breadcrumb"><a href="/calculators/">← All calculators</a></p>
+    <span class="eyebrow">NSW house and land</span>
+    <h1>The cash you need, <em>step by step.</em></h1>
+    <p class="lede">Estimate the cash you need at each step of a NSW house-and-land package. This is not a loan offer.</p>
+    <p>Two contracts only: vacant land, then a fixed-price build. If you want a finished house, a knock-down rebuild, or something in another state, <a href="/book/">book a strategy session</a> instead. This walk will not help.</p>
+  </div>
+</section>
+
+<section class="section section--cool section--tight" data-hlc>
+  <div class="container">
+    <div class="calc-grid">
+
+      <form class="calc-card calc-panel" id="hlc-form" novalidate>
+        <p class="hlc-lock">V1 is locked to two contracts: land, then build. Dated 2026/27. Estimate only.</p>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="hlc-land">Vacant land price</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="hlc-land" type="text" inputmode="decimal" autocomplete="off" value="500,000" aria-describedby="hlc-land-hint">
+          </div>
+          <p class="calc-field__hint" id="hlc-land-hint">NSW vacant land only. Not a completed or spec home.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="hlc-build">Fixed-price build</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="hlc-build" type="text" inputmode="decimal" autocomplete="off" value="600,000">
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="hlc-cash">Cash already in an Australian account</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="hlc-cash" type="text" inputmode="decimal" autocomplete="off" value="107,000" aria-describedby="hlc-cash-hint">
+          </div>
+          <p class="calc-field__hint" id="hlc-cash-hint">Already here. Not KiwiSaver, not an unpaid bonus, not overseas money waiting to land.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head"><label>Are you both first-home buyers?</label></div>
+          <div class="seg" id="hlc-fhb" role="group" aria-label="First-home buyers">
+            <button type="button" data-value="yes" aria-pressed="true">Yes</button>
+            <button type="button" data-value="no" aria-pressed="false">No</button>
+          </div>
+          <p class="calc-field__hint">Thresholds only. This is not an eligibility check. Assumes you qualify for FHBAS. Confirm on Revenue NSW before you exchange.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head"><label>Loan to value (LVR)</label></div>
+          <div class="seg" id="hlc-lvr" role="group" aria-label="Loan to value ratio">
+            <button type="button" data-value="90" aria-pressed="true">90%</button>
+            <button type="button" data-value="95" aria-pressed="false">95%</button>
+          </div>
+          <p class="calc-field__hint">Default is 90%. Still changeable. This is not a max-loan calculator.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="hlc-rate">Annual interest rate</label>
+          </div>
+          <div class="calc-affix calc-affix--suffix" data-suffix="%">
+            <input class="calc-input calc-input--bare" id="hlc-rate" type="text" inputmode="decimal" autocomplete="off" placeholder="Leave blank to skip repayments" aria-describedby="hlc-rate-hint">
+          </div>
+          <p class="calc-field__hint" id="hlc-rate-hint">Empty until you type. The cash walk still runs without a rate.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="hlc-rent">Weekly rent while you wait</label>
+          </div>
+          <div class="calc-affix">
+            <input class="calc-input" id="hlc-rent" type="text" inputmode="decimal" autocomplete="off" value="0">
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__head">
+            <label for="hlc-months">Months from land to practical completion</label>
+          </div>
+          <div class="calc-affix calc-affix--suffix" data-suffix="mo">
+            <input class="calc-input calc-input--bare" id="hlc-months" type="text" inputmode="numeric" autocomplete="off" value="12">
+          </div>
+        </div>
+
+        <details class="hlc-more">
+          <summary>Holding deposit, extra cash, and stage percentages</summary>
+
+          <div class="calc-field">
+            <div class="calc-field__head">
+              <label for="hlc-holding">Holding already paid</label>
+            </div>
+            <div class="calc-affix">
+              <input class="calc-input" id="hlc-holding" type="text" inputmode="decimal" autocomplete="off" value="0">
+            </div>
+            <p class="calc-field__hint">Already gone. Reduces the land invoice. Not subtracted from cash again.</p>
+          </div>
+
+          <div class="calc-field">
+            <div class="calc-field__head">
+              <label for="hlc-other">Other cash at land settlement</label>
+            </div>
+            <div class="calc-affix">
+              <input class="calc-input" id="hlc-other" type="text" inputmode="decimal" autocomplete="off" value="0">
+            </div>
+          </div>
+
+          <div class="calc-field">
+            <div class="calc-field__head">
+              <label for="hlc-deposit">Builder deposit</label>
+            </div>
+            <div class="calc-affix calc-affix--suffix" data-suffix="%">
+              <input class="calc-input calc-input--bare" id="hlc-deposit" type="text" inputmode="decimal" autocomplete="off" value="5" aria-describedby="hlc-deposit-hint">
+            </div>
+            <p class="calc-field__hint" id="hlc-deposit-hint">Typical HIA-style figure is 5%. Home Building Act s8 maximum is 10%, not 5%. Overwrite from the contract.</p>
+          </div>
+
+          <div class="calc-field">
+            <p class="calc-field__head"><label>Build stage percentages</label></p>
+            <p class="calc-field__hint">Typical HIA-style split, not law. Must add to 100% with the deposit. Months default to an even split of the land-to-PC period.</p>
+            <div class="hlc-stages" id="hlc-stages"></div>
+            <p class="hlc-stage-sum" id="hlc-stage-sum"></p>
+          </div>
+        </details>
+      </form>
+
+      <div class="stack-lg">
+        <div class="calc-card" id="hlc-result" aria-live="polite">
+          <div class="calc-hero-stat">
+            <span class="calc-hero-stat__label" id="hlc-hero-label">Cash after duty</span>
+            <span class="calc-hero-stat__value" id="hlc-hero">—</span>
+            <p class="calc-hero-stat__note" id="hlc-hero-note"></p>
+          </div>
+          <div class="calc-stats" id="hlc-stats"></div>
+        </div>
+
+        <div class="calc-card" id="hlc-flags-card" hidden>
+          <h3>Flags</h3>
+          <ul class="hlc-flags" id="hlc-flags"></ul>
+        </div>
+
+        <div class="calc-card" id="hlc-duty-card" hidden>
+          <h3>Duty on the land</h3>
+          <div id="hlc-duty-body"></div>
+        </div>
+
+        <div class="calc-card" id="hlc-walk-card" hidden>
+          <h3>The cash walk</h3>
+          <p class="calc-field__hint">Own dollars go in first. After they are gone, later invoices are the lender paying the builder. Stage percentages are typical — overwrite them from your contract.</p>
+          <div class="hlc-table-wrap">
+            <table class="hlc-table" id="hlc-walk">
+              <thead>
+                <tr>
+                  <th scope="col">Step</th>
+                  <th scope="col">Invoice</th>
+                  <th scope="col">Your cheque</th>
+                  <th scope="col">Lender draw</th>
+                  <th scope="col">Drawn after</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-card" id="hlc-month-card" hidden>
+          <h3>While you wait</h3>
+          <p class="calc-field__hint" id="hlc-month-note"></p>
+          <div class="hlc-table-wrap">
+            <table class="hlc-table" id="hlc-month">
+              <thead>
+                <tr>
+                  <th scope="col">Month</th>
+                  <th scope="col">Drawn</th>
+                  <th scope="col">Interest only</th>
+                  <th scope="col">Rent</th>
+                  <th scope="col">Cash that month</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="hlc-month-total" id="hlc-month-total"></p>
+          <p class="hlc-pi" id="hlc-pi" hidden></p>
+        </div>
+
+        <div class="calc-card">
+          <p class="hlc-savings" id="hlc-savings"></p>
+          <div class="quiz-cta">
+            {% cta "Book a strategy session" %}
+            <p class="calc-field__hint">Thirty minutes on Google Meet. I will tell you if the cash walk is actually walkable, including not yet.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="calc-assumptions" data-reveal>
+      <details>
+        <summary>Assumptions behind this tool</summary>
+        <ul>
+          <li>Estimate only. Dated 2026/27. Not an approval, not a max-loan, not a lender comparison, and not a borrow-o-meter.</li>
+          <li>Two contracts: vacant NSW land, then a fixed-price build. Completed homes, spec homes, owner-builder, knock-down rebuilds and other states are out of scope.</li>
+          <li>Package C is land plus build. Loan L is the floor of C times the LVR you pick. Equity E is C minus L. Duty sits on top of E. It is not part of the LVR.</li>
+          <li>Duty uses the NSW 2026/27 land-transfer rates published by Revenue NSW (updated 19 August 2026). Dutiable value is the land price only. Premium duty over $3,870,000 is out of range here and is not computed. Transfer and LRS fees are not invented.</li>
+          <li>First Home Buyers Assistance Scheme (vacant land): no duty at or under $350,000, full duty at or over $450,000. Between those two figures duty is concessional — this tool will not invent a sliding formula. Confirm on the official calculator. Assumes you qualify. Confirm on Revenue NSW before you exchange.</li>
+          <li>First Home Owner Grant is $10,000 if you are a first-home buyer and the package is at or under $750,000, otherwise $0. The $0 line is shown on purpose. The grant is paid via the lender or Revenue NSW, not pocket cash on day one, so it does not add to the cash walk.</li>
+          <li>Lenders mortgage insurance is not computed. Genuine-savings seasoning is not tested. The tool only flags that 5% of the package is $X and that lenders usually want that already in Australia.</li>
+          <li>Cash means money already in an Australian account. KiwiSaver, unpaid bonus and overseas money do not count.</li>
+          <li>Default build stages are a typical HIA-style split (not law): deposit 5, base 10, frame 15, lock-up 35, fixing 25, practical completion 10. Overwrite them from the contract. Home Building Act s8 caps the deposit at 10%.</li>
+          <li>At land settlement you put in the required equity first. Extra cash stays as a buffer for later build invoices. After your own dollars are gone, later invoices are the lender paying the builder.</li>
+          <li>Interest-only while you wait is drawn balance times the rate you typed, divided by 12. Rent runs until practical completion. After practical completion, a simple 30-year principal-and-interest estimate on the full drawn balance. No APRA 3% buffer.</li>
+          <li>Product features change. This is general information, not personal advice.</li>
+        </ul>
+      </details>
+    </div>
+
+    <p class="hlc-sources">
+      Sources:
+      <a href="https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/transfer-duty" target="_blank" rel="noopener">Revenue NSW transfer duty</a>,
+      <a href="https://www.revenue.nsw.gov.au/grants-schemes/first-home-buyer/assistance-scheme" target="_blank" rel="noopener">FHBAS</a>,
+      <a href="https://apps09.revenue.nsw.gov.au/erevenue/calculators/fhba.php" target="_blank" rel="noopener">FHBAS vacant-land calculator</a>,
+      <a href="https://www.revenue.nsw.gov.au/grants-schemes/first-home-buyer/new-homes" target="_blank" rel="noopener">First Home Owner Grant</a>,
+      <a href="https://legislation.nsw.gov.au/view/html/inforce/current/act-1989-147#sec.8" target="_blank" rel="noopener">Home Building Act s8</a>.
+    </p>
+  </div>
+</section>
+
+{% include "calc-cta.njk" %}
+
+<section class="section section--tight" style="padding-top: 0;">
+  <div class="container">
+    <p class="calc-disclaimer">
+      Estimate only. Dated 2026/27. Not a loan offer, pre-approval, or credit advice.
+      Confirm duty and grants on Revenue NSW before you exchange.
+      Wombat Home Loans is a Credit Representative of Loans Only Pty Ltd, Australian Credit
+      Licence 561324.
+    </p>
+  </div>
+</section>
+
+{% block scripts %}
+<script src="/assets/js/house-and-land-cash-math.js?v=20260824" defer></script>
+<script src="/assets/js/house-and-land-cash.js?v=20260824" defer></script>
+{% endblock %}
