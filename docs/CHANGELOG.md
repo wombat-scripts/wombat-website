@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-24 — Hug the Calendly iframe on /book/
+
+The booking embed no longer uses a 1150px height floor. Official `widget.js` with `data-resize=true` sizes the iframe to the calendar and time slots. A 700px min-height keeps the month visible before the first resize so a date pick does not leave a dead white band above the Middle link.
+
+**Files changed:** `src/book.njk`, `src/_includes/css/styles.css`
+
+---
+
 ## 2026-08-24 — Point /book/ at the live Calendly event slug
 
 Tom renamed the live Calendly event to `strategy-session`. The previous event slug 404s and Calendly does not redirect. `site.calendlyEvent` now uses `https://calendly.com/tom-wombathomeloans/strategy-session`. `/book/` still embeds it with `hide_event_type_details=1` and `hide_gdpr_banner=1`.
