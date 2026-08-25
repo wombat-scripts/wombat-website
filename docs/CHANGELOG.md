@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-25 — Homepage: All tools control, drop quiet Wrap
+
+Tools slider next/scroll-forward control now reads “All tools” (same slide behaviour, no new /tools page). Quiet Wombat Wrap text link under the book CTA is gone; the Wrap card stays in the Tools slider. Footer Wrap link now goes to the Kit newsletter.
+
+**Files changed:** `src/index.njk`, `src/_includes/footer.njk`, `tests/homepage.test.js`
+
+---
+
 ## 2026-08-25 — Homepage order + stop promoting SMSF property loans
 
 Locked homepage order: hero (headline + two buttons), proof strip, lender row, video, Who I help, Why Wombat, How it works, Reviews, Articles, Tools slider, Podcast, FAQ, Book, then a quiet Wombat Wrap text link. Mid-page Wrap form is gone. Tools uses the same prev/next carousel as podcast (three cards visible, the rest on the next slide). SMSF lending offer removed from homepage, footer, default meta/OG, JSON-LD and the calculators hub. Reviews, guest bios, KiwiSaver transfer notes and older changelog entries left as-is.
