@@ -6,11 +6,21 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-25 — Stop promoting SMSF property loans
+
+Homepage, footer, default meta/OG, JSON-LD and the calculators hub no longer sell SMSF residential or commercial borrowing. Hero and Who I help copy drop SMSF (trusts stay). The SMSF lending card and FAQ are gone. Reviews, guest bios, KiwiSaver transfer notes and older changelog entries left as-is.
+
+**Files changed:** `src/index.njk`, `src/_includes/footer.njk`, `src/_layouts/base.njk`, `src/calculators/index.njk`
+
+---
+
 ## 2026-08-24 — Copy: cash timeline, quiz door is open
 
 Public name of the NSW house-and-land tool is now cash timeline, not cash walk or the walk. Quiz heading is “Which door is actually open?” URLs, duty math, LVR chips, and 6.5% default are unchanged.
 
 **Files changed:** `src/construction/index.njk`, `src/construction/house-and-land-cash.njk`, `src/tools/house-and-land-cash.njk`, `src/which-door.njk`, `src/index.njk`, `src/calculators/index.njk`, `src/llms.txt.njk`, `src/assets/js/house-and-land-cash.js`, `src/assets/js/house-and-land-cash-math.js`, `src/assets/js/which-door.js`, `src/articles/high-income-small-deposit.njk`, `src/articles/kiwisaver-australian-deposit.njk`, `src/_includes/css/styles.css`, `tests/construction-hub.test.js`, `CLAUDE.md`
+
+---
 
 ## 2026-08-24 — Cash walk: LVR bands, indicative 6.5%, no bare HIA
 
