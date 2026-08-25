@@ -1,5 +1,5 @@
 /* =============================================================================
-   Wombat Home Loans — NSW house-and-land cash walk (math)
+   Wombat Home Loans — NSW house-and-land cash timeline (math)
    -----------------------------------------------------------------------------
    Pure functions. No DOM. Safe to require() from Node tests and to load in
    the browser. This is a cash-timing estimate, not an approval or max-loan.
@@ -358,7 +358,7 @@
 
       /* Land cheque: required equity first, then the lender. Extra cash
          (buffer) stays in the account for later build invoices — that is
-         the whole point of the walk. */
+         the whole point of the cash timeline. */
       var landPay = payFromPools(landInvoice, pools, false, facilityLeft);
       drawn = roundCents(drawn + landPay.fromLender);
       facilityLeft = Math.max(0, L - drawn);

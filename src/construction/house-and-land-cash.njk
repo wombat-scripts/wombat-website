@@ -1,6 +1,6 @@
 ---
-title: "NSW house and land cash walk"
-description: "Estimate the cash you need at each step of a NSW house-and-land package. This walk is only for two-contract vacant land plus a fixed-price build. Not a loan offer."
+title: "NSW house and land: cash timeline"
+description: "Estimate the cash you need at each step of a NSW house-and-land package. This cash timeline is only for two-contract vacant land plus a fixed-price build. Not a loan offer."
 layout: base.njk
 permalink: /construction/house-and-land-cash/
 date: 2026-08-24
@@ -11,7 +11,7 @@ date: 2026-08-24
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "NSW house and land cash walk",
+  "name": "NSW house and land: cash timeline",
   "description": "{{ description }}",
   "url": "https://wombathomeloans.com.au/construction/house-and-land-cash/",
   "applicationCategory": "FinanceApplication",
@@ -27,11 +27,11 @@ date: 2026-08-24
     <p class="calc-breadcrumb">
       <a href="/construction/">Construction</a>
       <span class="calc-breadcrumb__sep" aria-hidden="true">→</span>
-      House and land cash walk
+      Cash timeline
     </p>
     <span class="eyebrow">NSW house and land</span>
-    <h1>The cash you need, <em>step by step.</em></h1>
-    <p class="lede">This walk is only for two-contract NSW vacant land plus a fixed-price build. Estimate only. Not a loan offer.</p>
+    <h1>Cash timeline</h1>
+    <p class="lede">This cash timeline is only for two-contract NSW vacant land plus a fixed-price build. Estimate only. Not a loan offer.</p>
     <p>Reno, knock-down rebuild, or a finished home? Those are different doors. <a href="/construction/">Back to the construction hub</a>.</p>
   </div>
 </section>
@@ -184,7 +184,7 @@ date: 2026-08-24
         </div>
 
         <div class="calc-card" id="hlc-walk-card" hidden>
-          <h3>The cash walk</h3>
+          <h3>The cash timeline</h3>
           <p class="calc-field__hint">Own dollars go in first. After they are gone, later invoices are the lender paying the builder. Stage percentages are typical. Overwrite them from your contract.</p>
           <div class="hlc-table-wrap">
             <table class="hlc-table" id="hlc-walk">
@@ -227,7 +227,7 @@ date: 2026-08-24
           <p class="hlc-savings" id="hlc-savings"></p>
           <div class="quiz-cta">
             {% cta "Book a Strategy Session" %}
-            <p class="calc-field__hint">Thirty minutes on Google Meet. I will tell you if the cash walk is actually walkable, including not yet.</p>
+            <p class="calc-field__hint">Thirty minutes on Google Meet. I will tell you if the cash at each stage actually works, including not yet.</p>
           </div>
         </div>
       </div>
@@ -243,7 +243,7 @@ date: 2026-08-24
           <li>Package C is land plus build. Loan L is the floor of C times the LVR you pick. Equity E is C minus L. Duty sits on top of E. It is not part of the LVR.</li>
           <li>Duty uses the NSW 2026/27 land-transfer rates published by Revenue NSW (updated 19 August 2026). Dutiable value is the land price only. Premium duty over $3,870,000 is out of range here and is not computed. Transfer and LRS fees are not invented.</li>
           <li>First Home Buyers Assistance Scheme (vacant land): no duty at or under $350,000, full duty at or over $450,000. Between those two figures duty is concessional. This tool will not invent a sliding formula. Confirm on the official calculator. Assumes you qualify. Confirm on Revenue NSW before you exchange.</li>
-          <li>First Home Owner Grant is $10,000 if you are a first-home buyer and the package is at or under $750,000, otherwise $0. The $0 line is shown on purpose. The grant is paid via the lender or Revenue NSW, not pocket cash on day one, so it does not add to the cash walk.</li>
+          <li>First Home Owner Grant is $10,000 if you are a first-home buyer and the package is at or under $750,000, otherwise $0. The $0 line is shown on purpose. The grant is paid via the lender or Revenue NSW, not pocket cash on day one, so it does not add to the cash timeline.</li>
           <li>Lenders mortgage insurance is not computed. Genuine-savings seasoning is not tested. The tool only flags that 5% of the package is $X and that lenders usually want that already in Australia.</li>
           <li>Cash means money already in an Australian account. KiwiSaver, unpaid bonus and overseas money do not count.</li>
           <li>Default build stages are a typical builder-contract split (Housing Industry Association style, not law): deposit 5, base 10, frame 15, lock-up 35, fixing 25, practical completion 10. Overwrite them from the contract. Home Building Act s8 caps the deposit at 10%.</li>
@@ -279,6 +279,6 @@ date: 2026-08-24
 </section>
 
 {% block scripts %}
-<script src="/assets/js/house-and-land-cash-math.js?v=20260824d" defer></script>
-<script src="/assets/js/house-and-land-cash.js?v=20260824d" defer></script>
+<script src="/assets/js/house-and-land-cash-math.js?v=20260824e" defer></script>
+<script src="/assets/js/house-and-land-cash.js?v=20260824e" defer></script>
 {% endblock %}

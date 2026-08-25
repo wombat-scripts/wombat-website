@@ -1,5 +1,5 @@
 /* =============================================================================
-   Wombat Home Loans — Which door can you actually walk?
+   Wombat Home Loans — Which door is actually open?
    -----------------------------------------------------------------------------
    Client-side path finder for /which-door/. No backend. No email capture.
    General information, not a credit assessment.
@@ -89,7 +89,7 @@
       { key: 'borrowed', name: DOOR_NAME.borrowed }
     ];
     return order.map(function (d) {
-      if (d.key === primary) return door(d.name, 'open', extras[d.key] || 'This is the one I would walk first.');
+      if (d.key === primary) return door(d.name, 'open', extras[d.key] || 'This is the one I would open first.');
       return door(d.name, extras[d.key + 'Status'] || 'closed', extras[d.key] || '');
     });
   }
@@ -156,12 +156,12 @@
 
   function resultScheme(kind) {
     var headline = 'The government 5% first-home scheme';
-    var why = 'You are a first-home buyer, you can get to 5%, and this price sits under the Housing Australia cap for that area. That is the first door I walk.';
+    var why = 'You are a first-home buyer, you can get to 5%, and this price sits under the Housing Australia cap for that area. That is the first door I open.';
 
     if (kind === 'sydney') {
-      why = 'You are a first-home buyer, you can get to 5%, and a Sydney, Illawarra, Newcastle or Lake Macquarie price under $1.5 million sits under the published cap. That is the first door I walk.';
+      why = 'You are a first-home buyer, you can get to 5%, and a Sydney, Illawarra, Newcastle or Lake Macquarie price under $1.5 million sits under the published cap. That is the first door I open.';
     } else if (kind === 'nsw') {
-      why = 'You are a first-home buyer, you can get to 5%, and an other-NSW price under $800,000 sits under the published cap. That is the first door I walk.';
+      why = 'You are a first-home buyer, you can get to 5%, and an other-NSW price under $800,000 sits under the published cap. That is the first door I open.';
     } else if (kind === 'state') {
       headline = 'Probably the 5% first-home scheme';
       why = 'You are a first-home buyer and you can get to 5%. In another state the scheme is only open if that postcode is under that state’s cap. I am not going to invent the cap. Check <a href="' + HA_CAPS + '" target="_blank" rel="noopener">Housing Australia</a>.';
@@ -344,14 +344,14 @@
   /* ── Render ────────────────────────────────────────────────────────────── */
 
   function statusLabel(status) {
-    if (status === 'open') return 'Walk this';
+    if (status === 'open') return 'Open this';
     if (status === 'backup') return 'Backup';
     if (status === 'check') return 'Check';
     return 'Closed';
   }
 
   function stampKicker(doors) {
-    if (doors.some(function (d) { return d.status === 'open'; })) return 'Walk this';
+    if (doors.some(function (d) { return d.status === 'open'; })) return 'Open this';
     if (doors.some(function (d) { return d.status === 'check'; })) return 'Check first';
     return 'Not yet';
   }
@@ -387,7 +387,7 @@
     result.hidden = true;
     result.classList.remove('is-in');
     headlineEl.textContent = '';
-    if (kickerEl) kickerEl.textContent = 'Walk this';
+    if (kickerEl) kickerEl.textContent = 'Open this';
     copyEl.innerHTML = '';
     doorsEl.innerHTML = '';
     refreshReady();

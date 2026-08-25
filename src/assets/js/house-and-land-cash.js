@@ -1,5 +1,5 @@
 /* =============================================================================
-   Wombat Home Loans — NSW house-and-land cash walk (UI)
+   Wombat Home Loans — NSW house-and-land cash timeline (UI)
    -----------------------------------------------------------------------------
    Client-side only. Paints /construction/house-and-land-cash/. No backend.
    Math lives in house-and-land-cash-math.js.
@@ -192,7 +192,7 @@
     var extra = r.duty.amount === 0
       ? ''
       : '<p>Full NSW transfer duty on the land price only. Assumes you qualify for FHBAS if you said you are a first-home buyer. Confirm on Revenue NSW before you exchange.</p>';
-    body.innerHTML = '<p>Duty used in this walk: <strong>' + fmt$(r.duty.amount) + '</strong>.</p>' + extra;
+    body.innerHTML = '<p>Duty used in this cash timeline: <strong>' + fmt$(r.duty.amount) + '</strong>.</p>' + extra;
   }
 
   function renderWalk(r) {
@@ -319,7 +319,7 @@
       hero.textContent = fmt$(r.shortOfE);
       note.textContent = 'After duty you have ' + fmt$(r.cashAfter) +
         ' left. Property equity is ' + fmt$(r.E) +
-        '. That gap is the hole at this LVR. Hard stop: the walk does not start.';
+        '. That gap is the hole at this LVR. Hard stop: the cash timeline does not start.';
     } else {
       result.classList.add('hlc-result--ok');
       label.textContent = 'Buffer after equity';

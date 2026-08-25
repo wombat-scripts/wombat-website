@@ -1,5 +1,5 @@
 ---
-title: "Which door can you actually walk?"
+title: "Which door is actually open?"
 description: "Five questions. Not a lecture about 20%. I'll tell you which deposit path is real this year, and which ones are closed."
 layout: base.njk
 permalink: /which-door/
@@ -19,7 +19,7 @@ date: 2026-08-20
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Which door can you actually walk?",
+  "name": "Which door is actually open?",
   "description": "{{ description }}",
   "url": "https://wombathomeloans.com.au/which-door/",
   "applicationCategory": "FinanceApplication",
@@ -41,10 +41,10 @@ date: 2026-08-20
   <div class="container">
     <p class="calc-breadcrumb"><a href="/calculators/">← All calculators</a></p>
     <span class="eyebrow">Deposit paths</span>
-    <h1>Which door can you <em>actually walk?</em></h1>
-    <p class="lede">Five questions. I will tell you which deposit path is worth walking this year.</p>
+    <h1>Which door is <em>actually open?</em></h1>
+    <p class="lede">Five questions. I will tell you which deposit path looks open this year, and which ones look closed.</p>
     <p>The government 5% first-home scheme. An occupation LMI waiver at about 90%. Shared-equity or a borrowed-deposit second loan. Or a standard 20% deposit loan if you already have it.</p>
-    <p>This is not an approval. It is the same order I walk in a strategy session.</p>
+    <p>This is not an approval. It is the same order I use in a strategy session.</p>
   </div>
 </section>
 
@@ -211,13 +211,13 @@ date: 2026-08-20
             </div>
             <span class="quiz-empty__kicker">Your door</span>
             <p class="quiz-empty__title">Answer five. Get one door.</p>
-            <p class="quiz-empty__note">I will name the path that is worth walking, and the ones that look closed. No email. No sales sequence.</p>
+            <p class="quiz-empty__note">I will name the path that looks open, and the ones that look closed. No email. No sales sequence.</p>
           </div>
 
           <div id="wd-result" class="quiz-result" hidden aria-live="polite">
             <div class="quiz-result__stage">
               <div class="quiz-result__art" aria-hidden="true">{{ doorSvg | safe }}</div>
-              <p class="quiz-result__kicker" id="wd-kicker">Walk this</p>
+              <p class="quiz-result__kicker" id="wd-kicker">Open this</p>
               <p class="quiz-result__stamp" id="wd-headline"></p>
             </div>
             <div class="quiz-result__body">
@@ -239,7 +239,7 @@ date: 2026-08-20
       <details>
         <summary>Assumptions behind this tool</summary>
         <ul>
-          <li>This walks the same order I use in a strategy session: 20% first, then an occupation LMI waiver at about 90%, then the government 5% first-home scheme, then shared-equity or a borrowed-deposit second loan. It is a path-finder, not a credit assessment.</li>
+          <li>This uses the same order I use in a strategy session: 20% first, then an occupation LMI waiver at about 90%, then the government 5% first-home scheme, then shared-equity or a borrowed-deposit second loan. It is a path-finder, not a credit assessment.</li>
           <li>Housing Australia price caps used here (from 1 October 2025, still the current published NSW figures in 2026): $1,500,000 for Sydney, Illawarra, Newcastle and Lake Macquarie; $800,000 for the rest of NSW. Other states have their own caps. Confirm the live postcode cap on <a href="https://www.housingaustralia.gov.au/support-buy-home/property-price-caps" target="_blank" rel="noopener">Housing Australia</a>.</li>
           <li>Cash means money you can actually use as a deposit this year. Locked KiwiSaver and equity you cannot access do not count.</li>
           <li>An LMI waiver depends on that lender’s occupation list on the day. “Yes, probably” is not a guarantee.</li>
@@ -263,5 +263,5 @@ date: 2026-08-20
 </section>
 
 {% block scripts %}
-<script src="/assets/js/which-door.js?v=20260821b" defer></script>
+<script src="/assets/js/which-door.js?v=20260824e" defer></script>
 {% endblock %}
