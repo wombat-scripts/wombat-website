@@ -41,10 +41,13 @@ test('homepage has a tools slider, no mid-page Wrap form, no SMSF lending offer'
   assert.match(home, /id="tools-scroller"/);
   assert.match(home, /id="tools-prev"/);
   assert.match(home, /id="tools-next"/);
+  assert.match(home, /Complicated payslips\. A first home\./);
   assert.match(home, /First-home buyers with complicated payslips/);
   assert.match(home, /The next move/);
   assert.match(home, /Refinancers/);
   assert.match(home, /Asset &amp; equipment finance/);
+  assert.doesNotMatch(home, /RSUs vesting next quarter/);
+  assert.doesNotMatch(home, /ESS scheme HR never quite explained/);
   assert.doesNotMatch(home, /SMSF/);
   assert.doesNotMatch(home, /limited recourse/i);
   assert.doesNotMatch(home, /newsletter-email/);

@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-25 — Who I help: payslips, first home, next move
+
+Who I help H2 is now “Complicated payslips. A first home. The next move.” First-home card leads on base-plus-bonus and lender policy, not RSUs or ESS. Other three cards, FAQ bonus/RSU question, and the RSU article left as-is.
+
+**Files changed:** `src/index.njk`, `tests/homepage.test.js`
+
+---
+
 ## 2026-08-25 — Business address on contact/legal only
 
 Registered/postal address (Foundry Cowork virtual office) added in the footer Get in touch line, the terms Contact block, and the existing JSON-LD PostalAddress. No homepage visit-us or map. Sydney based / Sydney local / Beecroft story unchanged. Privacy has no Contact block, so it was left alone.
