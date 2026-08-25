@@ -6,9 +6,9 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
-## 2026-08-25 — Stop promoting SMSF property loans
+## 2026-08-25 — Homepage order + stop promoting SMSF property loans
 
-Homepage, footer, default meta/OG, JSON-LD and the calculators hub no longer sell SMSF residential or commercial borrowing. Hero and Who I help copy drop SMSF (trusts stay). The SMSF lending card and FAQ are gone. Reviews, guest bios, KiwiSaver transfer notes and older changelog entries left as-is.
+Locked homepage order: hero (headline + two buttons), proof strip, lender row, video, Who I help, Why Wombat, How it works, Reviews, Articles, Tools slider, Podcast, FAQ, Book, then a quiet Wombat Wrap text link. Mid-page Wrap form is gone. Tools uses the same prev/next carousel as podcast (three cards visible, the rest on the next slide). SMSF lending offer removed from homepage, footer, default meta/OG, JSON-LD and the calculators hub. Reviews, guest bios, KiwiSaver transfer notes and older changelog entries left as-is.
 
 **Files changed:** `src/index.njk`, `src/_includes/footer.njk`, `src/_layouts/base.njk`, `src/calculators/index.njk`
 
