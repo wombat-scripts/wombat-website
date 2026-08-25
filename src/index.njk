@@ -13,9 +13,10 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   @media (min-width: 960px) { .hero__inner { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--space-9); } }
   .hero__copy h1 { margin-top: var(--space-3); margin-bottom: var(--space-5); }
   .hero__lede { margin-bottom: var(--space-6); }
-  .hero__ctas { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-bottom: var(--space-7); }
-  .hero__trust { display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-6); align-items: center; padding-top: var(--space-5); border-top: 1px solid var(--line); font-size: var(--fs-small); color: var(--ink-soft); }
-  .hero__trust strong { color: var(--navy-deep); font-weight: 600; }
+  .hero__ctas { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+  .proof-strip { padding-block: var(--space-5) var(--space-6); border-bottom: 1px solid var(--line); }
+  .proof-strip__inner { display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-6); align-items: center; justify-content: center; font-size: var(--fs-small); color: var(--ink-soft); }
+  .proof-strip__inner strong { color: var(--navy-deep); font-weight: 600; }
   .hero__stars { display: inline-flex; gap: 2px; color: var(--gold); }
   .hero__stars svg { width: 16px; height: 16px; fill: currentColor; }
 
@@ -75,11 +76,8 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   .review-card__attr { margin-top: auto; font-size: var(--fs-small); color: var(--ink-muted); display: flex; justify-content: space-between; gap: var(--space-3); }
   .review-card__name { color: var(--ink); font-weight: 600; }
 
-  /* Newsletter card */
-  .newsletter { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: clamp(2rem, 4vw, 3rem); max-width: 720px; margin-inline: auto; box-shadow: var(--shadow-md); }
-  .newsletter form { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
-  .newsletter input[type="email"] { flex: 1 1 240px; padding: 0.95rem 1.1rem; font: inherit; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--paper); color: var(--ink); }
-  .newsletter input[type="email"]:focus { outline: 2px solid var(--steel); outline-offset: 2px; border-color: var(--steel); }
+  /* Quiet Wrap link (homepage bottom, not a form) */
+  .wrap-quiet { padding-block: var(--space-5) var(--space-6); text-align: center; }
 
   /* Podcast grid */
   .podcast-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
@@ -88,8 +86,8 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   .episode-card h3 { font-size: 1.125rem; line-height: 1.35; margin-bottom: var(--space-2); }
   .episode-card__meta { font-size: var(--fs-meta); color: var(--ink-muted); margin-top: auto; }
 
-  /* Tools strip */
-  .tools-strip { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  /* Tools slider — same flex/snap pattern as the podcast carousel */
+  #tools-scroller .tool-card { flex: 0 0 calc((100% - var(--space-5) * 2) / 3); min-width: 280px; }
   .tool-card { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6); background: linear-gradient(180deg, #fff, var(--paper-cool)); }
   .tool-card__icon { width: 44px; height: 44px; padding: 10px; background: var(--navy-deep); border-radius: var(--radius-sm); color: #fff; }
   .tool-card h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
@@ -172,9 +170,8 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   "mainEntity": [
     { "@type": "Question", "name": "Does it cost anything to use a mortgage broker?", "acceptedAnswer": { "@type": "Answer", "text": "No. Wombat Home Loans is paid by the lender when your loan settles — there's no cost to you. And under Australia's Best Interests Duty, brokers are legally required to act in your interests, not the bank's." } },
     { "@type": "Question", "name": "Most of my income is bonus, commission or RSUs. Will lenders count it?", "acceptedAnswer": { "@type": "Answer", "text": "Some will, some won't, and the haircuts vary wildly — one lender takes 80% of a two-year bonus average, another ignores it entirely. Matching your income profile to the right credit policy is the single biggest lever in your application, and it's exactly what Tom does." } },
-    { "@type": "Question", "name": "Can I buy property through my SMSF?", "acceptedAnswer": { "@type": "Answer", "text": "Often, yes — via a limited recourse borrowing arrangement. The rules are strict and only a handful of lenders play in this space. Tom works with your accountant or financial adviser to make sure the structure stacks up before any application goes in." } },
     { "@type": "Question", "name": "Do you only do home loans?", "acceptedAnswer": { "@type": "Answer", "text": "Home loans are the core, but Wombat also arranges asset and equipment finance — cars, caravans, business equipment. Quick, simple deals that settle in days rather than weeks." } },
-    { "@type": "Question", "name": "How many lenders do you work with?", "acceptedAnswer": { "@type": "Answer", "text": "40+, covering the big four, second-tier banks, non-bank lenders, and specialists for non-standard situations — including the thin panel that does SMSF lending properly." } },
+    { "@type": "Question", "name": "How many lenders do you work with?", "acceptedAnswer": { "@type": "Answer", "text": "40+, covering the big four, second-tier banks, non-bank lenders, and specialists for non-standard situations." } },
     { "@type": "Question", "name": "Are you Sydney only? And can you help with foreign income?", "acceptedAnswer": { "@type": "Answer", "text": "Australia-wide via Google Meet — Tom is based in Sydney, but most meetings are remote. Foreign and expat income is also well covered; different lenders treat it very differently." } }
   ]
 }
@@ -194,24 +191,10 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
       <div class="hero__copy" data-reveal>
         <span class="eyebrow">Mortgage broker for banking, tech & consulting types · Sydney based, Australia-wide</span>
         <h1 class="display">Financially fluent. <em>Mortgage confused?</em></h1>
-        <p class="lede hero__lede">I'm Tom — twenty years in institutional banking, now in your corner. If you can read a balance sheet but can't decode lender credit policy, you're exactly who I built Wombat for. First home, next move, SMSF — I translate the strange parallel universe of mortgage credit into a clear plan.</p>
+        <p class="lede hero__lede">I'm Tom — twenty years in institutional banking, now in your corner. If you can read a balance sheet but can't decode lender credit policy, you're exactly who I built Wombat for. First home, next move — I translate the strange parallel universe of mortgage credit into a clear plan.</p>
         <div class="hero__ctas">
           <a class="btn btn--primary btn--lg" href="{{ site.calendly }}" data-umami-event="book-a-call" data-umami-event-location="hero">Book a free discovery call <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn btn--text btn--lg" href="/which-door/" data-umami-event="which-door-click" data-umami-event-location="hero">Get started in 2 minutes <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-        <div class="hero__trust">
-          <div class="cluster" style="gap: var(--space-2);">
-            <span class="hero__stars" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </span>
-            <span><strong>5.0</strong> Google rating</span>
-          </div>
-          <div><strong>20+ years</strong> institutional banking</div>
-          <div>Access to <strong>40+ lenders</strong></div>
         </div>
       </div>
       <div class="hero__portrait" data-reveal style="--reveal-delay: 120ms;">
@@ -225,7 +208,27 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   </div>
 </section>
 
-{# ── LENDER TRUST STRIP ── #}
+{# ── 2. PROOF STRIP ── #}
+<section class="proof-strip" aria-label="Google rating, experience and lender access">
+  <div class="container">
+    <div class="proof-strip__inner">
+      <div class="cluster" style="gap: var(--space-2);">
+        <span class="hero__stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </span>
+        <span><strong>5.0</strong> Google rating</span>
+      </div>
+      <div><strong>20+ years</strong> institutional banking</div>
+      <div>Access to <strong>40+ lenders</strong></div>
+    </div>
+  </div>
+</section>
+
+{# ── 3. LENDER TRUST STRIP ── #}
 <section class="lender-strip" aria-label="Banking experience and lender access">
   <div class="container">
     <p class="lender-strip__label muted small">Twenty years across global banking · Access to 40+ Australian lenders</p>
@@ -273,11 +276,10 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
 {# ── 2. WHO I HELP ── #}
 <section id="how-i-help" class="section">
   <div class="container">
-    <div data-reveal style="margin-bottom: var(--space-7);"><span class="eyebrow">Who I help</span><h2>Base plus bonus. RSUs vesting. <em>A trust here, an SMSF there.</em></h2><p class="lede">Most of my clients work in banking, tech, consulting or data. They understand finance perfectly well — just not the odd, opaque world of mortgage credit policy, where two lenders can look at the same payslip and reach opposite conclusions. That's the gap I fill. Deliberately few clients, done properly.</p></div>
+    <div data-reveal style="margin-bottom: var(--space-7);"><span class="eyebrow">Who I help</span><h2>Base plus bonus. RSUs vesting. <em>A trust here.</em></h2><p class="lede">Most of my clients work in banking, tech, consulting or data. They understand finance perfectly well — just not the odd, opaque world of mortgage credit policy, where two lenders can look at the same payslip and reach opposite conclusions. That's the gap I fill. Deliberately few clients, done properly.</p></div>
     <div class="help-grid">
       <article class="card help-card" data-reveal><span class="help-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-7h6v7"/></svg></span><h3>First-home buyers with complicated payslips</h3><p>Base salary plus bonus. RSUs vesting next quarter. An ESS scheme HR never quite explained. Lenders treat each of these very differently — some count 80% of your bonus, some count none of it. I know which is which, and which government schemes you're actually eligible for, in plain English.</p></article>
-      <article class="card help-card" data-reveal style="--reveal-delay: 80ms;"><span class="help-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/><circle cx="12" cy="14" r="2"/></svg></span><h3>SMSF &amp; structured lending</h3><p>Buying property inside your super fund, or through a trust. The rules are precise, the lender panel is thin, and the penalty for getting the structure wrong is real. Done properly, it's a powerful long-term play. I work alongside your accountant to get both the structure and the loan right.</p></article>
-      <article class="card help-card" data-reveal style="--reveal-delay: 160ms;"><span class="help-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></span><h3>The next move</h3><p>You bought the first place years ago; now it's the upgrade, the bridge between selling and buying, or releasing equity without wrecking your borrowing power for the move after this one. Structure today with the next five years in mind.</p></article>
+      <article class="card help-card" data-reveal style="--reveal-delay: 80ms;"><span class="help-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></span><h3>The next move</h3><p>You bought the first place years ago; now it's the upgrade, the bridge between selling and buying, or releasing equity without wrecking your borrowing power for the move after this one. Structure today with the next five years in mind.</p></article>
       <article class="card help-card" data-reveal><span class="help-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><line x1="12" y1="22" x2="12" y2="12"/></svg></span><h3>Refinancers</h3><p>If your rate hasn't been reviewed in two years, you're almost certainly paying a loyalty tax. Quick health-check, honest answer on whether it's worth moving — including "no, stay put" when that's the truth.</p></article>
       <article class="card help-card" data-reveal style="--reveal-delay: 80ms;"><span class="help-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 17h-2v-5l2-6h12l2 6v5h-2"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/><path d="M9 17h6"/></svg></span><h3>Asset &amp; equipment finance</h3><p>Not everything is a mortgage. Car, caravan, business equipment — quick approvals, simple paperwork, sorted in days rather than weeks. Handy when life (or the business) can't wait for a settlement cycle.</p></article>
     </div>
@@ -386,75 +388,58 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
 })();
 </script>
 
-{# ── 6. NEWSLETTER ── #}
-<section id="newsletter" class="section section--warm">
-  <div class="container">
-    <div class="newsletter" data-reveal>
-      <span class="eyebrow">The Wombat Wrap</span>
-      <h2 class="mt-0" style="font-size: var(--fs-h2);">A short monthly note. Mostly useful, occasionally interesting.</h2>
-      <p style="color: var(--ink-soft);">The mortgage market, explained for people who already understand finance. Rate decisions and what they actually mean, the schemes worth knowing about — and occasionally what it's like running a broking business solo. No spam. Unsubscribe in one click.</p>
-      <form action="https://wombat-home-loans.kit.com/newsletter" method="post" novalidate>
-        <label class="sr-only" for="newsletter-email">Your email</label>
-        <input id="newsletter-email" type="email" name="email" placeholder="you@somewhere.com" required>
-        <button class="btn btn--primary" type="submit" data-umami-event="newsletter-subscribe">Subscribe <span class="arrow" aria-hidden="true">→</span></button>
-      </form>
-      <p class="meta" style="margin-top: var(--space-4); margin-bottom: 0;">Already 800+ readers. No financial advice given via email — that's what calls are for.</p>
-    </div>
-  </div>
-</section>
-
-{# ── 7. PODCAST ── #}
-<section class="section">
+{# ── 9. ARTICLES PREVIEW ── #}
+<section id="articles" class="section">
   <div class="container">
     <div class="cluster" data-reveal style="justify-content: space-between; margin-bottom: var(--space-7); align-items: flex-end;">
-      <div style="max-width: 640px;">
-        <span class="eyebrow">The Property Web · podcast</span>
-        <h2 class="mb-0">Long-form conversations about <em>how Australian property actually works.</em></h2>
-      </div>
-      <a class="btn btn--ghost" href="/podcast/">All {{ episodes | length }} episodes <span class="arrow" aria-hidden="true">→</span></a>
+      <div style="max-width: 640px;"><span class="eyebrow">Articles</span><h2 class="mb-0">Plain-English writing on <em>the bits that matter.</em></h2></div>
+      <a class="btn btn--ghost" href="/articles/">All articles <span class="arrow" aria-hidden="true">→</span></a>
     </div>
     <div class="reviews-wrap" data-reveal>
-      <div class="reviews" id="podcast-scroller">
-        {% for ep in episodes | reverse %}
-        <a href="{{ ep.url }}"
-           target="_blank"
-           rel="noopener"
-           class="card"
+      <div class="reviews" id="articles-scroller">
+        {% for article in collections.articles %}
+        <a href="{{ article.url }}"
+           class="card review-card"
            style="text-decoration: none; color: inherit; flex: 0 0 calc((100% - var(--space-5) * 2) / 3); min-width: 280px; display: flex; flex-direction: column;">
-          <span style="font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); margin-bottom: var(--space-2); display: block;">Episode {{ ep.number }} · {{ ep.category }}</span>
-          <h3 class="h4" style="margin-bottom: var(--space-3);">{{ ep.title }}</h3>
-          <p style="font-size: var(--fs-small); color: var(--ink-soft); font-weight: 500; margin-bottom: var(--space-2);">{{ ep.guest }}{% if ep.role %} · {{ ep.role }}{% endif %}</p>
-          <p class="small" style="color: var(--ink-soft); flex: 1;">{{ ep.description }}</p>
+          {% if article.data.thumbnail %}
+          <div style="aspect-ratio: 16/9; width: calc(100% + 3rem); margin: -1.5rem -1.5rem var(--space-4); overflow: hidden; flex-shrink: 0; border-radius: var(--radius-md) var(--radius-md) 0 0;">
+            <img src="{{ article.data.thumbnail }}"
+                 alt=""
+                 width="640" height="360"
+                 loading="lazy"
+                 decoding="async"
+                 style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+          </div>
+          {% endif %}
+          <p class="meta" style="margin-bottom: var(--space-2);">{{ article.data.category or "Home Loans" }}</p>
+          <h3 class="h4" style="margin-bottom: var(--space-3);">{{ article.data.title }}</h3>
+          <p class="small" style="color: var(--ink-soft); margin-top: auto;">{{ article.data.description }}</p>
+          <span class="small" style="color: var(--steel); margin-top: var(--space-3); font-weight: 600;">Read article →</span>
         </a>
         {% endfor %}
       </div>
       <div class="reviews-nav">
-        <button id="podcast-prev" aria-label="Previous episodes">
+        <button id="articles-prev" aria-label="Previous articles">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
-        <a class="btn btn--ghost btn--sm" href="/podcast/">All episodes →</a>
-        <button id="podcast-next" aria-label="Next episodes">
+        <a class="btn btn--ghost btn--sm" href="/articles/">All articles →</a>
+        <button id="articles-next" aria-label="Next articles">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
     </div>
-    <div class="cluster" style="justify-content: center; gap: var(--space-5); margin-top: var(--space-5);">
-      <span class="meta">Listen on</span>
-      <a class="btn btn--text" href="https://open.spotify.com/show/6XPN6KyzpNPuAGMpsXlEhh" target="_blank" rel="noopener" data-umami-event="podcast-click" data-umami-event-platform="spotify">Spotify</a>
-      <a class="btn btn--text" href="https://podcasts.apple.com/us/podcast/the-property-web/id1841854828" target="_blank" rel="noopener" data-umami-event="podcast-click" data-umami-event-platform="apple">Apple Podcasts</a>
-      <a class="btn btn--text" href="https://www.youtube.com/@thepropertyweb" target="_blank" rel="noopener" data-umami-event="podcast-click" data-umami-event-platform="youtube">YouTube</a>
-    </div>
   </div>
 </section>
 
-{# ── 8. TOOLS ── #}
+{# ── 10. TOOLS ── #}
 <section class="section section--cool">
   <div class="container">
     <div data-reveal style="margin-bottom: var(--space-7); max-width: 700px;">
       <span class="eyebrow">Tools</span>
       <h2>Things I built to make the rest <em>less of a fight.</em></h2>
     </div>
-    <div class="tools-strip" data-reveal>
+    <div class="reviews-wrap" data-reveal>
+      <div class="reviews" id="tools-scroller">
 
       <article class="card tool-card tool-card--quiz">
         <div class="tool-card--quiz__doors" aria-hidden="true">
@@ -528,51 +513,18 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
         <span class="badge" style="background: var(--blue-pale); color: var(--navy); margin-bottom: var(--space-3);">Newsletter</span>
         <h3>The Wombat Wrap</h3>
         <p style="color: var(--ink-soft); font-size: var(--fs-small); flex: 1;">Monthly insights. Behind the scenes of my business and property finance tips worth knowing, in plain English.</p>
-        <a class="btn btn--ghost btn--sm" href="#newsletter" style="margin-top: var(--space-5);">
+        <a class="btn btn--ghost btn--sm" href="{{ site.newsletter }}" style="margin-top: var(--space-5);">
           Subscribe →
         </a>
       </article>
 
-    </div>
-  </div>
-</section>
-
-{# ── 9. ARTICLES PREVIEW ── #}
-<section id="articles" class="section">
-  <div class="container">
-    <div class="cluster" data-reveal style="justify-content: space-between; margin-bottom: var(--space-7); align-items: flex-end;">
-      <div style="max-width: 640px;"><span class="eyebrow">Articles</span><h2 class="mb-0">Plain-English writing on <em>the bits that matter.</em></h2></div>
-      <a class="btn btn--ghost" href="/articles/">All articles <span class="arrow" aria-hidden="true">→</span></a>
-    </div>
-    <div class="reviews-wrap" data-reveal>
-      <div class="reviews" id="articles-scroller">
-        {% for article in collections.articles %}
-        <a href="{{ article.url }}"
-           class="card review-card"
-           style="text-decoration: none; color: inherit; flex: 0 0 calc((100% - var(--space-5) * 2) / 3); min-width: 280px; display: flex; flex-direction: column;">
-          {% if article.data.thumbnail %}
-          <div style="aspect-ratio: 16/9; width: calc(100% + 3rem); margin: -1.5rem -1.5rem var(--space-4); overflow: hidden; flex-shrink: 0; border-radius: var(--radius-md) var(--radius-md) 0 0;">
-            <img src="{{ article.data.thumbnail }}"
-                 alt=""
-                 width="640" height="360"
-                 loading="lazy"
-                 decoding="async"
-                 style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
-          </div>
-          {% endif %}
-          <p class="meta" style="margin-bottom: var(--space-2);">{{ article.data.category or "Home Loans" }}</p>
-          <h3 class="h4" style="margin-bottom: var(--space-3);">{{ article.data.title }}</h3>
-          <p class="small" style="color: var(--ink-soft); margin-top: auto;">{{ article.data.description }}</p>
-          <span class="small" style="color: var(--steel); margin-top: var(--space-3); font-weight: 600;">Read article →</span>
-        </a>
-        {% endfor %}
       </div>
       <div class="reviews-nav">
-        <button id="articles-prev" aria-label="Previous articles">
+        <button id="tools-prev" aria-label="Previous tools">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
-        <a class="btn btn--ghost btn--sm" href="/articles/">All articles →</a>
-        <button id="articles-next" aria-label="Next articles">
+        <a class="btn btn--ghost btn--sm" href="/calculators/">All calculators →</a>
+        <button id="tools-next" aria-label="Next tools">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
@@ -580,16 +532,59 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   </div>
 </section>
 
-{# ── 10. FAQ ── #}
+{# ── 11. PODCAST ── #}
+<section class="section">
+  <div class="container">
+    <div class="cluster" data-reveal style="justify-content: space-between; margin-bottom: var(--space-7); align-items: flex-end;">
+      <div style="max-width: 640px;">
+        <span class="eyebrow">The Property Web · podcast</span>
+        <h2 class="mb-0">Long-form conversations about <em>how Australian property actually works.</em></h2>
+      </div>
+      <a class="btn btn--ghost" href="/podcast/">All {{ episodes | length }} episodes <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+    <div class="reviews-wrap" data-reveal>
+      <div class="reviews" id="podcast-scroller">
+        {% for ep in episodes | reverse %}
+        <a href="{{ ep.url }}"
+           target="_blank"
+           rel="noopener"
+           class="card"
+           style="text-decoration: none; color: inherit; flex: 0 0 calc((100% - var(--space-5) * 2) / 3); min-width: 280px; display: flex; flex-direction: column;">
+          <span style="font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); margin-bottom: var(--space-2); display: block;">Episode {{ ep.number }} · {{ ep.category }}</span>
+          <h3 class="h4" style="margin-bottom: var(--space-3);">{{ ep.title }}</h3>
+          <p style="font-size: var(--fs-small); color: var(--ink-soft); font-weight: 500; margin-bottom: var(--space-2);">{{ ep.guest }}{% if ep.role %} · {{ ep.role }}{% endif %}</p>
+          <p class="small" style="color: var(--ink-soft); flex: 1;">{{ ep.description }}</p>
+        </a>
+        {% endfor %}
+      </div>
+      <div class="reviews-nav">
+        <button id="podcast-prev" aria-label="Previous episodes">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <a class="btn btn--ghost btn--sm" href="/podcast/">All episodes →</a>
+        <button id="podcast-next" aria-label="Next episodes">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="cluster" style="justify-content: center; gap: var(--space-5); margin-top: var(--space-5);">
+      <span class="meta">Listen on</span>
+      <a class="btn btn--text" href="https://open.spotify.com/show/6XPN6KyzpNPuAGMpsXlEhh" target="_blank" rel="noopener" data-umami-event="podcast-click" data-umami-event-platform="spotify">Spotify</a>
+      <a class="btn btn--text" href="https://podcasts.apple.com/us/podcast/the-property-web/id1841854828" target="_blank" rel="noopener" data-umami-event="podcast-click" data-umami-event-platform="apple">Apple Podcasts</a>
+      <a class="btn btn--text" href="https://www.youtube.com/@thepropertyweb" target="_blank" rel="noopener" data-umami-event="podcast-click" data-umami-event-platform="youtube">YouTube</a>
+    </div>
+  </div>
+</section>
+
+{# ── 12. FAQ ── #}
 <section class="section section--warm">
   <div class="container faq">
     <div class="text-center" data-reveal style="margin-bottom: var(--space-7);"><span class="eyebrow">Frequently asked</span><h2 class="mb-0">The questions <em>most people start with.</em></h2></div>
     <div data-reveal>
       <details><summary>Does it cost anything to use a mortgage broker?</summary><p>No. Wombat Home Loans is paid by the lender when your loan settles — there's no cost to you. And under Australia's Best Interests Duty, brokers are legally required to act in your interests, not the bank's.</p></details>
       <details><summary>Most of my income is bonus, commission or RSUs. Will lenders count it?</summary><p>Some will, some won't, and the haircuts vary wildly — one lender takes 80% of a two-year bonus average, another ignores it entirely. Matching your income profile to the right credit policy is the single biggest lever in your application, and it's exactly what I do.</p></details>
-      <details><summary>Can I buy property through my SMSF?</summary><p>Often, yes — via a limited recourse borrowing arrangement. The rules are strict and only a handful of lenders play in this space. I work with your accountant or financial adviser to make sure the structure stacks up before any application goes in.</p></details>
       <details><summary>Do you only do home loans?</summary><p>Home loans are the core, but I also arrange asset and equipment finance — cars, caravans, business equipment. Quick, simple deals that settle in days rather than weeks.</p></details>
-      <details><summary>How many lenders do you work with?</summary><p>40+, covering the big four, second-tier banks, non-bank lenders, and specialists for non-standard situations — including the thin panel that does SMSF lending properly.</p></details>
+      <details><summary>How many lenders do you work with?</summary><p>40+, covering the big four, second-tier banks, non-bank lenders, and specialists for non-standard situations.</p></details>
       <details><summary>Are you Sydney only? And can you help with foreign income?</summary><p>Australia-wide via Google Meet — I'm in Sydney, but most meetings are remote. And yes, foreign and expat income is something I've handled plenty of; different lenders treat it very differently, which is rather the theme around here.</p></details>
     </div>
   </div>
@@ -619,12 +614,29 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   </div>
 </section>
 
+{# ── 14. WOMBAT WRAP — quiet text link, not a form ── #}
+<p id="newsletter" class="wrap-quiet muted small">
+  The Wombat Wrap — a short monthly note.
+  <a href="{{ site.newsletter }}">Read or subscribe</a>
+</p>
+
 {% block scripts %}
 <script>
 (function() {
   var scroller = document.getElementById('articles-scroller');
   var prev = document.getElementById('articles-prev');
   var next = document.getElementById('articles-next');
+  if (!scroller || !prev || !next) return;
+  var card = scroller.querySelector('.card');
+  function getStep() { return card ? card.offsetWidth + 20 : 320; }
+  prev.addEventListener('click', function() { scroller.scrollBy({ left: -getStep(), behavior: 'smooth' }); });
+  next.addEventListener('click', function() { scroller.scrollBy({ left: getStep(), behavior: 'smooth' }); });
+})();
+
+(function() {
+  var scroller = document.getElementById('tools-scroller');
+  var prev = document.getElementById('tools-prev');
+  var next = document.getElementById('tools-next');
   if (!scroller || !prev || !next) return;
   var card = scroller.querySelector('.card');
   function getStep() { return card ? card.offsetWidth + 20 : 320; }

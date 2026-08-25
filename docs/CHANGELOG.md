@@ -6,11 +6,21 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-25 — Homepage order + stop promoting SMSF property loans
+
+Locked homepage order: hero (headline + two buttons), proof strip, lender row, video, Who I help, Why Wombat, How it works, Reviews, Articles, Tools slider, Podcast, FAQ, Book, then a quiet Wombat Wrap text link. Mid-page Wrap form is gone. Tools uses the same prev/next carousel as podcast (three cards visible, the rest on the next slide). SMSF lending offer removed from homepage, footer, default meta/OG, JSON-LD and the calculators hub. Reviews, guest bios, KiwiSaver transfer notes and older changelog entries left as-is.
+
+**Files changed:** `src/index.njk`, `src/_includes/footer.njk`, `src/_layouts/base.njk`, `src/calculators/index.njk`
+
+---
+
 ## 2026-08-24 — Copy: cash timeline, quiz door is open
 
 Public name of the NSW house-and-land tool is now cash timeline, not cash walk or the walk. Quiz heading is “Which door is actually open?” URLs, duty math, LVR chips, and 6.5% default are unchanged.
 
 **Files changed:** `src/construction/index.njk`, `src/construction/house-and-land-cash.njk`, `src/tools/house-and-land-cash.njk`, `src/which-door.njk`, `src/index.njk`, `src/calculators/index.njk`, `src/llms.txt.njk`, `src/assets/js/house-and-land-cash.js`, `src/assets/js/house-and-land-cash-math.js`, `src/assets/js/which-door.js`, `src/articles/high-income-small-deposit.njk`, `src/articles/kiwisaver-australian-deposit.njk`, `src/_includes/css/styles.css`, `tests/construction-hub.test.js`, `CLAUDE.md`
+
+---
 
 ## 2026-08-24 — Cash walk: LVR bands, indicative 6.5%, no bare HIA
 
