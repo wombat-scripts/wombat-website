@@ -46,7 +46,7 @@ Articles are collected via `.eleventy.js` → `articles` collection, sorted newe
 
 ### Global data (`src/_data/site.json`)
 
-Contains: `name`, `url`, `phone`, `phoneLink`, `email`, `calendly` (`/book/`), `calendlyEvent` (live Calendly event URL), `linkedin`, `instagram`, `youtube`, `newsletter`, `propertySearch`, `middle`, `acl`, `crn`, `broker`. Reference in templates as `{{ site.acl }}` etc.
+Contains: `name`, `url`, `phone`, `phoneLink`, `email`, `address`, `calendly` (`/book/`), `calendlyEvent` (live Calendly event URL), `linkedin`, `instagram`, `youtube`, `newsletter`, `propertySearch`, `middle`, `acl`, `crn`, `broker`. Reference in templates as `{{ site.acl }}` etc.
 
 ### CSS (`src/assets/css/styles.css`)
 

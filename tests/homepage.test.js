@@ -28,7 +28,6 @@ test('homepage sections follow the locked order', function () {
     'id="podcast-scroller"',
     'class="container faq"',
     'id="book"',
-    'id="newsletter"',
   ];
   var last = -1;
   order.forEach(function (needle) {
@@ -42,15 +41,24 @@ test('homepage has a tools slider, no mid-page Wrap form, no SMSF lending offer'
   assert.match(home, /id="tools-scroller"/);
   assert.match(home, /id="tools-prev"/);
   assert.match(home, /id="tools-next"/);
+  assert.match(home, /Complicated payslips\. A first home\./);
   assert.match(home, /First-home buyers with complicated payslips/);
   assert.match(home, /The next move/);
   assert.match(home, /Refinancers/);
   assert.match(home, /Asset &amp; equipment finance/);
+  assert.doesNotMatch(home, /RSUs vesting next quarter/);
+  assert.doesNotMatch(home, /ESS scheme HR never quite explained/);
   assert.doesNotMatch(home, /SMSF/);
   assert.doesNotMatch(home, /limited recourse/i);
   assert.doesNotMatch(home, /newsletter-email/);
   assert.doesNotMatch(home, /<form[^>]*kit\.com\/newsletter/);
-  assert.match(home, /wrap-quiet/);
+  assert.doesNotMatch(home, /wrap-quiet/);
+  assert.doesNotMatch(home, /id="newsletter"/);
   assert.match(home, /The Wombat Wrap/);
-  assert.match(home, /id="newsletter"/);
+  assert.match(home, /id="tools-next"[^>]*aria-label="All tools"/);
+  assert.match(home, /<button id="tools-next"[^>]*>All tools<\/button>/);
+  assert.ok(
+    home.indexOf('The Wombat Wrap') < home.indexOf('id="tools-next"'),
+    'Wrap card should sit inside the tools slider, before the next control'
+  );
 });

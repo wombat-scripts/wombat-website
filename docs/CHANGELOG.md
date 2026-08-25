@@ -6,6 +6,30 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-25 — Who I help: payslips, first home, next move
+
+Who I help H2 is now “Complicated payslips. A first home. The next move.” First-home card leads on base-plus-bonus and lender policy, not RSUs or ESS. Other three cards, FAQ bonus/RSU question, and the RSU article left as-is.
+
+**Files changed:** `src/index.njk`, `tests/homepage.test.js`
+
+---
+
+## 2026-08-25 — Business address on contact/legal only
+
+Registered/postal address (Foundry Cowork virtual office) added in the footer Get in touch line, the terms Contact block, and the existing JSON-LD PostalAddress. No homepage visit-us or map. Sydney based / Sydney local / Beecroft story unchanged. Privacy has no Contact block, so it was left alone.
+
+**Files changed:** `src/_data/site.json`, `src/_includes/footer.njk`, `src/terms.md`, `src/_layouts/base.njk`
+
+---
+
+## 2026-08-25 — Homepage: All tools control, drop quiet Wrap
+
+Tools slider next/scroll-forward control now reads “All tools” (same slide behaviour, no new /tools page). Quiet Wombat Wrap text link under the book CTA is gone; the Wrap card stays in the Tools slider. Footer Wrap link now goes to the Kit newsletter.
+
+**Files changed:** `src/index.njk`, `src/_includes/footer.njk`, `tests/homepage.test.js`
+
+---
+
 ## 2026-08-25 — Homepage order + stop promoting SMSF property loans
 
 Locked homepage order: hero (headline + two buttons), proof strip, lender row, video, Who I help, Why Wombat, How it works, Reviews, Articles, Tools slider, Podcast, FAQ, Book, then a quiet Wombat Wrap text link. Mid-page Wrap form is gone. Tools uses the same prev/next carousel as podcast (three cards visible, the rest on the next slide). SMSF lending offer removed from homepage, footer, default meta/OG, JSON-LD and the calculators hub. Reviews, guest bios, KiwiSaver transfer notes and older changelog entries left as-is.
