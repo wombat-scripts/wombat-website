@@ -6,6 +6,12 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-24 — Copy: cash timeline, quiz door is open
+
+Public name of the NSW house-and-land tool is now cash timeline, not cash walk or the walk. Quiz heading is “Which door is actually open?” URLs, duty math, LVR chips, and 6.5% default are unchanged.
+
+**Files changed:** `src/construction/index.njk`, `src/construction/house-and-land-cash.njk`, `src/tools/house-and-land-cash.njk`, `src/which-door.njk`, `src/index.njk`, `src/calculators/index.njk`, `src/llms.txt.njk`, `src/assets/js/house-and-land-cash.js`, `src/assets/js/house-and-land-cash-math.js`, `src/assets/js/which-door.js`, `src/articles/high-income-small-deposit.njk`, `src/articles/kiwisaver-australian-deposit.njk`, `src/_includes/css/styles.css`, `tests/construction-hub.test.js`, `CLAUDE.md`
+
 ## 2026-08-24 — Cash walk: LVR bands, indicative 6.5%, no bare HIA
 
 Walk LVR is now 70 / 80 / 90 / 95 (default still 90). Annual rate defaults to 6.5% and is labelled indicative only; clear the field to skip IO and P&I. UI copy says Housing Industry Association, not the bare acronym.
