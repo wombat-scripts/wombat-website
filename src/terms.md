@@ -56,6 +56,7 @@ If you have any questions about these terms, please contact us:
 
 **Tom Carr**
 Wombat Home Loans
+{{ site.address }}
 Email: [hello@wombathomeloans.com.au](mailto:hello@wombathomeloans.com.au)
 Phone: 0456 255 409
 

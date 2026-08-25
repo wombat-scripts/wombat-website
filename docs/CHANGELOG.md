@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-25 — Business address on contact/legal only
+
+Registered/postal address (Foundry Cowork virtual office) added in the footer Get in touch line, the terms Contact block, and the existing JSON-LD PostalAddress. No homepage visit-us or map. Sydney based / Sydney local / Beecroft story unchanged. Privacy has no Contact block, so it was left alone.
+
+**Files changed:** `src/_data/site.json`, `src/_includes/footer.njk`, `src/terms.md`, `src/_layouts/base.njk`
+
+---
+
 ## 2026-08-25 — Homepage: All tools control, drop quiet Wrap
 
 Tools slider next/scroll-forward control now reads “All tools” (same slide behaviour, no new /tools page). Quiet Wombat Wrap text link under the book CTA is gone; the Wrap card stays in the Tools slider. Footer Wrap link now goes to the Kit newsletter.
