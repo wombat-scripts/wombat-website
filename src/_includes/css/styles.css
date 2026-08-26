@@ -2748,6 +2748,25 @@ input[type="range"].calc-range::-moz-range-thumb {
   .help-grid--cards { grid-template-columns: 1fr; }
 }
 
+.tools-grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  max-width: 860px;
+}
+
+.tools-grid .index-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.tools-grid .index-card p { flex: 1; }
+
+@media (max-width: 640px) {
+  .tools-grid { grid-template-columns: 1fr; }
+}
+
 .notebook {
   --nb-line: 1.85rem;
   position: relative;
@@ -3008,23 +3027,6 @@ input[type="range"].calc-range::-moz-range-thumb {
 .polaroid-card h3 {
   font-size: 1.2rem;
   margin-bottom: var(--space-3);
-}
-
-#tools-scroller .tool-card,
-#tools-scroller .index-card {
-  flex: 0 0 calc((100% - var(--space-5) * 2) / 3);
-  min-width: 280px;
-  scroll-snap-align: start;
-}
-
-#tools-next {
-  width: auto;
-  height: auto;
-  border-radius: 999px;
-  padding: 0.55rem 1rem;
-  font-size: var(--fs-small);
-  font-weight: 600;
-  white-space: nowrap;
 }
 
 .faq { max-width: var(--container-narrow); margin-inline: auto; }

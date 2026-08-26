@@ -26,8 +26,7 @@ test('homepage sections follow the Kitchen table order', function () {
     'id="process"',
     'id="reviews"',
     'id="articles"',
-    'id="tools-scroller"',
-    'id="podcast-scroller"',
+    'id="tools"',
     'class="container faq"',
     'id="book"',
     'id="which-door-card"',
@@ -46,10 +45,10 @@ test('quiz card sits after the book band, not in the tools slider', function () 
     'Which door card must come after Book'
   );
   assert.ok(
-    home.indexOf('id="tools-scroller"') < home.indexOf('id="book"'),
-    'tools slider stays above Book'
+    home.indexOf('id="tools"') < home.indexOf('id="book"'),
+    'tools stay above Book'
   );
-  var toolsBlock = home.slice(home.indexOf('id="tools-scroller"'), home.indexOf('id="podcast-scroller"'));
+  var toolsBlock = home.slice(home.indexOf('id="tools"'), home.indexOf('class="container faq"'));
   assert.doesNotMatch(toolsBlock, /Which door is actually open\?/);
   assert.match(home, /id="which-door-card"/);
   assert.match(home, /Which door is actually open\?/);
@@ -85,19 +84,19 @@ test('homepage has Kitchen table hero, tickets, and locked Who I help', function
   assert.doesNotMatch(home, /\u2014/);
 });
 
-test('homepage keeps tools and podcast carousels', function () {
-  assert.match(home, /id="tools-scroller"/);
-  assert.match(home, /id="tools-prev"/);
-  assert.match(home, /id="tools-next"/);
-  assert.match(home, /id="podcast-scroller"/);
+test('homepage follows mockups: two tool cards, no podcast or Wrap', function () {
+  assert.match(home, /id="tools"/);
+  assert.match(home, /class="tools-grid"/);
+  assert.match(home, /Building vs buying/);
+  assert.match(home, /Wombat Property Search/);
   assert.match(home, /id="articles-scroller"/);
-  assert.match(home, /The Wombat Wrap/);
-  assert.match(home, /id="tools-next"[^>]*aria-label="All tools"/);
-  assert.match(home, /<button id="tools-next"[^>]*>All tools<\/button>/);
-  assert.ok(
-    home.indexOf('The Wombat Wrap') < home.indexOf('id="tools-next"'),
-    'Wrap card should sit inside the tools slider, before the next control'
-  );
+  assert.doesNotMatch(home, /id="tools-scroller"/);
+  assert.doesNotMatch(home, /id="tools-prev"/);
+  assert.doesNotMatch(home, /id="tools-next"/);
+  assert.doesNotMatch(home, /id="podcast-scroller"/);
+  assert.doesNotMatch(home, /The Property Web/);
+  assert.doesNotMatch(home, /The Wombat Wrap/);
+  assert.doesNotMatch(home, /All tools/);
 });
 
 test('skin tokens are Kitchen table, not navy Fraunces', function () {
