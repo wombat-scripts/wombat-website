@@ -41,11 +41,19 @@ test('calculators hub lists the seven calculators and not the quiz or hub', func
 
 test('calculators hub cards use a hover preview, not a long essay', function () {
   assert.match(calcs, /calc-hub-card__preview/);
+  assert.match(calcs, /polaroid polaroid--tape calc-hub-card__preview/);
   assert.match(css, /\.calc-hub-card:hover \.calc-hub-card__preview img/);
-  assert.match(css, /transform: scale\(1\.14\)/);
+  assert.match(css, /transform: scale\(1\.13\)/);
   assert.match(calcs, /Week to week cost, and how the balance falls\./);
   assert.doesNotMatch(calcs, /Principal &amp; interest or interest-only, with a chart/);
   assert.doesNotMatch(calcs, /including the 3% assessment buffer/);
+});
+
+test('eyebrow rule is not a dash prefix', function () {
+  assert.match(css, /\.eyebrow::before \{ content: none;/);
+  assert.doesNotMatch(css, /width: 1\.5rem;\s*height: 1px;/);
+  assert.doesNotMatch(calcs, /eyebrow--plain/);
+  assert.doesNotMatch(calcs + css, /\u2014/);
 });
 
 test('nav label matches the calculators page', function () {

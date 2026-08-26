@@ -313,18 +313,7 @@ p {
   margin-bottom: var(--space-3);
 }
 
-.eyebrow::before {
-  content: "";
-  display: inline-block;
-  width: 1.5rem;
-  height: 1px;
-  background: currentColor;
-  vertical-align: middle;
-  margin-right: var(--space-2);
-  transform: translateY(-2px);
-}
-
-.eyebrow--plain::before { content: none; display: none; }
+.eyebrow::before { content: none; display: none; }
 
 small, .small { font-size: var(--fs-small); }
 .meta { font-size: var(--fs-meta); color: var(--ink-muted); }
@@ -1391,45 +1380,35 @@ input[type="range"].calc-range::-moz-range-thumb {
   flex-direction: column;
   gap: var(--space-3);
   color: inherit;
-  overflow: hidden;
 }
 
 .calc-hub-card:hover,
 .calc-hub-card:focus-visible { color: inherit; }
 
-.calc-hub-card__preview {
-  position: relative;
-  margin: calc(var(--space-6) * -1) calc(var(--space-6) * -1) 0;
-  padding: 10px 10px 28px;
-  background: #fff;
-  box-shadow: var(--shadow-sm);
+.calc-hub-card .polaroid.calc-hub-card__preview {
+  max-width: none;
+  width: 100%;
+  margin: 0 0 0.15rem;
+  padding-bottom: 36px;
+}
+
+.calc-hub-card__crop {
+  display: block;
   overflow: hidden;
 }
 
-.calc-hub-card:nth-child(even) .calc-hub-card__preview {
-  transform: rotate(0.6deg);
-}
-
-.calc-hub-card:nth-child(odd) .calc-hub-card__preview {
-  transform: rotate(-0.7deg);
-}
-
 .calc-hub-card__preview img {
-  width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: cover;
   object-position: top left;
-  display: block;
-  background: var(--card-deep);
   transform: scale(1.02);
-  transform-origin: top left;
+  transform-origin: 28% 22%;
   transition: transform 420ms ease;
 }
 
 .calc-hub-card:hover .calc-hub-card__preview img,
 .calc-hub-card:focus-visible .calc-hub-card__preview img,
 .calc-hub-card:focus-within .calc-hub-card__preview img {
-  transform: scale(1.14);
+  transform: scale(1.13);
 }
 
 .calc-hub-card h3 { margin-bottom: 0; }
@@ -2650,7 +2629,8 @@ input[type="range"].calc-range::-moz-range-thumb {
 }
 
 .polaroid--tape:nth-child(even),
-.polaroid-card:nth-child(even) .polaroid {
+.polaroid-card:nth-child(even) .polaroid,
+.calc-hub-card:nth-child(even) .polaroid {
   transform: rotate(1.6deg);
 }
 

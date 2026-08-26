@@ -16,7 +16,7 @@ Homepage Tools reuses the Articles/Reviews horizontal scroller (snap, prev/next)
 
 ## 2026-08-26 — Calculators hub is calculators only, with hover previews
 
-`/calculators/` drops the quiz and Building vs buying cards (those stay on the homepage Tools row and their own URLs). Seven calculator cards remain, each led by a real UI crop that scales on hover. Nav label is Calculators. Eyebrow dash on that page is gone.
+`/calculators/` drops the quiz and Building vs buying cards (those stay on the homepage Tools row and their own URLs). Seven calculator cards remain, each led by a real UI crop in the existing Polaroid/index-card treatment that scales on hover. Nav label is Calculators. The eyebrow rule prefix is gone site-wide so CALCULATORS / REPAYMENTS / OFFSET no longer read as an em dash.
 
 **Files changed:** `src/calculators/index.njk`, `src/_includes/nav.njk`, `src/_includes/css/styles.css`, `src/images/calc-previews/*.webp`, `tests/calculators-hub.test.js`, `tests/construction-hub.test.js`, `tests/homepage.test.js`
 
