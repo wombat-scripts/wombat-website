@@ -289,13 +289,14 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   </div>
 </section>
 
-{# ── 8. TOOLS (two mockup cards; podcast and Wrap stay off the homepage) ── #}
+{# ── 8. TOOLS (same scroller as Articles / Reviews; podcast and Wrap stay off) ── #}
 <section id="tools" class="section">
   <div class="container">
     <div data-reveal style="margin-bottom: var(--space-7); max-width: 700px;">
       <h2>Things I built to make the rest less of a fight.</h2>
     </div>
-    <div class="tools-grid" data-reveal>
+    <div class="reviews-wrap" data-reveal>
+      <div class="reviews" id="tools-scroller">
       <article class="index-card tool-card tool-card--build">
         <span class="index-card__label">Construction</span>
         <h3>Building vs buying</h3>
@@ -313,6 +314,25 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
           Open the search →
         </a>
       </article>
+
+      <article class="index-card tool-card tool-card--quiz">
+        <span class="index-card__label">Deposit path</span>
+        <h3>Which door is actually open?</h3>
+        <p>Five questions. I will name the deposit path that looks open this year, and the ones that look closed.</p>
+        <a class="index-card__link" href="/which-door/" data-umami-event="which-door-click" data-umami-event-location="tools">
+          Get started in 2 minutes →
+        </a>
+      </article>
+      </div>
+      <div class="reviews-nav">
+        <button id="tools-prev" aria-label="Previous tools">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <a class="btn btn--ghost btn--sm" href="/calculators/">All calculators →</a>
+        <button id="tools-next" aria-label="Next tools">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -345,20 +365,6 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   </div>
 </section>
 
-{# ── 11. QUIZ AFTER BOOK ── #}
-<section id="which-door-card" class="quiz-after">
-  <div class="container">
-    <article class="index-card" data-reveal>
-      <span class="index-card__label">Deposit path</span>
-      <h3>Which door is actually open?</h3>
-      <p>Five questions. I will name the deposit path that looks open this year, and the ones that look closed.</p>
-      <a class="index-card__link" href="/which-door/" data-umami-event="which-door-click" data-umami-event-location="after-book">
-        Get started in 2 minutes →
-      </a>
-    </article>
-  </div>
-</section>
-
 {% block scripts %}
 <script>
 (function() {
@@ -367,6 +373,17 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   var next = document.getElementById('articles-next');
   if (!scroller || !prev || !next) return;
   var card = scroller.querySelector('.polaroid-card');
+  function getStep() { return card ? card.offsetWidth + 20 : 320; }
+  prev.addEventListener('click', function() { scroller.scrollBy({ left: -getStep(), behavior: 'smooth' }); });
+  next.addEventListener('click', function() { scroller.scrollBy({ left: getStep(), behavior: 'smooth' }); });
+})();
+
+(function() {
+  var scroller = document.getElementById('tools-scroller');
+  var prev = document.getElementById('tools-prev');
+  var next = document.getElementById('tools-next');
+  if (!scroller || !prev || !next) return;
+  var card = scroller.querySelector('.index-card');
   function getStep() { return card ? card.offsetWidth + 20 : 320; }
   prev.addEventListener('click', function() { scroller.scrollBy({ left: -getStep(), behavior: 'smooth' }); });
   next.addEventListener('click', function() { scroller.scrollBy({ left: getStep(), behavior: 'smooth' }); });
