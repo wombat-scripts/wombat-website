@@ -6,6 +6,22 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-26 — Tools scroller + quiz in Tools; footer address
+
+Homepage Tools reuses the Articles/Reviews horizontal scroller (snap, prev/next). The Which door quiz card moves into that row as the third card, with its existing copy and “Get started in 2 minutes” CTA. The standalone quiz block under Book is gone. Footer keeps Suite 1, 86 Mann St, Gosford NSW 2250 and drops the virtual-office / postal disclaimer. Podcast, Wrap, and LinkedIn stay off the homepage.
+
+**Files changed:** `src/index.njk`, `src/_includes/css/styles.css`, `src/_includes/footer.njk`, `tests/homepage.test.js`
+
+---
+
+## 2026-08-26 — Calculators hub is calculators only, with hover previews
+
+`/calculators/` drops the quiz and Building vs buying cards (those stay on the homepage Tools row and their own URLs). Seven calculator cards remain, each led by a real UI crop in the existing Polaroid/index-card treatment that scales on hover. Nav label is Calculators. The eyebrow rule prefix is gone site-wide so CALCULATORS / REPAYMENTS / OFFSET no longer read as an em dash.
+
+**Files changed:** `src/calculators/index.njk`, `src/_includes/nav.njk`, `src/_includes/css/styles.css`, `src/images/calc-previews/*.webp`, `tests/calculators-hub.test.js`, `tests/construction-hub.test.js`, `tests/homepage.test.js`
+
+---
+
 ## 2026-08-26 — Kitchen table visual system
 
 Signed-off Type C skin shipped on a branch so main stays navy until merge. Homepage rebuilt to the Kitchen table mockups (Polaroid hero, stamped tickets, index cards, one Why Wombat Polaroid, lined notebook, taped article Polaroids, two static tool cards, quiz after the book band). Global tokens, header, footer, buttons, cards, forms, tools and article templates now use cream / ink / oak / dusty clay with Zilla Slab and IBM Plex Sans. Em dashes stripped from visible copy. Podcast section and Wombat Wrap stay off the homepage (footer still links both). Inner-page carousels restyled only.

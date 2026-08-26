@@ -313,16 +313,7 @@ p {
   margin-bottom: var(--space-3);
 }
 
-.eyebrow::before {
-  content: "";
-  display: inline-block;
-  width: 1.5rem;
-  height: 1px;
-  background: currentColor;
-  vertical-align: middle;
-  margin-right: var(--space-2);
-  transform: translateY(-2px);
-}
+.eyebrow::before { content: none; display: none; }
 
 small, .small { font-size: var(--fs-small); }
 .meta { font-size: var(--fs-meta); color: var(--ink-muted); }
@@ -1391,34 +1382,49 @@ input[type="range"].calc-range::-moz-range-thumb {
   color: inherit;
 }
 
-.calc-hub-card:hover { color: inherit; }
+.calc-hub-card:hover,
+.calc-hub-card:focus-visible { color: inherit; }
 
-.calc-hub-card__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: var(--radius-md);
-  background: var(--blue-pale);
-  color: var(--navy);
-  margin-bottom: var(--space-2);
+.calc-hub-card .polaroid.calc-hub-card__preview {
+  max-width: none;
+  width: 100%;
+  margin: 0 0 0.15rem;
+  padding-bottom: 36px;
+}
+
+.calc-hub-card__crop {
+  display: block;
+  overflow: hidden;
+}
+
+.calc-hub-card__preview img {
+  aspect-ratio: 16 / 10;
+  object-position: top left;
+  transform: scale(1.02);
+  transform-origin: 28% 22%;
+  transition: transform 420ms ease;
+}
+
+.calc-hub-card:hover .calc-hub-card__preview img,
+.calc-hub-card:focus-visible .calc-hub-card__preview img,
+.calc-hub-card:focus-within .calc-hub-card__preview img {
+  transform: scale(1.13);
 }
 
 .calc-hub-card h3 { margin-bottom: 0; }
 
 .calc-hub-card p {
-  color: var(--ink-soft);
+  color: var(--ink);
   font-size: var(--fs-small);
   margin-bottom: 0;
 }
 
 .calc-hub-card .calc-hub-card__go {
   margin-top: auto;
-  padding-top: var(--space-3);
+  padding-top: var(--space-2);
   font-size: var(--fs-small);
   font-weight: 600;
-  color: var(--steel);
+  color: var(--clay);
 }
 
 /* --- Calculators: LVR band ladder ------------------------------------------ */
@@ -2623,7 +2629,8 @@ input[type="range"].calc-range::-moz-range-thumb {
 }
 
 .polaroid--tape:nth-child(even),
-.polaroid-card:nth-child(even) .polaroid {
+.polaroid-card:nth-child(even) .polaroid,
+.calc-hub-card:nth-child(even) .polaroid {
   transform: rotate(1.6deg);
 }
 
@@ -2748,24 +2755,20 @@ input[type="range"].calc-range::-moz-range-thumb {
   .help-grid--cards { grid-template-columns: 1fr; }
 }
 
-.tools-grid {
-  display: grid;
-  gap: var(--space-5);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
-  max-width: 860px;
-}
-
-.tools-grid .index-card {
+/* Same snap and 280px floor as .review-card. A 3-up 1/3 basis would fit
+   all three tools on desktop and look static; 2.35-up keeps the next card
+   peeking so the shared scroller actually moves. */
+#tools-scroller .index-card {
+  flex: 0 0 calc((100% - var(--space-5) * 1.35) / 2.35);
+  scroll-snap-align: start;
+  min-width: 280px;
   display: flex;
   flex-direction: column;
 }
 
-.tools-grid .index-card p { flex: 1; }
+#tools-scroller .index-card p { flex: 1; }
 
-@media (max-width: 640px) {
-  .tools-grid { grid-template-columns: 1fr; }
-}
+#tools-scroller .index-card__link { margin-top: auto; }
 
 .notebook {
   --nb-line: 1.85rem;
@@ -3058,12 +3061,6 @@ input[type="range"].calc-range::-moz-range-thumb {
   text-underline-offset: 3px;
   font-weight: 500;
 }
-
-.quiz-after {
-  padding-block: var(--space-8);
-}
-
-.quiz-after .index-card { max-width: 420px; }
 
 @media (max-width: 640px) {
   .hero { padding-block: 3rem 2rem; }
