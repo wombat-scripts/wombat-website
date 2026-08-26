@@ -20,7 +20,7 @@ Wombat Home Loans is a credit representative of Finsure Finance & Insurance Pty 
 
 ## General information only
 
-The content on this website — including articles, guides, calculators and podcast episodes — is provided for general informational purposes only. It does not constitute personal financial advice, credit advice or a recommendation to enter into any particular loan or financial product.
+The content on this website, including articles, guides, calculators and podcast episodes. is provided for general informational purposes only. It does not constitute personal financial advice, credit advice or a recommendation to enter into any particular loan or financial product.
 
 Your personal circumstances, objectives and financial situation have not been taken into account. Before making any financial decisions, you should consider whether the information is appropriate for your situation and seek independent professional advice if needed.
 
@@ -36,7 +36,7 @@ This website may contain links to third-party websites, including lender sites, 
 
 ## Intellectual property
 
-All content on this website — including text, images, logos, graphics and design — is the property of Wombat Home Loans unless otherwise stated. You may not reproduce, distribute or republish any content without our prior written consent.
+All content on this website, including text, images, logos, graphics and design. is the property of Wombat Home Loans unless otherwise stated. You may not reproduce, distribute or republish any content without our prior written consent.
 
 ## Website availability
 

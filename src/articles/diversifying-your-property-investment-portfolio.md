@@ -25,7 +25,7 @@ Investing across various locations protects against localised economic downturns
 
 - **Capital cities:** Typically more stable with consistent growth, but higher entry costs.
 - **Regional areas:** Can offer higher yields and lower entry prices, but may have less capital growth.
-- **Interstate markets:** Different states have different growth cycles — investing across state lines can provide balance.
+- **Interstate markets:** Different states have different growth cycles. investing across state lines can provide balance.
 
 ## Direct and Indirect Investments
 

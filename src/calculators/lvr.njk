@@ -1,5 +1,5 @@
 ---
-title: "LVR calculator — what's your loan to value ratio?"
+title: "LVR calculator. what's your loan to value ratio?"
 description: "Work out your LVR (loan to value ratio), see which pricing band you land in, whether LMI applies, and how much more deposit or equity would drop you into a cheaper band."
 layout: base.njk
 permalink: /calculators/lvr/
@@ -26,7 +26,7 @@ permalink: /calculators/lvr/
     <p class="calc-breadcrumb"><a href="/calculators/">← All calculators</a></p>
     <span class="eyebrow">LVR</span>
     <h1>One ratio, and the banks <em>price everything off it.</em></h1>
-    <p class="lede">Your loan to value ratio is the simplest number in lending — loan divided by property value — and one of the most consequential. It decides whether you pay lenders mortgage insurance, and which rate tier you're offered. Small moves across a band boundary can be worth real money.</p>
+    <p class="lede">Your loan to value ratio is the simplest number in lending. loan divided by property value, and one of the most consequential. It decides whether you pay lenders mortgage insurance, and which rate tier you're offered. Small moves across a band boundary can be worth real money.</p>
   </div>
 </section>
 
@@ -64,7 +64,7 @@ permalink: /calculators/lvr/
               <input class="calc-input" id="l-deposit-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Deposit amount">
             </div>
             <input class="calc-range" id="l-deposit" type="range" min="0" max="2000000" step="10000" value="200000" aria-label="Deposit slider">
-            <p class="calc-field__hint">Remember stamp duty and costs come out of your savings too — see the <a href="/calculators/buying-costs/">cost of buying calculator</a>.</p>
+            <p class="calc-field__hint">Remember stamp duty and costs come out of your savings too. see the <a href="/calculators/buying-costs/">cost of buying calculator</a>.</p>
           </div>
         </div>
 
@@ -112,7 +112,7 @@ permalink: /calculators/lvr/
             </div>
             <div class="calc-stat">
               <span class="calc-stat__label">LMI payable?</span>
-              <span class="calc-stat__value" id="l-stat-lmi">—</span>
+              <span class="calc-stat__value" id="l-stat-lmi">-<//span>
             </div>
           </div>
           <p class="calc-field__hint" style="margin-top: var(--space-4);" hidden><strong id="l-nudge"></strong></p>
@@ -120,15 +120,15 @@ permalink: /calculators/lvr/
 
         <div class="calc-card">
           <h3>The LVR bands, and where you sit</h3>
-          <p class="calc-field__hint" style="margin: 0 0 var(--space-4);">Lenders don't price on a smooth curve — they price in steps. Cross a boundary and the whole loan gets repriced.</p>
+          <p class="calc-field__hint" style="margin: 0 0 var(--space-4);">Lenders don't price on a smooth curve. they price in steps. Cross a boundary and the whole loan gets repriced.</p>
           <div class="lvr-ladder" id="l-ladder">
-            <div class="lvr-band" data-band="60"><span class="lvr-band__range">≤ 60%</span><span class="lvr-band__desc">The pointy end — lenders compete hardest here</span></div>
-            <div class="lvr-band" data-band="70"><span class="lvr-band__range">60–70%</span><span class="lvr-band__desc">Very strong — most sharp pricing tiers include you</span></div>
-            <div class="lvr-band" data-band="80"><span class="lvr-band__range">70–80%</span><span class="lvr-band__desc">The standard sweet spot — no LMI, good rates</span></div>
-            <div class="lvr-band" data-band="90"><span class="lvr-band__range">80–90%</span><span class="lvr-band__desc">LMI territory — unless your profession earns a waiver</span></div>
-            <div class="lvr-band" data-band="999"><span class="lvr-band__range">90%+</span><span class="lvr-band__desc">Possible, but pricier — fewer lenders, LMI, rate loadings</span></div>
+            <div class="lvr-band" data-band="60"><span class="lvr-band__range">≤ 60%</span><span class="lvr-band__desc">The pointy end. lenders compete hardest here</span></div>
+            <div class="lvr-band" data-band="70"><span class="lvr-band__range">60–70%</span><span class="lvr-band__desc">Very strong. most sharp pricing tiers include you</span></div>
+            <div class="lvr-band" data-band="80"><span class="lvr-band__range">70–80%</span><span class="lvr-band__desc">The standard sweet spot. no LMI, good rates</span></div>
+            <div class="lvr-band" data-band="90"><span class="lvr-band__range">80–90%</span><span class="lvr-band__desc">LMI territory. unless your profession earns a waiver</span></div>
+            <div class="lvr-band" data-band="999"><span class="lvr-band__range">90%+</span><span class="lvr-band__desc">Possible, but pricier. fewer lenders, LMI, rate loadings</span></div>
           </div>
-          <p class="calc-field__hint" style="margin-top: var(--space-4);">Work in banking or financial services? Some lenders waive LMI up to 90% for your profession — <a href="/articles/lmi-waiver-bank-employees/">here's how that works</a>.</p>
+          <p class="calc-field__hint" style="margin-top: var(--space-4);">Work in banking or financial services? Some lenders waive LMI up to 90% for your profession. <a href="/articles/lmi-waiver-bank-employees/">here's how that works</a>.</p>
         </div>
 
         <div class="calc-card">
@@ -143,8 +143,8 @@ permalink: /calculators/lvr/
       <details>
         <summary>Assumptions behind this calculator</summary>
         <ul>
-          <li>LVR = loan ÷ property value. When buying, we assume the loan is price minus deposit — if some of your deposit goes to stamp duty and costs, your real LVR will be a touch higher.</li>
-          <li>When refinancing, the lender's valuation is what counts, and it can come in below (or above) your estimate — this is often the make-or-break of a refinance.</li>
+          <li>LVR = loan ÷ property value. When buying, we assume the loan is price minus deposit, if some of your deposit goes to stamp duty and costs, your real LVR will be a touch higher.</li>
+          <li>When refinancing, the lender's valuation is what counts, and it can come in below (or above) your estimate. this is often the make-or-break of a refinance.</li>
           <li>Band boundaries and their pricing effects vary by lender; 60/70/80/90 are the common tiers. LMI is typically required above 80% LVR unless waived.</li>
         </ul>
       </details>

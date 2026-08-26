@@ -35,7 +35,7 @@ Foreign persons can still seek approval to buy:
 
 ## Do You Need Approval Before You Buy?
 
-Yes — if you're a foreign person buying residential property, you must apply for approval before you acquire the property and pay the application fee. The ATO administers applications via its Online services for foreign investors. Significant penalties can apply for breaches.
+Yes, if you're a foreign person buying residential property, you must apply for approval before you acquire the property and pay the application fee. The ATO administers applications via its Online services for foreign investors. Significant penalties can apply for breaches.
 
 ## The Step-by-Step Process
 

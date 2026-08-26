@@ -16,8 +16,8 @@ Before your appointment, pull together the key documents a broker will need to a
 - Recent payslips (last 2–3)
 - Last 2 years of tax returns and Notices of Assessment
 - Bank statements (last 3–6 months)
-- Details of existing debts — credit cards, personal loans, car loans, HECS/HELP
-- Details of assets — savings, investments, superannuation, any property owned
+- Details of existing debts. credit cards, personal loans, car loans, HECS/HELP
+- Details of assets. savings, investments, superannuation, any property owned
 - Identification documents
 
 A comprehensive financial snapshot allows your broker to assess your borrowing capacity accurately from the first meeting.
@@ -42,4 +42,4 @@ No question is too basic when it comes to a commitment this significant. Conside
 
 ## Have a Clear Budget in Mind
 
-Your broker will help you understand your maximum borrowing capacity — but it's important to come with a sense of what you're comfortable repaying, not just what you technically can borrow. Factor in potential life changes (family, career shifts) and ongoing costs like insurance, rates, and maintenance. Knowing your comfort zone helps your broker find the right product, not just the biggest loan.
+Your broker will help you understand your maximum borrowing capacity. but it's important to come with a sense of what you're comfortable repaying, not just what you technically can borrow. Factor in potential life changes (family, career shifts) and ongoing costs like insurance, rates, and maintenance. Knowing your comfort zone helps your broker find the right product, not just the biggest loan.

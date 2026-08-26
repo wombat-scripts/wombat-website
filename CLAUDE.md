@@ -48,12 +48,12 @@ Articles are collected via `.eleventy.js` → `articles` collection, sorted newe
 
 Contains: `name`, `url`, `phone`, `phoneLink`, `email`, `address`, `calendly` (`/book/`), `calendlyEvent` (live Calendly event URL), `linkedin`, `instagram`, `youtube`, `newsletter`, `propertySearch`, `middle`, `acl`, `crn`, `broker`. Reference in templates as `{{ site.acl }}` etc.
 
-### CSS (`src/assets/css/styles.css`)
+### CSS (`src/_includes/css/styles.css`)
 
-Single file — do not split. Key design tokens:
+Single file. Do not split. Key design tokens (Kitchen table):
 
-- **Colours:** `--navy` (#1c476a), `--steel` (#507fa9), `--blue-pale` (#cadbe5), `--paper` (#fdfcfa)
-- **Fonts:** `--font-display` (Fraunces serif), `--font-body` (Plus Jakarta Sans)
+- **Colours:** cream `#f7f3ec`, ink `#1e2430`, oak `#c4a574` / `#8a6a3e`, dusty clay `#8a4a34`
+- **Fonts:** `--font-display` (Zilla Slab 500–700), `--font-body` (IBM Plex Sans 400/500/600)
 - **Spacing scale:** `--space-1` (0.25rem) through `--space-10` (8rem)
 - **Section variants:** `.section--dark`, `.section--warm`, `.section--cool`, `.section--tight`
 - **Container variants:** `.container--narrow` (720px), `.container--wide` (1400px)
