@@ -116,6 +116,8 @@ test('skin tokens are Kitchen table, not navy Fraunces', function () {
 test('nav and footer use Kitchen table chrome and the Gosford address', function () {
   assert.match(nav, /How it works/);
   assert.match(nav, /Who I help/);
+  assert.match(nav, /href="\/calculators\/">Calculators</);
+  assert.doesNotMatch(nav, /href="\/calculators\/">Tools</);
   assert.match(nav, /Book a Strategy Session/);
   assert.match(nav, /logo-horizontal\.svg/);
   assert.match(footer, /Suite 1, 86 Mann St, Gosford NSW 2250/);

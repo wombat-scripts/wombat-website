@@ -94,13 +94,14 @@ test('quiet Tools links point at the hub, not the raw form', function () {
   assert.doesNotMatch(home, /href="\/tools\/house-and-land-cash\/"/);
   assert.doesNotMatch(home, /data-umami-event-location="hero"[^>]*construction/);
 
-  assert.match(calcs, /href="\/construction\/"/);
-  assert.match(calcs, /Building vs buying/);
-  assert.match(calcs, /cash timeline/);
-  assert.match(calcs, /Which door is actually open\?/);
+  assert.doesNotMatch(calcs, /href="\/construction\/"/);
+  assert.doesNotMatch(calcs, /Building vs buying/);
+  assert.doesNotMatch(calcs, /Which door is actually open\?/);
   assert.doesNotMatch(calcs, /cash walk/i);
   assert.doesNotMatch(calcs, /Which door can you actually walk/);
   assert.doesNotMatch(calcs, /href="\/tools\/house-and-land-cash\/"/);
+  assert.match(calcs, /Loan repayments/);
+  assert.match(calcs, /Open calculator →/);
 
   assert.match(footer, /href="\/construction\/"/);
   assert.match(footer, /Building vs buying/);
