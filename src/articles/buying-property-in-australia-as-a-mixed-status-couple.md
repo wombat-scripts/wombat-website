@@ -31,6 +31,6 @@ If property is purchased through a trust or company, the foreign person tests ap
 
 - Only the foreign person's share attracts surcharges.
 - Married or de-facto status does not exempt the foreign partner from being assessed.
-- Trusts and companies require extra caution — professional advice is essential.
+- Trusts and companies require extra caution. professional advice is essential.
 
 If you and your partner are planning a purchase, speak with your state revenue office and check the ATO foreign investment pages before signing a contract.

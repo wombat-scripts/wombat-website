@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-26 — Kitchen table visual system
+
+Signed-off Type C skin shipped on a branch so main stays navy until merge. Homepage rebuilt to the Kitchen table mockups (Polaroid hero, stamped tickets, index cards, one Why Wombat Polaroid, lined notebook, taped article Polaroids, quiz after the book band). Global tokens, header, footer, buttons, cards, forms, tools and article templates now use cream / ink / oak / dusty clay with Zilla Slab and IBM Plex Sans. Em dashes stripped from visible copy. Podcast and tools carousels kept.
+
+**Files changed:** `src/_includes/css/styles.css`, `src/index.njk`, `src/_includes/nav.njk`, `src/_includes/footer.njk`, `src/_layouts/base.njk`, `src/_layouts/article.njk`, fonts under `src/assets/fonts/`, plus inner pages, calculators, and `tests/homepage.test.js`
+
+---
+
 ## 2026-08-25 — Who I help: payslips, first home, next move
 
 Who I help H2 is now “Complicated payslips. A first home. The next move.” First-home card leads on base-plus-bonus and lender policy, not RSUs or ESS. Other three cards, FAQ bonus/RSU question, and the RSU article left as-is.

@@ -1,5 +1,5 @@
 /* =============================================================================
-   Wombat Home Loans — NSW house-and-land cash timeline (UI)
+   Wombat Home Loans. NSW house-and-land cash timeline (UI)
    -----------------------------------------------------------------------------
    Client-side only. Paints /construction/house-and-land-cash/. No backend.
    Math lives in house-and-land-cash-math.js.
@@ -22,7 +22,7 @@
   });
 
   function fmt$(n, cents) {
-    if (n == null || !isFinite(n)) return '—';
+    if (n == null || !isFinite(n)) return '-';
     if (cents || Math.abs(n - Math.round(n)) > 0.001) return aud2.format(n);
     return aud0.format(n);
   }
@@ -243,7 +243,7 @@
       return '<tr>' +
         '<th scope="row">' + row.month + '</th>' +
         '<td>' + fmt$(row.drawn) + '</td>' +
-        '<td>' + (r.monthly.skippedIO ? '—' : fmt$(row.io)) + '</td>' +
+        '<td>' + (r.monthly.skippedIO ? '-' : fmt$(row.io)) + '</td>' +
         '<td>' + fmt$(row.rent) + '</td>' +
         '<td>' + fmt$(row.cashOut) + '</td>' +
         '</tr>';

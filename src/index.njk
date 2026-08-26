@@ -1,164 +1,8 @@
 ---
 layout: base.njk
-title: Mortgage broker for banking, tech & consulting types — First Home
+title: Mortgage broker for banking, tech & consulting types. First Home
 description: Mortgage broker for banking, tech and consulting types. Bonus income, RSUs and first homes. 20+ years inside the banks, now in your corner. 40+ lenders. No cost to you.
 ---
-
-{# ── PAGE-LOCAL STYLES ── #}
-{% block head %}
-<style>
-  /* Hero layout */
-  .hero { position: relative; padding-block: clamp(5rem, 10vw, 8rem) clamp(4rem, 8vw, 6rem); overflow: hidden; }
-  .hero__inner { display: grid; grid-template-columns: 1fr; gap: var(--space-7); align-items: center; }
-  @media (min-width: 960px) { .hero__inner { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--space-9); } }
-  .hero__copy h1 { margin-top: var(--space-3); margin-bottom: var(--space-5); }
-  .hero__lede { margin-bottom: var(--space-6); }
-  .hero__ctas { display: flex; flex-wrap: wrap; gap: var(--space-4); }
-  .proof-strip { padding-block: var(--space-5) var(--space-6); border-bottom: 1px solid var(--line); }
-  .proof-strip__inner { display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-6); align-items: center; justify-content: center; font-size: var(--fs-small); color: var(--ink-soft); }
-  .proof-strip__inner strong { color: var(--navy-deep); font-weight: 600; }
-  .hero__stars { display: inline-flex; gap: 2px; color: var(--gold); }
-  .hero__stars svg { width: 16px; height: 16px; fill: currentColor; }
-
-  /* Hero portrait */
-  .hero__portrait { position: relative; aspect-ratio: 4 / 5; max-width: 460px; width: 100%; margin-inline: auto; border-radius: var(--radius-lg); overflow: hidden; background: linear-gradient(135deg, var(--navy), var(--navy-deep)); box-shadow: var(--shadow-xl); }
-  .hero__portrait img { width: 100%; height: 100%; object-fit: cover; }
-  .hero__portrait::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(6, 11, 56, 0.35)); z-index: 1; pointer-events: none; }
-  .hero__portrait-tag { position: absolute; bottom: var(--space-4); left: var(--space-4); right: var(--space-4); z-index: 2; color: #fff; font-family: var(--font-display); font-size: 1.125rem; font-weight: 300; font-style: italic; line-height: 1.3; font-variation-settings: "opsz" 144, "SOFT" 100; }
-  .hero__portrait-tag small { display: block; font-family: var(--font-body); font-style: normal; font-size: var(--fs-meta); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-light); margin-bottom: var(--space-2); }
-
-  /* Decorative hero accent */
-  .hero__accent { position: absolute; top: -10%; right: -8%; width: 38%; height: 120%; opacity: 0.04; pointer-events: none; z-index: 0; }
-  .hero__inner > * { position: relative; z-index: 1; }
-
-  /* Photo slots (placeholder until photos sourced) */
-  .photo-slot { position: relative; border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-5); border: 1px solid; min-height: 280px; }
-  .photo-slot::before { content: ''; position: absolute; inset: 0; opacity: 0.05; background-image: repeating-linear-gradient(45deg, currentColor 0 1px, transparent 1px 14px); pointer-events: none; }
-  .photo-slot__label { position: absolute; top: var(--space-3); left: var(--space-3); font-size: 11px; font-family: ui-monospace, SFMono-Regular, monospace; letter-spacing: 0.15em; opacity: 0.55; z-index: 1; }
-  .photo-slot__brief { position: relative; font-size: var(--fs-small); line-height: 1.4; font-weight: 500; opacity: 0.85; max-width: 32ch; }
-  .photo-slot--navy { background: linear-gradient(135deg, var(--navy), var(--navy-deep)); color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.12); }
-  .photo-slot--pale { background: linear-gradient(135deg, var(--blue-pale), var(--blue-light)); color: rgba(28,71,106,0.85); border-color: rgba(28,71,106,0.18); }
-  .photo-slot--warm { background: var(--paper-warm); color: var(--ink-soft); border-color: var(--line); }
-  .photo-slot--ratio-4-5 { aspect-ratio: 4/5; }
-  .photo-slot--ratio-4-3 { aspect-ratio: 4/3; }
-
-  /* Story section — editorial alternating rows */
-  .story__row { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: center; }
-  @media (min-width: 800px) { .story__row { grid-template-columns: 1fr 1fr; gap: var(--space-8); } .story__row--reverse .story__media { order: 2; } }
-
-  /* Help cards */
-  .help-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-  .help-card { padding: var(--space-6); }
-  .help-card__icon { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; background: var(--blue-pale); color: var(--navy); border-radius: var(--radius-md); margin-bottom: var(--space-4); }
-  .help-card__icon svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-  .help-card h3 { font-size: 1.375rem; margin-bottom: var(--space-3); }
-  .help-card ul { list-style: none; padding: 0; margin: var(--space-4) 0 0; font-size: var(--fs-small); }
-  .help-card li { padding-left: 1.25rem; position: relative; color: var(--ink-soft); }
-  .help-card li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 8px; height: 1px; background: var(--steel); }
-
-  /* Process steps */
-  .process { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); counter-reset: step; }
-  .process__step { position: relative; padding: var(--space-5) 0 0; }
-  .process__step::before { counter-increment: step; content: counter(step, decimal-leading-zero); display: block; font-family: var(--font-display); font-size: 2.25rem; font-weight: 300; color: var(--steel); font-variation-settings: "opsz" 144, "SOFT" 100; line-height: 1; margin-bottom: var(--space-4); }
-  .process__step h3 { font-size: 1.25rem; margin-bottom: var(--space-3); }
-  .process__step p { font-size: var(--fs-small); color: var(--ink-soft); }
-
-  /* Reviews */
-  .reviews-wrap { overflow: hidden; position: relative; }
-  .reviews { display: flex; gap: var(--space-5); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: var(--space-4); }
-  .reviews::-webkit-scrollbar { display: none; }
-  .review-card { padding: var(--space-6); display: flex; flex-direction: column; flex: 0 0 calc((100% - var(--space-5) * 2) / 3); scroll-snap-align: start; min-width: 280px; }
-  .reviews-nav { display: flex; gap: var(--space-4); justify-content: center; align-items: center; margin-top: var(--space-6); }
-  .reviews-nav button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--navy); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all var(--motion-fast) var(--easing); }
-  .reviews-nav button:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
-  .review-card__quote { font-family: var(--font-display); font-size: 1.25rem; font-weight: 300; line-height: 1.45; color: var(--navy-deep); margin: 0 0 var(--space-5); font-variation-settings: "opsz" 80, "SOFT" 50; }
-  .review-card__quote::before { content: "\201C"; display: block; font-size: 3rem; line-height: 0.6; color: var(--blue-light); margin-bottom: var(--space-3); }
-  .review-card__attr { margin-top: auto; font-size: var(--fs-small); color: var(--ink-muted); display: flex; justify-content: space-between; gap: var(--space-3); }
-  .review-card__name { color: var(--ink); font-weight: 600; }
-
-  /* Tools next control — same row as the chevron, wide enough for the label */
-  #tools-next { width: auto; height: auto; border-radius: 999px; padding: 0.55rem 1rem; font-size: var(--fs-small); font-weight: 600; white-space: nowrap; }
-
-  /* Podcast grid */
-  .podcast-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-  .episode-card { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); }
-  .episode-card__num { font-family: var(--font-display); font-size: 0.9375rem; font-weight: 500; letter-spacing: 0.08em; color: var(--steel); text-transform: uppercase; }
-  .episode-card h3 { font-size: 1.125rem; line-height: 1.35; margin-bottom: var(--space-2); }
-  .episode-card__meta { font-size: var(--fs-meta); color: var(--ink-muted); margin-top: auto; }
-
-  /* Tools slider — same flex/snap pattern as the podcast carousel */
-  #tools-scroller .tool-card { flex: 0 0 calc((100% - var(--space-5) * 2) / 3); min-width: 280px; }
-  .tool-card { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6); background: linear-gradient(180deg, #fff, var(--paper-cool)); }
-  .tool-card__icon { width: 44px; height: 44px; padding: 10px; background: var(--navy-deep); border-radius: var(--radius-sm); color: #fff; }
-  .tool-card h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
-  .tool-card p { font-size: var(--fs-small); color: var(--ink-soft); margin: 0; }
-  .tool-card__link { margin-top: auto; padding-top: var(--space-4); }
-  .tool-card.tool-card--quiz,
-  .tool-card.tool-card--build { background: var(--navy); color: #fff; border: 0; border-top: 3px solid var(--gold); box-shadow: var(--shadow-lg); }
-  .tool-card--quiz h3,
-  .tool-card--build h3 { color: #fff; }
-  .tool-card--quiz p,
-  .tool-card--build p { color: rgba(255, 255, 255, 0.82); }
-  .tool-card--quiz .badge,
-  .tool-card--build .badge { background: var(--gold); color: var(--navy-deep); }
-  .tool-card--quiz .btn--ghost,
-  .tool-card--build .btn--ghost { color: #fff; border-color: rgba(255, 255, 255, 0.4); }
-  .tool-card--quiz .btn--ghost:hover,
-  .tool-card--build .btn--ghost:hover { background: rgba(255, 255, 255, 0.1); color: #fff; border-color: #fff; }
-
-  /* Articles preview */
-  .articles-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .article-card { display: flex; flex-direction: column; gap: var(--space-3); overflow: hidden; }
-  .article-card__thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: center center; display: block; }
-  .article-card__body { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
-  .article-card__cat { font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel); }
-  .article-card h3 { font-size: 1.1875rem; line-height: 1.35; margin-bottom: var(--space-2); }
-  .article-card__meta { font-size: var(--fs-meta); color: var(--ink-muted); margin-top: auto; }
-  .article-card__body .article-card__meta { padding-top: var(--space-2); }
-
-  /* FAQ */
-  .faq { max-width: var(--container-narrow); margin-inline: auto; }
-  .faq details { border-top: 1px solid var(--line); padding: var(--space-5) 0; }
-  .faq details:last-of-type { border-bottom: 1px solid var(--line); }
-  .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); font-family: var(--font-display); font-size: 1.1875rem; font-weight: 400; color: var(--navy-deep); line-height: 1.35; font-variation-settings: "opsz" 36, "SOFT" 50; }
-  .faq summary::after { content: "+"; font-size: 1.25rem; color: var(--steel); flex-shrink: 0; transition: transform var(--motion-fast) var(--easing); }
-  .faq details[open] summary::after { content: "−"; }
-  .faq details p { margin-top: var(--space-3); font-size: var(--fs-small); color: var(--ink-soft); max-width: 60ch; }
-  .faq summary::-webkit-details-marker { display: none; }
-
-  /* Closing CTA */
-  .closing { display: grid; grid-template-columns: 1fr; gap: var(--space-7); align-items: center; }
-  @media (min-width: 800px) { .closing { grid-template-columns: 1fr 1.2fr; gap: var(--space-9); } }
-  .closing h2 { color: #fff; font-size: clamp(2rem, 4vw, 3rem); }
-
-  /* Lender strip */
-  .lender-strip { padding-block: clamp(2rem, 4vw, 3rem); border-block: 1px solid var(--line); }
-  .lender-strip__label { text-align: center; margin-bottom: var(--space-4); }
-  .lender-name { font-family: var(--font-display); font-size: 1.125rem; font-weight: 400; color: var(--ink-muted); font-variation-settings: "opsz" 36, "SOFT" 50; letter-spacing: -0.01em; white-space: nowrap; }
-
-  /* Logo + button fixes from v3 */
-  /* .nav__brand-mark { width: auto; height: 52px; flex: 0 0 auto; } */
-  .footer__brand img { width: auto; height: 56px; flex: 0 0 auto; }
-  .nav__cta .btn--primary { background: var(--navy) !important; color: #fff !important; isolation: isolate; }
-  .nav__cta .btn--primary:hover { background: var(--navy-deep) !important; color: #fff !important; }
-
-  /* Cooler paper tones override */
-  :root { --paper: #ffffff; --paper-warm: #f3f6f9; --paper-cool: #f3f6f9; }
-
-  /* Welcome video section */
-  .video-intro.section { padding-block: var(--space-6) var(--space-7); }
-  .video-intro__wrapper { max-width: 800px; margin-inline: auto; text-align: center; }
-  .video-intro__embed { position: relative; aspect-ratio: 16 / 9; border-radius: var(--radius-lg); overflow: hidden; background: var(--navy-deep); box-shadow: var(--shadow-xl); cursor: pointer; }
-  .video-intro__thumb { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease; }
-  .video-intro__embed:hover .video-intro__thumb { opacity: 0.85; }
-  .video-intro__play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; z-index: 2; }
-  .video-intro__play svg { width: 72px; height: 72px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3)); transition: transform 0.2s ease; }
-  .video-intro__embed:hover .video-intro__play svg { transform: scale(1.08); }
-  .video-intro__caption { margin-top: var(--space-4); color: var(--ink-muted); }
-
-  @media (max-width: 640px) { .hero { padding-block: 4rem 3rem; } .hero__portrait { max-width: 360px; } }
-</style>
-{% endblock %}
 
 {# ── FAQPage schema (homepage only) ── #}
 {% block schema %}
@@ -168,11 +12,11 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Does it cost anything to use a mortgage broker?", "acceptedAnswer": { "@type": "Answer", "text": "No. Wombat Home Loans is paid by the lender when your loan settles — there's no cost to you. And under Australia's Best Interests Duty, brokers are legally required to act in your interests, not the bank's." } },
-    { "@type": "Question", "name": "Most of my income is bonus, commission or RSUs. Will lenders count it?", "acceptedAnswer": { "@type": "Answer", "text": "Some will, some won't, and the haircuts vary wildly — one lender takes 80% of a two-year bonus average, another ignores it entirely. Matching your income profile to the right credit policy is the single biggest lever in your application, and it's exactly what Tom does." } },
-    { "@type": "Question", "name": "Do you only do home loans?", "acceptedAnswer": { "@type": "Answer", "text": "Home loans are the core, but Wombat also arranges asset and equipment finance — cars, caravans, business equipment. Quick, simple deals that settle in days rather than weeks." } },
+    { "@type": "Question", "name": "Does it cost anything to use a mortgage broker?", "acceptedAnswer": { "@type": "Answer", "text": "No. Wombat Home Loans is paid by the lender when your loan settles. There's no cost to you. And under Australia's Best Interests Duty, brokers are legally required to act in your interests, not the bank's." } },
+    { "@type": "Question", "name": "Most of my income is bonus, commission or RSUs. Will lenders count it?", "acceptedAnswer": { "@type": "Answer", "text": "Some will, some won't, and the haircuts vary wildly. One lender takes 80% of a two-year bonus average, another ignores it entirely. Matching your income profile to the right credit policy is the single biggest lever in your application, and it's exactly what Tom does." } },
+    { "@type": "Question", "name": "Do you only do home loans?", "acceptedAnswer": { "@type": "Answer", "text": "Home loans are the core, but Wombat also arranges asset and equipment finance. Cars, caravans, business equipment. Quick, simple deals that settle in days rather than weeks." } },
     { "@type": "Question", "name": "How many lenders do you work with?", "acceptedAnswer": { "@type": "Answer", "text": "40+, covering the big four, second-tier banks, non-bank lenders, and specialists for non-standard situations." } },
-    { "@type": "Question", "name": "Are you Sydney only? And can you help with foreign income?", "acceptedAnswer": { "@type": "Answer", "text": "Australia-wide via Google Meet — Tom is based in Sydney, but most meetings are remote. Foreign and expat income is also well covered; different lenders treat it very differently." } }
+    { "@type": "Question", "name": "Are you Sydney only? And can you help with foreign income?", "acceptedAnswer": { "@type": "Answer", "text": "Australia-wide via Google Meet. Tom is based in Sydney, but most meetings are remote. Foreign and expat income is also well covered; different lenders treat it very differently." } }
   ]
 }
 </script>
@@ -182,56 +26,35 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
 
 {# ── 1. HERO ── #}
 <section class="hero">
-  <svg class="hero__accent" viewBox="0 0 400 800" aria-hidden="true">
-    <polygon points="0,0 400,0 400,400 100,800 0,600" fill="#1c476a" />
-    <polygon points="200,100 400,200 400,600 250,500" fill="#060b38" />
-  </svg>
   <div class="container">
     <div class="hero__inner">
       <div class="hero__copy" data-reveal>
-        <span class="eyebrow">Mortgage broker for banking, tech & consulting types · Sydney based, Australia-wide</span>
-        <h1 class="display">Financially fluent. <em>Mortgage confused?</em></h1>
-        <p class="lede hero__lede">I'm Tom — twenty years in institutional banking, now in your corner. If you can read a balance sheet but can't decode lender credit policy, you're exactly who I built Wombat for. First home, next move — I translate the strange parallel universe of mortgage credit into a clear plan.</p>
-        <div class="hero__ctas">
-          <a class="btn btn--primary btn--lg" href="{{ site.calendly }}" data-umami-event="book-a-call" data-umami-event-location="hero">Book a free discovery call <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn btn--text btn--lg" href="/which-door/" data-umami-event="which-door-click" data-umami-event-location="hero">Get started in 2 minutes <span class="arrow" aria-hidden="true">→</span></a>
+        <p class="hero__kicker">Mortgage broker for banking, tech &amp; consulting types · Sydney based, Australia-wide</p>
+        <h1 class="display">Financially fluent. Mortgage confused?</h1>
+        <p class="lede hero__lede">I'm Tom. Twenty years in institutional banking, now in your corner. If you can read a balance sheet but can't decode lender credit policy, you're exactly who I built Wombat for. First home, next move. I translate the strange parallel universe of mortgage credit into a clear plan.</p>
+        <a class="btn btn--primary btn--lg" href="{{ site.calendly }}" data-umami-event="book-a-call" data-umami-event-location="hero">Book a Strategy Session</a>
+        <p class="hero__byline">Tom Carr. Mortgage broker. Ex-banker. Sydney local.</p>
+        <div class="tickets" aria-label="Google rating, experience and lender access">
+          <span class="ticket">5.0 Google</span>
+          <span class="ticket">20+ years in the banks</span>
+          <span class="ticket">40+ lenders</span>
         </div>
       </div>
-      <div class="hero__portrait" data-reveal style="--reveal-delay: 120ms;">
-        <img src="/images/tom-hero-01.webp" alt="Tom Carr, mortgage broker and founder of Wombat Home Loans" width="460" height="575" loading="eager" fetchpriority="high" decoding="async">
-        <div class="hero__portrait-tag">
-          <small>Tom Carr</small>
-          Mortgage broker. Ex-banker. Sydney local.
-        </div>
+      <div class="hero__visual" data-reveal style="--reveal-delay: 120ms;">
+        <figure class="polaroid polaroid--hero">
+          <img src="/images/tom_booking.webp" alt="Tom Carr, mortgage broker and founder of Wombat Home Loans, at a picnic table" width="460" height="575" loading="eager" fetchpriority="high" decoding="async">
+          <figcaption>Tom Carr · Sydney</figcaption>
+        </figure>
+        <p class="sticky">thirty minutes. genuinely no obligation.</p>
       </div>
     </div>
   </div>
 </section>
 
-{# ── 2. PROOF STRIP ── #}
-<section class="proof-strip" aria-label="Google rating, experience and lender access">
-  <div class="container">
-    <div class="proof-strip__inner">
-      <div class="cluster" style="gap: var(--space-2);">
-        <span class="hero__stars" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </span>
-        <span><strong>5.0</strong> Google rating</span>
-      </div>
-      <div><strong>20+ years</strong> institutional banking</div>
-      <div>Access to <strong>40+ lenders</strong></div>
-    </div>
-  </div>
-</section>
-
-{# ── 3. LENDER TRUST STRIP ── #}
+{# ── 2. LENDER TRUST STRIP ── #}
 <section class="lender-strip" aria-label="Banking experience and lender access">
   <div class="container">
-    <p class="lender-strip__label muted small">Twenty years across global banking · Access to 40+ Australian lenders</p>
+    <p class="lender-strip__label">Twenty years across global banking · Access to 40+ Australian lenders</p>
   </div>
   <div class="marquee" data-marquee>
     <div class="marquee__track">
@@ -265,73 +88,113 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
           var w=document.getElementById('videoEmbed');
           w.innerHTML='<iframe src=&quot;https://www.youtube.com/embed/YHhouWUaMUI?autoplay=1&amp;rel=0&amp;modestbranding=1&quot; title=&quot;Welcome to Wombat Home Loans&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen style=&quot;position:absolute;inset:0;width:100%;height:100%;&quot;></iframe>';
         ">
-          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="36" fill="rgba(28,71,106,0.85)"/><polygon points="28,22 52,36 28,50" fill="#fff"/></svg>
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="36" fill="rgba(138,74,52,0.88)"/><polygon points="28,22 52,36 28,50" fill="#fff"/></svg>
         </button>
       </div>
-      <p class="video-intro__caption muted small">Forty seconds with Tom — what Wombat does, and how it works.</p>
+      <p class="video-intro__caption muted small">Forty seconds with Tom. What Wombat does, and how it works.</p>
     </div>
   </div>
 </section>
 
-{# ── 2. WHO I HELP ── #}
+{# ── 3. WHO I HELP ── #}
 <section id="how-i-help" class="section">
   <div class="container">
-    <div data-reveal style="margin-bottom: var(--space-7);"><span class="eyebrow">Who I help</span><h2>Complicated payslips. A first home. <em>The next move.</em></h2><p class="lede">Most of my clients work in banking, tech, consulting or data. They understand finance perfectly well — just not the odd, opaque world of mortgage credit policy, where two lenders can look at the same payslip and reach opposite conclusions. That's the gap I fill. Deliberately few clients, done properly.</p></div>
-    <div class="help-grid">
-      <article class="card help-card" data-reveal><span class="help-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-7h6v7"/></svg></span><h3>First-home buyers with complicated payslips</h3><p>Base plus bonus — a payslip that looks fine to you and confusing to a credit policy. Lenders treat the same income very differently: some count 80% of your bonus, some count none of it. I know which is which, and which government schemes you're actually eligible for, in plain English.</p></article>
-      <article class="card help-card" data-reveal style="--reveal-delay: 80ms;"><span class="help-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></span><h3>The next move</h3><p>You bought the first place years ago; now it's the upgrade, the bridge between selling and buying, or releasing equity without wrecking your borrowing power for the move after this one. Structure today with the next five years in mind.</p></article>
-      <article class="card help-card" data-reveal><span class="help-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><line x1="12" y1="22" x2="12" y2="12"/></svg></span><h3>Refinancers</h3><p>If your rate hasn't been reviewed in two years, you're almost certainly paying a loyalty tax. Quick health-check, honest answer on whether it's worth moving — including "no, stay put" when that's the truth.</p></article>
-      <article class="card help-card" data-reveal style="--reveal-delay: 80ms;"><span class="help-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 17h-2v-5l2-6h12l2 6v5h-2"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/><path d="M9 17h6"/></svg></span><h3>Asset &amp; equipment finance</h3><p>Not everything is a mortgage. Car, caravan, business equipment — quick approvals, simple paperwork, sorted in days rather than weeks. Handy when life (or the business) can't wait for a settlement cycle.</p></article>
+    <div data-reveal style="margin-bottom: var(--space-7);">
+      <h2>Complicated payslips. A first home. The next move.</h2>
+      <p class="lede">Most of my clients work in banking, tech, consulting or data. They understand finance perfectly well, just not the odd, opaque world of mortgage credit policy, where two lenders can look at the same payslip and reach opposite conclusions. That's the gap I fill. Deliberately few clients, done properly.</p>
+    </div>
+    <div class="help-grid--cards">
+      <article class="index-card" data-reveal>
+        <h3>First-home buyers with complicated payslips</h3>
+        <p>Base plus bonus. A payslip that looks fine to you and confusing to a credit policy. Lenders treat the same income very differently: some count 80% of your bonus, some count none of it. I know which is which, and which government schemes you're actually eligible for, in plain English.</p>
+      </article>
+      <article class="index-card" data-reveal style="--reveal-delay: 80ms;">
+        <h3>The next move</h3>
+        <p>You bought the first place years ago; now it's the upgrade, the bridge between selling and buying, or releasing equity without wrecking your borrowing power for the move after this one. Structure today with the next five years in mind.</p>
+      </article>
+      <article class="index-card" data-reveal>
+        <h3>Refinancers</h3>
+        <p>If your rate hasn't been reviewed in two years, you're almost certainly paying a loyalty tax. Quick health-check, honest answer on whether it's worth moving, including "no, stay put" when that's the truth.</p>
+      </article>
+      <article class="index-card" data-reveal style="--reveal-delay: 80ms;">
+        <h3>Asset &amp; equipment finance</h3>
+        <p>Not everything is a mortgage. Car, caravan, business equipment. Quick approvals, simple paperwork, sorted in days rather than weeks. Handy when life (or the business) can't wait for a settlement cycle.</p>
+      </article>
     </div>
   </div>
 </section>
 
-{# ── 3. STORY — Why Wombat ── #}
-<section id="story" class="section section--warm">
+{# ── 4. WHY WOMBAT ── #}
+<section id="story" class="section">
   <div class="container">
-    <div data-reveal style="margin-bottom: var(--space-8); max-width: 700px;"><span class="eyebrow">Why Wombat</span><h2>I spent twenty years <em>inside the banks</em>. Now I work for you.</h2></div>
-    <div class="story__row stack-lg" style="margin-bottom: var(--space-7);" data-reveal>
-      <div class="story__copy"><h3>From global investment banks in London — to retail lending in Sydney.</h3><p>Twenty-plus years across analytics, strategy, digital banking, and product leadership at some of the world's largest investment banks — and later Commonwealth Bank in Sydney. I've sat in the rooms where credit policy gets written, and seen exactly how banks decide who's a good risk and who isn't.</p><p>That insider view is the real value. Most of my clients are people like my former colleagues — sharp, financially literate, and still baffled by why a lender said no. Because most rejection letters aren't "you can't afford this" — they're "you applied to the wrong lender for your situation." Knowing the difference is most of the job.</p></div>
-      <div class="story__media">
-        <img src="/images/tom-corporate.webp" alt="Tom Carr in a corporate setting" width="1000" height="750" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
+    <div class="why-wombat" data-reveal>
+      <div class="why-wombat__media">
+        <figure class="polaroid polaroid--run">
+          <img src="/images/tom-community.webp" alt="Tom Carr running in Sydney" width="760" height="950" loading="lazy">
+          <figcaption>Sydney local. Runner.</figcaption>
+        </figure>
       </div>
-    </div>
-    <div class="story__row story__row--reverse stack-lg" style="margin-bottom: var(--space-7);" data-reveal>
-      <div class="story__copy"><h3>I live where you live. Sydney local. Runner. School volunteer.</h3><p>"Wombat" comes from the Beecroft Wombats — our kids soccer team I used to coach. I'm originally from the UK, but Sydney's been home for around fifteen years, and Beecroft for most of those. I served as a volunteer non-executive director at the local primary school.</p><p>None of which is the reason to choose a broker. But it's the reason I built this business the way I did: people I'd want to bump into at Saturday parkrun deserve advice that holds up in daylight.</p></div>
-      <div class="story__media">
-        <img src="/images/tom-community.webp" alt="Tom Carr in the Community" width="760" height="570" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
-      </div>
-    </div>
-    <div class="story__row stack-lg" data-reveal>
-      <div class="story__copy"><h3>I don't disappear at settlement.</h3><p>Most brokers move on once the loan settles — that's when they get paid. Wombat works on an annual review model: every year I check your loan against the market, run the numbers, and tell you whether it's still the right deal. Most years it is. Sometimes it isn't. Either way you'll know.</p><p>And it costs you nothing. Lenders pay brokers for introducing the loan; the borrower never sees a bill. Australia's Best Interests Duty makes that more than a vibe — it's a legal requirement that I act in <em>your</em> interests, not the bank's.</p></div>
-      <div class="story__media">
-        <img src="/images/tom-candid.webp" alt="Tom Carr, relaxed portrait" width="1100" height="825" loading="lazy" style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
+      <div class="why-wombat__copy">
+        <h2>I spent twenty years inside the banks. Now I work for you.</h2>
+        <div class="why-block">
+          <h3>From global investment banks in London to retail lending in Sydney.</h3>
+          <p>Twenty-plus years across analytics, strategy, digital banking, and product leadership at some of the world's largest investment banks, and later Commonwealth Bank in Sydney. I've sat in the rooms where credit policy gets written, and seen exactly how banks decide who's a good risk and who isn't.</p>
+          <p>That insider view is the real value. Most of my clients are people like my former colleagues. Sharp, financially literate, and still baffled by why a lender said no. Because most rejection letters aren't "you can't afford this". They're "you applied to the wrong lender for your situation." Knowing the difference is most of the job.</p>
+        </div>
+        <div class="why-block">
+          <h3>I live where you live. Sydney local. Runner. School volunteer.</h3>
+          <p>People I'd want to bump into at Saturday parkrun deserve advice that holds up in daylight. I served as a volunteer non-executive director at the local primary school. None of which is the reason to choose a broker. But it's the reason I built this business the way I did.</p>
+        </div>
+        <div class="why-block">
+          <h3>I don't disappear at settlement.</h3>
+          <p>Every year I check your loan against the market, run the numbers, and tell you whether it's still the right deal. Most years it is. Sometimes it isn't. Either way you'll know.</p>
+          <p>And it costs you nothing. Lenders pay brokers for introducing the loan; the borrower never sees a bill. Australia's Best Interests Duty makes that more than a vibe. It's a legal requirement that I act in <em>your</em> interests, not the bank's.</p>
+        </div>
+        <div class="why-block why-block--origin">
+          <h3>“Wombat” comes from the Beecroft Wombats.</h3>
+          <p>Our kids soccer team I used to coach. I'm originally from the UK, but Sydney's been home for around fifteen years, and Beecroft for most of those.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-{# ── 4. PROCESS ── #}
+{# ── 5. HOW IT WORKS ── #}
 <section id="process" class="section">
   <div class="container">
-    <div data-reveal style="margin-bottom: var(--space-7); max-width: 700px;"><span class="eyebrow">How it works</span><h2>Four conversations <em>between you and your keys.</em></h2><p class="lede">Most of the work is mine. Yours is mostly answering questions and signing things.</p></div>
-    <div class="process" data-reveal>
-      <article class="process__step"><h3>The strategy session</h3><p>Thirty minutes on Google Meet. You tell me the situation; I tell you whether it's actually achievable, and roughly with whom. No paperwork yet — just a strategy.</p></article>
-      <article class="process__step"><h3>The deep dive</h3><p>We collect documents, build the file properly, and pre-position the application with two or three lenders that fit. Most brokers send you to one. I want options.</p></article>
-      <article class="process__step"><h3>Application &amp; approval</h3><p>I lodge, follow up daily, and translate banker-speak back to you in plain English. You don't need to chase anyone. That's literally my job.</p></article>
-      <article class="process__step"><h3>Settlement &amp; beyond</h3><p>Settlement happens. You get the keys. Then I check in every twelve months to see whether your loan is still the right one. For as long as you have it.</p></article>
+    <div data-reveal style="margin-bottom: var(--space-7); max-width: 700px;">
+      <h2>Four conversations between you and your keys.</h2>
+      <p class="lede">Most of the work is mine. Yours is mostly answering questions and signing things.</p>
+    </div>
+    <div class="notebook" data-reveal>
+      <article class="notebook__step">
+        <h3>1. The strategy session</h3>
+        <p>Thirty minutes on Google Meet. You tell me the situation; I tell you whether it's actually achievable, and roughly with whom. No paperwork yet. Just a strategy.</p>
+      </article>
+      <article class="notebook__step">
+        <h3>2. The deep dive</h3>
+        <p>We collect documents, build the file properly, and pre-position the application with two or three lenders that fit. Most brokers send you to one. I want options.</p>
+      </article>
+      <article class="notebook__step">
+        <h3>3. Application &amp; approval</h3>
+        <p>I lodge, follow up daily, and translate banker-speak back to you in plain English. You don't need to chase anyone. That's literally my job.</p>
+      </article>
+      <article class="notebook__step">
+        <h3>4. Settlement &amp; beyond</h3>
+        <p>Settlement happens. You get the keys. Then I check in every twelve months to see whether your loan is still the right one. For as long as you have it.</p>
+      </article>
     </div>
   </div>
 </section>
 
-{# ── 5. REVIEWS ── #}
-<section id="reviews" class="section section--cool">
+{# ── 6. REVIEWS ── #}
+<section id="reviews" class="section">
   <div class="container">
-    <div data-reveal style="margin-bottom: var(--space-7); max-width: 700px;"><span class="eyebrow">Reviews · 5.0 on Google</span><h2>The clients who already lived through it.</h2></div>
+    <div data-reveal style="margin-bottom: var(--space-7); max-width: 700px;"><h2>The clients who already lived through it.</h2></div>
     <div class="reviews-wrap" data-reveal>
       <div class="reviews">
       {% for review in reviews %}
-      <article class="card review-card">
+      <article class="index-card review-card">
         <p class="review-card__quote">{{ review.text }}</p>
         <div class="review-card__attr">
           <span class="review-card__name">{{ review.name }} · {{ review.segment }}</span>
@@ -388,33 +251,28 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
 })();
 </script>
 
-{# ── 9. ARTICLES PREVIEW ── #}
+{# ── 7. ARTICLES ── #}
 <section id="articles" class="section">
   <div class="container">
     <div class="cluster" data-reveal style="justify-content: space-between; margin-bottom: var(--space-7); align-items: flex-end;">
-      <div style="max-width: 640px;"><span class="eyebrow">Articles</span><h2 class="mb-0">Plain-English writing on <em>the bits that matter.</em></h2></div>
+      <div style="max-width: 640px;"><h2 class="mb-0">Plain-English writing on the bits that matter.</h2></div>
       <a class="btn btn--ghost" href="/articles/">All articles <span class="arrow" aria-hidden="true">→</span></a>
     </div>
     <div class="reviews-wrap" data-reveal>
       <div class="reviews" id="articles-scroller">
         {% for article in collections.articles %}
-        <a href="{{ article.url }}"
-           class="card review-card"
-           style="text-decoration: none; color: inherit; flex: 0 0 calc((100% - var(--space-5) * 2) / 3); min-width: 280px; display: flex; flex-direction: column;">
-          {% if article.data.thumbnail %}
-          <div style="aspect-ratio: 16/9; width: calc(100% + 3rem); margin: -1.5rem -1.5rem var(--space-4); overflow: hidden; flex-shrink: 0; border-radius: var(--radius-md) var(--radius-md) 0 0;">
-            <img src="{{ article.data.thumbnail }}"
-                 alt=""
-                 width="640" height="360"
-                 loading="lazy"
-                 decoding="async"
-                 style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+        <a href="{{ article.url }}" class="polaroid-card">
+          <figure class="polaroid polaroid--tape">
+            {% if article.data.thumbnail %}
+            <img src="{{ article.data.thumbnail }}" alt="" width="640" height="360" loading="lazy" decoding="async">
+            {% endif %}
+            <figcaption>{{ article.data.category or "Home Loans" }}</figcaption>
+          </figure>
+          <div class="polaroid-card__body">
+            <p class="polaroid-card__cat">{{ article.data.category or "Home Loans" }}</p>
+            <h3>{{ article.data.title }}</h3>
+            <p class="small">{{ article.data.description }}</p>
           </div>
-          {% endif %}
-          <p class="meta" style="margin-bottom: var(--space-2);">{{ article.data.category or "Home Loans" }}</p>
-          <h3 class="h4" style="margin-bottom: var(--space-3);">{{ article.data.title }}</h3>
-          <p class="small" style="color: var(--ink-soft); margin-top: auto;">{{ article.data.description }}</p>
-          <span class="small" style="color: var(--steel); margin-top: var(--space-3); font-weight: 600;">Read article →</span>
         </a>
         {% endfor %}
       </div>
@@ -431,89 +289,47 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   </div>
 </section>
 
-{# ── 10. TOOLS ── #}
-<section class="section section--cool">
+{# ── 8. TOOLS ── #}
+<section class="section">
   <div class="container">
     <div data-reveal style="margin-bottom: var(--space-7); max-width: 700px;">
-      <span class="eyebrow">Tools</span>
-      <h2>Things I built to make the rest <em>less of a fight.</em></h2>
+      <h2>Things I built to make the rest less of a fight.</h2>
     </div>
     <div class="reviews-wrap" data-reveal>
       <div class="reviews" id="tools-scroller">
 
-      <article class="card tool-card tool-card--quiz">
-        <div class="tool-card--quiz__doors" aria-hidden="true">
-          <svg class="quiz-door-svg" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 30V12.2A7 7 0 0 1 12 6a7 7 0 0 1 7 6.2V30"/><path d="M4 30h16"/><circle cx="15.3" cy="19" r="1.15" fill="currentColor" stroke="none"/></svg>
-          <svg class="quiz-door-svg" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 30V12.2A7 7 0 0 1 12 6a7 7 0 0 1 7 6.2V30"/><path d="M4 30h16"/><circle cx="15.3" cy="19" r="1.15" fill="currentColor" stroke="none"/></svg>
-          <svg class="quiz-door-svg" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 30V12.2A7 7 0 0 1 12 6a7 7 0 0 1 7 6.2V30"/><path d="M4 30h16"/><circle cx="15.3" cy="19" r="1.15" fill="currentColor" stroke="none"/></svg>
-          <svg class="quiz-door-svg" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 30V12.2A7 7 0 0 1 12 6a7 7 0 0 1 7 6.2V30"/><path d="M4 30h16"/><circle cx="15.3" cy="19" r="1.15" fill="currentColor" stroke="none"/></svg>
-          <svg class="quiz-door-svg" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 30V12.2A7 7 0 0 1 12 6a7 7 0 0 1 7 6.2V30"/><path d="M4 30h16"/><circle cx="15.3" cy="19" r="1.15" fill="currentColor" stroke="none"/></svg>
-        </div>
-        <span class="badge" style="margin-bottom: var(--space-3);">Deposit path</span>
-        <h3>Which door is actually open?</h3>
-        <p style="font-size: var(--fs-small); flex: 1;">Five questions. I will name the deposit path that looks open this year, and the ones that look closed.</p>
-        <a class="btn btn--ghost btn--sm" href="/which-door/" data-umami-event="which-door-click" data-umami-event-location="tools" style="margin-top: var(--space-5);">
-          Open the quiz →
-        </a>
-      </article>
-
-      <article class="card tool-card tool-card--build">
-        <div class="help-card__icon" style="background: rgba(255, 255, 255, 0.12); color: #fff; margin-bottom: var(--space-4);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;">
-            <path d="M3 21h18"/>
-            <path d="M5 21V10l7-6 7 6v11"/>
-            <path d="M10 21v-6h4v6"/>
-          </svg>
-        </div>
-        <span class="badge" style="margin-bottom: var(--space-3);">Construction</span>
+      <article class="index-card tool-card tool-card--build">
+        <span class="index-card__label">Construction</span>
         <h3>Building vs buying</h3>
-        <p style="font-size: var(--fs-small); flex: 1;">You are either buying a finished home, or you are building. Those are different loans.</p>
-        <a class="btn btn--ghost btn--sm" href="/construction/" data-umami-event="construction-click" data-umami-event-location="tools" style="margin-top: var(--space-5);">
+        <p>You are either buying a finished home, or you are building. Those are different loans.</p>
+        <a class="index-card__link" href="/construction/" data-umami-event="construction-click" data-umami-event-location="tools">
           Open the hub →
         </a>
       </article>
 
-      <article class="card tool-card" style="border-top: 3px solid var(--steel);">
-        <div class="help-card__icon" style="background: var(--blue-pale); margin-bottom: var(--space-4);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;">
-            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-            <path d="m11 8v6"/><path d="m8 11h6"/>
-          </svg>
-        </div>
-        <span class="badge" style="background: var(--navy); color: #fff; margin-bottom: var(--space-3);">AI Powered Property</span>
+      <article class="index-card tool-card">
+        <span class="index-card__label">AI Powered Property</span>
         <h3>Wombat Property Search</h3>
-        <p style="color: var(--ink-soft); font-size: var(--fs-small); flex: 1;">Live AU listings, filtered the way buyers actually think. Free to use (for now!).</p>
-        <a class="btn btn--ghost btn--sm" href="https://wombathl.pifiproperty.com/" target="_blank" rel="noopener" data-umami-event="property-search-click" style="margin-top: var(--space-5);">
+        <p>Live AU listings, filtered the way buyers actually think. Free to use (for now!).</p>
+        <a class="index-card__link" href="https://wombathl.pifiproperty.com/" target="_blank" rel="noopener" data-umami-event="property-search-click">
           Open the search →
         </a>
       </article>
 
-      <article class="card tool-card" style="border-top: 3px solid var(--steel);">
-        <div class="help-card__icon" style="background: var(--blue-pale); margin-bottom: var(--space-4);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-            <rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>
-          </svg>
-        </div>
-        <span class="badge" style="background: var(--blue-pale); color: var(--navy); margin-bottom: var(--space-3);">LinkedIn</span>
+      <article class="index-card tool-card">
+        <span class="index-card__label">LinkedIn</span>
         <h3>Regular updates</h3>
-        <p style="color: var(--ink-soft); font-size: var(--fs-small); flex: 1;">Quick reads on rate moves, lender behaviour, and how to get ahead. ~3.5k followers.</p>
-        <a class="btn btn--ghost btn--sm" href="https://linkedin.com/in/tomrcarr" target="_blank" rel="noopener" data-umami-event="linkedin-click" style="margin-top: var(--space-5);">
+        <p>Quick reads on rate moves, lender behaviour, and how to get ahead. ~3.5k followers.</p>
+        <a class="index-card__link" href="https://linkedin.com/in/tomrcarr" target="_blank" rel="noopener" data-umami-event="linkedin-click">
           Connect on LinkedIn →
         </a>
       </article>
 
-      <article class="card tool-card" style="border-top: 3px solid var(--steel);">
-        <div class="help-card__icon" style="background: var(--blue-pale); color: var(--navy); margin-bottom: var(--space-4);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;">
-            <rect width="20" height="16" x="2" y="4" rx="2"/>
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-          </svg>
-        </div>
-        <span class="badge" style="background: var(--blue-pale); color: var(--navy); margin-bottom: var(--space-3);">Newsletter</span>
+      <article class="index-card tool-card">
+        <span class="index-card__label">Newsletter</span>
         <h3>The Wombat Wrap</h3>
-        <p style="color: var(--ink-soft); font-size: var(--fs-small); flex: 1;">Monthly insights. Behind the scenes of my business and property finance tips worth knowing, in plain English.</p>
-        <a class="btn btn--ghost btn--sm" href="{{ site.newsletter }}" style="margin-top: var(--space-5);">
+        <p>Monthly insights. Behind the scenes of my business and property finance tips worth knowing, in plain English.</p>
+        <a class="index-card__link" href="{{ site.newsletter }}">
           Subscribe →
         </a>
       </article>
@@ -530,13 +346,13 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   </div>
 </section>
 
-{# ── 11. PODCAST ── #}
+{# ── 9. PODCAST ── #}
 <section class="section">
   <div class="container">
     <div class="cluster" data-reveal style="justify-content: space-between; margin-bottom: var(--space-7); align-items: flex-end;">
       <div style="max-width: 640px;">
         <span class="eyebrow">The Property Web · podcast</span>
-        <h2 class="mb-0">Long-form conversations about <em>how Australian property actually works.</em></h2>
+        <h2 class="mb-0">Long-form conversations about how Australian property actually works.</h2>
       </div>
       <a class="btn btn--ghost" href="/podcast/">All {{ episodes | length }} episodes <span class="arrow" aria-hidden="true">→</span></a>
     </div>
@@ -546,9 +362,9 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
         <a href="{{ ep.url }}"
            target="_blank"
            rel="noopener"
-           class="card"
+           class="index-card"
            style="text-decoration: none; color: inherit; flex: 0 0 calc((100% - var(--space-5) * 2) / 3); min-width: 280px; display: flex; flex-direction: column;">
-          <span style="font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); margin-bottom: var(--space-2); display: block;">Episode {{ ep.number }} · {{ ep.category }}</span>
+          <span style="font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--oak-deep); margin-bottom: var(--space-2); display: block;">Episode {{ ep.number }} · {{ ep.category }}</span>
           <h3 class="h4" style="margin-bottom: var(--space-3);">{{ ep.title }}</h3>
           <p style="font-size: var(--fs-small); color: var(--ink-soft); font-weight: 500; margin-bottom: var(--space-2);">{{ ep.guest }}{% if ep.role %} · {{ ep.role }}{% endif %}</p>
           <p class="small" style="color: var(--ink-soft); flex: 1;">{{ ep.description }}</p>
@@ -574,41 +390,45 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   </div>
 </section>
 
-{# ── 12. FAQ ── #}
-<section class="section section--warm">
+{# ── 10. FAQ ── #}
+<section class="section">
   <div class="container faq">
-    <div class="text-center" data-reveal style="margin-bottom: var(--space-7);"><span class="eyebrow">Frequently asked</span><h2 class="mb-0">The questions <em>most people start with.</em></h2></div>
+    <div class="text-center" data-reveal style="margin-bottom: var(--space-7);"><h2 class="mb-0">The questions most people start with.</h2></div>
     <div data-reveal>
-      <details><summary>Does it cost anything to use a mortgage broker?</summary><p>No. Wombat Home Loans is paid by the lender when your loan settles — there's no cost to you. And under Australia's Best Interests Duty, brokers are legally required to act in your interests, not the bank's.</p></details>
-      <details><summary>Most of my income is bonus, commission or RSUs. Will lenders count it?</summary><p>Some will, some won't, and the haircuts vary wildly — one lender takes 80% of a two-year bonus average, another ignores it entirely. Matching your income profile to the right credit policy is the single biggest lever in your application, and it's exactly what I do.</p></details>
-      <details><summary>Do you only do home loans?</summary><p>Home loans are the core, but I also arrange asset and equipment finance — cars, caravans, business equipment. Quick, simple deals that settle in days rather than weeks.</p></details>
+      <details><summary>Does it cost anything to use a mortgage broker?</summary><p>No. Wombat Home Loans is paid by the lender when your loan settles. There's no cost to you. And under Australia's Best Interests Duty, brokers are legally required to act in your interests, not the bank's.</p></details>
+      <details><summary>Most of my income is bonus, commission or RSUs. Will lenders count it?</summary><p>Some will, some won't, and the haircuts vary wildly. One lender takes 80% of a two-year bonus average, another ignores it entirely. Matching your income profile to the right credit policy is the single biggest lever in your application, and it's exactly what I do.</p></details>
+      <details><summary>Do you only do home loans?</summary><p>Home loans are the core, but I also arrange asset and equipment finance. Cars, caravans, business equipment. Quick, simple deals that settle in days rather than weeks.</p></details>
       <details><summary>How many lenders do you work with?</summary><p>40+, covering the big four, second-tier banks, non-bank lenders, and specialists for non-standard situations.</p></details>
-      <details><summary>Are you Sydney only? And can you help with foreign income?</summary><p>Australia-wide via Google Meet — I'm in Sydney, but most meetings are remote. And yes, foreign and expat income is something I've handled plenty of; different lenders treat it very differently, which is rather the theme around here.</p></details>
+      <details><summary>Are you Sydney only? And can you help with foreign income?</summary><p>Australia-wide via Google Meet. I'm in Sydney, but most meetings are remote. And yes, foreign and expat income is something I've handled plenty of; different lenders treat it very differently, which is rather the theme around here.</p></details>
     </div>
   </div>
 </section>
 
-{# ── 11. CLOSING CTA ── #}
-<section id="book" class="section section--dark">
-  <div class="container">
-    <div class="closing" data-reveal>
-      <div>
-        <img src="/images/tom_booking.webp"
-             alt="Tom Carr"
-             width="1200" height="1532"
-             loading="lazy"
-             style="border-radius: var(--radius-md); width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;">
-      </div>
-      <div>
-        <span class="eyebrow">Let's start</span>
-        <h2>Book the call. Thirty minutes. <em>Genuinely no obligation.</em></h2>
-        <p style="font-size: 1.125rem; max-width: 50ch; color: rgba(255,255,255,0.85);">Tell me your situation. I'll tell you what's possible — even if the answer is "not yet," and even if the answer is "use someone else." Zero cost, zero pressure, zero salesy follow-up sequences.</p>
-        <div class="cluster" style="margin-top: var(--space-6); gap: var(--space-4);">
-          <a class="btn btn--light btn--lg" href="{{ site.calendly }}" data-umami-event="book-a-call" data-umami-event-location="bottom-cta">Book a discovery call <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn btn--text" style="color: #fff; border-color: rgba(255,255,255,0.4);" href="tel:+61456255409" data-umami-event="phone-call" data-umami-event-location="bottom-cta">Or call +61 456 255 409</a>
-        </div>
+{# ── 11. BOOK BAND ── #}
+<section id="book" class="section book-band">
+  <div class="container container--narrow">
+    <div data-reveal>
+      <h2>Book the call. Thirty minutes. Genuinely no obligation.</h2>
+      <p>Tell me your situation. I'll tell you what's possible, even if the answer is "not yet," and even if the answer is "use someone else." Zero cost, zero pressure, zero salesy follow-up sequences.</p>
+      <div class="cluster" style="margin-top: var(--space-6); gap: var(--space-5);">
+        <a class="btn btn--primary btn--lg" href="{{ site.calendly }}" data-umami-event="book-a-call" data-umami-event-location="bottom-cta">Book a Strategy Session</a>
+        <a class="book-band__phone" href="tel:+61456255409" data-umami-event="phone-call" data-umami-event-location="bottom-cta">+61 456 255 409</a>
       </div>
     </div>
+  </div>
+</section>
+
+{# ── 12. QUIZ AFTER BOOK ── #}
+<section id="which-door-card" class="quiz-after">
+  <div class="container">
+    <article class="index-card" data-reveal>
+      <span class="index-card__label">Deposit path</span>
+      <h3>Which door is actually open?</h3>
+      <p>Five questions. I will name the deposit path that looks open this year, and the ones that look closed.</p>
+      <a class="index-card__link" href="/which-door/" data-umami-event="which-door-click" data-umami-event-location="after-book">
+        Get started in 2 minutes →
+      </a>
+    </article>
   </div>
 </section>
 
@@ -619,7 +439,7 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   var prev = document.getElementById('articles-prev');
   var next = document.getElementById('articles-next');
   if (!scroller || !prev || !next) return;
-  var card = scroller.querySelector('.card');
+  var card = scroller.querySelector('.polaroid-card');
   function getStep() { return card ? card.offsetWidth + 20 : 320; }
   prev.addEventListener('click', function() { scroller.scrollBy({ left: -getStep(), behavior: 'smooth' }); });
   next.addEventListener('click', function() { scroller.scrollBy({ left: getStep(), behavior: 'smooth' }); });
@@ -630,7 +450,7 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   var prev = document.getElementById('tools-prev');
   var next = document.getElementById('tools-next');
   if (!scroller || !prev || !next) return;
-  var card = scroller.querySelector('.card');
+  var card = scroller.querySelector('.tool-card');
   function getStep() { return card ? card.offsetWidth + 20 : 320; }
   prev.addEventListener('click', function() { scroller.scrollBy({ left: -getStep(), behavior: 'smooth' }); });
   next.addEventListener('click', function() { scroller.scrollBy({ left: getStep(), behavior: 'smooth' }); });
@@ -641,7 +461,7 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
   var prev = document.getElementById('podcast-prev');
   var next = document.getElementById('podcast-next');
   if (!scroller || !prev || !next) return;
-  var card = scroller.querySelector('.card');
+  var card = scroller.querySelector('.index-card');
   function getStep() { return card ? card.offsetWidth + 20 : 320; }
   prev.addEventListener('click', function() { scroller.scrollBy({ left: -getStep(), behavior: 'smooth' }); });
   next.addEventListener('click', function() { scroller.scrollBy({ left: getStep(), behavior: 'smooth' }); });

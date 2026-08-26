@@ -1,5 +1,5 @@
 /* =============================================================================
-   Wombat Home Loans — Calculator engine
+   Wombat Home Loans. Calculator engine
    -----------------------------------------------------------------------------
    Loaded only on /calculators/ pages, after Chart.js (CDN, deferred in order).
    Vanilla JS, no build step. One file drives all four calculators; each page
@@ -17,24 +17,24 @@
 
   /* ── Brand palette (mirrors CSS tokens in styles.css) ─────────────────── */
   var C = {
-    navy: '#1c476a',
-    navyDeep: '#060b38',
-    steel: '#507fa9',
-    blueLight: '#97bcd7',
-    bluePale: '#cadbe5',
-    gold: '#c89a4a',
+    navy: '#1e2430',
+    navyDeep: '#1e2430',
+    steel: '#8a6a3e',
+    blueLight: '#c4a574',
+    bluePale: '#efe6d4',
+    gold: '#c4a574',
     success: '#2f7d5c',
     danger: '#b8443c',
-    line: '#e6e2dc',
-    inkSoft: '#4a4a4a'
+    line: '#d8ccb4',
+    inkSoft: '#3d4450'
   };
 
   /* ── Chart.js theme ────────────────────────────────────────────────────── */
   if (window.Chart) {
-    Chart.defaults.font.family = '"Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+    Chart.defaults.font.family = '"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
     Chart.defaults.font.size = 13;
     Chart.defaults.color = C.inkSoft;
-    Chart.defaults.borderColor = 'rgba(28, 71, 106, 0.08)';
+    Chart.defaults.borderColor = 'rgba(30, 36, 48, 0.08)';
     Chart.defaults.plugins.tooltip.backgroundColor = C.navyDeep;
     Chart.defaults.plugins.tooltip.padding = 12;
     Chart.defaults.plugins.tooltip.cornerRadius = 8;
@@ -142,7 +142,7 @@
   }
   function netAnnual(gross) { return gross - incomeTax(gross); }
 
-  /* Present value of an annuity — used for borrowing power. */
+  /* Present value of an annuity. used for borrowing power. */
   function maxLoanFromSurplus(monthlySurplus, assessPct, years) {
     if (monthlySurplus <= 0) return 0;
     var r = assessPct / 100 / 12;
@@ -160,7 +160,7 @@
   }
 
   /* Range slider + $ text input, kept in sync. Typed values may exceed the
-     slider max — the slider pins, the typed value wins. */
+     slider max. the slider pins, the typed value wins. */
   function bindMoney(rangeId, inputId, onChange) {
     var r = $(rangeId), inp = $(inputId);
     function parse() { return parseFloat(String(inp.value).replace(/[^0-9.]/g, '')) || 0; }
@@ -295,7 +295,7 @@
         s = schedule(P, rate.value, term.value, per, { ioYears: io, payment: monthlyPay / divisor });
       }
 
-      /* Manual extra repayments — layered on top of whichever plan is selected
+      /* Manual extra repayments. layered on top of whichever plan is selected
          (standard, accelerated or monthly). `base` is that plan WITHOUT the
          extra; `s` becomes what the borrower actually pays. Works for any
          lender, so it covers the case where accelerated isn't on offer. */
@@ -318,13 +318,13 @@
         setText('r-hero-note', 'Stepping up to ' + fmt$(base.payment + extraAmt) + ' ' + perLabel + ' once the interest-only period ends.');
       } else if (isAcc) {
         setText('r-hero-note', 'That’s your monthly repayment split in ' + ((per === 26) ? 'half and paid every fortnight' : 'four and paid every week') +
-          ' — which quietly makes one extra monthly repayment a year, so the loan ends early.');
+          ', which quietly makes one extra monthly repayment a year, so the loan ends early.');
       } else {
         setText('r-hero-note', 'Principal and interest over ' + fmtYears(term.value) + ' at ' + fmtPct(rate.value) + '.');
       }
       if (extraAmt > 0 && !isIO) {
         setText('r-hero-note', 'Includes an extra ' + fmt$(extraAmt) + ' ' + perLabel +
-          ' on top of the ' + fmt$(base.payment) + ' repayment — every dollar of it coming straight off your principal.');
+          ' on top of the ' + fmt$(base.payment) + ' repayment. every dollar of it coming straight off your principal.');
       }
 
       setStat('r-stat-interest', s.totalInterest);
@@ -332,7 +332,7 @@
       setText('r-stat-payments', fmtNum(s.periods) + ' payments');
 
       // Accelerated-vs-standard comparison stats (isolated from any extra).
-      // NB: toggle display directly — the .calc-stats { display:grid } rule in
+      // NB: toggle display directly. the .calc-stats { display:grid } rule in
       // styles.css overrides the [hidden] attribute, so `hidden` won't hide it.
       var accStats = $('r-acc-stats');
       if (accStats) {
@@ -363,7 +363,7 @@
       var labels = yearLabels(years);
       var datasets = [
         {
-          label: isAcc ? 'Loan balance — accelerated' : 'Loan balance',
+          label: isAcc ? 'Loan balance. accelerated' : 'Loan balance',
           data: s.balances,
           borderColor: C.navy,
           backgroundColor: 'rgba(28, 71, 106, 0.10)',
@@ -387,7 +387,7 @@
       ];
       if (isAcc) {
         datasets.splice(1, 0, {
-          label: 'Balance — standard method',
+          label: 'Balance. standard method',
           data: std.balances,
           borderColor: C.steel,
           borderDash: [6, 5],
@@ -399,7 +399,7 @@
         });
       } else if (extraAmt > 0) {
         datasets.splice(1, 0, {
-          label: 'Balance — without extra',
+          label: 'Balance. without extra',
           data: base.balances,
           borderColor: C.steel,
           borderDash: [6, 5],
@@ -453,7 +453,7 @@
         'For every dollar you borrow, you repay about $' +
         ((P + s.totalInterest) / P).toFixed(2).replace('.00', '') +
         '. Interest is ' + Math.round(s.totalInterest / (P + s.totalInterest) * 100) +
-        '% of everything you’ll hand over — which is exactly why the rate, and the structure, matter.');
+        '% of everything you’ll hand over, which is exactly why the rate, and the structure, matter.');
     }
 
     ready = true;
@@ -495,7 +495,7 @@
       var living = Math.max(expenses.value, hem);
       var hemApplied = living > expenses.value;
       setText('b-hem-note', hemApplied
-        ? 'We’ve used a household benchmark of ' + fmt$(living) + '/month instead of your figure — lenders do the same when declared expenses look light.'
+        ? 'We’ve used a household benchmark of ' + fmt$(living) + '/month instead of your figure. lenders do the same when declared expenses look light.'
         : 'Using your declared living expenses of ' + fmt$(living) + '/month.');
 
       var commitments = debts.value + cc.value * 0.038;
@@ -506,7 +506,7 @@
       setStat('b-hero', loan);
       setText('b-hero-note', loan > 0
         ? 'Assessed at ' + fmtPct(assess) + ' (your rate of ' + fmtPct(rate.value) + ' plus the 3% APRA serviceability buffer), over 30 years.'
-        : 'On these numbers there’s no surplus left to service a loan — but inputs rarely tell the whole story. Worth a conversation.');
+        : 'On these numbers there’s no surplus left to service a loan. but inputs rarely tell the whole story. Worth a conversation.');
 
       setStat('b-stat-budget', loan + deposit.value);
       setStat('b-stat-repay', pmt(loan, rate.value, 30, 12));
@@ -602,10 +602,10 @@
 
       setStat('e-hero', saved);
       setText('e-hero-note', saved > 0
-        ? 'That’s interest that stays in your pocket instead of going to the bank — and you’re mortgage-free ' + yearsMonths(monthsSaved) + ' sooner.'
+        ? 'That’s interest that stays in your pocket instead of going to the bank, and you’re mortgage-free ' + yearsMonths(monthsSaved) + ' sooner.'
         : 'Add an extra repayment or an offset balance above to see what it saves you.');
 
-      setText('e-stat-time', monthsSaved > 0 ? yearsMonths(monthsSaved) + ' sooner' : '—');
+      setText('e-stat-time', monthsSaved > 0 ? yearsMonths(monthsSaved) + ' sooner' : '-');
       setText('e-stat-payoff', yearsMonths(boosted.periods));
       setStat('e-stat-base-int', base.totalInterest);
       setStat('e-stat-new-int', boosted.totalInterest);
@@ -728,7 +728,7 @@
       setStat('f-hero', monthlySave, function (v) { return (v < 0 ? '−' : '') + fmt$(Math.abs(v)); });
       setText('f-hero-note', monthlySave > 0
         ? 'Lower repayments every month at ' + fmtPct(newRate.value) + ' instead of ' + fmtPct(oldRate.value) + ', on the same remaining term.'
-        : 'On these numbers the switch doesn’t pay — the new deal needs to be sharper, or the fees lower.');
+        : 'On these numbers the switch doesn’t pay. the new deal needs to be sharper, or the fees lower.');
 
       setText('f-stat-breakeven', breakeven === null ? 'Never' : (breakeven === 0 ? 'Immediately' : yearsMonths(breakeven)));
       setStat('f-stat-5yr', netAt(Math.min(60, n)), function (v) { return (v < 0 ? '−' : '') + fmt$(Math.abs(v)); });
@@ -834,11 +834,11 @@
     var balance = bindMoney('l-balance', 'l-balance-input', cb);
 
     var BANDS = [
-      { max: 60,  label: '60% or under',  desc: 'The pointy end — lenders compete hardest here.' },
+      { max: 60,  label: '60% or under',  desc: 'The pointy end. lenders compete hardest here.' },
       { max: 70,  label: '60–70%',        desc: 'Very strong. Most sharp pricing tiers include you.' },
-      { max: 80,  label: '70–80%',        desc: 'The standard sweet spot — no LMI, good rates.' },
-      { max: 90,  label: '80–90%',        desc: 'LMI territory — unless your profession earns a waiver.' },
-      { max: 999, label: 'Over 90%',      desc: 'Possible, but pricier — fewer lenders, LMI, loadings.' }
+      { max: 80,  label: '70–80%',        desc: 'The standard sweet spot. no LMI, good rates.' },
+      { max: 90,  label: '80–90%',        desc: 'LMI territory. unless your profession earns a waiver.' },
+      { max: 999, label: 'Over 90%',      desc: 'Possible, but pricier. fewer lenders, LMI, loadings.' }
     ];
 
     function update() {
@@ -854,7 +854,7 @@
       setStat('l-hero', lvr, function (v) { return (Math.round(v * 10) / 10) + '%'; });
 
       var band = BANDS.find(function (b) { return lvr <= b.max; }) || BANDS[BANDS.length - 1];
-      setText('l-hero-note', band.desc + (buying ? '' : ' (Based on your estimated value — a bank valuation may differ.)'));
+      setText('l-hero-note', band.desc + (buying ? '' : ' (Based on your estimated value. a bank valuation may differ.)'));
 
       setStat('l-stat-loan', loan);
       setStat('l-stat-equity', equity);
@@ -876,7 +876,7 @@
       if (target && pv > 0) {
         var extra = loan - target / 100 * pv;
         var word = buying ? 'deposit' : 'equity (or loan paydown)';
-        var bonus = target === 80 ? ' — under 80% means no LMI and, usually, sharper pricing' : ' — each band down usually improves the rates on offer';
+        var bonus = target === 80 ? '. under 80% means no LMI and, usually, sharper pricing' : '. each band down usually improves the rates on offer';
         nudgeEl.textContent = 'Another ' + fmt$(extra) + ' of ' + word + ' takes you under ' + target + '%' + bonus + '.';
         nudgeEl.parentElement.hidden = false;
       } else {
@@ -983,8 +983,8 @@
 
     /* Break-even constant balance: the smallest steady offset balance where
        the two setups cost the same (no monthly additions, to isolate the
-       effect). The cost gap isn't monotonic — money above the remaining loan
-       balance earns nothing in an offset — so scan up, then refine. */
+       effect). The cost gap isn't monotonic. money above the remaining loan
+       balance earns nothing in an offset, so scan up, then refine. */
     function breakEven() {
       function diff(B) { var r = simulate(B, 0); return r.costBasic - r.costOffset; }
       if (diff(0) >= 0) return 0;
@@ -1015,11 +1015,11 @@
       setText('o-hero-label', advantage >= 0 ? 'The offset leaves you ahead by' : 'The offset costs you');
       if (redraw) {
         setText('o-hero-note', advantage >= 0
-          ? 'Surprising — check the inputs. With savings in redraw, the basic loan does the same interest maths at a lower rate.'
-          : 'That\'s the price of the rate premium and package fee over the life of the loan. A dollar in redraw cuts your interest exactly like a dollar in offset — so with the interest saving matched, the offset\'s extra cost has nothing left to earn back. What that money buys is flexibility, not returns: instant access, no lender discretion over redraw, and cleaner tax treatment if this home ever becomes an investment.');
+          ? 'Surprising. check the inputs. With savings in redraw, the basic loan does the same interest maths at a lower rate.'
+          : 'That\'s the price of the rate premium and package fee over the life of the loan. A dollar in redraw cuts your interest exactly like a dollar in offset, so with the interest saving matched, the offset\'s extra cost has nothing left to earn back. What that money buys is flexibility, not returns: instant access, no lender discretion over redraw, and cleaner tax treatment if this home ever becomes an investment.');
       } else {
         setText('o-hero-note', advantage >= 0
-          ? 'Your savings work harder cancelling ' + fmtPct(rate.value + prem.value) + ' loan interest (tax-free) than earning ' + fmtPct(sav.value) + ' taxed in a savings account — enough to beat the rate premium and fee.'
+          ? 'Your savings work harder cancelling ' + fmtPct(rate.value + prem.value) + ' loan interest (tax-free) than earning ' + fmtPct(sav.value) + ' taxed in a savings account. enough to beat the rate premium and fee.'
           : 'At this balance, the rate premium and fee cost more than the offset saves you versus a savings account. Grow the balance and watch it flip.');
       }
 
@@ -1028,7 +1028,7 @@
       var be = breakEven();
       setText('o-stat-breakeven', redraw ? 'None' : (be === null ? 'None' : fmt$(be)));
       setText('o-be-note', redraw
-        ? 'There\'s no break-even against redraw: the same dollars save the same interest either way, so no offset balance can claw back the higher rate and fee. The comparison that CAN flip is against a savings account — try the other toggle.'
+        ? 'There\'s no break-even against redraw: the same dollars save the same interest either way, so no offset balance can claw back the higher rate and fee. The comparison that CAN flip is against a savings account. try the other toggle.'
         : 'Break-even is the balance you\'d need to keep in the offset, on average, just to cover the rate premium and fee. Below it, the basic loan wins.');
 
       upsertChart('oDiff', 'o-chart-diff', {
@@ -1037,7 +1037,7 @@
           labels: r.labels,
           datasets: [
             {
-              label: 'Offset package — running cost',
+              label: 'Offset package. running cost',
               data: r.seriesO,
               borderColor: C.navy,
               borderWidth: 2.5,
@@ -1047,7 +1047,7 @@
               fill: false
             },
             {
-              label: (redraw ? 'Basic loan + redraw' : 'Basic loan + savings account') + ' — running cost',
+              label: (redraw ? 'Basic loan + redraw' : 'Basic loan + savings account') + '. running cost',
               data: r.seriesB,
               borderColor: C.steel,
               borderDash: [6, 5],
@@ -1187,7 +1187,7 @@
     }
 
     /* Duty after first-home buyer relief (approximated with a linear taper
-       between the exemption cap and the cut-off — matches VIC exactly and
+       between the exemption cap and the cut-off. matches VIC exactly and
        tracks NSW/QLD/WA closely). */
     function fhbDuty(code, V, isNew) {
       var st = DATA.states[code];
@@ -1200,7 +1200,7 @@
       if (V <= cfg.exemptTo) return { duty: 0, note: cfg.note };
       if (V <= cfg.taperTo) {
         var t = (V - cfg.exemptTo) / (cfg.taperTo - cfg.exemptTo);
-        return { duty: full * t, note: cfg.note + ' (Concessional zone — this is an estimate; the official calculator gives the exact figure.)' };
+        return { duty: full * t, note: cfg.note + ' (Concessional zone. this is an estimate; the official calculator gives the exact figure.)' };
       }
       return { duty: full, note: cfg.note };
     }
@@ -1231,7 +1231,7 @@
 
       setStat('s-hero', total);
       setText('s-hero-note', 'On top of your ' + fmt$(V) + ' purchase in ' + st.name +
-        (st.surchargePct ? '. (Foreign buyers add a ' + st.surchargePct + '% surcharge — not included here.)' : '.'));
+        (st.surchargePct ? '. (Foreign buyers add a ' + st.surchargePct + '% surcharge, not included here.)' : '.'));
 
       setStat('s-stat-duty', duty);
       setStat('s-stat-saving', saving);

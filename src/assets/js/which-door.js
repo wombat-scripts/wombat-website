@@ -1,5 +1,5 @@
 /* =============================================================================
-   Wombat Home Loans — Which door is actually open?
+   Wombat Home Loans. Which door is actually open?
    -----------------------------------------------------------------------------
    Client-side path finder for /which-door/. No backend. No email capture.
    General information, not a credit assessment.

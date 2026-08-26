@@ -1,6 +1,6 @@
 ---
-title: "The Property Web — Conversations with the people behind every property transaction"
-description: "Buyer's agents, financial planners, accountants, proptech founders and property lawyers — real conversations about how Australian property actually works. Hosted by Tom Carr."
+title: "The Property Web. Conversations with the people behind every property transaction"
+description: "Buyer's agents, financial planners, accountants, proptech founders and property lawyers. Real conversations about how Australian property actually works. Hosted by Tom Carr."
 layout: base.njk
 permalink: /podcast/
 ---
@@ -10,7 +10,7 @@ permalink: /podcast/
 {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "The Property Web — Podcast",
+  "name": "The Property Web. Podcast",
   "description": "{{ description }}",
   "url": "https://wombathomeloans.com.au/podcast/",
   "mainEntity": {
@@ -68,8 +68,8 @@ permalink: /podcast/
     transition: all var(--motion-fast) var(--easing);
     white-space: nowrap;
   }
-  .filter-btn:hover { border-color: var(--steel); color: var(--navy); }
-  .filter-btn.is-active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .filter-btn:hover { border-color: var(--oak-deep); color: var(--ink); }
+  .filter-btn.is-active { background: var(--clay); color: #fff; border-color: var(--clay); }
 
   .ep-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 
@@ -88,7 +88,7 @@ permalink: /podcast/
     aspect-ratio: 16 / 9;
     width: 100%;
     object-fit: cover;
-    background: linear-gradient(135deg, var(--navy), var(--navy-deep));
+    background: var(--card-deep);
   }
 
   .ep-card__body { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); flex: 1; }
@@ -107,17 +107,17 @@ permalink: /podcast/
 {% endblock %}
 
 {# ── HERO ── #}
-<section class="section section--dark">
+<section class="section">
   <div class="container pod-hero" data-reveal>
     <span class="eyebrow">The Property Web</span>
     <h1 class="display" style="max-width: 18ch; margin-inline: auto;">Conversations with the people behind every <em>property transaction.</em></h1>
-    <p class="lede" style="color: var(--blue-pale);">
-      Buyer's agents, financial planners, accountants, proptech founders and property lawyers — real conversations about how Australian property actually works. Hosted by mortgage broker Tom Carr.
+    <p class="lede">
+      Buyer's agents, financial planners, accountants, proptech founders and property lawyers. Real conversations about how Australian property actually works. Hosted by mortgage broker Tom Carr.
     </p>
     <div class="pod-platforms">
-      <a class="btn btn--light" href="https://www.youtube.com/@thepropertyweb" target="_blank" rel="noopener">YouTube</a>
-      <a class="btn btn--ghost" style="color: var(--blue-light); border-color: var(--blue-light);" href="https://open.spotify.com/show/6XPN6KyzpNPuAGMpsXlEhh" target="_blank" rel="noopener">Spotify</a>
-      <a class="btn btn--ghost" style="color: var(--blue-light); border-color: var(--blue-light);" href="https://podcasts.apple.com/us/podcast/the-property-web/id1841854828" target="_blank" rel="noopener">Apple Podcasts</a>
+      <a class="btn btn--primary" href="https://www.youtube.com/@thepropertyweb" target="_blank" rel="noopener">YouTube</a>
+      <a class="btn btn--ghost" href="https://open.spotify.com/show/6XPN6KyzpNPuAGMpsXlEhh" target="_blank" rel="noopener">Spotify</a>
+      <a class="btn btn--ghost" href="https://podcasts.apple.com/us/podcast/the-property-web/id1841854828" target="_blank" rel="noopener">Apple Podcasts</a>
     </div>
   </div>
 </section>
@@ -186,17 +186,17 @@ permalink: /podcast/
 </section>
 
 {# ── SUBSCRIBE CTA ── #}
-<section class="section section--dark">
+<section class="section book-band">
   <div class="container" style="text-align: center;" data-reveal>
-    <h2 style="color: #fff; font-size: var(--fs-h2);">New episode every fortnight.</h2>
-    <p style="color: var(--blue-pale); max-width: 50ch; margin-inline: auto;">Subscribe on your favourite platform — or book a call if you want to talk about your own property situation.</p>
+    <h2 style="font-size: var(--fs-h2);">New episode every fortnight.</h2>
+    <p style="max-width: 50ch; margin-inline: auto;">Subscribe on your favourite platform, or book a call if you want to talk about your own property situation.</p>
     <div class="pod-platforms" style="margin-top: var(--space-5);">
-      <a class="btn btn--light" href="https://www.youtube.com/@thepropertyweb" target="_blank" rel="noopener">YouTube</a>
-      <a class="btn btn--ghost" style="color: var(--blue-light); border-color: var(--blue-light);" href="https://open.spotify.com/show/6XPN6KyzpNPuAGMpsXlEhh" target="_blank" rel="noopener">Spotify</a>
-      <a class="btn btn--ghost" style="color: var(--blue-light); border-color: var(--blue-light);" href="https://podcasts.apple.com/us/podcast/the-property-web/id1841854828" target="_blank" rel="noopener">Apple Podcasts</a>
+      <a class="btn btn--primary" href="https://www.youtube.com/@thepropertyweb" target="_blank" rel="noopener">YouTube</a>
+      <a class="btn btn--ghost" href="https://open.spotify.com/show/6XPN6KyzpNPuAGMpsXlEhh" target="_blank" rel="noopener">Spotify</a>
+      <a class="btn btn--ghost" href="https://podcasts.apple.com/us/podcast/the-property-web/id1841854828" target="_blank" rel="noopener">Apple Podcasts</a>
     </div>
     <div style="margin-top: var(--space-7);">
-      <a class="btn btn--primary btn--lg" href="{{ site.calendly }}" data-umami-event="book-a-call" data-umami-event-location="podcast">Book a free discovery call <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--primary btn--lg" href="{{ site.calendly }}" data-umami-event="book-a-call" data-umami-event-location="podcast">Book a Strategy Session <span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
