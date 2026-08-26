@@ -44,7 +44,7 @@ module.exports = function (eleventyConfig) {
   // CTA button → /book/ (same tab). "outline" maps to ghost — btn--outline is unused.
   eleventyConfig.addShortcode("cta", function (text, variant) {
     const cls = (variant === "outline" || variant === "ghost") ? "btn btn--ghost" : "btn btn--primary";
-    return `<a href="/book/" class="${cls}">${text || "Book a free discovery call"}</a>`;
+    return `<a href="/book/" class="${cls}">${text || "Book a Strategy Session"}</a>`;
   });
 
   // Current year (for footer copyright)

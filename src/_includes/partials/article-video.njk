@@ -1,13 +1,13 @@
 {#
-  article-video.njk — "Tom explains this in 90 seconds" block
+  article-video.njk. "Tom explains this in 90 seconds" block
   ---------------------------------------------------------
   Renders only when the article's front matter includes `videoId`.
 
   Front matter fields (per article):
-    videoId:          "dQw4w9WgXcQ"            (required — YouTube video ID)
-    videoDuration:    "PT1M32S"                (optional — ISO 8601, for schema + label)
-    videoLabel:       "90 seconds"             (optional — human label, defaults below)
-    videoDescription: "Short custom blurb"     (optional — falls back to meta-description)
+    videoId:          "dQw4w9WgXcQ"            (required. YouTube video ID)
+    videoDuration:    "PT1M32S"                (optional. ISO 8601, for schema + label)
+    videoLabel:       "90 seconds"             (optional. human label, defaults below)
+    videoDescription: "Short custom blurb"     (optional. falls back to meta-description)
     videoUploadDate:  "2026-07-20"             (optional but recommended for schema)
 
   Include in your article layout, directly after the H1 / article header:

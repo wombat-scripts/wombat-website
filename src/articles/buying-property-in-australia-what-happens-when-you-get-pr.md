@@ -10,7 +10,7 @@ thumbnail: "/images/articles/australia.webp"
 
 Moving from a temporary visa to permanent residency? Here's how your property buying rights and foreign purchaser surcharges change in Australia.
 
-Gaining Australian permanent residency (PR) changes your status under the **Foreign Acquisitions and Takeovers Act 1975** — and can significantly reduce your property costs.
+Gaining Australian permanent residency (PR) changes your status under the **Foreign Acquisitions and Takeovers Act 1975**, and can significantly reduce your property costs.
 
 ## Before PR: You're a "Foreign Person"
 
@@ -37,6 +37,6 @@ If your residency status changes before settlement, you may be able to avoid for
 
 - Temporary visa = foreign person rules and surcharges apply.
 - Permanent residency = treated the same as an Australian citizen for property purposes.
-- Check the timing of your PR grant relative to exchange and settlement — this can save tens of thousands in surcharges.
+- Check the timing of your PR grant relative to exchange and settlement. this can save tens of thousands in surcharges.
 
 Confirm your residency status with the ATO's definition and contact your state revenue office before you sign a contract.

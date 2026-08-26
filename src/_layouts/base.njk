@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>{{ title }} | Wombat Home Loans</title>
-  <meta name="description" content="{{ description or 'Mortgage broker for corporate professionals — bonus income, RSUs and first homes. 20+ years inside the banks. 40+ lenders. No cost to you.' }}">
+  <meta name="description" content="{{ description or 'Mortgage broker for corporate professionals. Bonus income, RSUs and first homes. 20+ years inside the banks. 40+ lenders. No cost to you.' }}">
   <meta name="author" content="Tom Carr">
 
   <link rel="canonical" href="https://wombathomeloans.com.au{{ page.url }}">
@@ -17,13 +17,13 @@
 
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <meta name="theme-color" content="#1c476a">
+  <meta name="theme-color" content="#f7f3ec">
 
   {# Open Graph #}
   <meta property="og:type" content="{{ ogType or 'website' }}">
   <meta property="og:site_name" content="Wombat Home Loans">
   <meta property="og:title" content="{{ ogTitle or title }}">
-  <meta property="og:description" content="{{ description or 'Mortgage broker for corporate professionals — bonus income, RSUs and first homes.' }}">
+  <meta property="og:description" content="{{ description or 'Mortgage broker for corporate professionals. Bonus income, RSUs and first homes.' }}">
   <meta property="og:url" content="https://wombathomeloans.com.au{{ page.url }}">
   <meta property="og:image" content="https://wombathomeloans.com.au{{ ogImage or '/assets/og-image.jpg' }}">
   <meta property="og:image:width" content="1200">
@@ -33,27 +33,26 @@
   {# Twitter / X #}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ ogTitle or title }}">
-  <meta name="twitter:description" content="{{ description or 'Mortgage broker for corporate professionals — bonus income, RSUs and first homes.' }}">
+  <meta name="twitter:description" content="{{ description or 'Mortgage broker for corporate professionals. Bonus income, RSUs and first homes.' }}">
   <meta name="twitter:image" content="https://wombathomeloans.com.au{{ ogImage or '/assets/og-image.jpg' }}">
 
-  {# Fonts: self-hosted variable fonts — see @font-face in styles.css.
+  {# Fonts: self-hosted variable fonts. see @font-face in styles.css.
      Preloaded so text paints in brand fonts as early as possible. #}
-  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/pjs-latin-normal.woff2" crossorigin>
-  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-latin-normal.woff2" crossorigin>
-  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-latin-italic.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ibm-plex-sans-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/zilla-slab-700-latin.woff2" crossorigin>
 
   {# Preload the homepage LCP image so mobile paint isn't waiting on it #}
   {% if page.url == "/" %}
-  <link rel="preload" as="image" href="/images/tom-hero-01.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="/images/tom_booking.webp" fetchpriority="high">
   {% endif %}
 
-  {# Stylesheet — inlined at build time so nothing render-blocking remains.
+  {# Stylesheet. inlined at build time so nothing render-blocking remains.
      ⚠ The CSS source of truth now lives at src/_includes/css/styles.css
      (Nunjucks can only include from _includes). No ?v= bumping needed:
      inlined CSS ships fresh with every deploy automatically. #}
   <style>{% include "css/styles.css" %}</style>
 
-  {# Schema markup — injected per-page via block #}
+  {# Schema markup. injected per-page via block #}
   {% block schema %}
   <script type="application/ld+json">
   {
@@ -78,7 +77,7 @@
         "logo": "https://wombathomeloans.com.au/assets/logo-horizontal.svg",
         "telephone": "+61456255409",
         "email": "tom@wombathomeloans.com.au",
-        "description": "Mortgage broker for corporate professionals — first home buyers with complex income (bonus, RSUs, ESS), refinancing, and asset finance. 20+ years institutional banking experience. Access to 40+ lenders. No cost to borrower.",
+        "description": "Mortgage broker for corporate professionals. First home buyers with complex income (bonus, RSUs, ESS), refinancing, and asset finance. 20+ years institutional banking experience. Access to 40+ lenders. No cost to borrower.",
         "founder": { "@id": "https://wombathomeloans.com.au/#tom-carr" },
         "address": {
           "@type": "PostalAddress",

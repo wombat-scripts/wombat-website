@@ -12,7 +12,7 @@ When they make sense and how to use them well.
 
 Interest rates move in cycles, and whenever the market enters a period of uncertainty, borrowers naturally start looking for ways to balance stability with flexibility. One strategy that consistently reappears in these moments is the **split loan**.
 
-A split loan isn't tied to any particular rate environment or year — it's about responding to the underlying conditions: rising rates, lender tightening, volatility in fixed vs variable pricing, and uncertainty about where the next move lands. If those signs sound familiar, a split loan may be worth considering.
+A split loan isn't tied to any particular rate environment or year. it's about responding to the underlying conditions: rising rates, lender tightening, volatility in fixed vs variable pricing, and uncertainty about where the next move lands. If those signs sound familiar, a split loan may be worth considering.
 
 This article breaks down how split loans work, why they become more popular during certain market phases, and provides practical examples to help you decide if it's right for you.
 
@@ -20,22 +20,22 @@ This article breaks down how split loans work, why they become more popular duri
 
 A split loan divides your mortgage into two parts:
 
-- **Fixed Portion** — Your interest rate stays the same for a chosen period, giving predictable repayments.
-- **Variable Portion** — Your rate moves with the market and allows full flexibility: extra repayments, offsets, redraw.
+- **Fixed Portion**. Your interest rate stays the same for a chosen period, giving predictable repayments.
+- **Variable Portion**. Your rate moves with the market and allows full flexibility: extra repayments, offsets, redraw.
 
-You choose the mix: 70/30, 60/40, 50/50 — whatever aligns with your goals and comfort level. Think of it as insurance on one side, opportunity on the other.
+You choose the mix: 70/30, 60/40, 50/50. whatever aligns with your goals and comfort level. Think of it as insurance on one side, opportunity on the other.
 
 ## When Split Loans Become Attractive
 
-Split loans aren't always the best solution — but they shine when certain market dynamics emerge.
+Split loans aren't always the best solution. but they shine when certain market dynamics emerge.
 
 ### 1. When Rates Are Rising or Likely to Rise
 
-If the market shows signs of upward pressure — inflation spikes, hawkish central bank commentary, or lenders quietly lifting rates — fixing part of your loan can soften the blow. A split gives you stability on a portion of your repayments, breathing room in your budget, and protection from sharp increases.
+If the market shows signs of upward pressure. inflation spikes, hawkish central bank commentary, or lenders quietly lifting rates. fixing part of your loan can soften the blow. A split gives you stability on a portion of your repayments, breathing room in your budget, and protection from sharp increases.
 
 ### 2. When Fixed Rates Look Competitive Again
 
-In some cycles, fixed rates sit higher than variable. In others, they fall into a sweet spot. When lenders begin pricing fixed rates aggressively — often signalling expectations of future volatility — a split loan lets you take advantage without fully committing.
+In some cycles, fixed rates sit higher than variable. In others, they fall into a sweet spot. When lenders begin pricing fixed rates aggressively. often signalling expectations of future volatility. a split loan lets you take advantage without fully committing.
 
 ### 3. When You Want Certainty and Flexibility
 
@@ -43,7 +43,7 @@ Some borrowers want repayment stability. Others want the flexibility to repay mo
 
 ### 4. When You Plan to Make Extra Repayments
 
-Fixed loans limit extra contributions. Variable loans don't. By splitting your loan, you can channel lump sums — bonuses, overtime, rental income, tax returns — into the variable portion without penalty.
+Fixed loans limit extra contributions. Variable loans don't. By splitting your loan, you can channel lump sums. bonuses, overtime, rental income, tax returns. into the variable portion without penalty.
 
 ## Practical Examples
 
@@ -69,4 +69,4 @@ Increase the fixed portion if you value predictable repayments, protection from 
 
 ## Split Loans Are About Balance, Not Prediction
 
-Split loans work best when the market is sending mixed signals — when rates could rise, could fall, or could simply bounce around for a while. They're a tool for managing uncertainty, not beating the market. If you're weighing up whether a split loan fits your situation, or wondering how to structure the right mix, book a call and we can run the numbers together.
+Split loans work best when the market is sending mixed signals, when rates could rise, could fall, or could simply bounce around for a while. They're a tool for managing uncertainty, not beating the market. If you're weighing up whether a split loan fits your situation, or wondering how to structure the right mix, book a call and we can run the numbers together.

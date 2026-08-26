@@ -1,5 +1,5 @@
 /* =============================================================================
-   Wombat Home Loans — Shared scripts
+   Wombat Home Loans. Shared scripts
    -----------------------------------------------------------------------------
    Vanilla JS. No build step, no dependencies. Loaded with `defer` so DOMContent
    is already available; we still guard for safety.
@@ -124,7 +124,7 @@
 
 
   /* ---------------------------------------------------------------------------
-     5. Footer year stamp — keeps copyright current with no maintenance
+     5. Footer year stamp. keeps copyright current with no maintenance
      --------------------------------------------------------------------------- */
 
   document.querySelectorAll("[data-current-year]").forEach((el) => {

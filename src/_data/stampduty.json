@@ -1,5 +1,5 @@
 {
-  "_readme": "Stamp duty data for the buying-costs calculator. All rates verified against official state revenue sources on the lastReviewed date. Brackets are [upperCap, baseDuty, marginalPercent] — duty = base + pct% of (value - previousCap). null cap = top bracket. Review annually after state budgets (May–July). Bump the ?v= on calculators.js in src/calculators/*.njk when this changes (the data is inlined into the page at build time).",
+  "_readme": "Stamp duty data for the buying-costs calculator. All rates verified against official state revenue sources on the lastReviewed date. Brackets are [upperCap, baseDuty, marginalPercent]. duty = base + pct% of (value - previousCap). null cap = top bracket. Review annually after state budgets (May–July). Bump the ?v= on calculators.js in src/calculators/*.njk when this changes (the data is inlined into the page at build time).",
   "states": {
     "NSW": {
       "name": "New South Wales",
@@ -75,7 +75,7 @@
       "general": [[200000, 0, 1.2], [300000, 2400, 2.2], [500000, 4600, 3.4], [750000, 11400, 4.32], [1000000, 22200, 5.9], [1455000, 36950, 6.4], [null, 0, 0]],
       "home": [[260000, 0, 0.28], [300000, 728, 2.2], [500000, 1608, 3.4], [750000, 8408, 4.32], [1000000, 19208, 5.9], [1455000, 33958, 6.4], [null, 0, 0]],
       "flatOverTotal": { "threshold": 1455000, "pct": 4.54 },
-      "fhb": { "exemptAllIncomeTested": true, "note": "Home Buyer Concession Scheme: no duty at any price from 1 July 2026 — but it's income-tested (household income cap applies), and not limited to first-home buyers. We've assumed you qualify." }
+      "fhb": { "exemptAllIncomeTested": true, "note": "Home Buyer Concession Scheme: no duty at any price from 1 July 2026. but it's income-tested (household income cap applies), and not limited to first-home buyers. We've assumed you qualify." }
     },
     "NT": {
       "name": "Northern Territory",
@@ -85,7 +85,7 @@
       "regFees": 165,
       "surchargePct": 0,
       "ntFormula": { "upTo": 525000, "quadratic": 0.06571441, "linear": 15, "flatBands": [[3000000, 4.95], [5000000, 5.75], [null, 5.95]] },
-      "fhb": { "none": true, "note": "No first-home duty concession in the NT — but the HomeGrown Territory grant ($50,000, new homes) and the house-and-land package exemption may apply. Worth checking." }
+      "fhb": { "none": true, "note": "No first-home duty concession in the NT. but the HomeGrown Territory grant ($50,000, new homes) and the house-and-land package exemption may apply. Worth checking." }
     }
   }
 }

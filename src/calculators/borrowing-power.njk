@@ -1,6 +1,6 @@
 ---
 title: "Borrowing power calculator"
-description: "Estimate how much you could borrow for a home loan — including the 3% APRA assessment buffer and lender expense benchmarks most calculators quietly skip."
+description: "Estimate how much you could borrow for a home loan, including the 3% APRA assessment buffer and lender expense benchmarks most calculators quietly skip."
 layout: base.njk
 permalink: /calculators/borrowing-power/
 ---
@@ -26,7 +26,7 @@ permalink: /calculators/borrowing-power/
     <p class="calc-breadcrumb"><a href="/calculators/">← All calculators</a></p>
     <span class="eyebrow">Borrowing power</span>
     <h1>How much would a lender <em>actually let me borrow?</em></h1>
-    <p class="lede">Most borrowing calculators flatter you. This one works the way a lender does — after-tax income, benchmark living expenses, your other commitments, and the 3% serviceability buffer on top of the interest rate. Fewer surprises later.</p>
+    <p class="lede">Most borrowing calculators flatter you. This one works the way a lender does. after-tax income, benchmark living expenses, your other commitments, and the 3% serviceability buffer on top of the interest rate. Fewer surprises later.</p>
   </div>
 </section>
 
@@ -73,7 +73,7 @@ permalink: /calculators/borrowing-power/
             <input class="calc-input" id="b-rental-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Annual rental income">
           </div>
           <input class="calc-range" id="b-rental" type="range" min="0" max="150000" step="1000" value="0" aria-label="Rental income slider">
-          <p class="calc-field__hint">Lenders only count about 80% of rent, to allow for vacancies and costs — we do the same.</p>
+          <p class="calc-field__hint">Lenders only count about 80% of rent, to allow for vacancies and costs. we do the same.</p>
         </div>
 
         <div class="calc-field">
@@ -103,7 +103,7 @@ permalink: /calculators/borrowing-power/
             <input class="calc-input" id="b-debts-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Other monthly loan repayments">
           </div>
           <input class="calc-range" id="b-debts" type="range" min="0" max="10000" step="50" value="0" aria-label="Other loan repayments slider">
-          <p class="calc-field__hint">Car loans, personal loans, HECS repayments — anything that leaves your account monthly.</p>
+          <p class="calc-field__hint">Car loans, personal loans, HECS repayments. anything that leaves your account monthly.</p>
         </div>
 
         <div class="calc-field">
@@ -114,7 +114,7 @@ permalink: /calculators/borrowing-power/
             <input class="calc-input" id="b-cc-input" type="text" inputmode="numeric" autocomplete="off" aria-label="Total credit card limits">
           </div>
           <input class="calc-range" id="b-cc" type="range" min="0" max="100000" step="1000" value="10000" aria-label="Credit card limits slider">
-          <p class="calc-field__hint">Lenders assess the <em>limit</em>, not the balance — even if you pay it off in full every month. A $20k limit you never use still shrinks your borrowing power.</p>
+          <p class="calc-field__hint">Lenders assess the <em>limit</em>, not the balance, even if you pay it off in full every month. A $20k limit you never use still shrinks your borrowing power.</p>
         </div>
 
         <div class="calc-field">
@@ -123,7 +123,7 @@ permalink: /calculators/borrowing-power/
             <span class="calc-field__value" id="b-rate-out"></span>
           </div>
           <input class="calc-range" id="b-rate" type="range" min="4" max="9" step="0.05" value="5.75">
-          <p class="calc-field__hint">Lenders test you at this rate <strong>plus 3%</strong> — the APRA serviceability buffer. We apply it automatically.</p>
+          <p class="calc-field__hint">Lenders test you at this rate <strong>plus 3%</strong>. the APRA serviceability buffer. We apply it automatically.</p>
         </div>
 
         <div class="calc-field">
@@ -161,18 +161,18 @@ permalink: /calculators/borrowing-power/
               <span class="calc-stat__value" id="b-stat-assess">0%</span>
             </div>
           </div>
-          <p class="calc-field__hint" style="margin-top: var(--space-4);">Budget excludes stamp duty and purchase costs — set aside roughly 4–5% of the price for those.</p>
+          <p class="calc-field__hint" style="margin-top: var(--space-4);">Budget excludes stamp duty and purchase costs. set aside roughly 4–5% of the price for those.</p>
         </div>
 
         <div class="calc-card">
           <h3>Where your monthly income goes</h3>
-          <p class="calc-field__hint" style="margin: 0 0 var(--space-4);">This is your household's monthly income, sliced the way a lender's servicing calculator slices it. The navy segment is what's left to service a loan.</p>
+          <p class="calc-field__hint" style="margin: 0 0 var(--space-4);">This is your household's monthly income, sliced the way a lender's servicing calculator slices it. The dark segment is what's left to service a loan.</p>
           <div class="calc-chart calc-chart--short" style="max-width: 420px; margin-inline: auto;"><canvas id="b-chart-split" role="img" aria-label="Doughnut chart of monthly income allocation across tax, living expenses, commitments and loan capacity"></canvas></div>
         </div>
 
         <div class="calc-card">
           <h3>How rates move your number</h3>
-          <p class="calc-field__hint" style="margin: 0 0 var(--space-4);">Your borrowing power isn't a fixed number — every rate move re-draws it. This is why pre-approvals go stale and why timing matters.</p>
+          <p class="calc-field__hint" style="margin: 0 0 var(--space-4);">Your borrowing power isn't a fixed number. every rate move re-draws it. This is why pre-approvals go stale and why timing matters.</p>
           <div class="calc-chart"><canvas id="b-chart-sens" role="img" aria-label="Line chart of estimated borrowing power across a range of interest rates"></canvas></div>
         </div>
 
@@ -187,7 +187,7 @@ permalink: /calculators/borrowing-power/
           <li>Living expenses use the higher of your figure and a simplified household benchmark (as lenders do with HEM).</li>
           <li>Credit cards are assessed at 3.8% of the total limit per month; rental income is shaded to 80%.</li>
           <li>The loan is assessed over 30 years at your rate plus a 3% buffer, principal &amp; interest.</li>
-          <li>Real lenders differ enormously — especially with bonus income, RSUs, foreign income and self-employment. That's the gap a broker closes.</li>
+          <li>Real lenders differ enormously, especially with bonus income, RSUs, foreign income and self-employment. That's the gap a broker closes.</li>
         </ul>
       </details>
     </div>

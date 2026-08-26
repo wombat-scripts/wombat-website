@@ -1,5 +1,5 @@
 /* =============================================================================
-   Wombat Home Loans — NSW house-and-land cash timeline (math)
+   Wombat Home Loans. NSW house-and-land cash timeline (math)
    -----------------------------------------------------------------------------
    Pure functions. No DOM. Safe to require() from Node tests and to load in
    the browser. This is a cash-timing estimate, not an approval or max-loan.
@@ -73,7 +73,7 @@
 
   /* NSW transfer duty 2026/27 (Revenue NSW updated 19 Aug 2026).
      Dutiable value for this tool is vacant land price only.
-     Premium duty over $3,870,000 is out of range — we do not compute it. */
+     Premium duty over $3,870,000 is out of range. we do not compute it. */
   function fullDuty(dutiable) {
     var v = Number(dutiable);
     if (!isFinite(v) || v < 0) {
@@ -239,7 +239,7 @@
       flags.push({
         id: 'cash_lt_duty_e',
         tone: 'fail',
-        message: 'Cash does not cover duty plus property equity. Duty is extra — it is not part of the LVR.'
+        message: 'Cash does not cover duty plus property equity. Duty is extra. it is not part of the LVR.'
       });
     }
 
@@ -357,7 +357,7 @@
       var landInvoice = roundCents(Math.max(0, land - holding));
 
       /* Land cheque: required equity first, then the lender. Extra cash
-         (buffer) stays in the account for later build invoices — that is
+         (buffer) stays in the account for later build invoices. that is
          the whole point of the cash timeline. */
       var landPay = payFromPools(landInvoice, pools, false, facilityLeft);
       drawn = roundCents(drawn + landPay.fromLender);

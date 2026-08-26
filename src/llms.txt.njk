@@ -4,11 +4,11 @@ eleventyExcludeFromCollections: true
 ---
 # Wombat Home Loans
 
-> Sydney mortgage broker for corporate professionals — first homes, next moves, refinancing, and the complicated bits in between.
+> Sydney mortgage broker for corporate professionals. first homes, next moves, refinancing, and the complicated bits in between.
 
 ## About
 
-Wombat Home Loans is run by Tom Carr, a Sydney-based mortgage broker with 20+ years of institutional banking experience (Citigroup, UBS, RBS, Commonwealth Bank). Tom helps corporate professionals navigate Australian home loans — bonus income, RSUs, first homes, refinancing and investment.
+Wombat Home Loans is run by Tom Carr, a Sydney-based mortgage broker with 20+ years of institutional banking experience (Citigroup, UBS, RBS, Commonwealth Bank). Tom helps corporate professionals navigate Australian home loans. bonus income, RSUs, first homes, refinancing and investment.
 
 - Credit Representative Number: 559744
 - Australian Credit Licence: 561324
@@ -45,11 +45,11 @@ Free, interactive home loan calculators with charts. No email required.
 - Offset vs basic loan calculator (break-even offset balance): https://wombathomeloans.com.au/calculators/offset-vs-basic/
 - All calculators: https://wombathomeloans.com.au/calculators/
 
-## The Property Web — Interview Series
+## The Property Web. Interview Series
 
 Tom hosts The Property Web, a regular interview series featuring buyer's agents, financial planners, accountants, proptech founders and property lawyers. {{ episodes | length }} episodes published. Available on YouTube, Spotify, and Apple Podcasts.
 
-{% for ep in episodes | reverse %}- Episode {{ ep.number }}: {{ ep.title }} ({{ ep.guest }}, {{ ep.role }}) — {{ ep.date | readableDate }}
+{% for ep in episodes | reverse %}- Episode {{ ep.number }}: {{ ep.title }} ({{ ep.guest }}, {{ ep.role }}). {{ ep.date | readableDate }}
 {% endfor %}
 
 ## Articles
@@ -62,7 +62,7 @@ Tom hosts The Property Web, a regular interview series featuring buyer's agents,
   "/articles/getting-mortgage-ready/",
   "/articles/expat-home-loan-guide/"
 ] %}
-{% for article in collections.articles %}{% if article.url not in firbSlugs %}- [{{ article.data.title }}](https://wombathomeloans.com.au{{ article.url }}) — {{ article.data.category or "Home Loans" }}
+{% for article in collections.articles %}{% if article.url not in firbSlugs %}- [{{ article.data.title }}](https://wombathomeloans.com.au{{ article.url }}). {{ article.data.category or "Home Loans" }}
 {% endif %}{% endfor %}
 
 ## Contact
