@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-08-28 — Article: deposit bonds for first home buyers
+
+New first-home explainer on deposit bonds at auction. A House Hunting Bond can stand in at exchange. It is not cash at settlement, not a home loan, and not genuine savings. Lives at `/articles/deposit-bond-first-home/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.
+
+**Files added:** `src/articles/deposit-bond-first-home.md`, `tests/deposit-bond-article.test.js`
+
+---
+
 ## 2026-08-26 — Tools scroller + quiz in Tools; footer address
 
 Homepage Tools reuses the Articles/Reviews horizontal scroller (snap, prev/next). The Which door quiz card moves into that row as the third card, with its existing copy and “Get started in 2 minutes” CTA. The standalone quiz block under Book is gone. Footer keeps Suite 1, 86 Mann St, Gosford NSW 2250 and drops the virtual-office / postal disclaimer. Podcast, Wrap, and LinkedIn stay off the homepage.

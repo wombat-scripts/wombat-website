@@ -54,6 +54,11 @@ Tom hosts The Property Web, a regular interview series featuring buyer's agents,
 
 ## Articles
 
+- [Deposit bonds for first home buyers: how they work at auction (and what they do not replace)](https://wombathomeloans.com.au/articles/deposit-bond-first-home/) - First home / deposit
+A deposit bond is a digital certificate: a promise to pay the vendor at settlement, not cash leaving your account today.
+It is not a home loan, not genuine savings, and not the funds you use to settle. The vendor does not have to accept it.
+Auction and house hunting are the first-home door. The years-ahead developer bond is for people who already own. Book a 30-minute strategy session: https://wombathomeloans.com.au/book/
+
 {%- set firbSlugs = [
   "/articles/buying-property-without-australian-pr-or-citizenship/",
   "/articles/buying-property-in-australia-as-a-mixed-status-couple/",
@@ -62,7 +67,8 @@ Tom hosts The Property Web, a regular interview series featuring buyer's agents,
   "/articles/getting-mortgage-ready/",
   "/articles/expat-home-loan-guide/"
 ] %}
-{% for article in collections.articles %}{% if article.url not in firbSlugs %}- [{{ article.data.title }}](https://wombathomeloans.com.au{{ article.url }}). {{ article.data.category or "Home Loans" }}
+{%- set depositBondSlug = "/articles/deposit-bond-first-home/" %}
+{% for article in collections.articles %}{% if article.url not in firbSlugs and article.url != depositBondSlug %}- [{{ article.data.title }}](https://wombathomeloans.com.au{{ article.url }}). {{ article.data.category or "Home Loans" }}
 {% endif %}{% endfor %}
 
 ## Contact
