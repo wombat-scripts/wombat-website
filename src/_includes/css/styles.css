@@ -108,6 +108,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -564,6 +565,10 @@ blockquote {
   padding: 0;
 }
 
+@media (min-width: 861px) {
+  .nav__links { visibility: visible; }
+}
+
 .nav__links a {
   font-size: 0.9375rem;
   font-weight: 500;
@@ -646,6 +651,7 @@ blockquote {
     box-shadow: var(--shadow-lg);
     transform: translateY(-8px);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
     transition: transform var(--motion-mid) var(--easing),
                 opacity var(--motion-mid) var(--easing);
@@ -663,6 +669,7 @@ blockquote {
   .nav.is-open .nav__links {
     transform: translateY(0);
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
   }
 }
@@ -3010,7 +3017,8 @@ input[type="range"].calc-range::-moz-range-thumb {
 .video-intro__caption { margin-top: var(--space-4); color: var(--ink-muted); }
 
 .section--reviews {
-  background: #f3ead8;
+  background: #ecdcc4;
+  overflow-x: clip;
 }
 
 .section--articles {
@@ -3035,6 +3043,11 @@ input[type="range"].calc-range::-moz-range-thumb {
 }
 
 .reviews-wrap { overflow: hidden; position: relative; }
+#reviews .reviews-wrap {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, #000 0, #000 86%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 0, #000 86%, transparent 100%);
+}
 .reviews {
   display: flex;
   gap: var(--space-5);
@@ -3161,9 +3174,11 @@ input[type="range"].calc-range::-moz-range-thumb {
     padding-block: 3rem 2rem;
     overflow-x: clip;
   }
+  /* Keep the Polaroid large. Pad just enough that rotation,
+     tape and the sticky note stay inside 390px. */
   .hero__visual {
-    max-width: min(19rem, 100%);
-    padding-inline: 0.75rem;
+    max-width: 100%;
+    padding: 0.35rem 1.1rem 0.4rem;
   }
   .sticky { left: 8px; bottom: 8px; width: 148px; }
 

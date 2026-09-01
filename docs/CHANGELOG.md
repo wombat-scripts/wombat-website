@@ -10,9 +10,9 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 The shared footer brand block no longer has a Book a Strategy Session clay button. The homepage book band and the header/nav CTA stay. Phone, email, and Suite 1, 86 Mann St, Gosford NSW 2250 stay in Get in touch. No virtual-office line.
 
-At about 390px the Why Wombat two-up already stacks with one Polaroid in frame. The hero Polaroid was clipping the right edge and forcing a 30px page bleed; it is now sized to stay in frame. Reviews keep the warmer band. The Google reviews ghost button was crushing the 44px arrows; it wraps onto its own row.
+Live 390px: Why Wombat already stacks. Hero Polaroid stays large, padded so rotation, tape and the sticky note sit inside the viewport; `html` is overflow-x clip so page scroll dies. Reviews band deepens from #f3ead8 to #ecdcc4 so it reads as a band. The reviews carousel is clipped and fade-masked at the right edge (peek stays). Prev/next stay 44px; the Google link wraps to its own row. A one-line head rule hides `.nav__links` before the inlined sheet paints, so the mobile menu does not FOUC over the hero.
 
-**Files changed:** `src/_includes/footer.njk`, `src/_includes/css/styles.css`, `tests/homepage.test.js`
+**Files changed:** `src/_includes/footer.njk`, `src/_includes/css/styles.css`, `src/_layouts/base.njk`, `tests/homepage.test.js`
 
 ---
 
