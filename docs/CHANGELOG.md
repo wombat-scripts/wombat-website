@@ -6,6 +6,16 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-01. Footer drops the extra Strategy button; 390px pass
+
+The shared footer brand block no longer has a Book a Strategy Session clay button. The homepage book band and the header/nav CTA stay. Phone, email, and Suite 1, 86 Mann St, Gosford NSW 2250 stay in Get in touch. No virtual-office line.
+
+Live 390px: Why Wombat already stacks. Hero Polaroid stays large, padded so rotation, tape and the sticky note sit inside the viewport; `html` is overflow-x clip so page scroll dies. The search overlay panel is sized with `100vw` minus gutters so it cannot push scrollWidth to 421. Reviews band deepens from #f3ead8 to #ecdcc4 so it reads as a band. Review and article peek-carousels are clipped and fade-masked at the right edge (peek stays, no mid-word slice). Prev/next stay 44px; the Google link keeps its own shape on the next row. Footer gets extra end padding so Privacy / Terms / Dispute sit clear of the sticky header. A one-line head rule hides `.nav__links` before the inlined sheet paints, so the mobile menu does not FOUC over the hero. Nav CTA stays. Footer Strategy button stays gone.
+
+**Files changed:** `src/_includes/footer.njk`, `src/_includes/css/styles.css`, `src/_layouts/base.njk`, `tests/homepage.test.js`
+
+---
+
 ## 2026-09-01. Homepage layout A (two-up Why Wombat)
 
 Layout-only pass on the Kitchen table homepage. Why Wombat is a 36/64 two-column grid with one taped running Polaroid kept fully in frame (sticky inside the section on desktop, stacked above the bio on small screens). Reviews sit on a warmer paper band with paper-white cards. Articles stay cream, with a 1px oak hairline and extra space above the heading. Live copy, type, logo, hero, notebook, tools, book band, and footer are unchanged.
