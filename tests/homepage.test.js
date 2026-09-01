@@ -142,6 +142,15 @@ test('Reviews sit on a warmer band; Articles stay cream with a hairline', functi
   assert.match(css, /#reviews \.review-card \{[\s\S]*?background:\s*#fffdf8/);
 });
 
+test('390px pass keeps Why stacked and stops the hero Polaroid from clipping', function () {
+  assert.match(css, /\.why-wombat,\s*\n\.why-grid \{\s*\n\s*display:\s*grid;\s*\n\s*grid-template-columns:\s*1fr;/);
+  assert.match(css, /@media \(max-width: 640px\) \{[\s\S]*?\.hero \{[\s\S]*?overflow-x:\s*clip/);
+  assert.match(css, /@media \(max-width: 640px\) \{[\s\S]*?\.hero__visual \{[\s\S]*?max-width:\s*min\(19rem,\s*100%\)/);
+  assert.match(css, /\.reviews-nav button \{[\s\S]*?min-width:\s*44px/);
+  assert.match(css, /#reviews \.reviews-nav \{[\s\S]*?flex-wrap:\s*wrap/);
+  assert.match(css, /#reviews \.reviews-nav \.btn \{[\s\S]*?order:\s*3/);
+});
+
 test('nav and footer use Kitchen table chrome and the Gosford address', function () {
   assert.match(nav, /How it works/);
   assert.match(nav, /Who I help/);

@@ -3063,6 +3063,8 @@ input[type="range"].calc-range::-moz-range-thumb {
 .reviews-nav button {
   width: 44px;
   height: 44px;
+  min-width: 44px;
+  flex: 0 0 44px;
   border-radius: 50%;
   border: 1px solid var(--ink);
   background: var(--cream);
@@ -3155,8 +3157,29 @@ input[type="range"].calc-range::-moz-range-thumb {
 }
 
 @media (max-width: 640px) {
-  .hero { padding-block: 3rem 2rem; }
+  .hero {
+    padding-block: 3rem 2rem;
+    overflow-x: clip;
+  }
+  .hero__visual {
+    max-width: min(19rem, 100%);
+    padding-inline: 0.75rem;
+  }
   .sticky { left: 8px; bottom: 8px; width: 148px; }
+
+  /* The Google reviews ghost button is too wide to sit between
+     two 44px arrows in a 390px gutter. Keep the arrows circular
+     and put the link on its own row. */
+  #reviews .reviews-nav {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: var(--space-4);
+  }
+  #reviews .reviews-nav .btn {
+    order: 3;
+    width: 100%;
+    white-space: normal;
+  }
 }
 
 .filter-btn:hover { border-color: var(--oak-deep); color: var(--ink); }

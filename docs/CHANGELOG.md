@@ -6,11 +6,13 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
-## 2026-09-01. Footer drops the extra Strategy button
+## 2026-09-01. Footer drops the extra Strategy button; 390px pass
 
 The shared footer brand block no longer has a Book a Strategy Session clay button. The homepage book band and the header/nav CTA stay. Phone, email, and Suite 1, 86 Mann St, Gosford NSW 2250 stay in Get in touch. No virtual-office line.
 
-**Files changed:** `src/_includes/footer.njk`, `tests/homepage.test.js`
+At about 390px the Why Wombat two-up already stacks with one Polaroid in frame. The hero Polaroid was clipping the right edge and forcing a 30px page bleed; it is now sized to stay in frame. Reviews keep the warmer band. The Google reviews ghost button was crushing the 44px arrows; it wraps onto its own row.
+
+**Files changed:** `src/_includes/footer.njk`, `src/_includes/css/styles.css`, `tests/homepage.test.js`
 
 ---
 
