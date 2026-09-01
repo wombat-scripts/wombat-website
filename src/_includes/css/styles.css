@@ -2867,14 +2867,14 @@ input[type="range"].calc-range::-moz-range-thumb {
 .why-wombat__media {
   min-width: 0;
   overflow: visible;
-  padding: 1.5rem 1rem 0.5rem;
+  padding: 1.25rem 1.25rem 0.35rem;
 }
 
 .why-wombat__pin {
   position: static;
-  max-width: 320px;
+  max-width: min(16.5rem, calc(100% - 0.5rem));
   margin-inline: auto;
-  padding: 0.85rem 0.65rem 0.35rem;
+  padding: 1.1rem 1.15rem 0.4rem;
 }
 
 .why-wombat__copy h2 { margin-bottom: var(--space-6); }
@@ -2914,7 +2914,9 @@ input[type="range"].calc-range::-moz-range-thumb {
   .why-wombat__pin {
     position: sticky;
     top: 6.25rem;
+    max-width: 320px;
     margin-inline: 0;
+    padding: 0.85rem 0.65rem 0.35rem;
   }
 }
 
