@@ -2651,7 +2651,38 @@ input[type="range"].calc-range::-moz-range-thumb {
   transform: rotate(-3deg);
 }
 
+.polaroid--run[data-reveal] {
+  transform: translateY(16px) rotate(-3deg);
+}
+
+.polaroid--run[data-reveal].is-visible {
+  transform: rotate(-3deg);
+}
+
 .polaroid--run img { aspect-ratio: 4 / 5; }
+
+/* Corner tapes on the Why Polaroid only. Article Polaroids keep .polaroid--tape. */
+.polaroid--run::before,
+.polaroid--run::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  width: 52px;
+  height: 20px;
+  background: rgba(196, 165, 116, 0.42);
+  box-shadow: inset 0 0 0 1px rgba(138, 106, 62, 0.2);
+  pointer-events: none;
+}
+
+.polaroid--run::before {
+  left: 14px;
+  transform: rotate(-8deg);
+}
+
+.polaroid--run::after {
+  right: 14px;
+  transform: rotate(7deg);
+}
 
 .sticky {
   position: absolute;
@@ -2818,18 +2849,39 @@ input[type="range"].calc-range::-moz-range-thumb {
   color: var(--ink);
 }
 
-.why-wombat {
+/* Why Wombat: option A two-up. Mobile-first so the Polaroid never
+   sits in a desktop column that overflows a small viewport. */
+#story {
+  overflow: visible;
+}
+
+.why-wombat,
+.why-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr);
-  gap: var(--space-8);
-  align-items: start;
+  grid-template-columns: 1fr;
+  gap: var(--space-7);
+  align-items: stretch;
+  overflow: visible;
+}
+
+.why-wombat__media {
+  min-width: 0;
+  overflow: visible;
+  padding: 1.25rem 1.25rem 0.35rem;
+}
+
+.why-wombat__pin {
+  position: static;
+  max-width: min(16.5rem, calc(100% - 0.5rem));
+  margin-inline: auto;
+  padding: 1.1rem 1.15rem 0.4rem;
 }
 
 .why-wombat__copy h2 { margin-bottom: var(--space-6); }
 
 .why-block {
   padding: var(--space-5) 0;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid var(--oak);
 }
 
 .why-block:first-of-type { border-top: 0; padding-top: 0; }
@@ -2848,9 +2900,24 @@ input[type="range"].calc-range::-moz-range-thumb {
   font-size: 1rem;
 }
 
-@media (max-width: 800px) {
-  .why-wombat { grid-template-columns: 1fr; }
-  .polaroid--run { margin-inline: auto; }
+@media (min-width: 960px) {
+  .why-wombat,
+  .why-grid {
+    grid-template-columns: minmax(16rem, 36%) minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+
+  .why-wombat__media {
+    padding: 1.75rem 1.1rem 0 0.85rem;
+  }
+
+  .why-wombat__pin {
+    position: sticky;
+    top: 6.25rem;
+    max-width: 320px;
+    margin-inline: 0;
+    padding: 0.85rem 0.65rem 0.35rem;
+  }
 }
 
 .hero {
@@ -2941,6 +3008,31 @@ input[type="range"].calc-range::-moz-range-thumb {
 }
 .video-intro__play svg { width: 72px; height: 72px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3)); }
 .video-intro__caption { margin-top: var(--space-4); color: var(--ink-muted); }
+
+.section--reviews {
+  background: #f3ead8;
+}
+
+.section--articles {
+  background: var(--cream);
+  border-top: 1px solid var(--oak);
+  padding-top: clamp(4.75rem, 8vw, 7.25rem);
+}
+
+#reviews .review-card {
+  background: #fffdf8;
+  border: 1px solid var(--ink);
+  box-shadow: var(--shadow-md);
+}
+
+#reviews .review-card:nth-child(3n+1) { transform: rotate(-0.7deg); }
+#reviews .review-card:nth-child(3n+2) { transform: rotate(0.65deg); }
+#reviews .review-card:nth-child(3n) { transform: rotate(-0.4deg); }
+
+#reviews .reviews {
+  padding-top: 0.65rem;
+  padding-bottom: var(--space-5);
+}
 
 .reviews-wrap { overflow: hidden; position: relative; }
 .reviews {

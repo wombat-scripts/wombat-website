@@ -113,6 +113,35 @@ test('skin tokens are Kitchen table, not navy Fraunces', function () {
   assert.doesNotMatch(css, /#060b38/);
 });
 
+test('Why Wombat is option A two-up with one in-frame Polaroid', function () {
+  assert.match(home, /class="why-wombat why-grid"/);
+  assert.match(home, /class="why-wombat__pin"/);
+  assert.match(home, /Sydney local\. Runner\./);
+  assert.equal((home.match(/polaroid polaroid--run/g) || []).length, 1);
+  assert.equal((home.match(/tom-community\.webp/g) || []).length, 1);
+  assert.doesNotMatch(home, /tom-corporate/);
+  assert.doesNotMatch(home, /sun.?bear/i);
+  assert.doesNotMatch(home + css, /graph[- ]paper/i);
+  assert.doesNotMatch(home, /class="polaroid polaroid--run polaroid--tape"/);
+  assert.match(css, /minmax\(16rem,\s*36%\)/);
+  assert.match(css, /\.why-wombat__pin \{[\s\S]*?position:\s*sticky/);
+  assert.match(css, /#story \{\s*overflow:\s*visible/);
+  assert.match(css, /@media \(min-width: 960px\)/);
+});
+
+test('Reviews sit on a warmer band; Articles stay cream with a hairline', function () {
+  assert.match(home, /id="reviews" class="section section--reviews"/);
+  assert.match(home, /id="articles" class="section section--articles"/);
+  assert.match(home, /class="reviews-prev"/);
+  assert.match(home, /class="reviews-next"/);
+  assert.match(home, /google-reviews-click/);
+  assert.match(css, /#f3ead8/);
+  assert.match(css, /#fffdf8/);
+  assert.match(css, /\.section--articles \{[\s\S]*?border-top:\s*1px solid var\(--oak\)/);
+  assert.match(css, /\.section--articles \{[\s\S]*?padding-top:\s*clamp/);
+  assert.match(css, /#reviews \.review-card \{[\s\S]*?background:\s*#fffdf8/);
+});
+
 test('nav and footer use Kitchen table chrome and the Gosford address', function () {
   assert.match(nav, /How it works/);
   assert.match(nav, /Who I help/);
