@@ -135,11 +135,30 @@ test('Reviews sit on a warmer band; Articles stay cream with a hairline', functi
   assert.match(home, /class="reviews-prev"/);
   assert.match(home, /class="reviews-next"/);
   assert.match(home, /google-reviews-click/);
-  assert.match(css, /#f3ead8/);
+  assert.match(css, /#ecdcc4/);
+  assert.doesNotMatch(css, /#f3ead8/);
   assert.match(css, /#fffdf8/);
+  assert.match(css, /#reviews \.reviews-wrap,\s*\n#articles \.reviews-wrap \{[\s\S]*?mask-image:\s*linear-gradient/);
+  assert.match(css, /\.section--articles \{[\s\S]*?overflow-x:\s*clip/);
   assert.match(css, /\.section--articles \{[\s\S]*?border-top:\s*1px solid var\(--oak\)/);
   assert.match(css, /\.section--articles \{[\s\S]*?padding-top:\s*clamp/);
   assert.match(css, /#reviews \.review-card \{[\s\S]*?background:\s*#fffdf8/);
+});
+
+test('390px pass keeps Why stacked and stops the hero Polaroid from clipping', function () {
+  var base = fs.readFileSync(path.join(__dirname, '..', 'src/_layouts/base.njk'), 'utf8');
+  assert.match(css, /\.why-wombat,\s*\n\.why-grid \{\s*\n\s*display:\s*grid;\s*\n\s*grid-template-columns:\s*1fr;/);
+  assert.match(css, /html \{[\s\S]*?overflow-x:\s*clip/);
+  assert.match(css, /@media \(max-width: 640px\) \{[\s\S]*?\.hero \{[\s\S]*?overflow-x:\s*clip/);
+  assert.match(css, /@media \(max-width: 640px\) \{[\s\S]*?\.hero__visual \{[\s\S]*?max-width:\s*100%/);
+  assert.doesNotMatch(css, /max-width:\s*min\(19rem/);
+  assert.match(css, /\.reviews-nav button \{[\s\S]*?min-width:\s*44px/);
+  assert.match(css, /#reviews \.reviews-nav \{[\s\S]*?flex-wrap:\s*wrap/);
+  assert.match(css, /#reviews \.reviews-nav \.btn \{[\s\S]*?order:\s*3/);
+  assert.match(css, /\.search-overlay__panel \{[\s\S]*?max-width:\s*calc\(100vw - 2 \* var\(--gutter\)\)/);
+  assert.match(css, /\.footer \{[\s\S]*?padding-bottom:\s*calc\(var\(--space-6\) \+ 4\.75rem\)/);
+  assert.match(base, /<style>\.nav__links\{visibility:hidden\}<\/style>/);
+  assert.match(css, /@media \(min-width: 861px\) \{[\s\S]*?\.nav__links \{ visibility: visible/);
 });
 
 test('nav and footer use Kitchen table chrome and the Gosford address', function () {
@@ -150,6 +169,10 @@ test('nav and footer use Kitchen table chrome and the Gosford address', function
   assert.match(nav, /Book a Strategy Session/);
   assert.match(nav, /logo-horizontal\.svg/);
   assert.match(footer, /Suite 1, 86 Mann St, Gosford NSW 2250/);
+  assert.match(footer, /\+61 456 255 409/);
+  assert.match(footer, /tom@wombathomeloans\.com\.au/);
+  assert.doesNotMatch(footer, /Book a Strategy Session/);
+  assert.doesNotMatch(footer, /btn--primary/);
   assert.doesNotMatch(footer, /GOSFORD/);
   assert.doesNotMatch(footer, /virtual office/i);
   assert.doesNotMatch(footer, /not a shopfront/i);
@@ -157,4 +180,12 @@ test('nav and footer use Kitchen table chrome and the Gosford address', function
   assert.match(footer, /logo-horizontal\.svg/);
   assert.doesNotMatch(footer, /logo-horizontal-white/);
   assert.doesNotMatch(nav + footer, /\u2014/);
+});
+
+test('homepage book band keeps the Strategy closer; footer does not repeat it', function () {
+  var bookBlock = home.slice(home.indexOf('id="book"'));
+  assert.match(bookBlock, /Book a Strategy Session/);
+  assert.match(bookBlock, /book-band__phone/);
+  assert.match(bookBlock, /\+61 456 255 409/);
+  assert.doesNotMatch(footer, /Book a Strategy Session/);
 });
