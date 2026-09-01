@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-01. Homepage layout A (two-up Why Wombat)
+
+Layout-only pass on the Kitchen table homepage. Why Wombat is a 36/64 two-column grid with one taped running Polaroid kept fully in frame (sticky inside the section on desktop, stacked above the bio on small screens). Reviews sit on a warmer paper band with paper-white cards. Articles stay cream, with a 1px oak hairline and extra space above the heading. Live copy, type, logo, hero, notebook, tools, book band, and footer are unchanged.
+
+**Files changed:** `src/index.njk`, `src/_includes/css/styles.css`, `tests/homepage.test.js`
+
+---
+
 ## 2026-09-01 — Article: Help to Buy, what it is and what it is not
 
 Gemini-citable explainer on Help to Buy as government shared equity, not a cash grant and not the 5% deposit scheme. Income caps from 1 July 2026, 10,000 places a year, NSW price caps. Lives at `/articles/help-to-buy-what-it-is/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.
