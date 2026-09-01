@@ -685,6 +685,15 @@ blockquote {
   border-top: 1px solid var(--line);
 }
 
+@media (max-width: 860px) {
+  /* Sticky 72px header covers the last footer row at the bottom
+     of the scroll. Extra end padding keeps Privacy / Terms /
+     Dispute Resolution clear of that bar. */
+  .footer {
+    padding-bottom: calc(var(--space-6) + 4.75rem);
+  }
+}
+
 .footer a {
   color: var(--ink);
 }
@@ -923,6 +932,7 @@ blockquote {
   padding-top: clamp(4rem, 10vw, 8rem);
   opacity: 0;
   pointer-events: none;
+  overflow-x: clip;
   transition: opacity var(--motion-mid) var(--easing);
 }
 
@@ -941,9 +951,9 @@ blockquote {
 
 .search-overlay__panel {
   position: relative;
-  width: 100%;
-  max-width: 640px;
-  margin-inline: var(--gutter);
+  width: min(640px, calc(100% - 2 * var(--gutter)));
+  max-width: calc(100vw - 2 * var(--gutter));
+  margin-inline: auto;
   background: var(--paper);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
@@ -3025,6 +3035,7 @@ input[type="range"].calc-range::-moz-range-thumb {
   background: var(--cream);
   border-top: 1px solid var(--oak);
   padding-top: clamp(4.75rem, 8vw, 7.25rem);
+  overflow-x: clip;
 }
 
 #reviews .review-card {
@@ -3043,10 +3054,11 @@ input[type="range"].calc-range::-moz-range-thumb {
 }
 
 .reviews-wrap { overflow: hidden; position: relative; }
-#reviews .reviews-wrap {
+#reviews .reviews-wrap,
+#articles .reviews-wrap {
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, #000 0, #000 86%, transparent 100%);
-  mask-image: linear-gradient(to right, #000 0, #000 86%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, #000 0, #000 80%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 0, #000 80%, transparent 100%);
 }
 .reviews {
   display: flex;
@@ -3192,8 +3204,8 @@ input[type="range"].calc-range::-moz-range-thumb {
   }
   #reviews .reviews-nav .btn {
     order: 3;
-    width: 100%;
-    white-space: normal;
+    flex: 0 1 auto;
+    margin-inline: auto;
   }
 }
 

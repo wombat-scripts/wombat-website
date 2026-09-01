@@ -10,7 +10,7 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 The shared footer brand block no longer has a Book a Strategy Session clay button. The homepage book band and the header/nav CTA stay. Phone, email, and Suite 1, 86 Mann St, Gosford NSW 2250 stay in Get in touch. No virtual-office line.
 
-Live 390px: Why Wombat already stacks. Hero Polaroid stays large, padded so rotation, tape and the sticky note sit inside the viewport; `html` is overflow-x clip so page scroll dies. Reviews band deepens from #f3ead8 to #ecdcc4 so it reads as a band. The reviews carousel is clipped and fade-masked at the right edge (peek stays). Prev/next stay 44px; the Google link wraps to its own row. A one-line head rule hides `.nav__links` before the inlined sheet paints, so the mobile menu does not FOUC over the hero.
+Live 390px: Why Wombat already stacks. Hero Polaroid stays large, padded so rotation, tape and the sticky note sit inside the viewport; `html` is overflow-x clip so page scroll dies. The search overlay panel is sized with `100vw` minus gutters so it cannot push scrollWidth to 421. Reviews band deepens from #f3ead8 to #ecdcc4 so it reads as a band. Review and article peek-carousels are clipped and fade-masked at the right edge (peek stays, no mid-word slice). Prev/next stay 44px; the Google link keeps its own shape on the next row. Footer gets extra end padding so Privacy / Terms / Dispute sit clear of the sticky header. A one-line head rule hides `.nav__links` before the inlined sheet paints, so the mobile menu does not FOUC over the hero. Nav CTA stays. Footer Strategy button stays gone.
 
 **Files changed:** `src/_includes/footer.njk`, `src/_includes/css/styles.css`, `src/_layouts/base.njk`, `tests/homepage.test.js`
 

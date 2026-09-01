@@ -138,7 +138,8 @@ test('Reviews sit on a warmer band; Articles stay cream with a hairline', functi
   assert.match(css, /#ecdcc4/);
   assert.doesNotMatch(css, /#f3ead8/);
   assert.match(css, /#fffdf8/);
-  assert.match(css, /#reviews \.reviews-wrap \{[\s\S]*?mask-image:\s*linear-gradient/);
+  assert.match(css, /#reviews \.reviews-wrap,\s*\n#articles \.reviews-wrap \{[\s\S]*?mask-image:\s*linear-gradient/);
+  assert.match(css, /\.section--articles \{[\s\S]*?overflow-x:\s*clip/);
   assert.match(css, /\.section--articles \{[\s\S]*?border-top:\s*1px solid var\(--oak\)/);
   assert.match(css, /\.section--articles \{[\s\S]*?padding-top:\s*clamp/);
   assert.match(css, /#reviews \.review-card \{[\s\S]*?background:\s*#fffdf8/);
@@ -154,6 +155,8 @@ test('390px pass keeps Why stacked and stops the hero Polaroid from clipping', f
   assert.match(css, /\.reviews-nav button \{[\s\S]*?min-width:\s*44px/);
   assert.match(css, /#reviews \.reviews-nav \{[\s\S]*?flex-wrap:\s*wrap/);
   assert.match(css, /#reviews \.reviews-nav \.btn \{[\s\S]*?order:\s*3/);
+  assert.match(css, /\.search-overlay__panel \{[\s\S]*?max-width:\s*calc\(100vw - 2 \* var\(--gutter\)\)/);
+  assert.match(css, /\.footer \{[\s\S]*?padding-bottom:\s*calc\(var\(--space-6\) \+ 4\.75rem\)/);
   assert.match(base, /<style>\.nav__links\{visibility:hidden\}<\/style>/);
   assert.match(css, /@media \(min-width: 861px\) \{[\s\S]*?\.nav__links \{ visibility: visible/);
 });
