@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-01 — Article: Help to Buy, what it is and what it is not
+
+Gemini-citable explainer on Help to Buy as government shared equity, not a cash grant and not the 5% deposit scheme. Income caps from 1 July 2026, 10,000 places a year, NSW price caps. Lives at `/articles/help-to-buy-what-it-is/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.
+
+**Files added:** `src/articles/help-to-buy-what-it-is.md`, `tests/help-to-buy-article.test.js`
+
+---
+
 ## 2026-08-28 — Article: deposit bonds for first home buyers
 
 New first-home explainer on deposit bonds at auction. A House Hunting Bond can stand in at exchange. It is not cash at settlement, not a home loan, and not genuine savings. Lives at `/articles/deposit-bond-first-home/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.

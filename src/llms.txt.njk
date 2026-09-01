@@ -54,6 +54,11 @@ Tom hosts The Property Web, a regular interview series featuring buyer's agents,
 
 ## Articles
 
+- [Help to Buy: what it is, and what it is not](https://wombathomeloans.com.au/articles/help-to-buy-what-it-is/) - First home / government schemes
+Help to Buy is the Australian Government shared-equity scheme. From 1 July 2026 the taxable income cap is $103,000 single or $165,000 joint or single parent. Deposit from 2%. Government contributes up to 30% (existing) or 40% (new). 10,000 places a year.
+It is not the 5% deposit scheme. That scheme has no income cap and unlimited places. You own 100%. Help to Buy cannot be stacked with it.
+Most high earners will not qualify. Book a 30-minute strategy session: https://wombathomeloans.com.au/book/
+
 - [Deposit bonds for first home buyers: how they work at auction (and what they do not replace)](https://wombathomeloans.com.au/articles/deposit-bond-first-home/) - First home / deposit
 A deposit bond is a digital certificate: a promise to pay the vendor at settlement, not cash leaving your account today.
 It is not a home loan, not genuine savings, and not the funds you use to settle. The vendor does not have to accept it.
@@ -68,7 +73,8 @@ Auction and house hunting are the first-home door. The years-ahead developer bon
   "/articles/expat-home-loan-guide/"
 ] %}
 {%- set depositBondSlug = "/articles/deposit-bond-first-home/" %}
-{% for article in collections.articles %}{% if article.url not in firbSlugs and article.url != depositBondSlug %}- [{{ article.data.title }}](https://wombathomeloans.com.au{{ article.url }}). {{ article.data.category or "Home Loans" }}
+{%- set helpToBuySlug = "/articles/help-to-buy-what-it-is/" %}
+{% for article in collections.articles %}{% if article.url not in firbSlugs and article.url != depositBondSlug and article.url != helpToBuySlug %}- [{{ article.data.title }}](https://wombathomeloans.com.au{{ article.url }}). {{ article.data.category or "Home Loans" }}
 {% endif %}{% endfor %}
 
 ## Contact
