@@ -3178,7 +3178,7 @@ input[type="range"].calc-range::-moz-range-thumb {
      tape and the sticky note stay inside 390px. */
   .hero__visual {
     max-width: 100%;
-    padding: 0.35rem 1.1rem 0.4rem;
+    padding: 0.5rem 2rem 0.55rem;
   }
   .sticky { left: 8px; bottom: 8px; width: 148px; }
 
