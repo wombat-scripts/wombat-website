@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-01. Footer drops the extra Strategy button
+
+The shared footer brand block no longer has a Book a Strategy Session clay button. The homepage book band and the header/nav CTA stay. Phone, email, and Suite 1, 86 Mann St, Gosford NSW 2250 stay in Get in touch. No virtual-office line.
+
+**Files changed:** `src/_includes/footer.njk`, `tests/homepage.test.js`
+
+---
+
 ## 2026-09-01. Homepage layout A (two-up Why Wombat)
 
 Layout-only pass on the Kitchen table homepage. Why Wombat is a 36/64 two-column grid with one taped running Polaroid kept fully in frame (sticky inside the section on desktop, stacked above the bio on small screens). Reviews sit on a warmer paper band with paper-white cards. Articles stay cream, with a 1px oak hairline and extra space above the heading. Live copy, type, logo, hero, notebook, tools, book band, and footer are unchanged.

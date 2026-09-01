@@ -150,6 +150,10 @@ test('nav and footer use Kitchen table chrome and the Gosford address', function
   assert.match(nav, /Book a Strategy Session/);
   assert.match(nav, /logo-horizontal\.svg/);
   assert.match(footer, /Suite 1, 86 Mann St, Gosford NSW 2250/);
+  assert.match(footer, /\+61 456 255 409/);
+  assert.match(footer, /tom@wombathomeloans\.com\.au/);
+  assert.doesNotMatch(footer, /Book a Strategy Session/);
+  assert.doesNotMatch(footer, /btn--primary/);
   assert.doesNotMatch(footer, /GOSFORD/);
   assert.doesNotMatch(footer, /virtual office/i);
   assert.doesNotMatch(footer, /not a shopfront/i);
@@ -157,4 +161,12 @@ test('nav and footer use Kitchen table chrome and the Gosford address', function
   assert.match(footer, /logo-horizontal\.svg/);
   assert.doesNotMatch(footer, /logo-horizontal-white/);
   assert.doesNotMatch(nav + footer, /\u2014/);
+});
+
+test('homepage book band keeps the Strategy closer; footer does not repeat it', function () {
+  var bookBlock = home.slice(home.indexOf('id="book"'));
+  assert.match(bookBlock, /Book a Strategy Session/);
+  assert.match(bookBlock, /book-band__phone/);
+  assert.match(bookBlock, /\+61 456 255 409/);
+  assert.doesNotMatch(footer, /Book a Strategy Session/);
 });
