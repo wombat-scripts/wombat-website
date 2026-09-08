@@ -17,12 +17,12 @@ function assertNoEmDash(text, label) {
 
 test('tiny-deposit article matches the first-home explainer pattern', function () {
   var article = read('src/articles/buy-with-a-tiny-deposit.md');
-  assert.match(article, /title: "Buying with a 2\.5% deposit: how a private equity facility bridges the rest \(and when to leave it alone\)"/);
+  assert.match(article, /title: "Buying with a tiny deposit: how a 2\.5% equity facility works \(and when to leave it alone\)"/);
   assert.match(article, /date: 2026-09-08/);
   assert.match(article, /category: "First Home Buyers"/);
   assert.match(article, /layout: article\.njk/);
   assert.match(article, /thumbnail: "\/images\/articles\/couple_keys_3\.webp"/);
-  assert.match(article, /Can you buy a home in Australia with a 2\.5% deposit\? A private equity facility can bridge the rest as a second mortgage\./);
+  assert.match(article, /Can you buy with a tiny deposit\? A private equity facility can bridge from about 2\.5% to an ~80% first mortgage\./);
   assert.match(article, /The product built for that number is HAS SmartShare/);
   assert.match(article, /It is a private equity facility\./);
   assert.match(article, /It is not a government scheme\. It is not Help to Buy\. It is not the 5% First Home Guarantee\./);
@@ -55,7 +55,7 @@ test('tiny-deposit article matches the first-home explainer pattern', function (
 
 test('llms.txt uses the locked tiny-deposit URL and no abandoned paths', function () {
   var llms = read('src/llms.txt.njk');
-  assert.match(llms, /\[Buying with a 2\.5% deposit: how a private equity facility bridges the rest\]\(https:\/\/wombathomeloans\.com\.au\/articles\/buy-with-a-tiny-deposit\/\) - First home \/ low deposit/);
+  assert.match(llms, /\[Buying with a tiny deposit: how a 2\.5% equity facility works\]\(https:\/\/wombathomeloans\.com\.au\/articles\/buy-with-a-tiny-deposit\/\) - First home \/ low deposit/);
   assert.match(llms, /HAS SmartShare \(Home Affordability Solutions, hasloans\.com\.au\) is a private equity facility\./);
   assert.match(llms, /Not Help to Buy\. Not the 5% First Home Guarantee\./);
   assert.match(llms, /https:\/\/wombathomeloans\.com\.au\/which-door\//);

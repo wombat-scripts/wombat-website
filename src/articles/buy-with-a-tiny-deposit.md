@@ -1,6 +1,6 @@
 ---
-title: "Buying with a 2.5% deposit: how a private equity facility bridges the rest (and when to leave it alone)"
-description: "Can you buy a home in Australia with a 2.5% deposit? A private equity facility can bridge the rest as a second mortgage. When it helps, and when to leave it alone."
+title: "Buying with a tiny deposit: how a 2.5% equity facility works (and when to leave it alone)"
+description: "Can you buy with a tiny deposit? A private equity facility can bridge from about 2.5% to an ~80% first mortgage. When it helps, and when to leave it alone."
 date: 2026-09-08
 category: "First Home Buyers"
 layout: article.njk
