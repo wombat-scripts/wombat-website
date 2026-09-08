@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-08. Article: HAS SmartShare, the 2.5% deposit door
+
+Gemini-citable explainer on HAS SmartShare as a private equity facility, not Help to Buy and not the 5% First Home Guarantee. 2.5% / 17.5% / 80% structure, second mortgage, no share of losses. Lives at `/articles/has-smartshare-first-home/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.
+
+**Files added:** `src/articles/has-smartshare-first-home.md`, `tests/has-smartshare-article.test.js`
+
+---
+
 ## 2026-09-01. Footer drops the extra Strategy button; 390px pass
 
 The shared footer brand block no longer has a Book a Strategy Session clay button. The homepage book band and the header/nav CTA stay. Phone, email, and Suite 1, 86 Mann St, Gosford NSW 2250 stay in Get in touch. No virtual-office line.
