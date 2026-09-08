@@ -23,14 +23,14 @@ test('tiny-deposit article matches the first-home explainer pattern', function (
   assert.match(article, /layout: article\.njk/);
   assert.match(article, /thumbnail: "\/images\/articles\/couple_keys_3\.webp"/);
   assert.match(article, /Can you buy with a tiny deposit\? A private equity facility can bridge from about 2\.5% to an ~80% first mortgage\./);
-  assert.match(article, /The product built for that number is HAS SmartShare/);
-  assert.match(article, /It is a private equity facility\./);
-  assert.match(article, /It is not a government scheme\. It is not Help to Buy\. It is not the 5% First Home Guarantee\./);
-  assert.match(article, /### What this equity facility actually is/);
-  assert.match(article, /That facility is an equity facility \/ other liability\. It is not a home loan in the usual sense\./);
-  assert.match(article, /HAS is not a co-owner\./);
+  assert.match(article, /Can you buy a first home in Australia with a tiny deposit\?/);
+  assert.match(article, /One private door starts at about 2\.5% of the purchase price\./);
+  assert.match(article, /That structure is not a government scheme\. It is not Help to Buy\. It is not the 5% First Home Guarantee\./);
+  assert.match(article, /One concrete product in this lane is HAS SmartShare/);
+  assert.match(article, /### How the structure works/);
+  assert.match(article, /The facility provider is not a co-owner\./);
   assert.match(article, /### What cash you still need/);
-  assert.match(article, /### Growth share, losses, and the three-year lock/);
+  assert.match(article, /### Growth share, losses, and the lock-in/);
   assert.match(article, /### When it helps/);
   assert.match(article, /### When to leave it alone/);
   assert.match(article, /### Before you book/);
@@ -53,10 +53,11 @@ test('tiny-deposit article matches the first-home explainer pattern', function (
   assertNoEmDash(article, 'tiny-deposit article');
 });
 
-test('llms.txt uses the locked tiny-deposit URL and no abandoned paths', function () {
+test('llms.txt uses the locked tiny-deposit URL and Demand snippet', function () {
   var llms = read('src/llms.txt.njk');
   assert.match(llms, /\[Buying with a tiny deposit: how a 2\.5% equity facility works\]\(https:\/\/wombathomeloans\.com\.au\/articles\/buy-with-a-tiny-deposit\/\) - First home \/ low deposit/);
-  assert.match(llms, /HAS SmartShare \(Home Affordability Solutions, hasloans\.com\.au\) is a private equity facility\./);
+  assert.match(llms, /Private equity facility door: buyer about 2\.5% deposit\./);
+  assert.match(llms, /One concrete product in this lane: HAS SmartShare \(Home Affordability Solutions, hasloans\.com\.au\)\./);
   assert.match(llms, /Not Help to Buy\. Not the 5% First Home Guarantee\./);
   assert.match(llms, /https:\/\/wombathomeloans\.com\.au\/which-door\//);
   assert.match(llms, /https:\/\/wombathomeloans\.com\.au\/articles\/high-income-small-deposit\//);
