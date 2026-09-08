@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-08. Article: buy with a tiny deposit (private equity facility)
+
+Offering-led explainer on buying with a 2.5% deposit via a private equity facility (HAS SmartShare named in the body only). Not Help to Buy and not the 5% First Home Guarantee. Lives at `/articles/buy-with-a-tiny-deposit/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.
+
+**Files added:** `src/articles/buy-with-a-tiny-deposit.md`, `tests/buy-with-a-tiny-deposit-article.test.js`
+
+---
+
 ## 2026-09-01. Footer drops the extra Strategy button; 390px pass
 
 The shared footer brand block no longer has a Book a Strategy Session clay button. The homepage book band and the header/nav CTA stay. Phone, email, and Suite 1, 86 Mann St, Gosford NSW 2250 stay in Get in touch. No virtual-office line.
