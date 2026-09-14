@@ -119,10 +119,12 @@ permalink: /calculators/borrowing-power/
 
         <div class="calc-field">
           <div class="calc-field__head">
-            <label for="b-rate">Interest rate</label>
-            <span class="calc-field__value" id="b-rate-out"></span>
+            <label for="b-rate-input">Interest rate</label>
           </div>
-          <input class="calc-range" id="b-rate" type="range" min="4" max="9" step="0.05" value="5.75">
+          <div class="calc-affix calc-affix--suffix" data-suffix="%">
+            <input class="calc-input calc-input--bare" id="b-rate-input" type="text" inputmode="decimal" autocomplete="off" aria-label="Interest rate">
+          </div>
+          <input class="calc-range" id="b-rate" type="range" min="4" max="9" step="0.01" value="5.75" aria-label="Interest rate slider">
           <p class="calc-field__hint">Lenders test you at this rate <strong>plus 3%</strong>. the APRA serviceability buffer. We apply it automatically.</p>
         </div>
 
@@ -198,5 +200,5 @@ permalink: /calculators/borrowing-power/
 
 {% block scripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
-<script src="/assets/js/calculators.js?v=20260709-3" defer></script>
+<script src="/assets/js/calculators.js?v=20260914-1" defer></script>
 {% endblock %}

@@ -57,18 +57,22 @@ permalink: /calculators/offset-vs-basic/
 
         <div class="calc-field">
           <div class="calc-field__head">
-            <label for="o-rate">Basic loan rate</label>
-            <span class="calc-field__value" id="o-rate-out"></span>
+            <label for="o-rate-input">Basic loan rate</label>
           </div>
-          <input class="calc-range" id="o-rate" type="range" min="3" max="10" step="0.05" value="5.60">
+          <div class="calc-affix calc-affix--suffix" data-suffix="%">
+            <input class="calc-input calc-input--bare" id="o-rate-input" type="text" inputmode="decimal" autocomplete="off" aria-label="Basic loan interest rate">
+          </div>
+          <input class="calc-range" id="o-rate" type="range" min="3" max="10" step="0.01" value="5.60" aria-label="Basic loan rate slider">
         </div>
 
         <div class="calc-field">
           <div class="calc-field__head">
-            <label for="o-prem">Offset loan's rate premium</label>
-            <span class="calc-field__value" id="o-prem-out"></span>
+            <label for="o-prem-input">Offset loan's rate premium</label>
           </div>
-          <input class="calc-range" id="o-prem" type="range" min="0" max="0.6" step="0.05" value="0.15">
+          <div class="calc-affix calc-affix--suffix" data-suffix="%">
+            <input class="calc-input calc-input--bare" id="o-prem-input" type="text" inputmode="decimal" autocomplete="off" aria-label="Offset loan rate premium">
+          </div>
+          <input class="calc-range" id="o-prem" type="range" min="0" max="0.6" step="0.01" value="0.15" aria-label="Offset rate premium slider">
           <p class="calc-field__hint">How much more the offset product's rate is. 0.10–0.30% is typical.</p>
         </div>
 
@@ -113,10 +117,12 @@ permalink: /calculators/offset-vs-basic/
         <div id="o-sav-wrap">
           <div class="calc-field">
             <div class="calc-field__head">
-              <label for="o-sav">Savings account rate</label>
-              <span class="calc-field__value" id="o-sav-out"></span>
+              <label for="o-sav-input">Savings account rate</label>
             </div>
-            <input class="calc-range" id="o-sav" type="range" min="0" max="7" step="0.05" value="4.25">
+            <div class="calc-affix calc-affix--suffix" data-suffix="%">
+              <input class="calc-input calc-input--bare" id="o-sav-input" type="text" inputmode="decimal" autocomplete="off" aria-label="Savings account interest rate">
+            </div>
+            <input class="calc-range" id="o-sav" type="range" min="0" max="7" step="0.01" value="4.25" aria-label="Savings account rate slider">
           </div>
 
           <div class="calc-field">
@@ -191,5 +197,5 @@ permalink: /calculators/offset-vs-basic/
 
 {% block scripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
-<script src="/assets/js/calculators.js?v=20260709-3" defer></script>
+<script src="/assets/js/calculators.js?v=20260914-1" defer></script>
 {% endblock %}

@@ -49,10 +49,12 @@ permalink: /calculators/repayments/
 
         <div class="calc-field">
           <div class="calc-field__head">
-            <label for="r-rate">Interest rate</label>
-            <span class="calc-field__value" id="r-rate-out"></span>
+            <label for="r-rate-input">Interest rate</label>
           </div>
-          <input class="calc-range" id="r-rate" type="range" min="3" max="10" step="0.05" value="5.75">
+          <div class="calc-affix calc-affix--suffix" data-suffix="%">
+            <input class="calc-input calc-input--bare" id="r-rate-input" type="text" inputmode="decimal" autocomplete="off" aria-label="Interest rate">
+          </div>
+          <input class="calc-range" id="r-rate" type="range" min="3" max="10" step="0.01" value="5.75" aria-label="Interest rate slider">
         </div>
 
         <div class="calc-field">
@@ -191,5 +193,5 @@ permalink: /calculators/repayments/
 
 {% block scripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
-<script src="/assets/js/calculators.js?v=20260714-1" defer></script>
+<script src="/assets/js/calculators.js?v=20260914-1" defer></script>
 {% endblock %}
