@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-14. Calculator rates can be typed to two decimals
+
+Interest rate fields on `/calculators/` were slider-only at 0.05% steps, so a refinance comparison of 6.39% vs 6.22% was impossible. Each rate now has a typed box (two decimal places) kept in sync with a 0.01% slider. Same treatment on repayments, borrowing power, extra repayments, and offset vs basic (including the premium and savings-account rates). Buying costs and LVR had no rate fields.
+
+**Files changed:** `src/assets/js/calculators.js`, `src/calculators/*.njk`, `tests/calculators-rate-inputs.test.js`
+
+---
+
 ## 2026-09-08. Article: buy with a tiny deposit (private equity facility)
 
 Offering-led explainer on buying with a tiny deposit via a 2.5% private equity facility door (HAS SmartShare named as one concrete product in that lane). Not Help to Buy and not the 5% First Home Guarantee. Lives at `/articles/buy-with-a-tiny-deposit/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.

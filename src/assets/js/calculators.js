@@ -181,13 +181,50 @@
     return { get value() { return parse(); } };
   }
 
-  /* Range slider with a live <output> label (rates, terms, counts). */
+  /* Range slider with a live <output> label (terms, counts). */
   function bindRange(rangeId, outId, fmtFn, onChange) {
     var r = $(rangeId), out = $(outId);
     function upd() { out.textContent = fmtFn(+r.value); paintRange(r); }
     r.addEventListener('input', function () { upd(); onChange(); });
     upd();
     return { get value() { return +r.value; } };
+  }
+
+  function fmtRateInput(n) {
+    return (Math.round(n * 100) / 100).toFixed(2);
+  }
+
+  /* Range slider + % text input, kept in sync to two decimal places.
+     Typed values may exceed the slider max. the slider pins, the typed value wins. */
+  function bindRate(rangeId, inputId, onChange) {
+    var r = $(rangeId), inp = $(inputId);
+    function parse() {
+      var v = parseFloat(String(inp.value).replace(/[^0-9.]/g, ''));
+      return isFinite(v) ? v : 0;
+    }
+    function show(v) { inp.value = fmtRateInput(v); }
+    function pinSlider(v) {
+      r.value = Math.min(Math.max(v, +r.min), +r.max);
+      paintRange(r);
+    }
+    r.addEventListener('input', function () {
+      show(+r.value);
+      paintRange(r);
+      onChange();
+    });
+    inp.addEventListener('input', function () {
+      pinSlider(parse());
+      onChange();
+    });
+    inp.addEventListener('change', function () {
+      var v = Math.max(0, parse());
+      show(v);
+      pinSlider(v);
+      onChange();
+    });
+    show(+r.value);
+    paintRange(r);
+    return { get value() { return parse(); } };
   }
 
   /* Segmented control (group of buttons with aria-pressed). */
@@ -268,7 +305,7 @@
     var cb = function () { if (ready) update(); };
 
     var amount  = bindMoney('r-amount', 'r-amount-input', cb);
-    var rate    = bindRange('r-rate', 'r-rate-out', fmtPct, cb);
+    var rate    = bindRate('r-rate', 'r-rate-input', cb);
     var term    = bindRange('r-term', 'r-term-out', fmtYears, cb);
     var freq    = bindSeg('r-freq', cb);
     var method  = bindSeg('r-method', cb);
@@ -475,7 +512,7 @@
     var expenses = bindMoney('b-expenses', 'b-expenses-input', cb);
     var debts   = bindMoney('b-debts', 'b-debts-input', cb);
     var cc      = bindMoney('b-cc', 'b-cc-input', cb);
-    var rate    = bindRange('b-rate', 'b-rate-out', fmtPct, cb);
+    var rate    = bindRate('b-rate', 'b-rate-input', cb);
     var deposit = bindMoney('b-deposit', 'b-deposit-input', cb);
 
     function borrowingAt(assessPct, surplus) {
@@ -587,7 +624,7 @@
     var cb = function () { if (ready) update(); };
 
     var amount = bindMoney('e-amount', 'e-amount-input', cb);
-    var rate   = bindRange('e-rate', 'e-rate-out', fmtPct, cb);
+    var rate   = bindRate('e-rate', 'e-rate-input', cb);
     var term   = bindRange('e-term', 'e-term-out', fmtYears, cb);
     var extra  = bindMoney('e-extra', 'e-extra-input', cb);
     var offset = bindMoney('e-offset', 'e-offset-input', cb);
@@ -699,8 +736,8 @@
 
     var balance  = bindMoney('f-balance', 'f-balance-input', cb);
     var term     = bindRange('f-term', 'f-term-out', fmtYears, cb);
-    var oldRate  = bindRange('f-old-rate', 'f-old-rate-out', fmtPct, cb);
-    var newRate  = bindRange('f-new-rate', 'f-new-rate-out', fmtPct, cb);
+    var oldRate  = bindRate('f-old-rate', 'f-old-rate-input', cb);
+    var newRate  = bindRate('f-new-rate', 'f-new-rate-input', cb);
     var upfront  = bindMoney('f-upfront', 'f-upfront-input', cb);
     var annualFee = bindMoney('f-fee', 'f-fee-input', cb);
     var cashback = bindMoney('f-cashback', 'f-cashback-input', cb);
@@ -919,13 +956,13 @@
 
     var loan    = bindMoney('o-loan', 'o-loan-input', cb);
     var term    = bindRange('o-term', 'o-term-out', fmtYears, cb);
-    var rate    = bindRange('o-rate', 'o-rate-out', fmtPct, cb);
-    var prem    = bindRange('o-prem', 'o-prem-out', function (v) { return '+' + fmtPct(v); }, cb);
+    var rate    = bindRate('o-rate', 'o-rate-input', cb);
+    var prem    = bindRate('o-prem', 'o-prem-input', cb);
     var fee     = bindMoney('o-fee', 'o-fee-input', cb);
     var start   = bindMoney('o-start', 'o-start-input', cb);
     var monthly = bindMoney('o-monthly', 'o-monthly-input', cb);
     var alt     = bindSeg('o-alt', cb);
-    var sav     = bindRange('o-sav', 'o-sav-out', fmtPct, cb);
+    var sav     = bindRate('o-sav', 'o-sav-input', cb);
     var tax     = bindSeg('o-tax', cb);
 
     /* Simulate both scenarios. Returns { costOffset, costBasic, series, months }
