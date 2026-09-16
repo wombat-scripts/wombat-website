@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-16. Search Console: one homepage URL, mortgage-ready canonical
+
+Sitemap listed both `https://wombathomeloans.com.au` and `https://wombathomeloans.com.au/`. It now lists the trailing-slash homepage once and skips `/` in the page loop. `/landing/getting-mortgage-ready/` is a noindex stub and Netlify 301s it to `/articles/getting-mortgage-ready/`. The expat landing stays; it is a different page from the expat article. Netlify cannot 301 the bare apex to `/` (same path); Pretty URLs already 301 inner no-slash paths, and www already lands on `/`.
+
+**Files changed:** `src/sitemap.xml.njk`, `src/landing/getting-mortgage-ready.njk`, `netlify.toml`, `tests/canonical-indexing.test.js`
+
+---
+
 ## 2026-09-14. Calculator rates can be typed to two decimals
 
 Interest rate fields on `/calculators/` were slider-only at 0.05% steps, so a refinance comparison of 6.39% vs 6.22% was impossible. Each rate now has a typed box (two decimal places) kept in sync with a 0.01% slider. Same treatment on repayments, borrowing power, extra repayments, and offset vs basic (including the premium and savings-account rates). Buying costs and LVR had no rate fields.
