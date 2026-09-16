@@ -66,6 +66,23 @@
   status = 301
   force = true
 
+# Near-duplicate of /articles/getting-mortgage-ready/. Article wins.
+[[redirects]]
+  from = "/landing/getting-mortgage-ready"
+  to = "/articles/getting-mortgage-ready/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/landing/getting-mortgage-ready/"
+  to = "/articles/getting-mortgage-ready/"
+  status = 301
+  force = true
+
+# Homepage slash: Netlify treats https://host and https://host/ as the same
+# path (/), so a redirect rule cannot 301 one to the other. Pretty URLs
+# already 301 inner paths (/page → /page/). Sitemap + canonical use / only.
+
 # ─────────────────────────────────────────────────────────────────────
 # HEADERS — security and performance
 # ─────────────────────────────────────────────────────────────────────
