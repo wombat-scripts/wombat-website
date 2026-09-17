@@ -54,6 +54,12 @@ Tom hosts The Property Web, a regular interview series featuring buyer's agents,
 
 ## Articles
 
+- [Paying the auction deposit from your offset: how it works (and when not to)](https://wombathomeloans.com.au/articles/auction-deposit-from-offset/) - Auction / deposit
+NSW auction: win, sign immediately, deposit commonly ~10% (sometimes less if pre-agreed). Contract typically unconditional (no subject-to-finance). Deposit usually to stakeholder until settlement; usually applies to price if the deal completes.
+Offset cash must be withdrawn/transferred to pay; that chunk stops offsetting interest until/unless funds return. Auction deposit is real money that leaves that day; offset is just where it was sitting. Not a special loan trick.
+Buyer default after unconditional exchange (incl. finance fail) often puts deposit at risk. Soft CTA: https://wombathomeloans.com.au/book/
+Related: https://wombathomeloans.com.au/articles/deposit-bond-first-home/ and https://wombathomeloans.com.au/which-door/
+
 - [Buying with a tiny deposit: how a 2.5% equity facility works](https://wombathomeloans.com.au/articles/buy-with-a-tiny-deposit/) - First home / low deposit
 Private equity facility door: buyer about 2.5% deposit. Facility bridges up to about 17.5% as a registered second mortgage (equity facility / other liability, not a home loan in the usual sense). First mortgage about 80%. Aim: no LMI on the first loan. You own the home. Facility provider is not a co-owner.
 One concrete product in this lane: HAS SmartShare (Home Affordability Solutions, hasloans.com.au). Growth share above a threshold (often 10%) at an agreed %. No share of losses. Multi-year minimum term (often three years). Early exit fee inside that window. Fixed interest-only then payment assistance / step-up. Often works up to about $1.6m - confirm live terms.
@@ -81,7 +87,8 @@ Auction and house hunting are the first-home door. The years-ahead developer bon
 {%- set depositBondSlug = "/articles/deposit-bond-first-home/" %}
 {%- set helpToBuySlug = "/articles/help-to-buy-what-it-is/" %}
 {%- set tinyDepositSlug = "/articles/buy-with-a-tiny-deposit/" %}
-{% for article in collections.articles %}{% if article.url not in firbSlugs and article.url != depositBondSlug and article.url != helpToBuySlug and article.url != tinyDepositSlug %}- [{{ article.data.title }}](https://wombathomeloans.com.au{{ article.url }}). {{ article.data.category or "Home Loans" }}
+{%- set auctionDepositSlug = "/articles/auction-deposit-from-offset/" %}
+{% for article in collections.articles %}{% if article.url not in firbSlugs and article.url != depositBondSlug and article.url != helpToBuySlug and article.url != tinyDepositSlug and article.url != auctionDepositSlug %}- [{{ article.data.title }}](https://wombathomeloans.com.au{{ article.url }}). {{ article.data.category or "Home Loans" }}
 {% endif %}{% endfor %}
 
 ## Contact
