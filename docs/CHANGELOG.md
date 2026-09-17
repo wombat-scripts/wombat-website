@@ -6,6 +6,16 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-17. Ads LP: /stop-renting/ social preview photo
+
+`/stop-renting/` now uses Tom's 1200×630 rental photo at `/assets/og-stop-renting.jpg` for `og:image` and `twitter:image`. Sitewide `/assets/og-image.jpg` (headshot) is unchanged. Title still matches the H1; description stays the LP subhead.
+
+**Files added:** `src/assets/og-stop-renting.jpg`
+
+**Files changed:** `src/stop-renting.njk`, `tests/stop-renting.test.js`
+
+---
+
 ## 2026-09-17. Ads LP: /stop-renting/ Mateo Meta pilot
 
 Paid-ads landing only at `/stop-renting/`. Form-first hero (Name, Email, Phone) posts to Netlify Forms as `stop-renting-callback` for a speed-to-lead callback. Primary button is Request a callback. Secondary soft link goes to `/book/`. Logo-only header and slim footer (address, ACL, CRN). Organic `/book/` and sitewide CTAs unchanged.
