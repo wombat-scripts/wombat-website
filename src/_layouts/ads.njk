@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ title }} | Wombat Home Loans</title>
+  <meta name="description" content="{{ description }}">
+  <meta name="author" content="Tom Carr">
+
+  <link rel="canonical" href="https://wombathomeloans.com.au{{ page.url }}">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f3ec">
+
+  <meta property="og:type" content="{{ ogType or 'website' }}">
+  <meta property="og:site_name" content="Wombat Home Loans">
+  <meta property="og:title" content="{{ ogTitle or title }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:url" content="https://wombathomeloans.com.au{{ page.url }}">
+  <meta property="og:image" content="https://wombathomeloans.com.au{{ ogImage or '/assets/og-image.jpg' }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_AU">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ ogTitle or title }}">
+  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:image" content="https://wombathomeloans.com.au{{ ogImage or '/assets/og-image.jpg' }}">
+
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ibm-plex-sans-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/zilla-slab-700-latin.woff2" crossorigin>
+
+  <style>{% include "css/styles.css" %}</style>
+
+  {% block schema %}{% endblock %}
+  {% block head %}{% endblock %}
+
+<script defer src="https://cloud.umami.is/script.js" data-website-id="7d4d19f7-1636-4f25-be1c-bd58b7fe237b"></script>
+</head>
+<body class="ads-lp">
+  <header class="ads-nav">
+    <div class="container ads-nav__inner">
+      <a class="nav__brand" href="/" aria-label="Wombat Home Loans home">
+        <img class="nav__brand-mark"
+             src="/assets/logo-horizontal.svg"
+             alt="Wombat Home Loans"
+             loading="eager"
+             decoding="async">
+      </a>
+    </div>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="ads-footer">
+    <div class="container ads-footer__inner">
+      <a class="ads-footer__brand" href="/" aria-label="Wombat Home Loans home">
+        <img src="/assets/logo-horizontal.svg"
+             alt="Wombat Home Loans"
+             loading="lazy"
+             decoding="async">
+      </a>
+      <p class="ads-footer__address">{{ site.address }}</p>
+      <p class="ads-footer__legal">
+        © {% year %} Wombat Home Loans.
+        Australian Credit Licence <strong>{{ site.acl }}</strong>.
+        Credit Representative Number <strong>{{ site.crn }}</strong>.
+      </p>
+      <ul class="ads-footer__links">
+        <li><a href="/privacy-policy/">Privacy</a></li>
+        <li><a href="/terms/">Terms</a></li>
+        <li><a href="/dispute-resolution/">Dispute Resolution</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

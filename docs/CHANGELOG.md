@@ -6,6 +6,16 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-17. Ads LP: /stop-renting/ Mateo Meta pilot
+
+Paid-ads landing only at `/stop-renting/`. Form-first hero (Name, Email, Phone) posts to Netlify Forms as `stop-renting-callback` for a speed-to-lead callback. Primary button is Request a callback. Secondary soft link goes to `/book/`. Logo-only header and slim footer (address, ACL, CRN). Organic `/book/` and sitewide CTAs unchanged.
+
+**Files added:** `src/stop-renting.njk`, `src/_layouts/ads.njk`, `tests/stop-renting.test.js`
+
+**Files changed:** `src/_includes/css/styles.css`, `src/llms.txt.njk`
+
+---
+
 ## 2026-09-17. Article: paying the auction deposit from your offset
 
 Courtney-approved explainer on using offset cash for an NSW auction deposit. Auction deposit is real money that leaves that day; offset is only where it was sitting. Lives at `/articles/auction-deposit-from-offset/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.

@@ -1,0 +1,271 @@
+---
+layout: ads.njk
+title: Still renting, even though your income is fine?
+description: If 20% cash is not sitting there, you still may have a door. Leave your details. Tom will call back to book a Strategy Session.
+permalink: /stop-renting/
+date: 2026-09-17
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Will you try to sell me a loan on the callback?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The call is to book a Strategy Session and make sure the session is worth your time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Strategy Session?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Thirty minutes with Tom. You bring income, rough price range, and how much cash you can put down. You leave knowing which doors are open, closed, or not yet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I am not ready to buy this year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Still fine to talk. Sometimes the answer is wait, or change the order of the plan. Better to know that early."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+<section class="section ads-hero">
+  <div class="container ads-hero__grid">
+    <div class="ads-hero__copy">
+      <h1 class="display">Still renting, even though your income is fine?</h1>
+      <p class="lede">If 20% cash is not sitting there, you still may have a door. Leave your details. Tom will call back to book a Strategy Session.</p>
+    </div>
+
+    <div class="ads-hero__form-wrap">
+      <div class="ads-form-card" data-stop-renting-panel>
+        {# Zap/webhook can hook form name stop-renting-callback later #}
+        <form class="ads-form"
+              name="stop-renting-callback"
+              method="POST"
+              action="/"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              data-stop-renting-form
+              novalidate>
+          <input type="hidden" name="form-name" value="stop-renting-callback">
+          <p class="ads-form__honeypot">
+            <label>Do not fill this out if you are human <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
+
+          <p class="ads-form__required muted">Name, email, and mobile required.</p>
+
+          <div class="ads-form__field">
+            <label for="stop-renting-name">Name</label>
+            <input id="stop-renting-name"
+                   class="ads-form__input"
+                   type="text"
+                   name="name"
+                   autocomplete="name"
+                   placeholder="Your name"
+                   required>
+          </div>
+
+          <div class="ads-form__field">
+            <label for="stop-renting-email">Email</label>
+            <input id="stop-renting-email"
+                   class="ads-form__input"
+                   type="email"
+                   name="email"
+                   autocomplete="email"
+                   inputmode="email"
+                   placeholder="you@email.com"
+                   required>
+          </div>
+
+          <div class="ads-form__field">
+            <label for="stop-renting-phone">Phone</label>
+            <input id="stop-renting-phone"
+                   class="ads-form__input"
+                   type="tel"
+                   name="phone"
+                   autocomplete="tel"
+                   inputmode="tel"
+                   placeholder="Mobile number"
+                   required>
+          </div>
+
+          <button class="btn btn--primary btn--lg ads-form__submit"
+                  type="submit"
+                  data-umami-event="stop-renting-callback"
+                  data-idle-label="Request a callback"
+                  data-loading-label="Sending…">
+            Request a callback
+          </button>
+
+          <p class="ads-form__under">We will call you to find a time for a 30-minute Strategy Session.</p>
+          <p class="ads-form__privacy muted">We only use this to call you back about a Strategy Session. No spam list.</p>
+          <p class="ads-form__secondary">
+            <a href="/book/" data-umami-event="stop-renting-self-book">Or pick a time yourself</a>
+          </p>
+        </form>
+
+        <p class="ads-form__status ads-form__status--error" data-stop-renting-error hidden>
+          Please add a name, email, and mobile so we can call you back.
+        </p>
+        <div class="ads-form__status ads-form__status--success" data-stop-renting-success hidden>
+          Thanks. Tom will call you soon to lock in a Strategy Session. Prefer to <a href="/book/" data-umami-event="stop-renting-self-book">pick a time now</a>?
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--warm">
+  <div class="container container--narrow">
+    <h2>For first home buyers with a smaller deposit who want out of rent</h2>
+    <p>You are paying rent. You can service a loan on paper. The gap is cash.</p>
+    <p>Plenty of people in that spot do not need a lecture about &ldquo;saving harder.&rdquo; They need a clear map: which doors are actually open with a thin deposit, which ones are closed, and what to do next.</p>
+    <p>That is the Strategy Session. Thirty minutes. Plain English. No pressure to apply on the call.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container ads-split">
+    <div>
+      <p class="eyebrow">When this page is for you</p>
+      <ul>
+        <li>You want to buy a first home and stop renting.</li>
+        <li>Your income is solid, but the deposit is not 20%.</li>
+        <li>You are tired of half-answers from rate ads and bank apps.</li>
+        <li>You want someone to tell you what is real for your numbers.</li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow">When this is not for you</p>
+      <ul>
+        <li>You already have a signed contract and need urgent lodgement only (message Tom direct).</li>
+        <li>You want the cheapest rate shop with no advice.</li>
+        <li>You are not buying in Australia.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">Soft proof</p>
+    <ul>
+      <li>Kitchen-table clarity, not a product pitch.</li>
+      <li>We map the door first, then the lender later.</li>
+      <li>Strategy Session is 30 minutes on a call. You leave with next steps.</li>
+    </ul>
+    <p class="ads-helpers muted">
+      Want a bit more reading first?
+      <a href="/articles/buy-with-a-tiny-deposit/">Buying with a tiny deposit</a>
+      · <a href="/which-door/">Which door is open</a>
+      · <a href="/articles/deposit-bond-first-home/">Deposit bonds for first home buyers</a>
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container faq">
+    <p class="eyebrow">A few straight answers</p>
+    <h2>FAQ</h2>
+    <details>
+      <summary>Will you try to sell me a loan on the callback?</summary>
+      <p>No. The call is to book a Strategy Session and make sure the session is worth your time.</p>
+    </details>
+    <details>
+      <summary>What is a Strategy Session?</summary>
+      <p>Thirty minutes with Tom. You bring income, rough price range, and how much cash you can put down. You leave knowing which doors are open, closed, or &ldquo;not yet.&rdquo;</p>
+    </details>
+    <details>
+      <summary>What if I am not ready to buy this year?</summary>
+      <p>Still fine to talk. Sometimes the answer is wait, or change the order of the plan. Better to know that early.</p>
+    </details>
+  </div>
+</section>
+
+{% block scripts %}
+<script>
+(function () {
+  var form = document.querySelector('[data-stop-renting-form]');
+  if (!form) return;
+
+  var errorEl = document.querySelector('[data-stop-renting-error]');
+  var successEl = document.querySelector('[data-stop-renting-success]');
+  var button = form.querySelector('[type="submit"]');
+  var idleLabel = (button && button.getAttribute('data-idle-label')) || 'Request a callback';
+  var loadingLabel = (button && button.getAttribute('data-loading-label')) || 'Sending…';
+
+  function hideStatus() {
+    if (errorEl) errorEl.hidden = true;
+    if (successEl) successEl.hidden = true;
+  }
+
+  function showError() {
+    if (successEl) successEl.hidden = true;
+    if (errorEl) errorEl.hidden = false;
+  }
+
+  function showSuccess() {
+    form.hidden = true;
+    if (errorEl) errorEl.hidden = true;
+    if (successEl) successEl.hidden = false;
+    if (window.umami) {
+      try { window.umami.track('stop-renting-callback'); } catch (err) {}
+    }
+  }
+
+  function isFilled(value) {
+    return String(value || '').trim().length > 0;
+  }
+
+  function isEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || '').trim());
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    hideStatus();
+
+    var name = form.elements.name && form.elements.name.value;
+    var email = form.elements.email && form.elements.email.value;
+    var phone = form.elements.phone && form.elements.phone.value;
+
+    if (!isFilled(name) || !isEmail(email) || !isFilled(phone)) {
+      showError();
+      return;
+    }
+
+    if (button) {
+      button.disabled = true;
+      button.textContent = loadingLabel;
+    }
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    }).then(function (res) {
+      if (!res.ok) throw new Error('submit failed');
+      showSuccess();
+    }).catch(function () {
+      if (button) {
+        button.disabled = false;
+        button.textContent = idleLabel;
+      }
+      showError();
+    });
+  });
+})();
+</script>
+{% endblock %}
