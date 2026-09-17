@@ -79,6 +79,33 @@ test('stop-renting copy stays brand-safe', function () {
   assert.doesNotMatch(blob, /SMSF/);
 });
 
+test('stop-renting uses Tom\'s 1200x630 rental OG photo, not the sitewide headshot', function () {
+  assert.match(page, /ogImage:\s*\/assets\/og-stop-renting\.jpg/);
+  assert.match(layout, /og:image.*\{\{\s*ogImage or '\/assets\/og-image\.jpg'\s*\}\}/);
+  assert.match(layout, /twitter:image.*\{\{\s*ogImage or '\/assets\/og-image\.jpg'\s*\}\}/);
+  assert.match(layout, /og:image:width" content="1200"/);
+  assert.match(layout, /og:image:height" content="630"/);
+  assert.match(layout, /twitter:card" content="summary_large_image"/);
+
+  var ogPath = path.join(root, 'src/assets/og-stop-renting.jpg');
+  var defaultOgPath = path.join(root, 'src/assets/og-image.jpg');
+  assert.ok(fs.existsSync(ogPath), 'page-specific OG JPG is in src/assets');
+  assert.ok(fs.existsSync(defaultOgPath), 'sitewide default OG JPG stays in place');
+
+  var jpeg = fs.readFileSync(ogPath);
+  assert.equal(jpeg[0], 0xff);
+  assert.equal(jpeg[1], 0xd8);
+  var sof = jpeg.indexOf(Buffer.from([0xff, 0xc0]));
+  assert.ok(sof >= 0, 'JPEG has a SOF0 marker');
+  var height = jpeg.readUInt16BE(sof + 5);
+  var width = jpeg.readUInt16BE(sof + 7);
+  assert.equal(width, 1200);
+  assert.equal(height, 630);
+
+  var defaultJpeg = fs.readFileSync(defaultOgPath);
+  assert.ok(defaultJpeg.length !== jpeg.length, 'page OG file is not a copy of the sitewide headshot');
+});
+
 test('ads LP does not rewrite organic booking or homepage CTAs', function () {
   var book = read('src/book.njk');
   var home = read('src/index.njk');
