@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-17. Article: paying the auction deposit from your offset
+
+Courtney-approved explainer on using offset cash for an NSW auction deposit. Auction deposit is real money that leaves that day; offset is only where it was sitting. Lives at `/articles/auction-deposit-from-offset/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.
+
+**Files added:** `src/articles/auction-deposit-from-offset.md`, `tests/auction-deposit-from-offset-article.test.js`
+
+---
+
 ## 2026-09-16. Search Console: one homepage URL, mortgage-ready canonical
 
 Sitemap listed both `https://wombathomeloans.com.au` and `https://wombathomeloans.com.au/`. It now lists the trailing-slash homepage once and skips `/` in the page loop. `/landing/getting-mortgage-ready/` is a noindex stub and Netlify 301s it to `/articles/getting-mortgage-ready/`. The expat landing stays; it is a different page from the expat article. Netlify cannot 301 the bare apex to `/` (same path); Pretty URLs already 301 inner no-slash paths, and www already lands on `/`.

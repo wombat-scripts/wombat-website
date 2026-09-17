@@ -53,8 +53,8 @@ test('llms.txt includes the Help to Buy snippet with a hyphen, not an em dash', 
   assert.match(llms, /Most high earners will not qualify\./);
   assert.match(llms, /https:\/\/wombathomeloans\.com\.au\/book\//);
   assert.ok(
-    llms.indexOf('help-to-buy-what-it-is') < llms.indexOf('deposit-bond-first-home'),
-    'Help to Buy snippet should sit at the top of Articles, before the deposit bond snippet'
+    llms.indexOf('[Help to Buy: what it is, and what it is not]') < llms.indexOf('[Deposit bonds for first home buyers'),
+    'Help to Buy snippet should sit above the deposit bond snippet'
   );
   assertNoEmDash(llms, 'llms.txt');
 });
