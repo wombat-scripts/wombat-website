@@ -3363,6 +3363,22 @@ input[type="range"].calc-range::-moz-range-thumb {
   line-height: var(--lh-body);
 }
 
+.ads-form__status--success p {
+  margin: 0 0 var(--space-4);
+}
+
+.ads-form__or {
+  margin: 0 0 var(--space-4);
+  text-align: center;
+  color: var(--ink-muted);
+}
+
+.ads-form__status--success .btn {
+  width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+
 .ads-split {
   display: grid;
   gap: var(--space-7);
