@@ -21,10 +21,16 @@ test('stop-renting ads LP is a top-level form-first callback page', function () 
   assert.match(page, /<h1 class="display">Still renting, even though your income is fine\?<\/h1>/);
   assert.match(page, /If 20% cash is not sitting there, you still may have a door/);
   assert.match(page, /name="stop-renting-callback"/);
+  assert.match(page, /\snetlify(?:\s|>)/);
   assert.match(page, /data-netlify="true"/);
   assert.match(page, /netlify-honeypot="bot-field"/);
+  assert.match(page, /data-netlify-honeypot="bot-field"/);
   assert.match(page, /name="bot-field"/);
   assert.match(page, /name="form-name" value="stop-renting-callback"/);
+  assert.match(page, /id="stop-renting-name"/);
+  assert.match(page, /id="stop-renting-email"/);
+  assert.match(page, /id="stop-renting-phone"/);
+  assert.match(page, /action="\/stop-renting\/"/);
   assert.match(page, /Zap\/webhook can hook form name stop-renting-callback later/);
   assert.match(page, /placeholder="Your name"/);
   assert.match(page, /placeholder="you@email.com"/);
@@ -120,4 +126,62 @@ test('ads LP does not rewrite organic booking or homepage CTAs', function () {
   assert.doesNotMatch(footer, /stop-renting/);
   assert.match(book, /calendly-inline-widget/);
   assert.match(home, /Book a Strategy Session/);
+});
+
+test('callback script reads fields by id and splits validation from submit errors', function () {
+  var scriptMatch = page.match(/<script>([\s\S]*?)<\/script>\s*\{% endblock %}/);
+  assert.ok(scriptMatch, 'inline callback script is present');
+  var script = scriptMatch[1];
+
+  assert.doesNotMatch(script, /form\.elements\.name/);
+  assert.match(script, /getElementById\('stop-renting-name'\)/);
+  assert.match(script, /getElementById\('stop-renting-email'\)/);
+  assert.match(script, /getElementById\('stop-renting-phone'\)/);
+  assert.match(script, /var name = nameEl && nameEl\.value/);
+  assert.match(script, /var email = emailEl && emailEl\.value/);
+  assert.match(script, /var phone = phoneEl && phoneEl\.value/);
+
+  assert.match(script, /var validationError = 'Please add a name, email, and mobile so we can call you back\.'/);
+  assert.match(script, /var submitError = 'Something went wrong sending that\. Please try again or pick a time at \/book\/\.'/);
+  assert.match(script, /showError\(validationError\)/);
+  assert.match(script, /showError\(submitError\)/);
+
+  assert.match(script, /window\.location && window\.location\.pathname/);
+  assert.match(script, /'\/stop-renting\/'/);
+  assert.match(script, /redirect: 'manual'/);
+  assert.match(script, /res\.type === 'opaqueredirect'/);
+  assert.match(script, /status >= 200 && status < 300/);
+
+  assert.match(page, /Please add a name, email, and mobile so we can call you back/);
+  assert.match(page, /Something went wrong sending that\. Please try again or pick a time at \/book\/\./);
+  assert.notEqual(
+    'Please add a name, email, and mobile so we can call you back.',
+    'Something went wrong sending that. Please try again or pick a time at /book/.'
+  );
+});
+
+test('Netlify form detection attributes survive an Eleventy build', function () {
+  var { execFileSync } = require('child_process');
+  var os = require('os');
+  var outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'stop-renting-build-'));
+  try {
+    execFileSync(process.execPath, [
+      path.join(root, 'node_modules/@11ty/eleventy/cmd.cjs'),
+      '--input=src',
+      '--output=' + outDir,
+      '--config=.eleventy.js'
+    ], { cwd: root, encoding: 'utf8' });
+
+    var built = fs.readFileSync(path.join(outDir, 'stop-renting/index.html'), 'utf8');
+    assert.match(built, /<form[\s\S]*?name="stop-renting-callback"[\s\S]*?>/);
+    assert.match(built, /<form[\s\S]*?data-netlify="true"[\s\S]*?>/);
+    assert.match(built, /<form[\s\S]*?\snetlify(?:\s|=|>)/);
+    assert.match(built, /<form[\s\S]*?netlify-honeypot="bot-field"[\s\S]*?>/);
+    assert.match(built, /name="form-name" value="stop-renting-callback"/);
+    assert.match(built, /id="stop-renting-name"/);
+    assert.match(built, /getElementById\('stop-renting-name'\)/);
+    assert.doesNotMatch(built, /form\.elements\.name/);
+  } finally {
+    fs.rmSync(outDir, { recursive: true, force: true });
+  }
 });
