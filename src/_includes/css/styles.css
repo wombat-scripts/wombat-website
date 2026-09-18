@@ -3367,6 +3367,12 @@ input[type="range"].calc-range::-moz-range-thumb {
   margin: 0 0 var(--space-4);
 }
 
+.ads-form__or {
+  margin: 0 0 var(--space-4);
+  text-align: center;
+  color: var(--ink-muted);
+}
+
 .ads-form__status--success .btn {
   width: 100%;
   white-space: normal;

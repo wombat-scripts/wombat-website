@@ -8,7 +8,7 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ## 2026-09-18. Ads LP: /stop-renting/ success panel self-book button
 
-After a callback request, the success panel now says “Thanks. We will call you soon to lock in a Strategy Session.” and offers a proper primary button to `/book/` labelled “Book a time with Tom”. The inline “pick a time now” link is gone. Form fields, Netlify form name, validation, and hero copy are unchanged.
+After a callback request, the success panel now says “Thanks. We will call you soon to lock in a Strategy Session.”, then a centered “Or”, then a primary button to `/book/` labelled “Book a time with Tom”. The inline “pick a time now” link is gone. Form fields, Netlify form name, validation, and hero copy are unchanged.
 
 **Files changed:** `src/stop-renting.njk`, `src/_includes/css/styles.css`, `tests/stop-renting.test.js`
 

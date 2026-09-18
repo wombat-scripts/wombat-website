@@ -39,6 +39,7 @@ test('stop-renting ads LP is a top-level form-first callback page', function () 
   assert.match(page, /href="\/book\/"[^>]*>Or pick a time yourself</);
   assert.match(page, /Please add a name, email, and mobile so we can call you back/);
   assert.match(page, /Thanks. We will call you soon to lock in a Strategy Session/);
+  assert.match(page, /class="ads-form__or">Or</);
   assert.match(page, /class="btn btn--primary"[^>]*href="\/book\/"[^>]*>Book a time with Tom</);
   assert.match(page, /data-umami-event="stop-renting-self-book"/);
   assert.doesNotMatch(page, /pick a time now/);
@@ -72,6 +73,7 @@ test('ads chrome is logo-only and carries ACL, CRN, and site address', function 
   assert.doesNotMatch(layout, /include "footer\.njk"/);
   assert.match(css, /\.ads-hero__grid/);
   assert.match(css, /\.ads-form-card/);
+  assert.match(css, /\.ads-form__or/);
 });
 
 test('stop-renting copy stays brand-safe', function () {
