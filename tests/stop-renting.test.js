@@ -38,8 +38,12 @@ test('stop-renting ads LP is a top-level form-first callback page', function () 
   assert.match(page, /We only use this to call you back about a Strategy Session. No spam list/);
   assert.match(page, /href="\/book\/"[^>]*>Or pick a time yourself</);
   assert.match(page, /Please add a name, email, and mobile so we can call you back/);
-  assert.match(page, /Thanks. Tom will call you soon to lock in a Strategy Session/);
-  assert.match(page, /href="\/book\/"[^>]*>pick a time now</);
+  assert.match(page, /Thanks. We will call you soon to lock in a Strategy Session/);
+  assert.match(page, /class="btn btn--primary"[^>]*href="\/book\/"[^>]*>Prefer to pick a time with Tom yourself</);
+  assert.match(page, /data-umami-event="stop-renting-self-book"/);
+  assert.doesNotMatch(page, /pick a time now/);
+  assert.doesNotMatch(page, /Tom will call you soon to lock in a Strategy Session/);
+  assert.doesNotMatch(page, />Prefer to pick a time yourself</);
   assert.match(page, /data-umami-event="stop-renting-callback"/);
   assert.match(page, /You want to buy a first home and stop renting/);
   assert.match(page, /Your income is solid, but the deposit is not 20%/);
