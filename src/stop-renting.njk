@@ -55,9 +55,11 @@ date: 2026-09-17
         <form class="ads-form"
               name="stop-renting-callback"
               method="POST"
-              action="/"
+              action="/stop-renting/"
+              netlify
               data-netlify="true"
               netlify-honeypot="bot-field"
+              data-netlify-honeypot="bot-field"
               data-stop-renting-form
               novalidate>
           <input type="hidden" name="form-name" value="stop-renting-callback">
@@ -206,15 +208,23 @@ date: 2026-09-17
   var button = form.querySelector('[type="submit"]');
   var idleLabel = (button && button.getAttribute('data-idle-label')) || 'Request a callback';
   var loadingLabel = (button && button.getAttribute('data-loading-label')) || 'Sending…';
+  var validationError = 'Please add a name, email, and mobile so we can call you back.';
+  var submitError = 'Something went wrong sending that. Please try again or pick a time at /book/.';
 
   function hideStatus() {
-    if (errorEl) errorEl.hidden = true;
+    if (errorEl) {
+      errorEl.textContent = validationError;
+      errorEl.hidden = true;
+    }
     if (successEl) successEl.hidden = true;
   }
 
-  function showError() {
+  function showError(message) {
     if (successEl) successEl.hidden = true;
-    if (errorEl) errorEl.hidden = false;
+    if (errorEl) {
+      errorEl.textContent = message || validationError;
+      errorEl.hidden = false;
+    }
   }
 
   function showSuccess() {
@@ -238,12 +248,17 @@ date: 2026-09-17
     event.preventDefault();
     hideStatus();
 
-    var name = form.elements.name && form.elements.name.value;
-    var email = form.elements.email && form.elements.email.value;
-    var phone = form.elements.phone && form.elements.phone.value;
+    // Read by stable ids. A named "name" lookup collides with the form
+    // name and the hidden form-name input, so the value looks empty.
+    var nameEl = document.getElementById('stop-renting-name');
+    var emailEl = document.getElementById('stop-renting-email');
+    var phoneEl = document.getElementById('stop-renting-phone');
+    var name = nameEl && nameEl.value;
+    var email = emailEl && emailEl.value;
+    var phone = phoneEl && phoneEl.value;
 
     if (!isFilled(name) || !isEmail(email) || !isFilled(phone)) {
-      showError();
+      showError(validationError);
       return;
     }
 
@@ -252,19 +267,25 @@ date: 2026-09-17
       button.textContent = loadingLabel;
     }
 
-    fetch('/', {
+    var endpoint = (window.location && window.location.pathname) || '/stop-renting/';
+    fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(form)).toString()
+      body: new URLSearchParams(new FormData(form)).toString(),
+      redirect: 'manual'
     }).then(function (res) {
-      if (!res.ok) throw new Error('submit failed');
+      var status = res.status;
+      var redirected = res.type === 'opaqueredirect' || (status >= 300 && status < 400);
+      if (!((status >= 200 && status < 300) || redirected)) {
+        throw new Error('submit failed');
+      }
       showSuccess();
     }).catch(function () {
       if (button) {
         button.disabled = false;
         button.textContent = idleLabel;
       }
-      showError();
+      showError(submitError);
     });
   });
 })();
