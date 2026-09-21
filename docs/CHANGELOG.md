@@ -6,6 +6,18 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-21. Flagship: bank staff home loans (90% no LMI)
+
+Upgraded the thin markdown LMI-waiver article into a flagship `.njk` guide aimed at "bank staff home loans". Same public URL: `/articles/lmi-waiver-bank-employees/`. Short answer, employer-not-title eligibility, staff-package vs broker table, First Home Guarantee comparison, bonus/RSU gotchas, FAQ schema, strategy-session CTA. Old `.md` removed so the collection does not duplicate.
+
+**Files added:** `src/articles/lmi-waiver-bank-employees.njk`, `tests/bank-staff-home-loans-article.test.js`
+
+**Files removed:** `src/articles/lmi-waiver-bank-employees.md`
+
+**Files changed:** `src/llms.txt.njk`, `src/articles/high-income-small-deposit.njk`, `src/assets/js/which-door.js`
+
+---
+
 ## 2026-09-18. Ads LP: /stop-renting/ success panel self-book button
 
 After a callback request, the success panel now says “Thanks. We will call you soon to lock in a Strategy Session.”, then a centered “Or”, then a primary button to `/book/` labelled “Book a time with Tom”. The inline “pick a time now” link is gone. Form fields, Netlify form name, validation, and hero copy are unchanged.
