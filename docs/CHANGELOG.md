@@ -6,6 +6,16 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-22. Article: build now, pay later (construction pause-repay)
+
+Courtney-approved explainer on a construction pause-repay facility. During a build, some loans ease repayments. After the build, the full loan usually shows up. Lives at `/articles/build-now-pay-later/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.
+
+**Files added:** `src/articles/build-now-pay-later.md`, `tests/build-now-pay-later-article.test.js`
+
+**Files changed:** `src/llms.txt.njk`
+
+---
+
 ## 2026-09-21. Internal links into the bank-staff flagship
 
 Natural inbound links to `/articles/lmi-waiver-bank-employees/` from the which-door quiz intro and assumptions. Stronger RSU-article anchor. Second light mention on high-income small deposit. Quiz JS, articles-index card, and homepage polaroid left as they were.
