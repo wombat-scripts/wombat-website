@@ -91,13 +91,18 @@ test('llms.txt uses the locked bank-staff URL and snippet', function () {
 
 test('inbound links keep the locked bank-staff URL', function () {
   var highIncome = read('src/articles/high-income-small-deposit.njk');
+  var whichDoorPage = read('src/which-door.njk');
   var whichDoor = read('src/assets/js/which-door.js');
   var rsus = read('src/articles/what-your-rsus-are-worth-to-a-bank.njk');
   var lvr = read('src/calculators/lvr.njk');
   assert.match(highIncome, /href="\/articles\/lmi-waiver-bank-employees\/">bank staff home loans</);
+  assert.match(highIncome, /href="\/articles\/lmi-waiver-bank-employees\/">90% no LMI for bank staff</);
+  assert.match(whichDoorPage, /href="\/articles\/lmi-waiver-bank-employees\/">90% no LMI for bank staff</);
+  assert.match(whichDoorPage, /href="\/articles\/lmi-waiver-bank-employees\/">LMI waiver for bank employees</);
   assert.match(whichDoor, /var LMI_WAIVER = '\/articles\/lmi-waiver-bank-employees\/'/);
   assert.match(whichDoor, /bank staff home loans/);
   assert.doesNotMatch(whichDoor, /LMI waivers for bank employees/);
-  assert.match(rsus, /href="\/articles\/lmi-waiver-bank-employees\/"/);
+  assert.match(rsus, /href="\/articles\/lmi-waiver-bank-employees\/">LMI waiver for bank employees</);
   assert.match(lvr, /href="\/articles\/lmi-waiver-bank-employees\/"/);
+  assertNoEmDash(whichDoorPage, 'which-door page');
 });

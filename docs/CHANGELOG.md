@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-21. Internal links into the bank-staff flagship
+
+Natural inbound links to `/articles/lmi-waiver-bank-employees/` from the which-door quiz intro and assumptions. Stronger RSU-article anchor. Second light mention on high-income small deposit. Quiz JS, articles-index card, and homepage polaroid left as they were.
+
+**Files changed:** `src/which-door.njk`, `src/articles/what-your-rsus-are-worth-to-a-bank.njk`, `src/articles/high-income-small-deposit.njk`, `tests/bank-staff-home-loans-article.test.js`
+
+---
+
 ## 2026-09-21. Flagship: bank staff home loans (90% no LMI)
 
 Upgraded the thin markdown LMI-waiver article into a flagship `.njk` guide aimed at "bank staff home loans". Same public URL: `/articles/lmi-waiver-bank-employees/`. Short answer, employer-not-title eligibility, staff-package vs broker table, First Home Guarantee comparison, bonus/RSU gotchas, FAQ schema, strategy-session CTA. Old `.md` removed so the collection does not duplicate.
