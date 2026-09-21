@@ -139,7 +139,7 @@
         'The government 5% first-home scheme is a backup, not the lead, because you already have more cash. Shared-equity and borrowed-deposit second loans are the expensive doors. Leave them shut.',
         'Cash in: about 10% of the price, plus stamp duty and buying costs.',
         'The downside is the list. If your job is not on that lender’s list, this door closes and we look at the next one.',
-        'I wrote up the bank-staff version here: <a href="' + LMI_WAIVER + '">LMI waivers for bank employees</a>.'
+        'I wrote up the bank-staff version here: <a href="' + LMI_WAIVER + '">bank staff home loans</a>.'
       ],
       doors: doorsFor('waiver', {
         standard: 'Closed unless you already have 20%.',
@@ -251,7 +251,7 @@
         'If a lender will waive LMI for your job, that is the clean door. One mortgage. No LMI if the list actually includes you.',
         'If they will not, shared-equity or a borrowed-deposit second loan is the backup. I will not pick the expensive door while the job question is still a blank.',
         'Cash in if the waiver works: about 10% of the price, plus stamp duty and buying costs.',
-        'I wrote up the bank-staff version here: <a href="' + LMI_WAIVER + '">LMI waivers for bank employees</a>.'
+        'I wrote up the bank-staff version here: <a href="' + LMI_WAIVER + '">bank staff home loans</a>.'
       ],
       doors: [
         door(DOOR_NAME.waiver, 'check', 'First thing to confirm.'),

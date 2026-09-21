@@ -1,0 +1,621 @@
+---
+layout: landing.njk
+title: "Bank staff home loans: 90% with no LMI"
+description: "Work at a bank in data, digital, risk or tech? Select lenders waive LMI at 90%. You do not have to use the staff package. Compare it with the open market."
+date: 2026-09-21
+category: First Home Buyers
+author: Tom Carr
+ogType: article
+thumbnail: /images/articles/calculations_man.webp
+permalink: /articles/lmi-waiver-bank-employees/
+---
+
+{# ── Page-specific styles (only for components not in shared styles.css) ── #}
+{% block head %}
+<style>
+  /* Callout box */
+  .callout {
+    background: var(--paper-cool);
+    border-left: 3px solid var(--steel);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--space-5);
+    margin: var(--space-6) 0;
+  }
+  .callout .eyebrow { margin-bottom: var(--space-2); }
+  .callout .eyebrow::before { display: none; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout ul { margin-bottom: 0; }
+  .callout li { margin-bottom: var(--space-2); }
+  .callout li:last-child { margin-bottom: 0; }
+
+  /* Door / person cards */
+  .lens-card { border-top: 3px solid var(--steel); }
+  .lens-card h3 { margin-top: 0; }
+  .lens-label {
+    display: inline-block;
+    font-size: var(--fs-meta);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: var(--space-3);
+    background: var(--blue-pale);
+    color: var(--navy);
+  }
+
+  /* Numbered checklist */
+  .check-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: var(--space-4);
+    align-items: start;
+    margin-bottom: var(--space-5);
+  }
+  .check-item:last-child { margin-bottom: 0; }
+  .check-num {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--blue-pale);
+    color: var(--navy);
+    border-radius: var(--radius-md);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .check-item h4 { margin-bottom: var(--space-1); margin-top: 0; }
+  .check-item p { margin-bottom: 0; }
+
+  /* Table */
+  .table-wrap {
+    overflow-x: auto;
+    margin: var(--space-5) 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+  }
+  .table-wrap table {
+    width: 100%; border-collapse: collapse;
+    font-size: var(--fs-small);
+  }
+  .table-wrap thead { background: var(--navy); color: #fff; }
+  .table-wrap th {
+    padding: var(--space-3) var(--space-4);
+    text-align: left; font-weight: 600;
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .table-wrap td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--line);
+  }
+  .table-wrap tbody tr:nth-child(even) { background: var(--paper-cool); }
+  .table-wrap td:first-child { font-weight: 600; color: var(--navy); }
+
+  /* FAQ accordion */
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    padding: var(--space-4) var(--space-7) var(--space-4) 0;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 1rem; font-weight: 600;
+    color: var(--navy-deep);
+    cursor: pointer; position: relative;
+    line-height: var(--lh-tight);
+  }
+  .faq-q::after {
+    content: '+'; position: absolute;
+    right: 0; top: 50%; transform: translateY(-50%);
+    font-size: 1.4rem; color: var(--steel);
+    transition: transform var(--motion-fast) var(--easing);
+  }
+  .faq-q[aria-expanded="true"]::after { content: '−'; }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height var(--motion-mid) var(--easing);
+  }
+  .faq-a.open { max-height: 400px; }
+  .faq-a p { padding-bottom: var(--space-4); }
+
+  /* Sources */
+  .sources-list { padding-left: 1.2rem; }
+  .sources-list li { margin-bottom: var(--space-3); }
+</style>
+{% endblock %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bank staff home loans: 90% with no LMI",
+  "description": "Work at a bank in data, digital, risk or tech? Select lenders waive LMI at 90%. You do not have to use the staff package. Compare it with the open market.",
+  "url": "https://wombathomeloans.com.au/articles/lmi-waiver-bank-employees/",
+  "datePublished": "2026-06-11",
+  "dateModified": "2026-09-21",
+  "author": {
+    "@type": "Person",
+    "name": "Tom Carr",
+    "url": "https://wombathomeloans.com.au",
+    "jobTitle": "Mortgage Broker",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Wombat Home Loans"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Wombat Home Loans",
+    "url": "https://wombathomeloans.com.au",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wombathomeloans.com.au/assets/logo-horizontal.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wombathomeloans.com.au/articles/lmi-waiver-bank-employees/"
+  }
+}
+</script>
+
+{# ── Hero ── #}
+<section class="section" style="padding-block: clamp(5rem, 10vw, 9rem);">
+  <div class="container container--narrow" style="text-align: center;">
+    <p class="eyebrow">First Home Buyers</p>
+    <h1 class="display">Bank staff home loans. <em>90% with no LMI.</em></h1>
+    <p class="lede" style="margin-inline: auto;">
+      If you work at a bank, you may qualify for a home loan at 90% with no lenders mortgage insurance. The waiver is a credit policy, not only an internal staff perk, and you do not have to use your employer's staff banking team to get it.
+    </p>
+    <p class="meta" style="color: var(--ink-muted);">Updated September 2026 · Wombat Home Loans</p>
+  </div>
+</section>
+
+{# ── Short answer ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <div class="callout">
+      <p class="eyebrow">The short answer</p>
+      <ul>
+        <li>Select lenders will waive LMI at up to 90% LVR for employees of banks and financial institutions.</li>
+        <li>It is usually based on <em>where</em> you work, not the job title on your email signature. Data, digital, product, tech, risk and marketing commonly count.</li>
+        <li>You do not have to go through your employer's staff banking package to use it.</li>
+        <li>Some lender policies can cover employees of major banks more broadly than "only your employer's staff deal."</li>
+        <li>None of this is a guarantee. Policies change. The useful answer is the one run on your file.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+{# ── The confession ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">The Situation</p>
+    <h2>I used to think this was for <em>other people</em></h2>
+
+    <p>Here's a confession from a former banker turned mortgage broker. For a long time I assumed LMI waivers were reserved for "proper" professionals. Doctors. Lawyers. Accountants. The classic high-trust occupations.</p>
+
+    <p>I was wrong, and the people most affected by that misconception are people exactly like my former colleagues. If you work at a bank or in financial services, in data, digital, strategy, technology, marketing, risk, product, anything, there is a good chance you qualify for a home loan at up to 90% LVR with no lenders mortgage insurance. And almost nobody in those roles knows it.</p>
+
+    <p>That is the whole reason this page exists. Not a staff-portal explainer. A kitchen-table one: what the policy actually is, who it usually covers, and why the staff package is one door rather than the only door.</p>
+  </div>
+</section>
+
+{# ── What's at stake ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">What's at stake</p>
+    <h2>First, a quick refresher on <em>LMI</em></h2>
+
+    <p>Lenders mortgage insurance is charged when you borrow more than 80% of a property's value. It protects the lender, not you, and you pay for it. On a Sydney-sized purchase at 90% LVR, LMI routinely runs to somewhere between $15,000 and $30,000, often capitalised onto the loan, where it quietly accrues interest for thirty years.</p>
+
+    <p>For most buyers, avoiding LMI means saving a 20% deposit. In Sydney, that's the difference between buying now and buying in three years. An LMI waiver collapses that gap: you buy with a 10% deposit and pay nothing for the privilege.</p>
+
+    <p>You still need the 10%, plus stamp duty and buying costs. The waiver removes a premium. It does not remove the assessment, and it does not magic up a deposit you do not have. If you want the map of the other small-deposit doors, I wrote that up here: <a href="/articles/high-income-small-deposit/">high income, almost no deposit</a>. Or start with five questions: <a href="/which-door/">Which door is actually open?</a></p>
+  </div>
+</section>
+
+{# ── Who qualifies ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">Who qualifies</p>
+    <h2>It is usually the employer, <em>not the job title</em></h2>
+
+    <p>The traditional list is the one most people have heard of. Medical professionals, doctors, dentists, vets and similar, get the most generous treatment, with some lenders waiving LMI at up to 95% LVR. Lawyers, accountants, actuaries and auditors typically qualify at up to 90%.</p>
+
+    <p>There is a second category that gets far less attention: industry waivers for people who work in banking and financial services.</p>
+
+    <p>Select lenders will waive LMI at up to 90% LVR for employees of banks and financial institutions. And here's the part that surprises everyone: it is generally based on <em>where</em> you work, not <em>what</em> you do there. You do not need to be a lender, sit in a branch, or hold a financial qualification.</p>
+  </div>
+
+  <div class="container" style="margin-top: var(--space-6);">
+    <div class="grid grid--3">
+      <div class="card lens-card">
+        <span class="lens-label">Usually in</span>
+        <h3>These roles commonly count</h3>
+        <p>A data engineer, a digital product manager, a strategy analyst, a marketing lead, a risk officer, a tech lead. If you are employed by an eligible institution and meet the lender's income and employment criteria, the waiver can apply.</p>
+      </div>
+      <div class="card lens-card">
+        <span class="lens-label">Usually out</span>
+        <h3>Title is not the test</h3>
+        <p>Agency staff and external contractors working <em>at</em> a bank commonly sit outside employer-based lists, whatever the building pass says. Direct employment is the usual test. Confirm yours rather than assume either way.</p>
+      </div>
+      <div class="card lens-card">
+        <span class="lens-label">The quiet bit</span>
+        <h3>I hear this every week</h3>
+        <p>Plenty of people in exactly these roles assumed the policy did not cover them because they were not "in finance" in the traditional sense. They were sitting on a five-figure saving without knowing it.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container container--narrow" style="margin-top: var(--space-6);">
+    <div class="callout">
+      <p class="eyebrow">Tom's wedge, said carefully</p>
+      <p>Some lender policies can cover employees of major banks more broadly than "only your employer's staff deal." That is the useful distinction. The staff package is one institution's product. The waiver, where it exists, is standing credit policy at select lenders for people employed in the industry. I will not name a list here, because the lists move. I will check your employer against current policy.</p>
+    </div>
+  </div>
+</section>
+
+{# ── Staff package vs open market ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">The comparison nobody runs</p>
+    <h2>Staff banking package vs <em>broker / open market</em></h2>
+
+    <p>This is the misconception I most want to bury.</p>
+
+    <p>Most bank employees who do know about the waiver assume it is an internal staff perk: something you access through your employer's employee banking team, on your employer's products, full stop.</p>
+
+    <p>It isn't. These are credit policies, and accredited brokers have access to the same policies. There is nothing the internal staff channel can uniquely unlock on the waiver itself that a broker cannot put in front of a lender. What the internal team structurally cannot provide is comparison. Your employer's staff banking team can only ever offer your employer's products.</p>
+
+    <p>Sometimes your own bank genuinely is the right answer. Staff pricing can be sharp. The point is that you should know, rather than assume.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Staff banking package</th>
+            <th>Broker / open market</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Privacy</td>
+            <td>Your file sits where you work. Colleagues can, in theory, see it.</td>
+            <td>Your finances live away from your employer.</td>
+          </tr>
+          <tr>
+            <td>If you change jobs</td>
+            <td>Staff pricing typically ends with employment.</td>
+            <td>The loan was never tied to the desk. Nothing unwinds on the waiver.</td>
+          </tr>
+          <tr>
+            <td>LMI above 80%</td>
+            <td>Depends on your bank's staff policy that day.</td>
+            <td>Waived to 90% for eligible bank staff at select lenders.</td>
+          </tr>
+          <tr>
+            <td>Choice</td>
+            <td>One institution's products.</td>
+            <td>Multiple lenders' policies, products and appetites, including your own bank's if it wins.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>General information, not a recommendation. Staff package terms differ between banks. Open-market policies differ between lenders and change over time. The comparison that matters is the one run on your actual numbers.</p>
+
+    <p>Two rows deserve a bit more air.</p>
+
+    <p><strong>Privacy.</strong> Not everyone wants their colleagues processing their personal financial life. Fair enough. A staff loan is still a loan file. Plenty of bankers would rather their spending patterns, a hardship flag, or a relationship split not live on systems their teammates log into.</p>
+
+    <p><strong>Job change.</strong> Banking careers move: to another bank, to fintech, to a regulator, to a startup. Staff pricing typically does not move with you. LMI, by contrast, is a settlement-day event. The premium is charged then or waived then. Leave the industry a year later and a waiver you used does not unwind, because there is nothing to unwind. Sequence the application while the eligibility exists. Do not rush a purchase that is not otherwise ready.</p>
+  </div>
+</section>
+
+{# ── Fine print ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">The fine print</p>
+    <h2>What still has to be <em>true on the file</em></h2>
+
+    <p>A few things vary between lenders, and they matter more than the headline.</p>
+
+    <div style="margin-top: var(--space-6);">
+      <div class="check-item">
+        <span class="check-num">1</span>
+        <div>
+          <h4>Income thresholds</h4>
+          <p>Most industry and professional waivers carry a minimum income requirement. The bar differs by lender and sometimes by role.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">2</span>
+        <div>
+          <h4>LVR caps</h4>
+          <p>90% is the common ceiling for industry waivers. You will still need a 10% deposit plus costs. Larger loans can step the maximum LVR down.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">3</span>
+        <div>
+          <h4>Eligibility definitions</h4>
+          <p>Which employers count, which employment types count (permanent vs contract), and how bonus or RSU income is treated all differ between lenders. Direct employment with an eligible institution is the usual shape. Tenure requirements exist and are not identical everywhere.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">4</span>
+        <div>
+          <h4>Policies change</h4>
+          <p>Lenders adjust these settings without much fanfare. What was true last year is not automatically true today, which is exactly why this article stays general and your situation deserves a specific answer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ── vs First Home Guarantee ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">The other small-deposit door</p>
+    <h2>How this stacks up against the <em>First Home Guarantee</em></h2>
+
+    <p>If you are a first home buyer, the LMI waiver is not your only route to avoiding LMI with a small deposit. The federal First Home Guarantee lets eligible buyers purchase with as little as 5% deposit and no LMI, because the government guarantees part of the loan. From 1 October 2025 it has unlimited places and no income cap. The property still has to sit under the cap for that postcode.</p>
+
+    <p>Sydney is where the cap bites. Housing Australia's NSW capital city and named regional centre cap is $1,500,000 from 1 October 2025 (Illawarra, Newcastle, Lake Macquarie sit in that bucket). The rest of NSW is $800,000. Neighbouring streets can sit in different buckets. Check the postcode before you fall in love with a suburb.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>Occupation LMI waiver</th>
+            <th>First Home Guarantee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Typical deposit</td>
+            <td>About 10%, plus costs</td>
+            <td>From 5%, plus costs</td>
+          </tr>
+          <tr>
+            <td>LMI</td>
+            <td>Waived at select lenders if you qualify</td>
+            <td>No LMI (government guarantee)</td>
+          </tr>
+          <tr>
+            <td>Property price cap</td>
+            <td>No government cap. Lender loan-size and LVR caps still apply.</td>
+            <td>Yes. Sydney and named NSW centres $1.5m. Rest of NSW $800k.</td>
+          </tr>
+          <tr>
+            <td>Who it is for</td>
+            <td>Eligible employment, usually any buyer type the lender will take</td>
+            <td>Eligible first home buyers (and some related scheme settings)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>So which is better? It depends. The guarantee works from a 5% deposit; the waiver typically needs 10%. The guarantee has property price caps that bite hard in Sydney; the employer waiver generally does not. Your income, your target suburb and your timeline decide which path, or which combination with other schemes, actually wins. This is precisely the kind of side-by-side a broker should run for you before you commit to either.</p>
+  </div>
+</section>
+
+{# ── Bonus / RSU ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">The payslip problem</p>
+    <h2>Bonus and RSU income can matter <em>more than the waiver</em></h2>
+
+    <p>If your income is base plus bonus, or a meaningful slice arrives as RSUs, the income assessment can matter more than the waiver itself. The waiver gets you to 90% without LMI. It does not tell a lender how much of your package to count.</p>
+
+    <p>Same person, same payslip: one lender may treat the equity as income, another may treat it as an asset, and a third may treat it as invisible. That gap flows straight through to borrowing capacity. I wrote the full version here: <a href="/articles/what-your-rsus-are-worth-to-a-bank/">what your RSUs are worth to a bank</a>.</p>
+
+    <p>Two practical gotchas I see with bank staff in particular:</p>
+
+    <ul>
+      <li><strong>Do not assume the staff package "gets" your bonus.</strong> Internal channels still apply credit policy. A sharper rate on a package that ignores half your income is not a win.</li>
+      <li><strong>Job moves reset history.</strong> Changing employers, even from one bank to another, can reset vesting history and tenure clocks in a lender's eyes. If a purchase and a move are in the same twelve months, the sequencing is worth talking through first.</li>
+    </ul>
+  </div>
+</section>
+
+{# ── First thirty minutes ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow">The first conversation</p>
+    <h2>What I would do in the <em>first thirty minutes</em></h2>
+
+    <div style="margin-top: var(--space-6);">
+      <div class="check-item">
+        <span class="check-num">1</span>
+        <div>
+          <p>Check your employer, tenure and employment type against current waiver policy at select lenders. Not a vibe. A list.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">2</span>
+        <div>
+          <p>If you are a first home buyer, check the First Home Guarantee postcode cap against the suburb you actually want.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">3</span>
+        <div>
+          <p>Price the staff package, if you have an offer, against the open-market waiver path. Same purchase. Same deposit. Honest numbers.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <span class="check-num">4</span>
+        <div>
+          <p>Map bonus and RSU treatment, because that can move borrowing more than the LMI line.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: var(--space-6);">If you want that conversation, <a href="/book/">book a strategy session</a>. Thirty minutes on Google Meet. I will tell you what you qualify for, and whether your bank's policy or someone else's is the better deal, including "stay with the staff package" when that is the honest answer.</p>
+    <p>Or answer five questions first: <a href="/which-door/">Which door is actually open?</a></p>
+  </div>
+</section>
+
+{# ── FAQ ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <p class="eyebrow">Common Questions</p>
+    <h2>The questions I hear from <em>bank staff</em></h2>
+
+    <div style="margin-top: var(--space-5);">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Do bank employees get an LMI waiver in Australia?</button>
+        <div class="faq-a"><p>Yes, at select lenders. Employees of banks and financial institutions can appear on professional eligibility lists, which allows borrowing at up to 90% LVR with no lenders mortgage insurance. Standard income, credit and loan-size criteria still apply, and the lists change. It is not a guarantee and it is not only a staff perk at your own employer.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">I work in data, digital or tech at a bank, not in lending. Do I still qualify?</button>
+        <div class="faq-a"><p>Often, yes. These waivers are generally based on the employer, not the org chart. A data engineer, a digital product manager, a risk officer or a marketing lead can be in the conversation if they are directly employed by an eligible institution. Agency and contractor roles commonly miss out. Confirm your employer against current policy rather than assuming either way.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Do I have to use my bank's staff package?</button>
+        <div class="faq-a"><p>No. Nothing about working for a bank obliges you to borrow from it. The staff package is one option. A broker can put that package next to other lenders, including policies that waive LMI for bank staff more broadly than "only your employer's staff deal." Sometimes the staff deal wins. You should see the comparison.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">How does this compare with the First Home Guarantee?</button>
+        <div class="faq-a"><p>The guarantee can work from a 5% deposit with no LMI, but the property has to sit under the Housing Australia cap for that postcode. In Sydney that cap is $1.5 million from 1 October 2025. The occupation waiver typically needs about 10% and does not use a government price cap, though lender limits still apply. Which path wins depends on the suburb, the deposit, and whether you are a first home buyer.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">What happens to the loan if I leave the bank later?</button>
+        <div class="faq-a"><p>On the waiver side, nothing. LMI is a one-off premium dealt with at settlement, so a loan written with the waiver does not acquire a premium afterwards. That differs from staff pricing at your own employer, which typically ends with your employment. Apply while eligibility exists. Do not rush a purchase that is not ready.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">How do bonuses and RSUs affect a bank-staff home loan?</button>
+        <div class="faq-a"><p>The waiver is about LMI. Your borrowing capacity is about how a lender counts the package. Bonus and RSU income can be counted, shaded, or ignored depending on the lender, the history, and the paperwork. That gap can dwarf the LMI saving. I walked through it here: what your RSUs are worth to a bank.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Does using a broker cost bank staff anything?</button>
+        <div class="faq-a"><p>No. Brokers are paid by the lender at settlement, and under the Best Interests Duty I am legally required to act in your interests. If the staff package is the better deal, that is what I should tell you. Twenty minutes on a call and you will know what you qualify for.</p></div>
+      </div>
+    </div>
+
+    <p style="margin-top: var(--space-6);">Related reading: <a href="/articles/high-income-small-deposit/">high income, almost no deposit</a>, <a href="/articles/what-your-rsus-are-worth-to-a-bank/">what your RSUs are worth to a bank</a>, <a href="/which-door/">which door is actually open</a>, and the rest of the <a href="/articles/">guides and explainers</a>.</p>
+  </div>
+</section>
+
+{# ── CTA ── #}
+<section class="section" style="text-align: center;">
+  <div class="container container--narrow">
+    <h2>Financially fluent. <em>Mortgage confused?</em></h2>
+    <p class="lede" style="margin-inline: auto;">
+      If you work at a bank and have been saving toward 20% because you assumed that was the only way to avoid LMI, stop and check. Bring the staff offer if you have one. I will tell you what is actually open.
+    </p>
+    <div style="margin-top: var(--space-5);">
+      {% cta "Book a Strategy Session" %}
+    </div>
+    <p class="meta" style="margin-top: var(--space-5); color: var(--ink-muted);">
+      Or call <a href="tel:+61456255409" style="color: var(--ink-muted);">0456 255 409</a>
+    </p>
+    <p class="meta" style="margin-top: var(--space-7); color: var(--ink-muted); font-size: var(--fs-meta);">
+      Wombat Home Loans is a credit representative (no. 559744) of Australian Credit Licence 561324. This article is general information only and does not constitute personal financial, tax or credit advice. Lender policies vary and change without notice. No outcome is guaranteed.
+    </p>
+  </div>
+</section>
+
+{# ── Sources + disclaimer ── #}
+<section class="section section--tight">
+  <div class="container container--narrow">
+    <p class="eyebrow">Sources</p>
+    <h2>Sources</h2>
+    <ul class="sources-list">
+      <li>Housing Australia, Unlimited places, higher property price caps for first home buyers from 1 October 2025 (24 August 2025). NSW capital city and regional centre cap $1,500,000; NSW other $800,000. Regional centres in NSW: Illawarra, Newcastle, Lake Macquarie. Price caps: <a href="https://www.housingaustralia.gov.au/support-buy-home/property-price-caps" target="_blank" rel="noopener">housingaustralia.gov.au</a>.</li>
+      <li>ASIC Moneysmart, Lenders mortgage insurance: <a href="https://moneysmart.gov.au/home-loans/lenders-mortgage-insurance" target="_blank" rel="noopener">moneysmart.gov.au/home-loans/lenders-mortgage-insurance</a>.</li>
+      <li>ASIC Moneysmart, Using a mortgage broker: <a href="https://moneysmart.gov.au/home-loans/using-a-mortgage-broker" target="_blank" rel="noopener">moneysmart.gov.au/home-loans/using-a-mortgage-broker</a>.</li>
+    </ul>
+
+    <div class="callout">
+      <p class="eyebrow">General Information</p>
+      <p>General information only. This does not take into account your objectives, financial situation or needs. Credit criteria, fees, charges, terms and conditions apply. Occupation and industry LMI waivers are lender policies, not a government scheme, and they change. Consider getting advice for your own situation before you sign anything.</p>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do bank employees get an LMI waiver in Australia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, at select lenders. Employees of banks and financial institutions can appear on professional eligibility lists, which allows borrowing at up to 90% LVR with no lenders mortgage insurance. Standard income, credit and loan-size criteria still apply, and the lists change. It is not a guarantee and it is not only a staff perk at your own employer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I work in data, digital or tech at a bank, not in lending. Do I still qualify?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Often, yes. These waivers are generally based on the employer, not the org chart. A data engineer, a digital product manager, a risk officer or a marketing lead can be in the conversation if they are directly employed by an eligible institution. Agency and contractor roles commonly miss out. Confirm your employer against current policy rather than assuming either way."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I have to use my bank's staff package?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Nothing about working for a bank obliges you to borrow from it. The staff package is one option. A broker can put that package next to other lenders, including policies that waive LMI for bank staff more broadly than only your employer's staff deal. Sometimes the staff deal wins. You should see the comparison."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does this compare with the First Home Guarantee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The guarantee can work from a 5% deposit with no LMI, but the property has to sit under the Housing Australia cap for that postcode. In Sydney that cap is $1.5 million from 1 October 2025. The occupation waiver typically needs about 10% and does not use a government price cap, though lender limits still apply. Which path wins depends on the suburb, the deposit, and whether you are a first home buyer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to the loan if I leave the bank later?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On the waiver side, nothing. LMI is a one-off premium dealt with at settlement, so a loan written with the waiver does not acquire a premium afterwards. That differs from staff pricing at your own employer, which typically ends with your employment. Apply while eligibility exists. Do not rush a purchase that is not ready."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do bonuses and RSUs affect a bank-staff home loan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The waiver is about LMI. Your borrowing capacity is about how a lender counts the package. Bonus and RSU income can be counted, shaded, or ignored depending on the lender, the history, and the paperwork. That gap can dwarf the LMI saving. I walked through it here: what your RSUs are worth to a bank."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does using a broker cost bank staff anything?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Brokers are paid by the lender at settlement, and under the Best Interests Duty I am legally required to act in your interests. If the staff package is the better deal, that is what I should tell you. Twenty minutes on a call and you will know what you qualify for."
+      }
+    }
+  ]
+}
+</script>
+
+{# ── FAQ script ── #}
+{% block scripts %}
+<script>
+  function toggleFaq(btn) {
+    var answer = btn.nextElementSibling;
+    var isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(function(a) { a.classList.remove('open'); });
+    document.querySelectorAll('.faq-q').forEach(function(q) { q.setAttribute('aria-expanded', 'false'); });
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+</script>
+{% endblock %}

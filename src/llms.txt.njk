@@ -54,6 +54,13 @@ Tom hosts The Property Web, a regular interview series featuring buyer's agents,
 
 ## Articles
 
+- [Bank staff home loans: 90% with no LMI](https://wombathomeloans.com.au/articles/lmi-waiver-bank-employees/) - First home / bank staff
+Select lenders waive LMI at up to 90% LVR for employees of banks and financial institutions. Eligibility is usually the employer, not the job title: data, digital, product, tech, risk and marketing commonly count.
+The waiver is credit policy, not only a staff perk. You do not have to use your employer's staff banking package. Some lender policies can cover employees of major banks more broadly than "only your employer's staff deal." Policies change. No guarantees.
+Compare the staff package with the open market on privacy, job change, LMI and choice. First Home Guarantee still exists (Sydney caps bite). Bonus and RSU assessment can matter more than the waiver: https://wombathomeloans.com.au/articles/what-your-rsus-are-worth-to-a-bank/
+Related: https://wombathomeloans.com.au/which-door/ and https://wombathomeloans.com.au/articles/high-income-small-deposit/
+Book a 30-minute strategy session: https://wombathomeloans.com.au/book/
+
 - [Paying the auction deposit from your offset: how it works (and when not to)](https://wombathomeloans.com.au/articles/auction-deposit-from-offset/) - Auction / deposit
 NSW auction: win, sign immediately, deposit commonly ~10% (sometimes less if pre-agreed). Contract typically unconditional (no subject-to-finance). Deposit usually to stakeholder until settlement; usually applies to price if the deal completes.
 Offset cash must be withdrawn/transferred to pay; that chunk stops offsetting interest until/unless funds return. Auction deposit is real money that leaves that day; offset is just where it was sitting. Not a special loan trick.
@@ -88,7 +95,8 @@ Auction and house hunting are the first-home door. The years-ahead developer bon
 {%- set helpToBuySlug = "/articles/help-to-buy-what-it-is/" %}
 {%- set tinyDepositSlug = "/articles/buy-with-a-tiny-deposit/" %}
 {%- set auctionDepositSlug = "/articles/auction-deposit-from-offset/" %}
-{% for article in collections.articles %}{% if article.url not in firbSlugs and article.url != depositBondSlug and article.url != helpToBuySlug and article.url != tinyDepositSlug and article.url != auctionDepositSlug %}- [{{ article.data.title }}](https://wombathomeloans.com.au{{ article.url }}). {{ article.data.category or "Home Loans" }}
+{%- set bankStaffSlug = "/articles/lmi-waiver-bank-employees/" %}
+{% for article in collections.articles %}{% if article.url not in firbSlugs and article.url != depositBondSlug and article.url != helpToBuySlug and article.url != tinyDepositSlug and article.url != auctionDepositSlug and article.url != bankStaffSlug %}- [{{ article.data.title }}](https://wombathomeloans.com.au{{ article.url }}). {{ article.data.category or "Home Loans" }}
 {% endif %}{% endfor %}
 
 ## Contact
