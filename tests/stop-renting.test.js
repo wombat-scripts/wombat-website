@@ -38,22 +38,28 @@ test('stop-renting ads LP is a top-level form-first callback page', function () 
   assert.match(page, /name="name"/);
   assert.match(page, /name="email"/);
   assert.match(page, /name="phone"/);
+  assert.match(page, /Leave your mobile and Tom will call you back/);
   assert.match(page, />\s*Request a callback\s*</);
   assert.match(page, /data-loading-label="Sending…"/);
-  assert.match(page, /We will call you to find a time for a 30-minute Strategy Session/);
-  assert.match(page, /We only use this to call you back about a Strategy Session. No spam list/);
-  assert.match(page, /href="\/book\/"[^>]*>Or pick a time yourself</);
+  assert.match(page, /20\+ years inside the banks\. Tom maps which first-home doors are open with a smaller deposit/);
+  assert.match(page, /This requests a call back\. It does not book a time/);
+  assert.match(page, /We only use this to call you back\. No spam list/);
+  assert.equal((page.match(/data-umami-event="stop-renting-self-book"/g) || []).length, 2);
+  assert.equal((page.match(/href="\/book\/"[^>]*data-umami-event="stop-renting-self-book"[^>]*>Prefer to pick a time\?/g) || []).length, 2);
   assert.match(page, /Please add a name, email, and mobile so we can call you back/);
-  assert.match(page, /Thanks. We will call you soon to lock in a Strategy Session/);
-  assert.match(page, /class="ads-form__or">Or</);
-  assert.match(page, /class="btn btn--primary"[^>]*href="\/book\/"[^>]*>Book a time with Tom</);
-  assert.match(page, /data-umami-event="stop-renting-self-book"/);
+  assert.match(page, /data-stop-renting-success-copy/);
+  assert.match(page, /Thanks\. Tom will call you on the mobile you entered/);
+  assert.match(page, /This is a call back\. It is not a booked Strategy Session/);
+  assert.match(page, /Leaving your number does not book a calendar slot/);
   assert.doesNotMatch(page, /pick a time now/);
-  assert.doesNotMatch(page, /Tom will call you soon to lock in a Strategy Session/);
-  assert.doesNotMatch(page, />Prefer to pick a time yourself</);
-  assert.doesNotMatch(page, /Prefer to pick a time with Tom yourself/);
+  assert.doesNotMatch(page, /lock in a Strategy Session/);
+  assert.doesNotMatch(page, /Book a time with Tom/);
+  assert.doesNotMatch(page, /Or pick a time yourself/);
   assert.doesNotMatch(page, /Click to book here/);
-  assert.match(page, /data-umami-event="stop-renting-callback"/);
+  assert.doesNotMatch(page, /discovery call/i);
+  assert.doesNotMatch(page, /data-umami-event="stop-renting-callback"/);
+  assert.doesNotMatch(page, /data-umami-event="book-a-call"/);
+  assert.match(page, /umami\.track\('stop-renting-callback'\)/);
   assert.match(page, /You want to buy a first home and stop renting/);
   assert.match(page, /Your income is solid, but the deposit is not 20%/);
   assert.match(page, /href="\/articles\/buy-with-a-tiny-deposit\/"/);
@@ -79,7 +85,8 @@ test('ads chrome is logo-only and carries ACL, CRN, and site address', function 
   assert.doesNotMatch(layout, /include "footer\.njk"/);
   assert.match(css, /\.ads-hero__grid/);
   assert.match(css, /\.ads-form-card/);
-  assert.match(css, /\.ads-form__or/);
+  assert.match(css, /\.ads-form__trust/);
+  assert.match(css, /\.ads-form__status--success \[data-stop-renting-success-copy\]/);
 });
 
 test('stop-renting copy stays brand-safe', function () {
@@ -153,6 +160,17 @@ test('callback script reads fields by id and splits validation from submit error
   assert.match(script, /var submitError = 'Something went wrong sending that\. Please try again or pick a time at \/book\/\.'/);
   assert.match(script, /showError\(validationError\)/);
   assert.match(script, /showError\(submitError\)/);
+  assert.match(script, /function callWhen\(date\)/);
+  assert.match(script, /timeZone: 'Australia\/Sydney'/);
+  assert.match(script, /return 'today'/);
+  assert.match(script, /return 'next business morning'/);
+  assert.match(script, /showSuccess\(phone\)/);
+  assert.match(script, /Thanks\. Tom will call you on /);
+  assert.equal(script.split("umami.track('stop-renting-callback')").length - 1, 1);
+  var trackAt = script.indexOf("umami.track('stop-renting-callback')");
+  var showAt = script.indexOf('function showSuccess');
+  var submitAt = script.indexOf("form.addEventListener('submit'");
+  assert.ok(showAt !== -1 && showAt < trackAt && trackAt < submitAt, 'callback event is only inside showSuccess');
 
   assert.match(script, /window\.location && window\.location\.pathname/);
   assert.match(script, /'\/stop-renting\/'/);
@@ -166,6 +184,27 @@ test('callback script reads fields by id and splits validation from submit error
     'Please add a name, email, and mobile so we can call you back.',
     'Something went wrong sending that. Please try again or pick a time at /book/.'
   );
+});
+
+test('callback promise is same day before 4pm Sydney, otherwise next business morning', function () {
+  var scriptMatch = page.match(/function callWhen\(date\) \{[\s\S]*?\n  \}/);
+  assert.ok(scriptMatch, 'callWhen is present');
+  var body = scriptMatch[0]
+    .replace(/^function callWhen\(date\) \{\n/, '')
+    .replace(/\n  \}$/, '');
+  var callWhen = new Function('date', body);
+
+  function at(iso) {
+    return callWhen(new Date(iso));
+  }
+
+  assert.equal(at('2026-09-22T00:30:00Z'), 'today');
+  assert.equal(at('2026-09-22T05:59:00Z'), 'today');
+  assert.equal(at('2026-09-27T21:30:00Z'), 'today');
+  assert.equal(at('2026-09-22T06:00:00Z'), 'next business morning');
+  assert.equal(at('2026-09-25T07:00:00Z'), 'next business morning');
+  assert.equal(at('2026-09-26T05:00:00Z'), 'next business morning');
+  assert.equal(at('2026-09-26T21:00:00Z'), 'next business morning');
 });
 
 test('Netlify form detection attributes survive an Eleventy build', function () {

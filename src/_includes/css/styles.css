@@ -3324,8 +3324,14 @@ input[type="range"].calc-range::-moz-range-thumb {
   transform: none;
 }
 
-.ads-form__under {
+.ads-form__trust {
   margin: var(--space-4) 0 var(--space-3);
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.ads-form__under {
+  margin: 0 0 var(--space-3);
   font-size: var(--fs-small);
   color: var(--ink-soft);
 }
@@ -3341,7 +3347,7 @@ input[type="range"].calc-range::-moz-range-thumb {
 }
 
 .ads-form__secondary a {
-  color: var(--ink);
+  color: var(--ink-muted);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -3365,6 +3371,12 @@ input[type="range"].calc-range::-moz-range-thumb {
 
 .ads-form__status--success p {
   margin: 0 0 var(--space-4);
+}
+
+.ads-form__status--success [data-stop-renting-success-copy] {
+  color: var(--ink);
+  font-size: var(--fs-body);
+  font-weight: 500;
 }
 
 .ads-form__or {

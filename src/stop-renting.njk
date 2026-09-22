@@ -1,7 +1,7 @@
 ---
 layout: ads.njk
 title: Still renting, even though your income is fine?
-description: If 20% cash is not sitting there, you still may have a door. Leave your details. Tom will call back to book a Strategy Session.
+description: If 20% cash is not sitting there, you still may have a door. Leave your mobile and Tom will call you back.
 ogImage: /assets/og-stop-renting.jpg
 permalink: /stop-renting/
 date: 2026-09-17
@@ -18,7 +18,7 @@ date: 2026-09-17
       "name": "Will you try to sell me a loan on the callback?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. The call is to book a Strategy Session and make sure the session is worth your time."
+        "text": "No. Tom calls you back for a short conversation. Leaving your number does not book a calendar slot."
       }
     },
     {
@@ -46,7 +46,7 @@ date: 2026-09-17
   <div class="container ads-hero__grid">
     <div class="ads-hero__copy">
       <h1 class="display">Still renting, even though your income is fine?</h1>
-      <p class="lede">If 20% cash is not sitting there, you still may have a door. Leave your details. Tom will call back to book a Strategy Session.</p>
+      <p class="lede">If 20% cash is not sitting there, you still may have a door. Leave your mobile and Tom will call you back.</p>
     </div>
 
     <div class="ads-hero__form-wrap">
@@ -93,7 +93,7 @@ date: 2026-09-17
           </div>
 
           <div class="ads-form__field">
-            <label for="stop-renting-phone">Phone</label>
+            <label for="stop-renting-phone">Mobile</label>
             <input id="stop-renting-phone"
                    class="ads-form__input"
                    type="tel"
@@ -106,16 +106,16 @@ date: 2026-09-17
 
           <button class="btn btn--primary btn--lg ads-form__submit"
                   type="submit"
-                  data-umami-event="stop-renting-callback"
                   data-idle-label="Request a callback"
                   data-loading-label="Sending…">
             Request a callback
           </button>
 
-          <p class="ads-form__under">We will call you to find a time for a 30-minute Strategy Session.</p>
-          <p class="ads-form__privacy muted">We only use this to call you back about a Strategy Session. No spam list.</p>
+          <p class="ads-form__trust">20+ years inside the banks. Tom maps which first-home doors are open with a smaller deposit.</p>
+          <p class="ads-form__under">This requests a call back. It does not book a time.</p>
+          <p class="ads-form__privacy muted">We only use this to call you back. No spam list.</p>
           <p class="ads-form__secondary">
-            <a href="/book/" data-umami-event="stop-renting-self-book">Or pick a time yourself</a>
+            <a href="/book/" data-umami-event="stop-renting-self-book">Prefer to pick a time?</a>
           </p>
         </form>
 
@@ -123,9 +123,11 @@ date: 2026-09-17
           Please add a name, email, and mobile so we can call you back.
         </p>
         <div class="ads-form__status ads-form__status--success" data-stop-renting-success hidden>
-          <p>Thanks. We will call you soon to lock in a Strategy Session.</p>
-          <p class="ads-form__or">Or</p>
-          <a class="btn btn--primary" href="/book/" data-umami-event="stop-renting-self-book">Book a time with Tom</a>
+          <p data-stop-renting-success-copy>Thanks. Tom will call you on the mobile you entered.</p>
+          <p>This is a call back. It is not a booked Strategy Session.</p>
+          <p class="ads-form__secondary">
+            <a href="/book/" data-umami-event="stop-renting-self-book">Prefer to pick a time?</a>
+          </p>
         </div>
       </div>
     </div>
@@ -186,7 +188,7 @@ date: 2026-09-17
     <h2>FAQ</h2>
     <details>
       <summary>Will you try to sell me a loan on the callback?</summary>
-      <p>No. The call is to book a Strategy Session and make sure the session is worth your time.</p>
+      <p>No. Tom calls you back for a short conversation. Leaving your number does not book a calendar slot.</p>
     </details>
     <details>
       <summary>What is a Strategy Session?</summary>
@@ -229,7 +231,37 @@ date: 2026-09-17
     }
   }
 
-  function showSuccess() {
+  // Weekdays before 4pm Sydney time: same-day call. Otherwise next business morning.
+  // Public holidays are not listed, so a holiday morning still says today.
+  function callWhen(date) {
+    try {
+      var parts = new Intl.DateTimeFormat('en-AU', {
+        timeZone: 'Australia/Sydney',
+        weekday: 'short',
+        hour: 'numeric',
+        hourCycle: 'h23'
+      }).formatToParts(date || new Date());
+      var weekday = '';
+      var hour = NaN;
+      parts.forEach(function (part) {
+        if (part.type === 'weekday') weekday = part.value;
+        if (part.type === 'hour') hour = parseInt(part.value, 10);
+      });
+      var weekdayOk = weekday === 'Mon' || weekday === 'Tue' || weekday === 'Wed' || weekday === 'Thu' || weekday === 'Fri';
+      if (weekdayOk && hour < 16) return 'today';
+    } catch (err) {}
+    return 'next business morning';
+  }
+
+  function showSuccess(phone) {
+    var mobile = String(phone || '').trim();
+    var when = callWhen(new Date());
+    var copy = successEl && successEl.querySelector('[data-stop-renting-success-copy]');
+    if (copy) {
+      copy.textContent = mobile
+        ? 'Thanks. Tom will call you on ' + mobile + ' ' + when + '.'
+        : 'Thanks. Tom will call you ' + when + '.';
+    }
     form.hidden = true;
     if (errorEl) errorEl.hidden = true;
     if (successEl) successEl.hidden = false;
@@ -281,7 +313,7 @@ date: 2026-09-17
       if (!((status >= 200 && status < 300) || redirected)) {
         throw new Error('submit failed');
       }
-      showSuccess();
+      showSuccess(phone);
     }).catch(function () {
       if (button) {
         button.disabled = false;
