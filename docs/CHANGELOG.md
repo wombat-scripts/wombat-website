@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-22. Ads LP: /stop-renting/ callback is the primary path
+
+Light conversion pass. The hero asks for a mobile and a call back, and the self-book path is a quiet text link to `/book/` (Strategy Session). After a successful submit, the panel names the mobile they entered and says Tom will call today (weekdays before 4pm Sydney time) or next business morning. It does not say a calendar slot is booked. `stop-renting-callback` fires only from the success handler, not from the submit button, so a failed validation does not count. `stop-renting-self-book` stays on the real `/book/` links.
+
+**Files changed:** `src/stop-renting.njk`, `src/_includes/css/styles.css`, `tests/stop-renting.test.js`
+
+---
+
 ## 2026-09-22. Article: build now, pay later (construction pause-repay)
 
 Courtney-approved explainer on a construction pause-repay facility. During a build, some loans ease repayments. After the build, the full loan usually shows up. Lives at `/articles/build-now-pay-later/`. Date-sorted onto `/articles/`, the homepage scroller, `llms.txt`, and the sitemap.
