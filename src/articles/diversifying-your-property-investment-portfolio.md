@@ -43,3 +43,5 @@ Diversification can also be achieved through how you invest. Direct investment m
 - **Regular reviews:** Continuously assess and rebalance your portfolio in response to market changes and personal investment goals.
 
 Diversification does not eliminate risk altogether, but it can significantly reduce it and help smooth out returns over time. With careful planning, research, and professional advice, it can be a powerful tool in building a resilient property portfolio.
+
+If the next step is the loan rather than the asset mix, see [Investment property loans](/investors/).

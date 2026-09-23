@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-23. Google rating 4.9/13 and money-page internal links
+
+AggregateRating on the sitewide JSON-LD now matches the Google Business Profile as of 23 Sep 2026: ratingValue 4.9, ratingCount 13 (was 5.0 from 12). Homepage ticket and llms.txt say 4.9 Google. Contextual links, using existing page titles, into the expat landing, first-home, investor and refinance hubs, the RSU and bank-staff guides, construction pause-repay, and the borrowing-power, LVR, refinance and offset calculators.
+
+**Files changed:** `src/_layouts/base.njk`, `src/index.njk`, `src/llms.txt.njk`, `src/landing/expat-home-loans.njk`, `src/first-home-buyers.njk`, `src/investors.njk`, `src/refinance.njk`, `src/construction/index.njk`, related articles, `tests/homepage.test.js`
+
+---
+
 ## 2026-09-22. Ads LP: /stop-renting/ callback is the primary path
 
 Light conversion pass. The hero asks for a mobile and a call back, and the self-book path is a quiet text link to `/book/` (Strategy Session). After a successful submit, the panel names the mobile they entered and says Tom will call today (weekdays before 4pm Sydney time) or next business morning. It does not say a calendar slot is booked. `stop-renting-callback` fires only from the success handler, not from the submit button, so a failed validation does not count. `stop-renting-self-book` stays on the real `/book/` links.

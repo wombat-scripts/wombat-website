@@ -38,3 +38,5 @@ The significant benefits of an offset account are most apparent when you can mai
 If your primary goal is to reduce loan repayments and you don't have significant savings to hold in the account, an offset may not be your best option. But for borrowers who regularly hold a meaningful balance. salary earners, for example, who have cash sitting between paydays. an offset is one of the most effective home loan features available.
 
 If you have questions about offset accounts and whether they're right for your situation, book a call and we can walk through the numbers together.
+
+The balance where an offset starts earning its keep is the [Offset vs basic home loan calculator](/calculators/offset-vs-basic/).

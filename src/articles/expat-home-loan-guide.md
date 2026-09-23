@@ -80,3 +80,5 @@ The good news is that the entire loan process can be managed remotely. Digital I
 ## Tom's take
 
 Expat lending is one of the niches I work in regularly. The key is knowing which lenders to approach for which situations, and presenting the income documentation in a way that makes it easy for credit assessors to say yes. If you're an Australian based overseas and thinking about buying, I'd suggest getting a conversation on the table early. there's often more you can do than you'd expect.
+
+The shorter page is [Expat Home Loans. Buy Property in Australia from Overseas](/landing/expat-home-loans/).

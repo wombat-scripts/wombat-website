@@ -34,3 +34,5 @@ If property is purchased through a trust or company, the foreign person tests ap
 - Trusts and companies require extra caution. professional advice is essential.
 
 If you and your partner are planning a purchase, speak with your state revenue office and check the ATO foreign investment pages before signing a contract.
+
+The lending page for this situation is [Expat Home Loans. Buy Property in Australia from Overseas](/landing/expat-home-loans/).

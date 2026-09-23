@@ -58,3 +58,5 @@ A positively geared trust portfolio can stand on its own. the rent covers the lo
 - Personal guarantees still required, even with a corporate trustee, lenders usually require directors to guarantee the loan
 
 ⚠️ Be sure to seek advice from a specialist accountant if you want to go down this path or need help with the set-up.
+
+The lending side of a portfolio sits on [Investment property loans](/investors/).

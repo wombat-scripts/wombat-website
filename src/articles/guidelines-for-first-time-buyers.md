@@ -31,3 +31,5 @@ The very first step when entering your first home buying journey should be to sp
 - **Stay level-headed.** It's easy to get emotionally attached to a property. Make decisions based on your budget and needs rather than emotion.
 - **Plan for the future.** Consider the potential for property value growth in the area and any planned infrastructure that may affect this.
 - **Engage a conveyancer early.** Bring a conveyancer or solicitor into the process early to help you understand the contract and your legal obligations.
+
+The shorter page on how I work with this is [First home buyer loans](/first-home-buyers/).

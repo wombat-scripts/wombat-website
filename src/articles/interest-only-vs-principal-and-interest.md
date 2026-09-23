@@ -60,3 +60,5 @@ Which is better? It depends on the tax bracket, the actual rate differential, ho
 ## Get the right advice before you decide
 
 IO vs P&I is ultimately a question that lives at the intersection of finance, tax, and strategy, which means the right answer looks different for every investor. Before you lock in a structure, it's worth having a conversation with both your broker and your accountant. The loan structure that's optimal for your situation might surprise you.
+
+The page for that conversation is [Investment property loans](/investors/).

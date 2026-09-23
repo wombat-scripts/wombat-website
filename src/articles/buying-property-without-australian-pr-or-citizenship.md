@@ -49,3 +49,5 @@ Yes, if you're a foreign person buying residential property, you must apply for 
 Most foreign owners must lodge an annual vacancy fee return and may be liable for a vacancy fee if the property isn't occupied as required. This is an ongoing obligation, not a one-off.
 
 ⚠️ Foreign investment rules in Australia are complex and have changed significantly in recent years. Always get current advice from the ATO and a qualified legal or financial adviser before proceeding.
+
+If the loan is the next question, [Expat Home Loans. Buy Property in Australia from Overseas](/landing/expat-home-loans/).

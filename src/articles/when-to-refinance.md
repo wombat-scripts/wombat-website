@@ -75,3 +75,5 @@ Sometimes the best outcome isn't switching. it's calling your existing lender an
 ## A practical starting point
 
 If you haven't reviewed your home loan in 12+ months, it's worth getting a comparison done. The numbers might not support switching. but you won't know until you look. A 30-minute conversation will tell you whether the opportunity is there and whether it's worth pursuing.
+
+The shorter page is [Refinance your home loan](/refinance/). A first pass on the break-even is the [Refinance savings calculator](/calculators/refinance/).

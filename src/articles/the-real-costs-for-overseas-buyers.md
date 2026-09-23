@@ -45,3 +45,5 @@ A foreign person purchases a new apartment in Victoria for AUD $900,000. Costs t
 These costs stack up quickly. Getting accurate figures before signing is essential, not an afterthought.
 
 ⚠️ These rates can change. Always verify current figures directly with the ATO and your state revenue office before entering into any contract.
+
+How those costs sit next to the loan is on [Expat Home Loans. Buy Property in Australia from Overseas](/landing/expat-home-loans/).
