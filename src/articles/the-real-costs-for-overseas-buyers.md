@@ -46,4 +46,4 @@ These costs stack up quickly. Getting accurate figures before signing is essenti
 
 ⚠️ These rates can change. Always verify current figures directly with the ATO and your state revenue office before entering into any contract.
 
-How those costs sit next to the loan is on [Expat Home Loans. Buy Property in Australia from Overseas](/landing/expat-home-loans/).
+How those costs sit next to the loan is in [Getting a home loan as an Australian expat: what the banks don't tell you](/articles/expat-home-loan-guide/).

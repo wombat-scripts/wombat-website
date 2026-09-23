@@ -8,9 +8,9 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ## 2026-09-23. Google rating 4.9/13 and money-page internal links
 
-AggregateRating on the sitewide JSON-LD now matches the Google Business Profile as of 23 Sep 2026: ratingValue 4.9, ratingCount 13 (was 5.0 from 12). Homepage ticket and llms.txt say 4.9 Google. Contextual links, using existing page titles, into the expat landing, first-home, investor and refinance hubs, the RSU and bank-staff guides, construction pause-repay, and the borrowing-power, LVR, refinance and offset calculators.
+AggregateRating on the sitewide JSON-LD now matches the Google Business Profile as of 23 Sep 2026: ratingValue 4.9, ratingCount 13 (was 5.0 from 12). Homepage ticket and llms.txt say 4.9 Google. Contextual links, using existing page titles, into the first-home, investor and refinance hubs, the RSU, bank-staff and expat guides, construction pause-repay, the podcast, Just4Fun, and the legal pages. `/landing/expat-home-loans/` and `/stop-renting/` stay unlinked from main content.
 
-**Files changed:** `src/_layouts/base.njk`, `src/index.njk`, `src/llms.txt.njk`, `src/landing/expat-home-loans.njk`, `src/first-home-buyers.njk`, `src/investors.njk`, `src/refinance.njk`, `src/construction/index.njk`, related articles, `tests/homepage.test.js`
+**Files changed:** `src/_layouts/base.njk`, `src/index.njk`, `src/llms.txt.njk`, `src/first-home-buyers.njk`, `src/investors.njk`, `src/refinance.njk`, `src/construction/index.njk`, `src/articles/index.njk`, `src/podcast.njk`, `src/book.njk`, related articles, `tests/homepage.test.js`
 
 ---
 

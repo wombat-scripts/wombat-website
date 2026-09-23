@@ -50,4 +50,4 @@ Most foreign owners must lodge an annual vacancy fee return and may be liable fo
 
 ⚠️ Foreign investment rules in Australia are complex and have changed significantly in recent years. Always get current advice from the ATO and a qualified legal or financial adviser before proceeding.
 
-If the loan is the next question, [Expat Home Loans. Buy Property in Australia from Overseas](/landing/expat-home-loans/).
+If the loan is the next question, [Getting a home loan as an Australian expat: what the banks don't tell you](/articles/expat-home-loan-guide/).
