@@ -59,6 +59,8 @@ How much you can borrow is also shaped by your deposit size. If you're borrowing
 
 The good news: a 10% deposit is often enough to get into the market with the right lender, especially for first home buyers who may also qualify for government scheme assistance like the First Home Guarantee.
 
+If you want to run the figures yourself, start with the [Borrowing power calculator](/calculators/borrowing-power/) and the [LVR calculator. what's your loan to value ratio?](/calculators/lvr/). The page for a first place is [First home buyer loans](/first-home-buyers/). If a chunk of pay is equity, read [What Your RSUs Are Worth to a Bank](/articles/what-your-rsus-are-worth-to-a-bank/).
+
 ## The bottom line
 
 Borrowing capacity is a moving target. it shifts based on your income, debts, expenses, deposit, and which lender you approach. An online calculator is a useful starting point, but a 30-minute conversation with a broker will give you a far more accurate picture of where you actually stand and what steps you can take to improve your position.

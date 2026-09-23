@@ -80,3 +80,5 @@ The good news is that the entire loan process can be managed remotely. Digital I
 ## Tom's take
 
 Expat lending is one of the niches I work in regularly. The key is knowing which lenders to approach for which situations, and presenting the income documentation in a way that makes it easy for credit assessors to say yes. If you're an Australian based overseas and thinking about buying, I'd suggest getting a conversation on the table early. there's often more you can do than you'd expect.
+
+Related reading: [Getting Mortgage-Ready Before You Land](/articles/getting-mortgage-ready/), [Buying Property Without Australian PR or Citizenship](/articles/buying-property-without-australian-pr-or-citizenship/), [Buying Property in Australia as a Mixed-Status Couple](/articles/buying-property-in-australia-as-a-mixed-status-couple/), [Buying Property in Australia: What Happens When You Get PR?](/articles/buying-property-in-australia-what-happens-when-you-get-pr/), and [The Real Costs for Overseas Buyers](/articles/the-real-costs-for-overseas-buyers/).

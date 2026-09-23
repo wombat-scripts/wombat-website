@@ -40,3 +40,5 @@ If your residency status changes before settlement, you may be able to avoid for
 - Check the timing of your PR grant relative to exchange and settlement. this can save tens of thousands in surcharges.
 
 Confirm your residency status with the ATO's definition and contact your state revenue office before you sign a contract.
+
+Once the status question is clear, the loan guide is [Getting a home loan as an Australian expat: what the banks don't tell you](/articles/expat-home-loan-guide/).

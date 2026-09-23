@@ -69,3 +69,5 @@ A better framework: choose a structure based on your circumstances and risk tole
 There's genuinely no universal answer here. A broker's job isn't to push you toward one structure. it's to help you understand the trade-offs in the context of your actual situation, and to find the lender and product that fits best. The rate is one number; the features, flexibility, and fit with your financial life are the full picture.
 
 If you're not sure which way to go, book a call. We can walk through the scenarios specific to your loan size, timeline, and financial position.
+
+If the question is whether to move the loan at all, [Refinance your home loan](/refinance/) is the health-check, and [When does it actually make sense to refinance? A practical framework](/articles/when-to-refinance/) is the longer version.

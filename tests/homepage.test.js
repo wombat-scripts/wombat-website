@@ -57,7 +57,13 @@ test('homepage has Kitchen table hero, tickets, and locked Who I help', function
   assert.match(home, /class="polaroid polaroid--hero"/);
   assert.match(home, /thirty minutes\. genuinely no obligation\./);
   assert.match(home, /Tom Carr\. Mortgage broker\. Ex-banker\. Sydney local\./);
-  assert.match(home, /5\.0 Google/);
+  assert.match(home, /4\.9 Google/);
+  assert.doesNotMatch(home, /5\.0 Google/);
+  var baseLayout = fs.readFileSync(path.join(__dirname, '..', 'src/_layouts/base.njk'), 'utf8');
+  assert.match(baseLayout, /"ratingValue": "4\.9"/);
+  assert.match(baseLayout, /"ratingCount": "13"/);
+  assert.doesNotMatch(baseLayout, /"ratingValue": "5\.0"/);
+  assert.doesNotMatch(baseLayout, /"ratingCount": "12"/);
   assert.match(home, /20\+ years in the banks/);
   assert.match(home, /40\+ lenders/);
   assert.match(home, /Complicated payslips\. A first home\./);

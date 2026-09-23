@@ -70,3 +70,5 @@ Increase the fixed portion if you value predictable repayments, protection from 
 ## Split Loans Are About Balance, Not Prediction
 
 Split loans work best when the market is sending mixed signals, when rates could rise, could fall, or could simply bounce around for a while. They're a tool for managing uncertainty, not beating the market. If you're weighing up whether a split loan fits your situation, or wondering how to structure the right mix, book a call and we can run the numbers together.
+
+If a split is part of moving the loan, [Refinance your home loan](/refinance/).
