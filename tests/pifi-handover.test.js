@@ -98,9 +98,12 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(page, /id="piq-consent"/);
   assert.doesNotMatch(page, /name="journey"/);
   assert.doesNotMatch(page, /name="context"/);
-  assert.match(page, /Run your report/);
+  assert.match(page, /Run my report/);
+  assert.doesNotMatch(page, /Run your report/);
   assert.doesNotMatch(page, /Email me the report/);
   assert.doesNotMatch(page, /Open your report/);
+  assert.match(page, /id="piq-success" hidden/);
+  assert.equal((page.match(/id="piq-submit"/g) || []).length, 1);
   var client = read('src/assets/js/property-iq.js');
   assert.match(client, /40000/);
   assert.match(client, /35000/);
@@ -108,7 +111,9 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(client, /propiq-notify/);
   assert.match(client, /wait\(READY_DELAY_MS\)/);
   assert.match(client, /The email may not have sent/);
-  assert.match(client, /Run your report/);
+  assert.match(client, /Run my report/);
+  assert.doesNotMatch(client, /Run your report/);
+  assert.match(read('src/_includes/css/styles.css'), /\.piq-success\[hidden\]\s*\{[^}]*display:\s*none/);
   assert.doesNotMatch(client, /Email me the report/);
   assert.match(page, /about a minute/);
   assert.match(page, /class="piq-spinner"/);
