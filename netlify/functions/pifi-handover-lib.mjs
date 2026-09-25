@@ -8,8 +8,12 @@ export const QA_HOST = "https://api.qa.pifiproperty.com";
 export const RETURN_URL = "https://www.wombathomeloans.com.au/property-iq";
 export const TIMEOUT_MS = 30000;
 
-const JOURNEYS = new Set(["buy", "invest", "sell", "rent", "price"]);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export const FIXED_JOURNEY = "price";
+export const FIXED_CONTEXT = "just curious";
+export const DEFAULT_MAIL_FROM = "Wombat Home Loans <tom@wombathomeloans.com.au>";
+export const DEFAULT_MAIL_CC = "tom@wombathomeloans.com.au";
 
 export const COPY = {
   emptyEmail: "Add your email so PropIQ can open the report.",
@@ -37,8 +41,6 @@ export function validateInput(raw) {
   const src = raw && typeof raw === "object" ? raw : {};
   const email = typeof src.email === "string" ? src.email : "";
   const address = typeof src.address === "string" ? src.address.trim() : "";
-  const journey = typeof src.journey === "string" ? src.journey.trim() : "";
-  const context = typeof src.context === "string" ? src.context.trim() : "";
 
   const emailTrimmed = email.trim();
   if (!emailTrimmed) {
@@ -53,18 +55,50 @@ export function validateInput(raw) {
   if (address.length > 300 || !/[A-Za-z]/.test(address) || !/\d/.test(address)) {
     return { ok: false, message: COPY.unusableAddress };
   }
-  if (!JOURNEYS.has(journey) || context.length > 8000) {
-    return { ok: false, message: COPY.fail };
-  }
 
-  const body = {
-    email: email.trim(),
-    address,
-    journey,
-    returnUrl: RETURN_URL,
+  return {
+    ok: true,
+    body: {
+      email: emailTrimmed,
+      address,
+      journey: FIXED_JOURNEY,
+      context: FIXED_CONTEXT,
+      returnUrl: RETURN_URL,
+    },
   };
-  if (context) body.context = context;
-  return { ok: true, body };
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+export function buildReportEmail({ to, address, url, from, cc }) {
+  const safeTo = String(to || "").trim();
+  const mailFrom = from || DEFAULT_MAIL_FROM;
+  const mailCc = cc || DEFAULT_MAIL_CC;
+  const samePerson = mailCc.toLowerCase() === safeTo.toLowerCase();
+  const text = samePerson
+    ? "Your property report for " + address + " is ready. Open it anytime:\n\n" + url + "\n\nWombat Home Loans"
+    : "Your property report for " + address + " is ready. Open it anytime:\n\n" + url + "\n\nTom is copied on this email.\n\nWombat Home Loans";
+  const html = [
+    "<p>Your property report for " + escapeHtml(address) + " is ready. Open it anytime:</p>",
+    "<p><a href=\"" + escapeHtml(url) + "\">" + escapeHtml(url) + "</a></p>",
+    samePerson ? "" : "<p>Tom is copied on this email.</p>",
+    "<p>Wombat Home Loans</p>",
+  ].filter(Boolean).join("");
+  const message = {
+    from: mailFrom,
+    to: [safeTo],
+    subject: "Your PropIQ report for " + address,
+    text: text,
+    html: html,
+  };
+  if (!samePerson) message.cc = [mailCc];
+  return message;
 }
 
 export function mapUpstream(status, body) {

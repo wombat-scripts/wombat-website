@@ -6,6 +6,10 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-25. Property IQ emails the report
+
+`/property-iq/` is address, email, and consent. The handover function always sends journey `price` and context `just curious`. On success it emails the link with Resend (CC Tom) and stays on the page, with an Open your report link. No auto tab.
+
 ## 2026-09-25. Property IQ address suggestions
 
 `/property-iq/` suggests Australian addresses from a server-only Netlify Function (Photon for QA). Picking one fills the handover address string. No provider key in the browser. Homepage Tools card is still a link only.
