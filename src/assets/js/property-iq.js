@@ -28,7 +28,8 @@
   function setBusy(on) {
     busy = on;
     submitBtn.disabled = on;
-    submitBtn.textContent = on ? "Opening your PropIQ report…" : "Get my free report";
+    submitBtn.textContent = on ? "Getting your report…" : "Email me the report";
+    submitBtn.setAttribute("aria-busy", on ? "true" : "false");
     waitEl.hidden = !on;
   }
 
@@ -147,6 +148,20 @@
     setTimeout(closeSuggestions, 150);
   });
 
+  function showSuccess(url, emailSent) {
+    var success = document.getElementById("piq-success");
+    var copy = document.getElementById("piq-success-copy");
+    var open = document.getElementById("piq-open");
+    form.querySelectorAll(".ads-form__field, #piq-submit, #piq-wait").forEach(function (el) {
+      el.hidden = true;
+    });
+    copy.textContent = emailSent
+      ? "Check your email. The PropIQ report link for this address is on its way, and Tom is copied."
+      : "We couldn't send the email just now. You can open the report from this page.";
+    open.href = url;
+    success.hidden = false;
+  }
+
   markAddressHint();
 
   form.addEventListener("submit", function (event) {
@@ -156,8 +171,6 @@
 
     var email = form.email.value;
     var address = form.address.value.trim();
-    var journeyInput = form.querySelector('input[name="journey"]:checked');
-    var context = form.context.value.trim();
     var consent = form.consent.checked;
 
     var emailTrimmed = email.trim();
@@ -177,10 +190,6 @@
       showError("We couldn't match that address. Check the spelling, or try the full street including suburb.");
       return;
     }
-    if (!journeyInput) {
-      showError("Pick the closest. It shapes the report, not a hard commitment.");
-      return;
-    }
     if (!consent) {
       showError("Tick the box so we can pass your details to PropIQ and open the report.");
       return;
@@ -189,9 +198,7 @@
     var payload = {
       email: email.trim(),
       address: address,
-      journey: journeyInput.value,
     };
-    if (context) payload.context = context;
 
     setBusy(true);
     if (window.umami) {
@@ -215,10 +222,14 @@
       .then(function (result) {
         var url = result.body && result.body.url;
         if (result.status === 201 && typeof url === "string" && url.indexOf("https://") === 0) {
+          setBusy(false);
+          showSuccess(url, result.body.emailSent === true);
           if (window.umami) {
-            window.umami.track("property-iq-opened", { location: "property-iq" });
+            window.umami.track("property-iq-ready", {
+              location: "property-iq",
+              emailSent: result.body.emailSent === true ? "yes" : "no",
+            });
           }
-          window.location.assign(url);
           return;
         }
         setBusy(false);

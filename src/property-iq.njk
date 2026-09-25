@@ -1,6 +1,6 @@
 ---
 title: "Property IQ"
-description: "Tell us an address. We'll open a free PropIQ report so you can see what the place is really worth, before you chase the bank or the auction."
+description: "Tell us an address and your email. We'll send a free PropIQ report so you can see what the place is really worth, before you chase the bank or the auction."
 layout: base.njk
 permalink: /property-iq/
 ---
@@ -25,7 +25,7 @@ permalink: /property-iq/
   <div class="container container--narrow">
     <p class="calc-breadcrumb"><a href="/calculators/">← Calculators</a></p>
     <h1>Property IQ</h1>
-    <p class="lede">Tell us an address. We'll open a free PropIQ report so you can see what the place is really worth, before you chase the bank or the auction.</p>
+    <p class="lede">Tell us an address and your email. We'll send a free PropIQ report so you can see what the place is really worth, before you chase the bank or the auction.</p>
   </div>
 </section>
 
@@ -45,24 +45,7 @@ permalink: /property-iq/
       <div class="ads-form__field">
         <label for="piq-email">Your email</label>
         <input class="ads-form__input" id="piq-email" name="email" type="email" autocomplete="email" maxlength="254" required>
-        <p class="calc-field__hint">We'll use this to open your report. No newsletter signup on this step.</p>
-      </div>
-
-      <fieldset class="ads-form__field piq-journey">
-        <legend>What are you looking at?</legend>
-        <div class="piq-chips" role="radiogroup" aria-label="What are you looking at?">
-          <label class="piq-chip"><input type="radio" name="journey" value="buy" required><span>Buy</span></label>
-          <label class="piq-chip"><input type="radio" name="journey" value="invest"><span>Invest</span></label>
-          <label class="piq-chip"><input type="radio" name="journey" value="sell"><span>Sell</span></label>
-          <label class="piq-chip"><input type="radio" name="journey" value="rent"><span>Rent</span></label>
-          <label class="piq-chip"><input type="radio" name="journey" value="price"><span>Just pricing</span></label>
-        </div>
-        <p class="calc-field__hint">Pick the closest. It shapes the report, not a hard commitment.</p>
-      </fieldset>
-
-      <div class="ads-form__field">
-        <label for="piq-context">Anything else we should know?</label>
-        <textarea class="ads-form__input" id="piq-context" name="context" rows="4" maxlength="8000" placeholder="e.g. auction next month, thinking of refinancing, first look at an investment."></textarea>
+        <p class="calc-field__hint">We'll send the report link here. No newsletter signup on this step.</p>
       </div>
 
       <div class="ads-form__field piq-consent">
@@ -73,10 +56,14 @@ permalink: /property-iq/
       </div>
 
       <button class="btn btn--primary btn--lg ads-form__submit" id="piq-submit" type="submit">
-        Get my free report
+        Email me the report
       </button>
-      <p class="ads-form__trust" id="piq-wait" hidden>Opening your PropIQ report…</p>
+      <p class="ads-form__trust" id="piq-wait" hidden>Getting your report. This can take about half a minute. Please keep this tab open.</p>
       <p class="ads-form__status ads-form__status--error" id="piq-error" role="alert" hidden></p>
+      <div id="piq-success" hidden>
+        <p class="ads-form__status ads-form__status--success" id="piq-success-copy"></p>
+        <a class="btn btn--primary btn--lg" id="piq-open" target="_blank" rel="noopener noreferrer">Open your report</a>
+      </div>
       <p class="ads-form__privacy muted">Wombat Home Loans · Credit Rep CRN 559744 · ACL 561324. PropIQ is provided by PiFi. We're not giving valuations advice on this page. The report is a starting point for a conversation.</p>
     </form>
   </div>

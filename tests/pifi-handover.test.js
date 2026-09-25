@@ -11,33 +11,29 @@ function read(rel) {
   return fs.readFileSync(path.join(root, rel), 'utf8');
 }
 
-test('handover payload omits empty notes and pins the Strategy Session return url', async function () {
+test('handover always sends price and just curious, ignoring the browser', async function () {
   var lib = await import('../netlify/functions/pifi-handover-lib.mjs');
   var result = lib.validateInput({
     email: 'sarah@example.com',
     address: '12 Example Street, Parramatta NSW 2150',
     journey: 'buy',
-    context: '   ',
+    context: 'First home buyer with a 20% deposit.',
     returnUrl: 'https://evil.example/phish',
   });
   assert.equal(result.ok, true);
-  assert.equal(result.body.context, undefined);
-  assert.equal(result.body.reference, undefined);
+  assert.equal(result.body.journey, 'price');
+  assert.equal(result.body.context, 'just curious');
   assert.equal(result.body.returnUrl, 'https://www.wombathomeloans.com.au/property-iq');
   assert.equal(result.body.email, 'sarah@example.com');
-  assert.equal(result.body.journey, 'buy');
-});
-
-test('handover keeps notes when the customer wrote some', async function () {
-  var lib = await import('../netlify/functions/pifi-handover-lib.mjs');
-  var result = lib.validateInput({
-    email: 'sarah@example.com',
-    address: '12 Example Street, Parramatta NSW 2150',
-    journey: 'price',
-    context: 'First home buyer with a 20% deposit.',
+  var mail = lib.buildReportEmail({
+    to: 'sarah@example.com',
+    address: result.body.address,
+    url: 'https://wombathl.pifiproperty.com/s/abc',
   });
-  assert.equal(result.ok, true);
-  assert.equal(result.body.context, 'First home buyer with a 20% deposit.');
+  assert.equal(mail.cc[0], 'tom@wombathomeloans.com.au');
+  assert.equal(mail.from, 'Wombat Home Loans <tom@wombathomeloans.com.au>');
+  assert.equal((mail.text.match(/https:\/\/wombathl\.pifiproperty\.com\/s\/abc/g) || []).length, 1);
+  assert.doesNotMatch(mail.subject + mail.text, /\u2014/);
 });
 
 test('handover rejects a vague address and a bad email', async function () {
@@ -95,11 +91,13 @@ test('source does not embed a partner key or the live handover host', function (
   });
   var page = read('src/property-iq.njk');
   assert.match(page, /id="piq-consent"/);
-  assert.match(page, /value="buy"/);
-  assert.match(page, /value="price"/);
+  assert.doesNotMatch(page, /name="journey"/);
+  assert.doesNotMatch(page, /name="context"/);
+  assert.match(page, /Open your report/);
+  assert.match(page, /Email me the report/);
   var client = read('src/assets/js/property-iq.js');
   assert.match(client, /35000/);
-  assert.match(client, /location\.assign\(url\)/);
+  assert.doesNotMatch(client, /location\.assign/);
   assert.doesNotMatch(client, /umami\.track\([^)]*url/);
   var fn = read('netlify/functions/pifi-handover.mjs');
   assert.match(fn, /AbortSignal\.timeout\(TIMEOUT_MS\)/);
@@ -125,6 +123,7 @@ test('handler returns the upstream url unchanged and retries one generic 500', a
       headers: { 'content-type': 'application/json' },
     });
   };
+  delete process.env.RESEND_API_KEY;
   process.env.PIFI_API_HOST = 'https://api.qa.pifiproperty.com';
   process.env.PIFI_PARTNER_KEY = 'qa-test-key';
   var mod = await import('../netlify/functions/pifi-handover.mjs');
@@ -147,10 +146,54 @@ test('handler returns the upstream url unchanged and retries one generic 500', a
   assert.equal(calls.length, 2);
   assert.equal(calls[0].url, 'https://api.qa.pifiproperty.com/v1/partner/handover');
   assert.equal(calls[0].opts.headers.Authorization, 'Bearer qa-test-key');
-  assert.equal(sent.context, undefined);
+  assert.equal(sent.journey, 'price');
+  assert.equal(sent.context, 'just curious');
   assert.equal(sent.returnUrl, 'https://www.wombathomeloans.com.au/property-iq');
+  assert.equal(body.emailSent, false);
+  assert.equal(calls.length, 2);
   assert.doesNotMatch(JSON.stringify(body), /qa-test-key/);
   globalThis.fetch = previous;
+  delete process.env.PIFI_PARTNER_KEY;
+  delete process.env.PIFI_API_HOST;
+});
+
+test('handler posts price and just curious, then emails via Resend', { concurrency: false }, async function () {
+  var calls = [];
+  var previous = globalThis.fetch;
+  globalThis.fetch = async function (url, opts) {
+    calls.push({ url: String(url), opts: opts });
+    if (String(url).indexOf('api.resend.com') !== -1) {
+      return new Response(JSON.stringify({ id: 'email_1' }), { status: 200 });
+    }
+    return new Response(JSON.stringify({ url: 'https://wombathl.pifiproperty.com/s/abc' }), { status: 201 });
+  };
+  process.env.PIFI_API_HOST = 'https://api.qa.pifiproperty.com';
+  process.env.PIFI_PARTNER_KEY = 'qa-test-key';
+  process.env.RESEND_API_KEY = 're_test_key';
+  var mod = await import('../netlify/functions/pifi-handover.mjs');
+  var res = await mod.default(new Request('http://local/', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      email: 'sarah@example.com',
+      address: '12 Gore Street, Parramatta NSW 2150',
+      journey: 'buy',
+      context: 'ignore me',
+    }),
+  }));
+  var body = await res.json();
+  var handover = JSON.parse(calls[0].opts.body);
+  var mail = JSON.parse(calls[1].opts.body);
+  assert.equal(body.emailSent, true);
+  assert.equal(body.url, 'https://wombathl.pifiproperty.com/s/abc');
+  assert.equal(handover.journey, 'price');
+  assert.equal(handover.context, 'just curious');
+  assert.equal(mail.to[0], 'sarah@example.com');
+  assert.equal(mail.cc[0], 'tom@wombathomeloans.com.au');
+  assert.equal((mail.text.match(/https:\/\/wombathl\.pifiproperty\.com\/s\/abc/g) || []).length, 1);
+  assert.doesNotMatch(JSON.stringify(body), /re_test_key/);
+  globalThis.fetch = previous;
+  delete process.env.RESEND_API_KEY;
   delete process.env.PIFI_PARTNER_KEY;
   delete process.env.PIFI_API_HOST;
 });
