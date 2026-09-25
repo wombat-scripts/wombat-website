@@ -107,7 +107,12 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(client, /propiq-notify/);
   assert.match(client, /wait\(READY_DELAY_MS\)/);
   assert.match(client, /The email may not have sent/);
-  assert.match(read('src/property-iq.njk'), /about a minute/);
+  assert.match(page, /about a minute/);
+  assert.match(page, /class="piq-cog"/);
+  assert.match(page, /id="piq-elapsed"/);
+  assert.match(page, /Elapsed/);
+  assert.match(client, /formatElapsed/);
+  assert.match(client, /clearInterval\(elapsedTimer\)/);
   assert.doesNotMatch(client, /location\.assign/);
   assert.doesNotMatch(client, /umami\.track\([^)]*url/);
   var fn = read('netlify/functions/pifi-handover.mjs');

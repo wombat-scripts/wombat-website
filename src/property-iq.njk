@@ -58,7 +58,18 @@ permalink: /property-iq/
       <button class="btn btn--primary btn--lg ads-form__submit" id="piq-submit" type="submit">
         Email me the report
       </button>
-      <p class="ads-form__trust" id="piq-wait" hidden>Getting your report ready. This can take about a minute. Please keep this tab open.</p>
+      <div class="piq-progress" id="piq-wait" hidden>
+        <div class="piq-progress__meter">
+          <svg class="piq-cog" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M20.2 2.5h7.6l1.1 6.4a15.8 15.8 0 0 1 4.6 1.9l5.8-3.1 5.4 5.4-3.1 5.8a15.8 15.8 0 0 1 1.9 4.6l6.4 1.1v7.6l-6.4 1.1a15.8 15.8 0 0 1-1.9 4.6l3.1 5.8-5.4 5.4-5.8-3.1a15.8 15.8 0 0 1-4.6 1.9l-1.1 6.4h-7.6l-1.1-6.4a15.8 15.8 0 0 1-4.6-1.9l-5.8 3.1-5.4-5.4 3.1-5.8a15.8 15.8 0 0 1-1.9-4.6L2.5 27.8v-7.6l6.4-1.1a15.8 15.8 0 0 1 1.9-4.6L7.7 8.7l5.4-5.4 5.8 3.1a15.8 15.8 0 0 1 4.6-1.9l1.1-6.4zM24 16.2a7.8 7.8 0 1 0 .1 15.6 7.8 7.8 0 0 0-.1-15.6z"/>
+          </svg>
+          <p class="piq-progress__time">
+            <span class="piq-progress__label">Elapsed</span>
+            <span id="piq-elapsed">0:00</span>
+          </p>
+        </div>
+        <p class="ads-form__trust" role="status">Getting your report ready. This can take about a minute. Please keep this tab open.</p>
+      </div>
       <p class="ads-form__status ads-form__status--error" id="piq-error" role="alert" hidden></p>
       <div id="piq-success" hidden>
         <p class="ads-form__status ads-form__status--success" id="piq-success-copy"></p>
