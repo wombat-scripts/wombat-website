@@ -217,14 +217,20 @@
     var success = document.getElementById("piq-success");
     var copy = document.getElementById("piq-success-copy");
     var open = document.getElementById("piq-open");
-    form.querySelectorAll(".ads-form__field, #piq-submit, #piq-wait").forEach(function (el) {
+    if (!url || !success || !open) return;
+    form.classList.add("is-success");
+    form.querySelectorAll(".ads-form__field, #piq-wait").forEach(function (el) {
       el.hidden = true;
     });
+    submitBtn.hidden = true;
+    submitBtn.disabled = true;
+    submitBtn.setAttribute("aria-hidden", "true");
     copy.textContent = emailSent
       ? "Check your email. The PropIQ report link for this address is on its way, and Tom is copied."
       : "The email may not have sent. You can still open the report from this page.";
     open.href = url;
     success.hidden = false;
+    success.classList.add("is-visible");
   }
 
   markAddressHint();
