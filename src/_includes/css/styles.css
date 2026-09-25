@@ -3609,13 +3609,17 @@ input[type="range"].calc-range::-moz-range-thumb {
 }
 
 .piq-success {
+  display: none;
+}
+
+.piq-success.is-visible {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
   margin-top: var(--space-4);
 }
 
-.piq-success[hidden] {
+.piq-form.is-success #piq-submit {
   display: none;
 }
 

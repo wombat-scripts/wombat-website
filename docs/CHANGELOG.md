@@ -6,6 +6,10 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-25. Property IQ success hides the submit button
+
+The submit button uses the shared `.btn` display, so `hidden` did not remove it after a report was ready. Success now adds `is-success` on the form and `is-visible` on the report link. The idle button stays Run my report. The link that appears afterwards says Open my report.
+
 ## 2026-09-25. Property IQ shows one Run my report button
 
 The success block used `display: flex`, which overrode the hidden attribute, so a second brown button sat under the form before a report existed. That block stays hidden until handover returns a url. The label is Run my report.

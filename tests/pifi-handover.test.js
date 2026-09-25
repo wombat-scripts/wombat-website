@@ -99,6 +99,7 @@ test('source does not embed a partner key or the live handover host', function (
   assert.doesNotMatch(page, /name="journey"/);
   assert.doesNotMatch(page, /name="context"/);
   assert.match(page, /Run my report/);
+  assert.match(page, /Open my report/);
   assert.doesNotMatch(page, /Run your report/);
   assert.doesNotMatch(page, /Email me the report/);
   assert.doesNotMatch(page, /Open your report/);
@@ -112,8 +113,15 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(client, /wait\(READY_DELAY_MS\)/);
   assert.match(client, /The email may not have sent/);
   assert.match(client, /Run my report/);
+  assert.match(client, /is-success/);
+  assert.match(client, /is-visible/);
+  assert.match(client, /aria-hidden/);
+  assert.match(client, /submitBtn\.hidden = true/);
   assert.doesNotMatch(client, /Run your report/);
-  assert.match(read('src/_includes/css/styles.css'), /\.piq-success\[hidden\]\s*\{[^}]*display:\s*none/);
+  var css = read('src/_includes/css/styles.css');
+  assert.match(css, /\.piq-success\s*\{[^}]*display:\s*none/);
+  assert.match(css, /\.piq-success\.is-visible\s*\{[^}]*display:\s*flex/);
+  assert.match(css, /\.piq-form\.is-success #piq-submit\s*\{[^}]*display:\s*none/);
   assert.doesNotMatch(client, /Email me the report/);
   assert.match(page, /about a minute/);
   assert.match(page, /class="piq-spinner"/);
