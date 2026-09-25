@@ -40,7 +40,7 @@
   function setBusy(on) {
     busy = on;
     submitBtn.disabled = on;
-    submitBtn.textContent = on ? "Getting your report…" : "Email me the report";
+    submitBtn.textContent = on ? "Getting your report…" : "Run your report";
     submitBtn.setAttribute("aria-busy", on ? "true" : "false");
     waitEl.hidden = !on;
     if (elapsedTimer) {
