@@ -22,7 +22,7 @@
   function setBusy(on) {
     busy = on;
     submitBtn.disabled = on;
-    submitBtn.textContent = on ? "Preparing your report…" : "Open my report";
+    submitBtn.textContent = on ? "Opening your PropIQ report…" : "Get my free report";
     waitEl.hidden = !on;
   }
 
@@ -43,20 +43,29 @@
     var context = form.context.value.trim();
     var consent = form.consent.checked;
 
-    if (email !== email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      showError("Enter a valid email address, with no spaces around it.");
+    var emailTrimmed = email.trim();
+    if (!emailTrimmed) {
+      showError("Add your email so PropIQ can open the report.");
       return;
     }
-    if (!address || address.length > 300 || !/[A-Za-z]/.test(address) || !/\d/.test(address)) {
-      showError("Enter a full street address with a number and a street name, plus suburb and state.");
+    if (email !== emailTrimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed)) {
+      showError("That doesn't look like an email, have another go.");
+      return;
+    }
+    if (!address) {
+      showError("Add a street address so we know which place to look up.");
+      return;
+    }
+    if (address.length > 300 || !/[A-Za-z]/.test(address) || !/\d/.test(address)) {
+      showError("We couldn't match that address. Check the spelling, or try the full street including suburb.");
       return;
     }
     if (!journeyInput) {
-      showError("Choose buy, invest, sell, rent, or price.");
+      showError("Pick the closest. It shapes the report, not a hard commitment.");
       return;
     }
     if (!consent) {
-      showError("Tick the notice so we can send your details to PiFi.");
+      showError("Tick the box so we can pass your details to PropIQ and open the report.");
       return;
     }
 
@@ -98,15 +107,11 @@
         setBusy(false);
         showError(result.body && result.body.message
           ? result.body.message
-          : "Something went wrong preparing the report. Please try once more in a moment.");
+          : "Something didn't go through. Try again in a minute. If it keeps failing, email us and we'll sort it.");
       })
-      .catch(function (err) {
+      .catch(function () {
         setBusy(false);
-        if (err && err.name === "AbortError") {
-          showError("That took too long. Please try once more.");
-          return;
-        }
-        showError("Something went wrong preparing the report. Please try once more in a moment.");
+        showError("Something didn't go through. Try again in a minute. If it keeps failing, email us and we'll sort it.");
       })
       .finally(function () {
         clearTimeout(timer);

@@ -11,6 +11,14 @@ export const TIMEOUT_MS = 30000;
 const JOURNEYS = new Set(["buy", "invest", "sell", "rent", "price"]);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+export const COPY = {
+  emptyEmail: "Add your email so PropIQ can open the report.",
+  invalidEmail: "That doesn't look like an email, have another go.",
+  emptyAddress: "Add a street address so we know which place to look up.",
+  unusableAddress: "We couldn't match that address. Check the spelling, or try the full street including suburb.",
+  fail: "Something didn't go through. Try again in a minute. If it keeps failing, email us and we'll sort it.",
+};
+
 export function normaliseHost(host) {
   return String(host || "").trim().replace(/\/+$/, "");
 }
@@ -32,20 +40,21 @@ export function validateInput(raw) {
   const journey = typeof src.journey === "string" ? src.journey.trim() : "";
   const context = typeof src.context === "string" ? src.context.trim() : "";
 
-  if (email !== email.trim() || !EMAIL_RE.test(email.trim()) || email.trim().length > 254) {
-    return { ok: false, message: "Enter a valid email address, with no spaces around it." };
+  const emailTrimmed = email.trim();
+  if (!emailTrimmed) {
+    return { ok: false, message: COPY.emptyEmail };
   }
-  if (address.length < 1 || address.length > 300 || !/[A-Za-z]/.test(address) || !/\d/.test(address)) {
-    return {
-      ok: false,
-      message: "Enter a full street address with a number and a street name, plus suburb and state.",
-    };
+  if (email !== emailTrimmed || !EMAIL_RE.test(emailTrimmed) || emailTrimmed.length > 254) {
+    return { ok: false, message: COPY.invalidEmail };
   }
-  if (!JOURNEYS.has(journey)) {
-    return { ok: false, message: "Choose buy, invest, sell, rent, or price." };
+  if (!address) {
+    return { ok: false, message: COPY.emptyAddress };
   }
-  if (context.length > 8000) {
-    return { ok: false, message: "Shorten the notes. 8,000 characters is the limit." };
+  if (address.length > 300 || !/[A-Za-z]/.test(address) || !/\d/.test(address)) {
+    return { ok: false, message: COPY.unusableAddress };
+  }
+  if (!JOURNEYS.has(journey) || context.length > 8000) {
+    return { ok: false, message: COPY.fail };
   }
 
   const body = {
@@ -61,66 +70,31 @@ export function validateInput(raw) {
 export function mapUpstream(status, body) {
   const error = body && typeof body.error === "string" ? body.error : "";
 
-  if (status === 401) {
-    return {
-      status: 401,
-      retryable: false,
-      message: "Property IQ is not available on this deploy. Book a Strategy Session and we can look at the place together.",
-    };
-  }
   if (status === 422 || error === "unusable_address") {
-    return {
-      status: 422,
-      retryable: false,
-      message: "That address is too vague. Add the street number, street name, suburb, and state.",
-    };
+    return { status: 422, retryable: false, message: COPY.unusableAddress };
+  }
+  if (status === 401) {
+    return { status: 401, retryable: false, message: COPY.fail };
   }
   if (status === 409 || error === "cap_reached") {
-    return {
-      status: 409,
-      retryable: false,
-      message: "We have hit today's limit for new reports. It resets overnight. Book a Strategy Session if you want to talk it through.",
-    };
-  }
-  if (status === 400 && error === "invalid_return_url") {
-    return {
-      status: 400,
-      retryable: false,
-      message: "We could not open the report from this page. Book a Strategy Session and we will look at the place with you.",
-    };
+    return { status: 409, retryable: false, message: COPY.fail };
   }
   if (status === 400) {
-    return {
-      status: 400,
-      retryable: false,
-      message: "Check the email, the address, and what you want to do, then try again.",
-    };
+    return { status: 400, retryable: false, message: COPY.fail };
   }
   if (error === "link_unavailable") {
-    return {
-      status: 500,
-      retryable: false,
-      message: "We could not create a link for that report. Please book a Strategy Session.",
-    };
+    return { status: 500, retryable: false, message: COPY.fail };
   }
   if (error === "account_unavailable" || error === "report_unavailable" || status >= 500) {
     return {
       status: status >= 500 ? status : 500,
       retryable: true,
-      message: "The report service is busy. Please try once more.",
+      message: COPY.fail,
     };
   }
-  return {
-    status: 502,
-    retryable: false,
-    message: "Something went wrong preparing the report. Please try once more in a moment.",
-  };
+  return { status: 502, retryable: false, message: COPY.fail };
 }
 
 export function friendlyConfigError() {
-  return {
-    status: 503,
-    retryable: false,
-    message: "Property IQ is not set up on this deploy yet. Book a Strategy Session and we can look at the place together.",
-  };
+  return { status: 503, retryable: false, message: COPY.fail };
 }

@@ -95,6 +95,8 @@ test('homepage Tools is a 3-card scroller like Articles and Reviews', function (
   assert.match(home, /id="tools-next"/);
   assert.match(home, /Building vs buying/);
   assert.match(home, /See what a place is really worth/);
+  assert.match(home, /Get a free PropIQ report on any Australian address/);
+  assert.match(home, /Open Property IQ/);
   assert.match(home, /href="\/property-iq\/"/);
   assert.doesNotMatch(home, /wombathl\.pifiproperty\.com/);
   assert.doesNotMatch(footer, /wombathl\.pifiproperty\.com/);
