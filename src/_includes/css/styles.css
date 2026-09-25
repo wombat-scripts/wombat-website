@@ -3615,6 +3615,10 @@ input[type="range"].calc-range::-moz-range-thumb {
   margin-top: var(--space-4);
 }
 
+.piq-success[hidden] {
+  display: none;
+}
+
 .piq-success__copy {
   margin: 0;
   color: var(--ink-soft);
