@@ -6,6 +6,10 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-25. Property IQ address suggestions
+
+`/property-iq/` suggests Australian addresses from a server-only Netlify Function (Photon for QA). Picking one fills the handover address string. No provider key in the browser. Homepage Tools card is still a link only.
+
 ## 2026-09-25. PropIQ returnUrl is the property page
 
 Handover `returnUrl` is `https://www.wombathomeloans.com.au/property-iq` (www, no trailing slash). QA host and key still come from env only.
