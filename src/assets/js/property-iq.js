@@ -9,7 +9,9 @@
   var suggestList = document.getElementById("piq-suggest-list");
   var suggestStatus = document.getElementById("piq-suggest-status");
   var busy = false;
-  var CLIENT_TIMEOUT_MS = 80000;
+  var HANDOVER_TIMEOUT_MS = 40000;
+  var READY_DELAY_MS = 35000;
+  var NOTIFY_TIMEOUT_MS = 15000;
   var suggestions = [];
   var activeIndex = -1;
   var suggestTimer = null;
@@ -148,6 +150,27 @@
     setTimeout(closeSuggestions, 150);
   });
 
+  function wait(ms) {
+    return new Promise(function (resolve) { setTimeout(resolve, ms); });
+  }
+
+  function notifyReport(email, address, url) {
+    var controller = new AbortController();
+    var timer = setTimeout(function () { controller.abort(); }, NOTIFY_TIMEOUT_MS);
+    return fetch("/.netlify/functions/propiq-notify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email, address: address, url: url }),
+      signal: controller.signal,
+    })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; });
+      })
+      .then(function (body) { return body.emailSent === true; })
+      .catch(function () { return false; })
+      .finally(function () { clearTimeout(timer); });
+  }
+
   function showSuccess(url, emailSent) {
     var success = document.getElementById("piq-success");
     var copy = document.getElementById("piq-success-copy");
@@ -157,7 +180,7 @@
     });
     copy.textContent = emailSent
       ? "Check your email. The PropIQ report link for this address is on its way, and Tom is copied."
-      : "We couldn't send the email just now. You can open the report from this page.";
+      : "The email may not have sent. You can still open the report from this page.";
     open.href = url;
     success.hidden = false;
   }
@@ -206,7 +229,7 @@
     }
 
     var controller = new AbortController();
-    var timer = setTimeout(function () { controller.abort(); }, CLIENT_TIMEOUT_MS);
+    var timer = setTimeout(function () { controller.abort(); }, HANDOVER_TIMEOUT_MS);
 
     fetch("/.netlify/functions/pifi-handover", {
       method: "POST",
@@ -220,17 +243,21 @@
         });
       })
       .then(function (result) {
+        clearTimeout(timer);
         var url = result.body && result.body.url;
         if (result.status === 201 && typeof url === "string" && url.indexOf("https://") === 0) {
-          setBusy(false);
-          showSuccess(url, result.body.emailSent === true);
-          if (window.umami) {
-            window.umami.track("property-iq-ready", {
-              location: "property-iq",
-              emailSent: result.body.emailSent === true ? "yes" : "no",
+          return wait(READY_DELAY_MS).then(function () {
+            return notifyReport(payload.email, payload.address, url).then(function (emailSent) {
+              setBusy(false);
+              showSuccess(url, emailSent);
+              if (window.umami) {
+                window.umami.track("property-iq-ready", {
+                  location: "property-iq",
+                  emailSent: emailSent ? "yes" : "no",
+                });
+              }
             });
-          }
-          return;
+          });
         }
         setBusy(false);
         showError(result.body && result.body.message
@@ -240,9 +267,6 @@
       .catch(function () {
         setBusy(false);
         showError("Something didn't go through. Try again in a minute. If it keeps failing, email us and we'll sort it.");
-      })
-      .finally(function () {
-        clearTimeout(timer);
       });
   });
 })();
