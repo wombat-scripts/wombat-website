@@ -60,9 +60,7 @@ permalink: /property-iq/
       </button>
       <div class="piq-progress" id="piq-wait" hidden>
         <div class="piq-progress__meter">
-          <svg class="piq-cog" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M20.2 2.5h7.6l1.1 6.4a15.8 15.8 0 0 1 4.6 1.9l5.8-3.1 5.4 5.4-3.1 5.8a15.8 15.8 0 0 1 1.9 4.6l6.4 1.1v7.6l-6.4 1.1a15.8 15.8 0 0 1-1.9 4.6l3.1 5.8-5.4 5.4-5.8-3.1a15.8 15.8 0 0 1-4.6 1.9l-1.1 6.4h-7.6l-1.1-6.4a15.8 15.8 0 0 1-4.6-1.9l-5.8 3.1-5.4-5.4 3.1-5.8a15.8 15.8 0 0 1-1.9-4.6L2.5 27.8v-7.6l6.4-1.1a15.8 15.8 0 0 1 1.9-4.6L7.7 8.7l5.4-5.4 5.8 3.1a15.8 15.8 0 0 1 4.6-1.9l1.1-6.4zM24 16.2a7.8 7.8 0 1 0 .1 15.6 7.8 7.8 0 0 0-.1-15.6z"/>
-          </svg>
+          <span class="piq-spinner" aria-hidden="true"></span>
           <p class="piq-progress__time">
             <span class="piq-progress__label">Elapsed</span>
             <span id="piq-elapsed">0:00</span>
@@ -71,9 +69,9 @@ permalink: /property-iq/
         <p class="ads-form__trust" role="status">Getting your report ready. This can take about a minute. Please keep this tab open.</p>
       </div>
       <p class="ads-form__status ads-form__status--error" id="piq-error" role="alert" hidden></p>
-      <div id="piq-success" hidden>
-        <p class="ads-form__status ads-form__status--success" id="piq-success-copy"></p>
-        <a class="btn btn--primary btn--lg" id="piq-open" target="_blank" rel="noopener noreferrer">Open your report</a>
+      <div class="piq-success" id="piq-success" hidden>
+        <p class="piq-success__copy" id="piq-success-copy"></p>
+        <a class="btn btn--primary btn--lg piq-success__open" id="piq-open" target="_blank" rel="noopener noreferrer">Open your report</a>
       </div>
       <p class="ads-form__privacy muted">Wombat Home Loans · Credit Rep CRN 559744 · ACL 561324. PropIQ is provided by PiFi. We're not giving valuations advice on this page. The report is a starting point for a conversation.</p>
     </form>

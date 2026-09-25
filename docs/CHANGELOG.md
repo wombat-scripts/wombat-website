@@ -6,6 +6,10 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-25. Property IQ spinner, success spacing, and unit addresses
+
+The busy state uses a clay and oak ring instead of the cog, with the same elapsed clock. After success the submit button hides, the email note sits as quiet text, and Open your report is full width. A typed unit such as `3/9` or `Unit 3/9` stays on the address when a suggestion only has the street number.
+
 ## 2026-09-25. Property IQ shows a cog and elapsed time while it waits
 
 While the report is running, the form shows a turning oak cog and an elapsed clock (`0:12`) next to the existing wait line. Both hide on success or error.

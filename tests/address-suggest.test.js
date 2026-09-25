@@ -36,6 +36,21 @@ test('state names become abbreviations and duplicates collapse', async function 
   assert.equal(list[0].address, '4 Queen Street, Brisbane QLD 4000');
 });
 
+test('a typed unit stays on the street when Photon only has the street number', async function () {
+  var lib = await import('../netlify/functions/address-suggest-lib.mjs');
+  var features = [
+    { properties: { type: 'house', housenumber: '3', street: 'Webb Street', district: 'East Gosford', city: 'Gosford', state: 'New South Wales', postcode: '2250', countrycode: 'AU' } },
+    { properties: { type: 'street', name: 'Webb Street', city: 'East Gosford', state: 'NSW', postcode: '2250', countrycode: 'AU' } },
+  ];
+  var slash = lib.suggestionsFromFeatures(features, '3/9 Webb');
+  assert.equal(slash[0].address, '3/9 Webb Street, East Gosford NSW 2250');
+  assert.equal(slash.some(function (item) { return item.address.indexOf('3 Webb') === 0; }), false);
+  var labelled = lib.suggestionsFromFeatures(features, 'Unit 3/9 Webb');
+  assert.equal(labelled[0].address, 'Unit 3/9 Webb Street, East Gosford NSW 2250');
+  assert.equal(lib.streetRemainder('3/9 Webb'), 'Webb');
+  assert.equal(lib.streetRemainder('12 Gore'), 'Gore');
+});
+
 test('short queries and the client stay on our function', function () {
   var page = fs.readFileSync(path.join(root, 'src/property-iq.njk'), 'utf8');
   var client = fs.readFileSync(path.join(root, 'src/assets/js/property-iq.js'), 'utf8');
@@ -46,6 +61,7 @@ test('short queries and the client stay on our function', function () {
   assert.match(client, /\/\.netlify\/functions\/address-suggest\?q=/);
   assert.match(client, /280/);
   assert.match(client, /ArrowDown/);
+  assert.match(client, /withTypedUnit/);
   assert.doesNotMatch(client + page, /photon\.komoot\.io/);
   assert.doesNotMatch(client + page, /api\.pifiproperty\.com/);
   assert.doesNotMatch(client + page + fn, /\u2014/);

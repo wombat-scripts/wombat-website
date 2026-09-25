@@ -7,9 +7,9 @@
  */
 import {
   MIN_QUERY,
-  leadingNumber,
   normaliseQuery,
   queryTokens,
+  streetRemainder,
   suggestionsFromFeatures,
 } from "./address-suggest-lib.mjs";
 
@@ -53,8 +53,7 @@ async function photonFeatures(query) {
 
 async function suggestPhoton(query) {
   const lookups = [query];
-  const number = leadingNumber(query);
-  const rest = number ? query.replace(/^\s*\d+[a-z]?\b\s*/i, "").trim() : "";
+  const rest = streetRemainder(query);
   if (rest.length >= MIN_QUERY && rest !== query) lookups.push(rest);
   if (rest && !STREET_SUFFIX.test(rest)) lookups.push(rest + " street");
 
