@@ -6,6 +6,58 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-25. Property IQ success hides the submit button
+
+The submit button uses the shared `.btn` display, so `hidden` did not remove it after a report was ready. Success now adds `is-success` on the form and `is-visible` on the report link. The idle button stays Run my report. The link that appears afterwards says Open my report.
+
+## 2026-09-25. Property IQ shows one Run my report button
+
+The success block used `display: flex`, which overrode the hidden attribute, so a second brown button sat under the form before a report existed. That block stays hidden until handover returns a url. The label is Run my report.
+
+## 2026-09-25. Property IQ button says Run your report
+
+The idle button and the success link both say Run your report. Email me the report is gone. There is a little more space under that button before the fine print.
+
+## 2026-09-25. Property IQ spinner, success spacing, and unit addresses
+
+The busy state uses a clay and oak ring instead of the cog, with the same elapsed clock. After success the submit button hides, the email note sits as quiet text, and Open your report is full width. A typed unit such as `3/9` or `Unit 3/9` stays on the address when a suggestion only has the street number.
+
+## 2026-09-25. Property IQ shows a cog and elapsed time while it waits
+
+While the report is running, the form shows a turning oak cog and an elapsed clock (`0:12`) next to the existing wait line. Both hide on success or error.
+
+## 2026-09-25. Property IQ wait moved into the browser
+
+A 35 second sleep inside `pifi-handover` hit the Netlify plan limit at about 30 seconds and returned HTTP 502. `timeout = 90` in the toml was ignored. The handover function now returns `{ url }` as soon as PiFi answers, with no sleep and no Resend call. The Property IQ page stays busy for 35 seconds, then `propiq-notify` emails the link. If that email does not send, the page still shows Open your report and does not claim the email went out. Heshan may later give a ready signal, and this fixed delay can come out.
+
+## 2026-09-25. Property IQ waits before the report link
+
+After PiFi returns a URL, the function waits `PROPIQ_READY_DELAY_MS` (default 35000) before emailing and before the page shows success. The chat URL does not change when the report finishes, so the wait is so the person lands on the finished report. Heshan may later give a ready signal, and this fixed delay can come out. Superseded the same day: the wait moved to the browser because the function was cut off at about 30 seconds.
+
+## 2026-09-25. Property IQ emails the report
+
+`/property-iq/` is address, email, and consent. The handover function always sends journey `price` and context `just curious`. On success it emails the link with Resend (CC Tom) and stays on the page, with an Open your report link. No auto tab.
+
+## 2026-09-25. Property IQ address suggestions
+
+`/property-iq/` suggests Australian addresses from a server-only Netlify Function (Photon for QA). Picking one fills the handover address string. No provider key in the browser. Homepage Tools card is still a link only.
+
+## 2026-09-25. PropIQ returnUrl is the property page
+
+Handover `returnUrl` is `https://www.wombathomeloans.com.au/property-iq` (www, no trailing slash). QA host and key still come from env only.
+
+## 2026-09-25. Property IQ copy from Demand
+
+Homepage card, `/property-iq/` form, calculators line, and error messages now use Courtney's PropIQ copy. "Just pricing" still sends journey `price`. No em dashes.
+
+## 2026-09-25. Property IQ partner handover (QA)
+
+Homepage Tools card and the footer Property search link now go to `/property-iq/` instead of the direct PiFi listings site. The page collects email, address, journey, optional notes, and consent, then a Netlify Function posts to the PiFi QA handover API using `PIFI_API_HOST` and `PIFI_PARTNER_KEY`. The browser opens the returned url unchanged. Nav and the calculators hub link here as well. QA host only. No partner key in source.
+
+**Files changed:** `netlify/functions/pifi-handover.mjs`, `netlify/functions/pifi-handover-lib.mjs`, `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/index.njk`, `src/_includes/nav.njk`, `src/_includes/footer.njk`, `src/calculators/index.njk`, `src/_includes/css/styles.css`, `src/_data/site.json`, `src/llms.txt.njk`, `tests/pifi-handover.test.js`, `tests/homepage.test.js`
+
+---
+
 ## 2026-09-23. Google rating 4.9/13 and money-page internal links
 
 AggregateRating on the sitewide JSON-LD now matches the Google Business Profile as of 23 Sep 2026: ratingValue 4.9, ratingCount 13 (was 5.0 from 12). Homepage ticket and llms.txt say 4.9 Google. Contextual links, using existing page titles, into the first-home, investor and refinance hubs, the RSU, bank-staff and expat guides, construction pause-repay, the podcast, Just4Fun, and the legal pages. `/landing/expat-home-loans/` and `/stop-renting/` stay unlinked from main content.

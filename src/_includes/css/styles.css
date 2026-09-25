@@ -3318,6 +3318,10 @@ input[type="range"].calc-range::-moz-range-thumb {
   margin-top: var(--space-2);
 }
 
+.piq-form .ads-form__submit {
+  margin-bottom: var(--space-5);
+}
+
 .ads-form__submit:disabled {
   opacity: 0.72;
   cursor: wait;
@@ -3455,4 +3459,215 @@ input[type="range"].calc-range::-moz-range-thumb {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-8);
   }
+}
+
+/* Property IQ form. kitchen-table chips on the ads form card. */
+.piq-journey {
+  border: 0;
+  padding: 0;
+  margin: 0 0 var(--space-4);
+}
+
+.piq-journey legend {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.piq-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.piq-chip {
+  position: relative;
+  cursor: pointer;
+}
+
+.piq-chip input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.piq-chip span {
+  display: inline-block;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--ink);
+  background: var(--cream);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.piq-chip input:focus-visible + span {
+  outline: 2px solid var(--oak-deep);
+  outline-offset: 2px;
+}
+
+.piq-chip input:checked + span {
+  background: var(--oak-deep);
+  color: var(--cream);
+}
+
+.piq-consent__label {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.piq-consent__label input {
+  margin-top: 0.2rem;
+  flex: 0 0 auto;
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--oak-deep);
+}
+
+.piq-calc-cta {
+  margin-top: var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.piq-form textarea.ads-form__input {
+  resize: vertical;
+  min-height: 7rem;
+}
+
+.piq-suggest {
+  position: relative;
+}
+
+.piq-suggest__list {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  list-style: none;
+  background: var(--cream);
+  border: 1px solid var(--ink);
+  box-shadow: var(--shadow-md);
+  max-height: 16rem;
+  overflow: auto;
+}
+
+.piq-suggest__option {
+  padding: 0.7rem 0.9rem;
+  cursor: pointer;
+  font-size: var(--fs-small);
+  color: var(--ink);
+}
+
+.piq-suggest__option.is-active,
+.piq-suggest__option:hover {
+  background: var(--oak-deep);
+  color: var(--cream);
+}
+
+.piq-suggest__empty {
+  padding: 0.7rem 0.9rem;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.piq-progress {
+  margin-top: var(--space-4);
+  padding: 0.9rem 1rem 0.35rem;
+  border: 1px solid var(--oak);
+  background: #f3eadc;
+  box-shadow: 3px 3px 0 var(--oak);
+}
+
+.piq-progress__meter {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.piq-spinner {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  border: 3px solid var(--oak);
+  border-top-color: var(--clay);
+  animation: piq-spin 0.8s linear infinite;
+}
+
+@keyframes piq-spin {
+  to { transform: rotate(360deg); }
+}
+
+.piq-success {
+  display: none;
+}
+
+.piq-success.is-visible {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin-top: var(--space-4);
+}
+
+.piq-form.is-success #piq-submit {
+  display: none;
+}
+
+.piq-success__copy {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+  line-height: var(--lh-body);
+}
+
+.piq-success__open {
+  width: 100%;
+  margin-bottom: var(--space-5);
+}
+
+.piq-progress__time {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.piq-progress__label {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--oak-deep);
+}
+
+.piq-progress .ads-form__trust {
+  margin-top: 0.75rem;
+}
+
+.piq-suggest__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

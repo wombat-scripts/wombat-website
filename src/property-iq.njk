@@ -1,0 +1,81 @@
+---
+title: "Property IQ"
+description: "Tell us an address and your email. We'll send a free PropIQ report so you can see what the place is really worth, before you chase the bank or the auction."
+layout: base.njk
+permalink: /property-iq/
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Property IQ",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/property-iq/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+  "provider": { "@type": "MortgageBroker", "name": "Wombat Home Loans", "url": "https://wombathomeloans.com.au/" }
+}
+</script>
+{% endblock %}
+
+<section class="section section--tight">
+  <div class="container container--narrow">
+    <p class="calc-breadcrumb"><a href="/calculators/">← Calculators</a></p>
+    <h1>Property IQ</h1>
+    <p class="lede">Tell us an address and your email. We'll send a free PropIQ report so you can see what the place is really worth, before you chase the bank or the auction.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container container--narrow">
+    <form class="ads-form-card piq-form" id="piq-form" novalidate>
+      <div class="ads-form__field">
+        <label for="piq-address">Property address</label>
+        <div class="piq-suggest" id="piq-suggest">
+          <input class="ads-form__input" id="piq-address" name="address" type="text" autocomplete="off" maxlength="300" required role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="piq-suggest-list" aria-describedby="piq-address-hint">
+          <ul class="piq-suggest__list" id="piq-suggest-list" role="listbox" hidden></ul>
+        </div>
+        <p class="calc-field__hint" id="piq-address-hint">Start typing the street address (Australia). Choose a suggestion so we look up the right place.</p>
+        <p class="piq-suggest__status" id="piq-suggest-status" aria-live="polite"></p>
+      </div>
+
+      <div class="ads-form__field">
+        <label for="piq-email">Your email</label>
+        <input class="ads-form__input" id="piq-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+        <p class="calc-field__hint">We'll send the report link here. No newsletter signup on this step.</p>
+      </div>
+
+      <div class="ads-form__field piq-consent">
+        <label class="piq-consent__label" for="piq-consent">
+          <input type="checkbox" id="piq-consent" name="consent" required>
+          <span>I agree Wombat can send my email and this address to PropIQ (PiFi) so they can open my free property report.</span>
+        </label>
+      </div>
+
+      <button class="btn btn--primary btn--lg ads-form__submit" id="piq-submit" type="submit">
+        Run my report
+      </button>
+      <div class="piq-progress" id="piq-wait" hidden>
+        <div class="piq-progress__meter">
+          <span class="piq-spinner" aria-hidden="true"></span>
+          <p class="piq-progress__time">
+            <span class="piq-progress__label">Elapsed</span>
+            <span id="piq-elapsed">0:00</span>
+          </p>
+        </div>
+        <p class="ads-form__trust" role="status">Getting your report ready. This can take about a minute. Please keep this tab open.</p>
+      </div>
+      <p class="ads-form__status ads-form__status--error" id="piq-error" role="alert" hidden></p>
+      <div class="piq-success" id="piq-success" hidden>
+        <p class="piq-success__copy" id="piq-success-copy"></p>
+        <a class="btn btn--primary btn--lg piq-success__open" id="piq-open" target="_blank" rel="noopener noreferrer">Open my report</a>
+      </div>
+      <p class="ads-form__privacy muted">Wombat Home Loans · Credit Rep CRN 559744 · ACL 561324. PropIQ is provided by PiFi. We're not giving valuations advice on this page. The report is a starting point for a conversation.</p>
+    </form>
+  </div>
+</section>
+
+<script src="/assets/js/property-iq.js" defer></script>
