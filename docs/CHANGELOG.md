@@ -6,6 +6,10 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-25. Property IQ shows a cog and elapsed time while it waits
+
+While the report is running, the form shows a turning oak cog and an elapsed clock (`0:12`) next to the existing wait line. Both hide on success or error.
+
 ## 2026-09-25. Property IQ wait moved into the browser
 
 A 35 second sleep inside `pifi-handover` hit the Netlify plan limit at about 30 seconds and returned HTTP 502. `timeout = 90` in the toml was ignored. The handover function now returns `{ url }` as soon as PiFi answers, with no sleep and no Resend call. The Property IQ page stays busy for 35 seconds, then `propiq-notify` emails the link. If that email does not send, the page still shows Open your report and does not claim the email went out. Heshan may later give a ready signal, and this fixed delay can come out.

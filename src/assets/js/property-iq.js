@@ -5,6 +5,9 @@
   var submitBtn = document.getElementById("piq-submit");
   var errorEl = document.getElementById("piq-error");
   var waitEl = document.getElementById("piq-wait");
+  var elapsedEl = document.getElementById("piq-elapsed");
+  var elapsedTimer = null;
+  var elapsedStarted = 0;
   var addressInput = document.getElementById("piq-address");
   var suggestList = document.getElementById("piq-suggest-list");
   var suggestStatus = document.getElementById("piq-suggest-status");
@@ -27,12 +30,29 @@
     errorEl.hidden = true;
   }
 
+  function formatElapsed(ms) {
+    var total = Math.max(0, Math.floor(ms / 1000));
+    var minutes = Math.floor(total / 60);
+    var seconds = total % 60;
+    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+  }
+
   function setBusy(on) {
     busy = on;
     submitBtn.disabled = on;
     submitBtn.textContent = on ? "Getting your report…" : "Email me the report";
     submitBtn.setAttribute("aria-busy", on ? "true" : "false");
     waitEl.hidden = !on;
+    if (elapsedTimer) {
+      clearInterval(elapsedTimer);
+      elapsedTimer = null;
+    }
+    if (!on) return;
+    elapsedStarted = Date.now();
+    if (elapsedEl) elapsedEl.textContent = "0:00";
+    elapsedTimer = setInterval(function () {
+      if (elapsedEl) elapsedEl.textContent = formatElapsed(Date.now() - elapsedStarted);
+    }, 1000);
   }
 
   function markAddressHint() {
