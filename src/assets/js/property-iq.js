@@ -99,10 +99,29 @@
     }
   }
 
+  function typedUnit(value) {
+    var text = String(value || "").trim();
+    var match = text.match(/^(unit|flat|apartment|apt)\s+(\d+[a-z]?(?:\s*\/\s*\d+[a-z]?)?)/i);
+    if (match) {
+      var word = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+      return word + " " + match[2].replace(/\s*\/\s*/g, "/");
+    }
+    match = text.match(/^(\d+[a-z]?)\s*\/\s*(\d+[a-z]?)/i);
+    if (match) return match[1] + "/" + match[2];
+    return "";
+  }
+
+  function withTypedUnit(typed, suggestion) {
+    var unit = typedUnit(typed);
+    if (!unit) return suggestion;
+    if (suggestion.toLowerCase().indexOf(unit.toLowerCase() + " ") === 0) return suggestion;
+    return suggestion.replace(/^\s*(?:unit|flat|apartment|apt)\s+\d+[a-z]?(?:\s*\/\s*\d+[a-z]?)?\s*|^\s*\d+[a-z]?(?:\s*\/\s*\d+[a-z]?)?\s*/i, unit + " ");
+  }
+
   function chooseSuggestion(index) {
     var item = suggestions[index];
     if (!item) return;
-    addressInput.value = item.address;
+    addressInput.value = withTypedUnit(addressInput.value, item.address);
     markAddressHint();
     if (suggestStatus) suggestStatus.textContent = "Address set to " + item.address;
     closeSuggestions();
@@ -118,7 +137,10 @@
       .then(function (res) { return res.json(); })
       .then(function (body) {
         if (addressInput.value.trim() !== query) return;
-        suggestions = Array.isArray(body.suggestions) ? body.suggestions.slice(0, 8) : [];
+        suggestions = (Array.isArray(body.suggestions) ? body.suggestions.slice(0, 8) : []).map(function (item) {
+          var address = withTypedUnit(query, item.address || item.label || "");
+          return { label: address, address: address };
+        });
         activeIndex = suggestions.length ? 0 : -1;
         renderSuggestions();
         if (suggestStatus) {

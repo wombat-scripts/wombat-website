@@ -3590,17 +3590,36 @@ input[type="range"].calc-range::-moz-range-thumb {
   gap: 0.85rem;
 }
 
-.piq-cog {
-  width: 2.25rem;
-  height: 2.25rem;
+.piq-spinner {
+  width: 1.75rem;
+  height: 1.75rem;
   flex: 0 0 auto;
-  color: var(--oak-deep);
-  transform-origin: 50% 50%;
-  animation: piq-cog 2.6s linear infinite;
+  border-radius: 50%;
+  border: 3px solid var(--oak);
+  border-top-color: var(--clay);
+  animation: piq-spin 0.8s linear infinite;
 }
 
-@keyframes piq-cog {
+@keyframes piq-spin {
   to { transform: rotate(360deg); }
+}
+
+.piq-success {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin-top: var(--space-4);
+}
+
+.piq-success__copy {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+  line-height: var(--lh-body);
+}
+
+.piq-success__open {
+  width: 100%;
 }
 
 .piq-progress__time {

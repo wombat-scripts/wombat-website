@@ -108,7 +108,9 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(client, /wait\(READY_DELAY_MS\)/);
   assert.match(client, /The email may not have sent/);
   assert.match(page, /about a minute/);
-  assert.match(page, /class="piq-cog"/);
+  assert.match(page, /class="piq-spinner"/);
+  assert.match(page, /piq-success__open/);
+  assert.doesNotMatch(page, /piq-cog/);
   assert.match(page, /id="piq-elapsed"/);
   assert.match(page, /Elapsed/);
   assert.match(client, /formatElapsed/);

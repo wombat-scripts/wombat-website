@@ -30,19 +30,43 @@ export function abbreviateState(state) {
   return STATE_ABBR[key] || "";
 }
 
+export function leadingNumber(query) {
+  const match = String(query || "").match(/^\s*(\d+[a-z]?)\b/i);
+  return match ? match[1] : "";
+}
+
+export function typedUnit(query) {
+  const text = String(query || "").trim();
+  let match = text.match(/^(unit|flat|apartment|apt)\s+(\d+[a-z]?(?:\s*\/\s*\d+[a-z]?)?)/i);
+  if (match) {
+    const word = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+    return word + " " + match[2].replace(/\s*\/\s*/g, "/");
+  }
+  match = text.match(/^(\d+[a-z]?)\s*\/\s*(\d+[a-z]?)/i);
+  if (match) return match[1] + "/" + match[2];
+  return "";
+}
+
+export function streetRemainder(query) {
+  const text = String(query || "").trim();
+  if (typedUnit(query)) {
+    return text
+      .replace(/^(?:unit|flat|apartment|apt)\s+\d+[a-z]?(?:\s*\/\s*\d+[a-z]?)?\s*/i, "")
+      .replace(/^\d+[a-z]?\s*\/\s*\d+[a-z]?\s*/i, "")
+      .trim();
+  }
+  const number = leadingNumber(query);
+  if (!number) return text;
+  return text.replace(/^\s*\d+[a-z]?\b\s*/i, "").trim();
+}
+
 export function queryTokens(query) {
-  return String(query || "")
+  return streetRemainder(query)
     .toLowerCase()
-    .replace(/^\s*\d+[a-z]?\b/, " ")
     .split(/[^a-z]+/)
     .filter(function (token) {
       return token.length >= 3 && !STATE_ABBR[token];
     });
-}
-
-export function leadingNumber(query) {
-  const match = String(query || "").match(/^\s*(\d+[a-z]?)\b/i);
-  return match ? match[1] : "";
 }
 
 function localityOf(props) {
@@ -70,7 +94,8 @@ export function formatSuggestion(feature, query) {
   if (/freeway|motorway/i.test(street)) return null;
   const fromFeature = String(props.housenumber || "").trim();
   const fromQuery = leadingNumber(query);
-  const number = fromFeature || fromQuery;
+  const unit = typedUnit(query);
+  const number = unit || fromFeature || fromQuery;
   if (!number || !street) return null;
   const locality = localityOf(props);
   const state = abbreviateState(props.state);
