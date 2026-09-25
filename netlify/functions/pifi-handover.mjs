@@ -9,6 +9,7 @@
 import {
   TIMEOUT_MS,
   assertQaHost,
+  COPY,
   friendlyConfigError,
   mapUpstream,
   validateInput,
@@ -47,7 +48,7 @@ async function callUpstream(host, key, body) {
 
 export default async (req) => {
   if (req.method !== "POST") {
-    return json(405, { message: "Send a POST request.", retryable: false });
+    return json(405, { message: COPY.fail, retryable: false });
   }
 
   const hostEnv = process.env.PIFI_API_HOST;
@@ -70,10 +71,7 @@ export default async (req) => {
   try {
     raw = await req.json();
   } catch {
-    return json(400, {
-      message: "Check the email, the address, and what you want to do, then try again.",
-      retryable: false,
-    });
+    return json(400, { message: COPY.fail, retryable: false });
   }
 
   const validated = validateInput(raw);
@@ -91,12 +89,7 @@ export default async (req) => {
       const timedOut = err && (err.name === "TimeoutError" || err.name === "AbortError");
       console.error("pifi-handover: upstream failed", timedOut ? "timeout" : "network");
       if (attempt < 2) continue;
-      return json(504, {
-        message: timedOut
-          ? "That took too long. Please try once more."
-          : "Something went wrong preparing the report. Please try once more in a moment.",
-        retryable: true,
-      });
+      return json(504, { message: COPY.fail, retryable: true });
     }
 
     if (result.status === 201 && result.upstream && typeof result.upstream.url === "string") {
@@ -110,8 +103,5 @@ export default async (req) => {
     return json(mapped.status, { message: mapped.message, retryable: mapped.retryable });
   }
 
-  return json(502, {
-    message: "Something went wrong preparing the report. Please try once more in a moment.",
-    retryable: true,
-  });
+  return json(502, { message: COPY.fail, retryable: true });
 };

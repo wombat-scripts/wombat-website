@@ -6,6 +6,10 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-25. Property IQ copy from Demand
+
+Homepage card, `/property-iq/` form, calculators line, and error messages now use Courtney's PropIQ copy. "Just pricing" still sends journey `price`. No em dashes.
+
 ## 2026-09-25. Property IQ partner handover (QA)
 
 Homepage Tools card and the footer Property search link now go to `/property-iq/` instead of the direct PiFi listings site. The page collects email, address, journey, optional notes, and consent, then a Netlify Function posts to the PiFi QA handover API using `PIFI_API_HOST` and `PIFI_PARTNER_KEY`. The browser opens the returned url unchanged. Nav and the calculators hub link here as well. QA host only. No partner key in source.

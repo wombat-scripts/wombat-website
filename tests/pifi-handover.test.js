@@ -58,7 +58,7 @@ test('upstream errors map to friendly copy and the right retry rule', async func
   var lib = await import('../netlify/functions/pifi-handover-lib.mjs');
   assert.equal(lib.mapUpstream(401, { message: 'unauthorized' }).retryable, false);
   assert.equal(lib.mapUpstream(422, { error: 'unusable_address' }).status, 422);
-  assert.match(lib.mapUpstream(422, { error: 'unusable_address' }).message, /street number/);
+  assert.match(lib.mapUpstream(422, { error: 'unusable_address' }).message, /couldn't match that address/);
   assert.equal(lib.mapUpstream(409, { error: 'cap_reached' }).retryable, false);
   assert.equal(lib.mapUpstream(400, { error: 'invalid_return_url' }).retryable, false);
   assert.equal(lib.mapUpstream(400, { message: ['journey'] }).retryable, false);
@@ -200,6 +200,7 @@ test('handler does not retry a 401 and refuses the live host', { concurrency: fa
 test('calculators hub has a light Property IQ link and still seven calculators', function () {
   var calcs = read('src/calculators/index.njk');
   assert.match(calcs, /href="\/property-iq\/"/);
-  assert.match(calcs, /Strategy Session/);
+  assert.match(calcs, /Try Property IQ/);
+  assert.match(calcs, /Free PropIQ report on any address/);
   assert.equal((calcs.match(/Open calculator →/g) || []).length, 7);
 });
