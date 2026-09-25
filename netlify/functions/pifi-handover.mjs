@@ -15,6 +15,7 @@ import {
   buildReportEmail,
   friendlyConfigError,
   mapUpstream,
+  readyDelayMs,
   validateInput,
 } from "./pifi-handover-lib.mjs";
 
@@ -96,7 +97,8 @@ export default async (req) => {
     }
 
     if (result.status === 201 && result.upstream && typeof result.upstream.url === "string") {
-      console.info("pifi-handover: created");
+      console.info("pifi-handover: created, waiting for report");
+      await waitForReport();
       const emailSent = await sendReportEmail({
         to: validated.body.email,
         address: validated.body.address,
@@ -113,6 +115,12 @@ export default async (req) => {
 
   return json(502, { message: COPY.fail, retryable: true });
 };
+
+function waitForReport() {
+  const ms = readyDelayMs();
+  if (ms === 0) return Promise.resolve();
+  return new Promise(function (resolve) { setTimeout(resolve, ms); });
+}
 
 async function sendReportEmail({ to, address, url }) {
   const key = process.env.RESEND_API_KEY;
@@ -148,3 +156,5 @@ async function sendReportEmail({ to, address, url }) {
     return false;
   }
 }
+
+export const config = { timeout: 90 };
