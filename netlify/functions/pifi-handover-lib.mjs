@@ -7,7 +7,6 @@
 export const QA_HOST = "https://api.qa.pifiproperty.com";
 export const RETURN_URL = "https://www.wombathomeloans.com.au/property-iq";
 export const TIMEOUT_MS = 30000;
-export const DEFAULT_READY_DELAY_MS = 35000;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -130,12 +129,14 @@ export function mapUpstream(status, body) {
   return { status: 502, retryable: false, message: COPY.fail };
 }
 
-export function readyDelayMs(raw) {
-  const value = raw === undefined ? process.env.PROPIQ_READY_DELAY_MS : raw;
-  if (value === undefined || value === "") return DEFAULT_READY_DELAY_MS;
-  const parsed = Number(value);
-  if (!Number.isFinite(parsed) || parsed < 0) return DEFAULT_READY_DELAY_MS;
-  return parsed;
+export function isReportUrl(value) {
+  try {
+    const url = new URL(String(value || ""));
+    const host = url.hostname.toLowerCase();
+    return url.protocol === "https:" && (host === "pifiproperty.com" || host.endsWith(".pifiproperty.com"));
+  } catch {
+    return false;
+  }
 }
 
 export function friendlyConfigError() {

@@ -6,9 +6,13 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-25. Property IQ wait moved into the browser
+
+A 35 second sleep inside `pifi-handover` hit the Netlify plan limit at about 30 seconds and returned HTTP 502. `timeout = 90` in the toml was ignored. The handover function now returns `{ url }` as soon as PiFi answers, with no sleep and no Resend call. The Property IQ page stays busy for 35 seconds, then `propiq-notify` emails the link. If that email does not send, the page still shows Open your report and does not claim the email went out. Heshan may later give a ready signal, and this fixed delay can come out.
+
 ## 2026-09-25. Property IQ waits before the report link
 
-After PiFi returns a URL, the function waits `PROPIQ_READY_DELAY_MS` (default 35000) before emailing and before the page shows success. The chat URL does not change when the report finishes, so the wait is so the person lands on the finished report. Heshan may later give a ready signal, and this fixed delay can come out.
+After PiFi returns a URL, the function waits `PROPIQ_READY_DELAY_MS` (default 35000) before emailing and before the page shows success. The chat URL does not change when the report finishes, so the wait is so the person lands on the finished report. Heshan may later give a ready signal, and this fixed delay can come out. Superseded the same day: the wait moved to the browser because the function was cut off at about 30 seconds.
 
 ## 2026-09-25. Property IQ emails the report
 

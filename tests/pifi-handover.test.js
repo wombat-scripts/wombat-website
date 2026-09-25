@@ -68,8 +68,10 @@ test('upstream errors map to friendly copy and the right retry rule', async func
 test('QA host guard refuses the live API host', async function () {
   var lib = await import('../netlify/functions/pifi-handover-lib.mjs');
   assert.equal(lib.assertQaHost('https://api.qa.pifiproperty.com/'), 'https://api.qa.pifiproperty.com');
-  assert.equal(lib.readyDelayMs(''), 35000);
-  assert.equal(lib.readyDelayMs('0'), 0);
+  assert.equal(lib.isReportUrl('https://wombathl.pifiproperty.com/s/abc'), true);
+  assert.equal(lib.isReportUrl('https://api.qa.pifiproperty.com/v1/partner/handover'), true);
+  assert.equal(lib.isReportUrl('http://wombathl.pifiproperty.com/s/abc'), false);
+  assert.equal(lib.isReportUrl('https://evil.example/s/abc'), false);
   assert.throws(function () {
     lib.assertQaHost('https://api.pifiproperty.com');
   });
@@ -79,6 +81,7 @@ test('source does not embed a partner key or the live handover host', function (
   var files = [
     'netlify/functions/pifi-handover.mjs',
     'netlify/functions/pifi-handover-lib.mjs',
+    'netlify/functions/propiq-notify.mjs',
     'src/property-iq.njk',
     'src/assets/js/property-iq.js',
     'src/index.njk',
@@ -98,13 +101,25 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(page, /Open your report/);
   assert.match(page, /Email me the report/);
   var client = read('src/assets/js/property-iq.js');
-  assert.match(client, /80000/);
+  assert.match(client, /40000/);
+  assert.match(client, /35000/);
+  assert.match(client, /15000/);
+  assert.match(client, /propiq-notify/);
+  assert.match(client, /wait\(READY_DELAY_MS\)/);
+  assert.match(client, /The email may not have sent/);
   assert.match(read('src/property-iq.njk'), /about a minute/);
   assert.doesNotMatch(client, /location\.assign/);
   assert.doesNotMatch(client, /umami\.track\([^)]*url/);
   var fn = read('netlify/functions/pifi-handover.mjs');
+  var notify = read('netlify/functions/propiq-notify.mjs');
   assert.match(fn, /AbortSignal\.timeout\(TIMEOUT_MS\)/);
   assert.match(fn, /Authorization: `Bearer \$\{key\}`/);
+  assert.doesNotMatch(fn, /api\.resend\.com/);
+  assert.doesNotMatch(fn, /readyDelayMs/);
+  assert.doesNotMatch(fn, /setTimeout/);
+  assert.match(notify, /api\.resend\.com/);
+  assert.match(notify, /isReportUrl/);
+  assert.doesNotMatch(notify, /\u2014/);
 });
 
 test('handler returns the upstream url unchanged and retries one generic 500', async function () {
@@ -126,10 +141,9 @@ test('handler returns the upstream url unchanged and retries one generic 500', a
       headers: { 'content-type': 'application/json' },
     });
   };
-  delete process.env.RESEND_API_KEY;
-  process.env.PROPIQ_READY_DELAY_MS = '0';
   process.env.PIFI_API_HOST = 'https://api.qa.pifiproperty.com';
   process.env.PIFI_PARTNER_KEY = 'qa-test-key';
+  process.env.RESEND_API_KEY = 're_test_key';
   var mod = await import('../netlify/functions/pifi-handover.mjs');
   var req = new Request('http://local/.netlify/functions/pifi-handover', {
     method: 'POST',
@@ -153,93 +167,122 @@ test('handler returns the upstream url unchanged and retries one generic 500', a
   assert.equal(sent.journey, 'price');
   assert.equal(sent.context, 'just curious');
   assert.equal(sent.returnUrl, 'https://www.wombathomeloans.com.au/property-iq');
-  assert.equal(body.emailSent, false);
+  assert.equal(body.emailSent, undefined);
   assert.equal(calls.length, 2);
+  assert.equal(calls.some(function (call) { return String(call.url).indexOf('resend') !== -1; }), false);
   assert.doesNotMatch(JSON.stringify(body), /qa-test-key/);
-  globalThis.fetch = previous;
-  delete process.env.PIFI_PARTNER_KEY;
-  delete process.env.PIFI_API_HOST;
-  delete process.env.PROPIQ_READY_DELAY_MS;
-});
-
-test('handler posts price and just curious, then emails via Resend', { concurrency: false }, async function () {
-  var calls = [];
-  var previous = globalThis.fetch;
-  globalThis.fetch = async function (url, opts) {
-    calls.push({ url: String(url), opts: opts });
-    if (String(url).indexOf('api.resend.com') !== -1) {
-      return new Response(JSON.stringify({ id: 'email_1' }), { status: 200 });
-    }
-    return new Response(JSON.stringify({ url: 'https://wombathl.pifiproperty.com/s/abc' }), { status: 201 });
-  };
-  process.env.PROPIQ_READY_DELAY_MS = '0';
-  process.env.PIFI_API_HOST = 'https://api.qa.pifiproperty.com';
-  process.env.PIFI_PARTNER_KEY = 'qa-test-key';
-  process.env.RESEND_API_KEY = 're_test_key';
-  var mod = await import('../netlify/functions/pifi-handover.mjs');
-  var res = await mod.default(new Request('http://local/', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({
-      email: 'sarah@example.com',
-      address: '12 Gore Street, Parramatta NSW 2150',
-      journey: 'buy',
-      context: 'ignore me',
-    }),
-  }));
-  var body = await res.json();
-  var handover = JSON.parse(calls[0].opts.body);
-  var mail = JSON.parse(calls[1].opts.body);
-  assert.equal(body.emailSent, true);
-  assert.equal(body.url, 'https://wombathl.pifiproperty.com/s/abc');
-  assert.equal(handover.journey, 'price');
-  assert.equal(handover.context, 'just curious');
-  assert.equal(mail.to[0], 'sarah@example.com');
-  assert.equal(mail.cc[0], 'tom@wombathomeloans.com.au');
-  assert.equal((mail.text.match(/https:\/\/wombathl\.pifiproperty\.com\/s\/abc/g) || []).length, 1);
   assert.doesNotMatch(JSON.stringify(body), /re_test_key/);
   globalThis.fetch = previous;
   delete process.env.RESEND_API_KEY;
   delete process.env.PIFI_PARTNER_KEY;
   delete process.env.PIFI_API_HOST;
-  delete process.env.PROPIQ_READY_DELAY_MS;
 });
 
-test('handler waits out the ready delay before email and before success', { concurrency: false }, async function () {
-  var order = [];
+test('notify emails a pifiproperty url and refuses anything else', { concurrency: false }, async function () {
+  var calls = [];
   var previous = globalThis.fetch;
-  globalThis.fetch = async function (url) {
-    order.push(String(url).indexOf('api.resend.com') !== -1 ? 'email' : 'handover');
-    if (String(url).indexOf('api.resend.com') !== -1) {
-      return new Response('{}', { status: 500 });
-    }
-    return new Response(JSON.stringify({ url: 'https://wombathl.pifiproperty.com/s/abc' }), { status: 201 });
+  globalThis.fetch = async function (url, opts) {
+    calls.push({ url: String(url), opts: opts });
+    return new Response(JSON.stringify({ id: 'email_1' }), { status: 200 });
   };
-  process.env.PROPIQ_READY_DELAY_MS = '80';
-  process.env.PIFI_API_HOST = 'https://api.qa.pifiproperty.com';
-  process.env.PIFI_PARTNER_KEY = 'qa-test-key';
   process.env.RESEND_API_KEY = 're_test_key';
-  var mod = await import('../netlify/functions/pifi-handover.mjs');
-  var started = Date.now();
-  var res = await mod.default(new Request('http://local/', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({
-      email: 'sarah@example.com',
-      address: '12 Gore Street, Parramatta NSW 2150',
-    }),
-  }));
-  var elapsed = Date.now() - started;
+  var mod = await import('../netlify/functions/propiq-notify.mjs');
+
+  async function post(body) {
+    return mod.default(new Request('http://local/.netlify/functions/propiq-notify', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(body),
+    }));
+  }
+
+  var res = await post({
+    email: 'sarah@example.com',
+    address: '12 Gore Street, Parramatta NSW 2150',
+    url: 'https://wombathl.pifiproperty.com/s/abc',
+  });
   var body = await res.json();
-  assert.ok(elapsed >= 80, 'expected the ready delay before the response');
-  assert.deepEqual(order, ['handover', 'email']);
-  assert.equal(body.emailSent, false);
-  assert.equal(body.url, 'https://wombathl.pifiproperty.com/s/abc');
+  var mail = JSON.parse(calls[0].opts.body);
+  assert.equal(res.status, 200);
+  assert.equal(body.emailSent, true);
+  assert.equal(calls[0].url, 'https://api.resend.com/emails');
+  assert.equal(calls[0].opts.headers.Authorization, 'Bearer re_test_key');
+  assert.equal(mail.to[0], 'sarah@example.com');
+  assert.equal(mail.cc[0], 'tom@wombathomeloans.com.au');
+  assert.equal(mail.from, 'Wombat Home Loans <tom@wombathomeloans.com.au>');
+  assert.equal((mail.text.match(/https:\/\/wombathl\.pifiproperty\.com\/s\/abc/g) || []).length, 1);
+  assert.doesNotMatch(mail.subject + mail.text, /\u2014/);
+  assert.doesNotMatch(JSON.stringify(body), /re_test_key/);
+  assert.equal(body.url, undefined);
+
+  var beforeRejects = calls.length;
+  var httpUrl = await post({
+    email: 'sarah@example.com',
+    address: '12 Gore Street, Parramatta NSW 2150',
+    url: 'http://wombathl.pifiproperty.com/s/abc',
+  });
+  var httpBody = await httpUrl.json();
+  assert.equal(httpUrl.status, 400);
+  assert.equal(httpBody.emailSent, false);
+  var otherHost = await post({
+    email: 'sarah@example.com',
+    address: '12 Gore Street, Parramatta NSW 2150',
+    url: 'https://evil.example/s/abc',
+  });
+  assert.equal(otherHost.status, 400);
+  assert.equal(calls.length, beforeRejects);
+
+  var qa = await post({
+    email: 'sarah@example.com',
+    address: '12 Gore Street, Parramatta NSW 2150',
+    url: 'https://app.qa.pifiproperty.com/s/abc',
+  });
+  var qaBody = await qa.json();
+  assert.equal(qa.status, 200);
+  assert.equal(qaBody.emailSent, true);
+
   globalThis.fetch = previous;
   delete process.env.RESEND_API_KEY;
-  delete process.env.PIFI_PARTNER_KEY;
-  delete process.env.PIFI_API_HOST;
-  delete process.env.PROPIQ_READY_DELAY_MS;
+});
+
+test('notify reports emailSent false when the key is missing or Resend fails', { concurrency: false }, async function () {
+  var calls = 0;
+  var previous = globalThis.fetch;
+  globalThis.fetch = async function () {
+    calls += 1;
+    return new Response('{}', { status: 500 });
+  };
+  delete process.env.RESEND_API_KEY;
+  var mod = await import('../netlify/functions/propiq-notify.mjs');
+  var payload = {
+    email: 'sarah@example.com',
+    address: '12 Gore Street, Parramatta NSW 2150',
+    url: 'https://wombathl.pifiproperty.com/s/abc',
+  };
+  var skipped = await mod.default(new Request('http://local/', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(payload),
+  }));
+  var skippedBody = await skipped.json();
+  assert.equal(skipped.status, 200);
+  assert.equal(skippedBody.emailSent, false);
+  assert.equal(calls, 0);
+
+  process.env.RESEND_API_KEY = 're_test_key';
+  var failed = await mod.default(new Request('http://local/', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(payload),
+  }));
+  var failedBody = await failed.json();
+  assert.equal(failed.status, 200);
+  assert.equal(failedBody.emailSent, false);
+  assert.equal(calls, 1);
+  assert.doesNotMatch(JSON.stringify(failedBody), /re_test_key/);
+
+  globalThis.fetch = previous;
+  delete process.env.RESEND_API_KEY;
 });
 
 test('handler does not retry a 401 and refuses the live host', { concurrency: false }, async function () {
