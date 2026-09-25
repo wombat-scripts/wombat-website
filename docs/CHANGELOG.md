@@ -6,11 +6,11 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
-## 2026-10-02. llms-full.txt, Gosford geo, Umami conversions
+## 2026-09-25. Property IQ partner handover (QA)
 
-`/llms.txt` is the short index and links to `/llms-full.txt`. The expanded brief carries the office address (Suite 1, 86 Mann St, Gosford NSW 2250), CRN 559744, ACL 561324, calculators, flagship article summaries, a one-line summary for every other article, and the public URL list. `/property-iq/` is not listed: production returns 404 and it is not in the live Tools nav. Sitewide FinancialService geo moves from the old Beecroft pin (-33.7511, 151.0759) to the Masons Building centroid at 86-88 Mann Street (-33.427413, 151.341382). AggregateRating stays 4.9 from 13. Umami: `book_strategy_scheduled` when Calendly posts `calendly.event_scheduled`, `stop_renting_callback_success` beside the existing callback event, and `middle_factfind_click` on any middle.finance link.
+Homepage Tools card and the footer Property search link now go to `/property-iq/` instead of the direct PiFi listings site. The page collects email, address, journey, optional notes, and consent, then a Netlify Function posts to the PiFi QA handover API using `PIFI_API_HOST` and `PIFI_PARTNER_KEY`. The browser opens the returned url unchanged. Nav and the calculators hub link here as well. QA host only. No partner key in source.
 
-**Files changed:** `src/llms.txt.njk`, `src/llms-full.txt.njk`, `src/robots.txt.njk`, `src/sitemap.xml.njk`, `src/_layouts/base.njk`, `src/book.njk`, `src/stop-renting.njk`, `src/assets/js/scripts.js`, `.eleventy.js`, article llms tests, `tests/llms-feed.test.js`
+**Files changed:** `netlify/functions/pifi-handover.mjs`, `netlify/functions/pifi-handover-lib.mjs`, `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/index.njk`, `src/_includes/nav.njk`, `src/_includes/footer.njk`, `src/calculators/index.njk`, `src/_includes/css/styles.css`, `src/_data/site.json`, `src/llms.txt.njk`, `tests/pifi-handover.test.js`, `tests/homepage.test.js`
 
 ---
 

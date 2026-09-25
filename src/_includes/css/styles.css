@@ -3456,3 +3456,84 @@ input[type="range"].calc-range::-moz-range-thumb {
     gap: var(--space-8);
   }
 }
+
+/* Property IQ form. kitchen-table chips on the ads form card. */
+.piq-journey {
+  border: 0;
+  padding: 0;
+  margin: 0 0 var(--space-4);
+}
+
+.piq-journey legend {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.piq-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.piq-chip {
+  position: relative;
+  cursor: pointer;
+}
+
+.piq-chip input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.piq-chip span {
+  display: inline-block;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--ink);
+  background: var(--cream);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.piq-chip input:focus-visible + span {
+  outline: 2px solid var(--oak-deep);
+  outline-offset: 2px;
+}
+
+.piq-chip input:checked + span {
+  background: var(--oak-deep);
+  color: var(--cream);
+}
+
+.piq-consent__label {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.piq-consent__label input {
+  margin-top: 0.2rem;
+  flex: 0 0 auto;
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--oak-deep);
+}
+
+.piq-calc-cta {
+  margin-top: var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.piq-form textarea.ads-form__input {
+  resize: vertical;
+  min-height: 7rem;
+}

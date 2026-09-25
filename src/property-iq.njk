@@ -1,0 +1,83 @@
+---
+title: "Property IQ. see what a place is worth"
+description: "Send an address to PropIQ and open a property report. Your email and notes stay on the server. Go Back returns you to a Strategy Session."
+layout: base.njk
+permalink: /property-iq/
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Property IQ",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/property-iq/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+  "provider": { "@type": "MortgageBroker", "name": "Wombat Home Loans", "url": "https://wombathomeloans.com.au/" }
+}
+</script>
+{% endblock %}
+
+<section class="section section--tight">
+  <div class="container container--narrow">
+    <p class="calc-breadcrumb"><a href="/calculators/">← Calculators</a></p>
+    <span class="eyebrow">Property IQ</span>
+    <h1>See what a place is <em>really worth.</em></h1>
+    <p class="lede">Tell us the address. We ask PiFi for a PropIQ report, then open it for you. If you want the loan side after that, Go Back lands on a Strategy Session.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container container--narrow">
+    <form class="ads-form-card piq-form" id="piq-form" novalidate>
+      <p class="ads-form__required muted">Email, address, and what you want to do are required.</p>
+
+      <div class="ads-form__field">
+        <label for="piq-email">Email</label>
+        <input class="ads-form__input" id="piq-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+      </div>
+
+      <div class="ads-form__field">
+        <label for="piq-address">Property address</label>
+        <input class="ads-form__input" id="piq-address" name="address" type="text" autocomplete="street-address" maxlength="300" required placeholder="12 Example Street, Parramatta NSW 2150">
+        <p class="calc-field__hint" id="piq-address-hint">Include a street number and a street name, plus suburb and state. A suburb on its own is not enough.</p>
+      </div>
+
+      <fieldset class="ads-form__field piq-journey">
+        <legend>What do you want to do?</legend>
+        <div class="piq-chips" role="radiogroup" aria-label="Journey">
+          <label class="piq-chip"><input type="radio" name="journey" value="buy" required><span>Buy</span></label>
+          <label class="piq-chip"><input type="radio" name="journey" value="invest"><span>Invest</span></label>
+          <label class="piq-chip"><input type="radio" name="journey" value="sell"><span>Sell</span></label>
+          <label class="piq-chip"><input type="radio" name="journey" value="rent"><span>Rent</span></label>
+          <label class="piq-chip"><input type="radio" name="journey" value="price"><span>Price</span></label>
+        </div>
+        <p class="calc-field__hint">Price means you want a read on what the place is worth.</p>
+      </fieldset>
+
+      <div class="ads-form__field">
+        <label for="piq-context">Notes <span class="muted">(optional)</span></label>
+        <textarea class="ads-form__input" id="piq-context" name="context" rows="4" maxlength="8000" placeholder="First home buyer with a 20% deposit."></textarea>
+      </div>
+
+      <div class="ads-form__field piq-consent">
+        <label class="piq-consent__label" for="piq-consent">
+          <input type="checkbox" id="piq-consent" name="consent" required>
+          <span>I agree that Wombat will send my email, this property address, and any notes to PiFi so they can prepare a PropIQ report. PiFi uses an AI assistant for the report. I can ask PiFi to delete my details.</span>
+        </label>
+      </div>
+
+      <button class="btn btn--primary btn--lg ads-form__submit" id="piq-submit" type="submit">
+        Open my report
+      </button>
+      <p class="ads-form__trust" id="piq-wait" hidden>Preparing your report. This can take about half a minute. Please keep this tab open.</p>
+      <p class="ads-form__status ads-form__status--error" id="piq-error" role="alert" hidden></p>
+      <p class="ads-form__privacy muted">The report opens on PiFi. Nothing about the link is sent to our analytics. <a href="/book/">Book a Strategy Session</a> if you would rather talk it through first.</p>
+    </form>
+  </div>
+</section>
+
+<script src="/assets/js/property-iq.js" defer></script>
