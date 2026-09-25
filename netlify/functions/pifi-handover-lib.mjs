@@ -5,7 +5,7 @@
  */
 
 export const QA_HOST = "https://api.qa.pifiproperty.com";
-export const RETURN_URL = "https://www.wombathomeloans.com.au/book/";
+export const RETURN_URL = "https://www.wombathomeloans.com.au/property-iq";
 export const TIMEOUT_MS = 30000;
 
 const JOURNEYS = new Set(["buy", "invest", "sell", "rent", "price"]);

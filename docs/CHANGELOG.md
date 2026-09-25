@@ -6,6 +6,10 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-25. PropIQ returnUrl is the property page
+
+Handover `returnUrl` is `https://www.wombathomeloans.com.au/property-iq` (www, no trailing slash). QA host and key still come from env only.
+
 ## 2026-09-25. Property IQ copy from Demand
 
 Homepage card, `/property-iq/` form, calculators line, and error messages now use Courtney's PropIQ copy. "Just pricing" still sends journey `price`. No em dashes.

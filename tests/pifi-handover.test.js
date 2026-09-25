@@ -23,7 +23,7 @@ test('handover payload omits empty notes and pins the Strategy Session return ur
   assert.equal(result.ok, true);
   assert.equal(result.body.context, undefined);
   assert.equal(result.body.reference, undefined);
-  assert.equal(result.body.returnUrl, 'https://www.wombathomeloans.com.au/book/');
+  assert.equal(result.body.returnUrl, 'https://www.wombathomeloans.com.au/property-iq');
   assert.equal(result.body.email, 'sarah@example.com');
   assert.equal(result.body.journey, 'buy');
 });
@@ -148,7 +148,7 @@ test('handler returns the upstream url unchanged and retries one generic 500', a
   assert.equal(calls[0].url, 'https://api.qa.pifiproperty.com/v1/partner/handover');
   assert.equal(calls[0].opts.headers.Authorization, 'Bearer qa-test-key');
   assert.equal(sent.context, undefined);
-  assert.equal(sent.returnUrl, 'https://www.wombathomeloans.com.au/book/');
+  assert.equal(sent.returnUrl, 'https://www.wombathomeloans.com.au/property-iq');
   assert.doesNotMatch(JSON.stringify(body), /qa-test-key/);
   globalThis.fetch = previous;
   delete process.env.PIFI_PARTNER_KEY;
