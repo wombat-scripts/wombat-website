@@ -9,7 +9,7 @@
   var suggestList = document.getElementById("piq-suggest-list");
   var suggestStatus = document.getElementById("piq-suggest-status");
   var busy = false;
-  var CLIENT_TIMEOUT_MS = 35000;
+  var CLIENT_TIMEOUT_MS = 80000;
   var suggestions = [];
   var activeIndex = -1;
   var suggestTimer = null;

@@ -8,6 +8,10 @@
 [functions]
   directory = "netlify/functions"
 
+# Handover waits ~35s after PiFi returns a URL so the report can finish assembling.
+[functions.pifi-handover]
+  timeout = 90
+
 # ─────────────────────────────────────────────────────────────────────
 # REDIRECTS
 # ─────────────────────────────────────────────────────────────────────

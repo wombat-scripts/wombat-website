@@ -6,6 +6,10 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-25. Property IQ waits before the report link
+
+After PiFi returns a URL, the function waits `PROPIQ_READY_DELAY_MS` (default 35000) before emailing and before the page shows success. The chat URL does not change when the report finishes, so the wait is so the person lands on the finished report. Heshan may later give a ready signal, and this fixed delay can come out.
+
 ## 2026-09-25. Property IQ emails the report
 
 `/property-iq/` is address, email, and consent. The handover function always sends journey `price` and context `just curious`. On success it emails the link with Resend (CC Tom) and stays on the page, with an Open your report link. No auto tab.

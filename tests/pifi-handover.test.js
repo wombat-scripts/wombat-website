@@ -68,6 +68,8 @@ test('upstream errors map to friendly copy and the right retry rule', async func
 test('QA host guard refuses the live API host', async function () {
   var lib = await import('../netlify/functions/pifi-handover-lib.mjs');
   assert.equal(lib.assertQaHost('https://api.qa.pifiproperty.com/'), 'https://api.qa.pifiproperty.com');
+  assert.equal(lib.readyDelayMs(''), 35000);
+  assert.equal(lib.readyDelayMs('0'), 0);
   assert.throws(function () {
     lib.assertQaHost('https://api.pifiproperty.com');
   });
@@ -96,7 +98,8 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(page, /Open your report/);
   assert.match(page, /Email me the report/);
   var client = read('src/assets/js/property-iq.js');
-  assert.match(client, /35000/);
+  assert.match(client, /80000/);
+  assert.match(read('src/property-iq.njk'), /about a minute/);
   assert.doesNotMatch(client, /location\.assign/);
   assert.doesNotMatch(client, /umami\.track\([^)]*url/);
   var fn = read('netlify/functions/pifi-handover.mjs');
@@ -124,6 +127,7 @@ test('handler returns the upstream url unchanged and retries one generic 500', a
     });
   };
   delete process.env.RESEND_API_KEY;
+  process.env.PROPIQ_READY_DELAY_MS = '0';
   process.env.PIFI_API_HOST = 'https://api.qa.pifiproperty.com';
   process.env.PIFI_PARTNER_KEY = 'qa-test-key';
   var mod = await import('../netlify/functions/pifi-handover.mjs');
@@ -155,6 +159,7 @@ test('handler returns the upstream url unchanged and retries one generic 500', a
   globalThis.fetch = previous;
   delete process.env.PIFI_PARTNER_KEY;
   delete process.env.PIFI_API_HOST;
+  delete process.env.PROPIQ_READY_DELAY_MS;
 });
 
 test('handler posts price and just curious, then emails via Resend', { concurrency: false }, async function () {
@@ -167,6 +172,7 @@ test('handler posts price and just curious, then emails via Resend', { concurren
     }
     return new Response(JSON.stringify({ url: 'https://wombathl.pifiproperty.com/s/abc' }), { status: 201 });
   };
+  process.env.PROPIQ_READY_DELAY_MS = '0';
   process.env.PIFI_API_HOST = 'https://api.qa.pifiproperty.com';
   process.env.PIFI_PARTNER_KEY = 'qa-test-key';
   process.env.RESEND_API_KEY = 're_test_key';
@@ -196,6 +202,44 @@ test('handler posts price and just curious, then emails via Resend', { concurren
   delete process.env.RESEND_API_KEY;
   delete process.env.PIFI_PARTNER_KEY;
   delete process.env.PIFI_API_HOST;
+  delete process.env.PROPIQ_READY_DELAY_MS;
+});
+
+test('handler waits out the ready delay before email and before success', { concurrency: false }, async function () {
+  var order = [];
+  var previous = globalThis.fetch;
+  globalThis.fetch = async function (url) {
+    order.push(String(url).indexOf('api.resend.com') !== -1 ? 'email' : 'handover');
+    if (String(url).indexOf('api.resend.com') !== -1) {
+      return new Response('{}', { status: 500 });
+    }
+    return new Response(JSON.stringify({ url: 'https://wombathl.pifiproperty.com/s/abc' }), { status: 201 });
+  };
+  process.env.PROPIQ_READY_DELAY_MS = '80';
+  process.env.PIFI_API_HOST = 'https://api.qa.pifiproperty.com';
+  process.env.PIFI_PARTNER_KEY = 'qa-test-key';
+  process.env.RESEND_API_KEY = 're_test_key';
+  var mod = await import('../netlify/functions/pifi-handover.mjs');
+  var started = Date.now();
+  var res = await mod.default(new Request('http://local/', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      email: 'sarah@example.com',
+      address: '12 Gore Street, Parramatta NSW 2150',
+    }),
+  }));
+  var elapsed = Date.now() - started;
+  var body = await res.json();
+  assert.ok(elapsed >= 80, 'expected the ready delay before the response');
+  assert.deepEqual(order, ['handover', 'email']);
+  assert.equal(body.emailSent, false);
+  assert.equal(body.url, 'https://wombathl.pifiproperty.com/s/abc');
+  globalThis.fetch = previous;
+  delete process.env.RESEND_API_KEY;
+  delete process.env.PIFI_PARTNER_KEY;
+  delete process.env.PIFI_API_HOST;
+  delete process.env.PROPIQ_READY_DELAY_MS;
 });
 
 test('handler does not retry a 401 and refuses the live host', { concurrency: false }, async function () {
