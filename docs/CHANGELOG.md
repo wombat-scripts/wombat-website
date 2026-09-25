@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-25. Property IQ partner handover (QA)
+
+Homepage Tools card and the footer Property search link now go to `/property-iq/` instead of the direct PiFi listings site. The page collects email, address, journey, optional notes, and consent, then a Netlify Function posts to the PiFi QA handover API using `PIFI_API_HOST` and `PIFI_PARTNER_KEY`. The browser opens the returned url unchanged. Nav and the calculators hub link here as well. QA host only. No partner key in source.
+
+**Files changed:** `netlify/functions/pifi-handover.mjs`, `netlify/functions/pifi-handover-lib.mjs`, `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/index.njk`, `src/_includes/nav.njk`, `src/_includes/footer.njk`, `src/calculators/index.njk`, `src/_includes/css/styles.css`, `src/_data/site.json`, `src/llms.txt.njk`, `tests/pifi-handover.test.js`, `tests/homepage.test.js`
+
+---
+
 ## 2026-09-23. Google rating 4.9/13 and money-page internal links
 
 AggregateRating on the sitewide JSON-LD now matches the Google Business Profile as of 23 Sep 2026: ratingValue 4.9, ratingCount 13 (was 5.0 from 12). Homepage ticket and llms.txt say 4.9 Google. Contextual links, using existing page titles, into the first-home, investor and refinance hubs, the RSU, bank-staff and expat guides, construction pause-repay, the podcast, Just4Fun, and the legal pages. `/landing/expat-home-loans/` and `/stop-renting/` stay unlinked from main content.
