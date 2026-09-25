@@ -34,8 +34,12 @@ permalink: /property-iq/
     <form class="ads-form-card piq-form" id="piq-form" novalidate>
       <div class="ads-form__field">
         <label for="piq-address">Property address</label>
-        <input class="ads-form__input" id="piq-address" name="address" type="text" autocomplete="street-address" maxlength="300" required>
-        <p class="calc-field__hint" id="piq-address-hint">Start typing the street address (Australia).</p>
+        <div class="piq-suggest" id="piq-suggest">
+          <input class="ads-form__input" id="piq-address" name="address" type="text" autocomplete="off" maxlength="300" required role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="piq-suggest-list" aria-describedby="piq-address-hint">
+          <ul class="piq-suggest__list" id="piq-suggest-list" role="listbox" hidden></ul>
+        </div>
+        <p class="calc-field__hint" id="piq-address-hint">Start typing the street address (Australia). Choose a suggestion so we look up the right place.</p>
+        <p class="piq-suggest__status" id="piq-suggest-status" aria-live="polite"></p>
       </div>
 
       <div class="ads-form__field">
