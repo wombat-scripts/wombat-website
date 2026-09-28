@@ -52,7 +52,7 @@ date: 2026-08-19
           var wait = root.querySelector(".book-embed__wait");
           var widget = root.querySelector(".calendly-inline-widget");
           var observer = null;
-          var iframeGraceMs = 1200;
+          var iframeGraceMs = 3000;
           var readyEvents = {
             "calendly.event_type_viewed": true,
             "calendly.date_and_time_selected": true,
@@ -109,7 +109,9 @@ date: 2026-08-19
             }
           }
 
-          /* Last resort so a missed message cannot cover a usable calendar. */
+          /* iframe load fires before the calendar paints. 3s lets
+             event_type_viewed win on a normal connection. 12s is the
+             last resort so a missed message cannot cover a usable calendar. */
           window.setTimeout(hideWait, 12000);
         })();
       </script>

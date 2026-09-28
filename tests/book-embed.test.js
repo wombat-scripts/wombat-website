@@ -43,7 +43,7 @@ test('loader hides on calendly.event_type_viewed and iframe-load fallback', func
   var scriptAt = book.indexOf('assets/external/widget.js');
   assert.ok(messageAt !== -1 && scriptAt !== -1 && messageAt < scriptAt, 'listener is registered before widget.js');
   assert.match(book, /event\.origin !== "https:\/\/calendly\.com"/);
-  assert.match(book, /iframeGraceMs = 1200/);
+  assert.match(book, /iframeGraceMs = 3000/);
   assert.match(book, /addEventListener\("load"/);
 });
 
