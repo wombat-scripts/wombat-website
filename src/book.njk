@@ -17,12 +17,104 @@ date: 2026-08-19
 
 <section class="section book-embed-section">
   <div class="container">
-    <div class="book-embed">
+    <div class="book-embed" data-book-embed aria-busy="true">
+      <div class="book-embed__wait">
+        <p class="book-embed__wait-label" role="status" aria-live="polite">Loading available times…</p>
+        <div class="book-embed__card" aria-hidden="true">
+          <div class="book-embed__rule"><span></span></div>
+          <div class="book-embed__card-head">
+            <span class="book-embed__dot"></span>
+            <span class="book-embed__month"></span>
+            <span class="book-embed__dot"></span>
+          </div>
+          <div class="book-embed__weekdays">
+            <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+          </div>
+          <div class="book-embed__days">
+            {%- for day in range(35) %}
+            <span{% if day == 8 or day == 10 or day == 15 or day == 17 or day == 22 or day == 24 %} class="is-open"{% endif %}></span>
+            {%- endfor %}
+          </div>
+        </div>
+      </div>
       <div class="calendly-inline-widget"
            data-url="{{ site.calendlyEvent }}?hide_event_type_details=1&amp;hide_gdpr_banner=1"
            data-resize="true"
            style="min-width:320px;height:700px;"
            data-umami-event="calendly-embed"></div>
+      <script>
+        (function () {
+          "use strict";
+
+          var root = document.querySelector("[data-book-embed]");
+          if (!root) return;
+
+          var wait = root.querySelector(".book-embed__wait");
+          var widget = root.querySelector(".calendly-inline-widget");
+          var observer = null;
+          var iframeGraceMs = 3000;
+          var readyEvents = {
+            "calendly.event_type_viewed": true,
+            "calendly.date_and_time_selected": true,
+            "calendly.event_scheduled": true
+          };
+
+          function hideWait() {
+            if (root.classList.contains("is-ready")) return;
+            root.classList.add("is-ready");
+            root.setAttribute("aria-busy", "false");
+            if (wait) wait.hidden = true;
+            if (observer) observer.disconnect();
+          }
+
+          function eventName(data) {
+            if (!data) return "";
+            if (typeof data === "string") {
+              try {
+                data = JSON.parse(data);
+              } catch (err) {
+                return "";
+              }
+            }
+            if (typeof data !== "object" || typeof data.event !== "string") return "";
+            return data.event;
+          }
+
+          window.addEventListener("message", function (event) {
+            if (!event || event.origin !== "https://calendly.com") return;
+            if (readyEvents[eventName(event.data)]) hideWait();
+          });
+
+          function bindIframe(iframe) {
+            if (!iframe || iframe.getAttribute("data-book-bound") === "true") return;
+            iframe.setAttribute("data-book-bound", "true");
+            iframe.addEventListener("load", function () {
+              window.setTimeout(hideWait, iframeGraceMs);
+            });
+          }
+
+          if (widget) {
+            var existing = widget.querySelector("iframe");
+            if (existing) {
+              bindIframe(existing);
+            } else {
+              observer = new MutationObserver(function () {
+                var iframe = widget.querySelector("iframe");
+                if (!iframe) return;
+                bindIframe(iframe);
+                observer.disconnect();
+                observer = null;
+              });
+              observer.observe(widget, { childList: true, subtree: true });
+            }
+          }
+
+          /* iframe load fires before the calendar paints. 3s lets
+             event_type_viewed win on a normal connection. 12s is the
+             last resort so a missed message cannot cover a usable calendar. */
+          window.setTimeout(hideWait, 12000);
+        })();
+      </script>
       <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
     </div>
 

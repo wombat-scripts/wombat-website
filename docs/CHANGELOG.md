@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-09-28. Book page: first-paint waiting state for Calendly
+
+`/book/` was an empty 700px band until Calendly's widget.js loaded and drew its own dots. The embed now paints a paper calendar card and "Loading available times…" with the HTML. That card hides when Calendly posts `calendly.event_type_viewed` (also on a later booking event), with a short fallback after the iframe loads. `/book/` preconnects to Calendly and preloads widget.js. The inline embed, event URL, and data-resize behaviour are unchanged.
+
+**Files changed:** `src/book.njk`, `src/_layouts/base.njk`, `src/_includes/css/styles.css`, `tests/book-embed.test.js`
+
+---
+
 ## 2026-09-23. Google rating 4.9/13 and money-page internal links
 
 AggregateRating on the sitewide JSON-LD now matches the Google Business Profile as of 23 Sep 2026: ratingValue 4.9, ratingCount 13 (was 5.0 from 12). Homepage ticket and llms.txt say 4.9 Google. Contextual links, using existing page titles, into the first-home, investor and refinance hubs, the RSU, bank-staff and expat guides, construction pause-repay, the podcast, Just4Fun, and the legal pages. `/landing/expat-home-loans/` and `/stop-renting/` stay unlinked from main content.
