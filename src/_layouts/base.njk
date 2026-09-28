@@ -46,6 +46,18 @@
   <link rel="preload" as="image" href="/images/tom_booking.webp" fetchpriority="high">
   {% endif %}
 
+  {# /book/ only. Warm Calendly before the body asks for widget.js.
+     The classic script has no crossorigin attribute, so preconnect the
+     asset host both ways and preload that exact script URL. #}
+  {% if page.url == "/book/" %}
+  <link rel="preconnect" href="https://assets.calendly.com">
+  <link rel="preconnect" href="https://assets.calendly.com" crossorigin>
+  <link rel="preconnect" href="https://calendly.com">
+  <link rel="dns-prefetch" href="https://assets.calendly.com">
+  <link rel="dns-prefetch" href="https://calendly.com">
+  <link rel="preload" as="script" href="https://assets.calendly.com/assets/external/widget.js">
+  {% endif %}
+
   {# Stylesheet. inlined at build time so nothing render-blocking remains.
      ⚠ The CSS source of truth now lives at src/_includes/css/styles.css
      (Nunjucks can only include from _includes). No ?v= bumping needed:

@@ -2129,7 +2129,10 @@ input[type="range"].calc-range::-moz-range-thumb {
    Official widget.js with data-resize sets the iframe to calendar + times.
    A 700px floor keeps the month visible before the first resize. Do not
    lock a taller min-height on the wrapper or iframe .  leftover space
-   becomes a dead band after a date is picked. */
+   becomes a dead band after a date is picked.
+   The waiting card is in the HTML so it paints before widget.js. It is
+   removed when Calendly posts calendly.event_type_viewed, or shortly
+   after the iframe loads if that message never arrives. */
 
 .book-hero {
   padding-block: clamp(4rem, 8vw, 7rem) var(--space-6);
@@ -2140,10 +2143,143 @@ input[type="range"].calc-range::-moz-range-thumb {
 }
 
 .book-embed {
+  position: relative;
   width: 100%;
 }
 
+.book-embed__wait {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  padding: var(--space-6) var(--space-4);
+  background: var(--paper);
+  text-align: center;
+}
+
+.book-embed.is-ready .book-embed__wait,
+.book-embed__wait[hidden] {
+  display: none;
+}
+
+.book-embed__wait-label {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  color: var(--ink);
+}
+
+.book-embed__card {
+  position: relative;
+  width: min(22.5rem, 100%);
+  margin-top: 0.65rem;
+  padding: var(--space-4) var(--space-4) var(--space-5);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+}
+
+.book-embed__card::before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  width: 4.75rem;
+  height: 1.15rem;
+  transform: translateX(-50%) rotate(-2deg);
+  background: rgba(196, 165, 116, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(138, 106, 62, 0.16);
+}
+
+.book-embed__rule {
+  height: 3px;
+  margin: var(--space-2) 0 var(--space-4);
+  background: var(--line);
+  overflow: hidden;
+}
+
+.book-embed__rule span {
+  display: block;
+  width: 38%;
+  height: 100%;
+  background: var(--oak-deep);
+  animation: book-embed-rule 2.2s var(--easing) infinite;
+}
+
+@keyframes book-embed-rule {
+  0% { transform: translateX(-130%); }
+  100% { transform: translateX(320%); }
+}
+
+.book-embed__card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.book-embed__dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: 0 0 auto;
+  border: 1.5px solid var(--oak-deep);
+  border-radius: 50%;
+  opacity: 0.55;
+}
+
+.book-embed__month {
+  flex: 1 1 auto;
+  height: 0.7rem;
+  max-width: 8.5rem;
+  margin-inline: auto;
+  background: var(--oak);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+.book-embed__weekdays,
+.book-embed__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.45rem;
+}
+
+.book-embed__weekdays {
+  margin-bottom: 0.45rem;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--oak-deep);
+}
+
+.book-embed__days span {
+  aspect-ratio: 1;
+  background: var(--paper);
+  border-radius: 2px;
+}
+
+.book-embed__days span.is-open {
+  background: var(--oak);
+  animation: book-embed-breathe 2.4s var(--easing) infinite;
+}
+
+@keyframes book-embed-breathe {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
 .book-embed .calendly-inline-widget {
+  position: relative;
+  z-index: 1;
   min-width: 320px;
   width: 100%;
   min-height: 700px;
@@ -2159,6 +2295,17 @@ input[type="range"].calc-range::-moz-range-thumb {
 
 .book-embed__aside {
   margin-top: var(--space-5);
+}
+
+@media (max-width: 720px) {
+  .book-embed__wait {
+    padding: var(--space-5) var(--space-3);
+  }
+
+  .book-embed__weekdays,
+  .book-embed__days {
+    gap: 0.35rem;
+  }
 }
 
 /* -----------------------------------------------------------------------------
