@@ -222,6 +222,13 @@
     return true;
   }
 
+  function showNext() {
+    var next = document.getElementById("piq-next");
+    if (!next) return;
+    next.hidden = false;
+    next.classList.add("is-visible");
+  }
+
   function showNewTab(url, opened) {
     var success = document.getElementById("piq-success");
     var copy = document.getElementById("piq-success-copy");
@@ -245,6 +252,7 @@
     open.href = url;
     success.hidden = false;
     success.classList.add("is-visible");
+    showNext();
     if (window.umami) {
       window.umami.track("property-iq-new-tab", { location: "property-iq" });
     }
@@ -265,6 +273,7 @@
     if (pop) pop.href = url;
     embed.hidden = false;
     embed.classList.add("is-visible");
+    showNext();
     var settled = false;
     function giveUp() {
       if (settled) return;

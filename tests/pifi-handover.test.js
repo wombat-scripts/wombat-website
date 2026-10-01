@@ -169,6 +169,14 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(page, /rel="noopener noreferrer"/);
   assert.match(page, /Open in a new tab/);
   assert.match(client, /still on Wombat/);
+  assert.match(page, /id="piq-next" hidden/);
+  assert.match(page, /What's next\?/);
+  assert.match(page, /href="\/book\/"/);
+  assert.match(page, /href="\/calculators\/borrowing-power\/"/);
+  assert.match(page, /starting point, not advice/);
+  assert.doesNotMatch(page, /What's next[\s\S]*id="piq-frame"/);
+  assert.match(client, /function showNext\(\)/);
+  assert.ok((client.match(/showNext\(\)/g) || []).length >= 3);
   assert.doesNotMatch(page, /piq-cog/);
   assert.doesNotMatch(page, /id="piq-elapsed"/);
   assert.doesNotMatch(page, /about a minute/);

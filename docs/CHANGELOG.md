@@ -6,6 +6,12 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-01. Property IQ shows What's next after a report
+
+Once handover succeeds, a warm strip sits under the embedded report or the new-tab success card. It offers a strategy call at `/book/` and the existing borrowing power calculator. The PropIQ range is named as a starting point, not advice. The embed stays in place.
+
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
 ## 2026-10-01. Property IQ keeps the report on the Wombat page
 
 Same-tab redirect left people on PiFi with no way home. After handover, the page stays on `/property-iq/`. If a header probe says the report URL can be framed, it is shown in an iframe under the Wombat nav. If the probe says no, or the frame errors or does not load within 12 seconds, the report opens in a new tab and this page shows Open my report. The email still goes out without holding the page.
