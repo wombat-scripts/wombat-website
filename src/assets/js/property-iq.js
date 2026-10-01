@@ -253,11 +253,48 @@
     }
   }
 
+  function setReportOpen(on) {
+    document.body.classList.toggle("piq-open", !!on);
+  }
+
   function showNext() {
     var next = document.getElementById("piq-next");
     if (!next) return;
     next.hidden = false;
     next.classList.add("is-visible");
+  }
+
+  function showExpiredHelp() {
+    var box = document.getElementById("piq-expired");
+    if (!box) return;
+    box.hidden = false;
+    box.classList.add("is-visible");
+  }
+
+  function hideExpiredHelp() {
+    var box = document.getElementById("piq-expired");
+    if (!box) return;
+    box.hidden = true;
+    box.classList.remove("is-visible");
+  }
+
+  // Cross-origin PiFi pages throw here. null means we cannot tell.
+  function frameLooksExpired(frame) {
+    try {
+      var doc = frame.contentDocument;
+      if (!doc || !doc.body) return null;
+      var blob = ((doc.title || "") + " " + (doc.body.innerText || "")).toLowerCase();
+      if (!blob.trim()) return null;
+      return /cannot open this link|no longer valid|link has expired|has expired/.test(blob);
+    } catch (err) {
+      return null;
+    }
+  }
+
+  function noteFrameExpiry(frame) {
+    var expired = frameLooksExpired(frame);
+    if (expired === true) showExpiredHelp();
+    else if (expired === false) hideExpiredHelp();
   }
 
   function showForm() {
@@ -282,6 +319,8 @@
     if (stage) stage.classList.remove("is-embed");
     form.classList.remove("is-embed");
     form.classList.remove("is-success");
+    hideExpiredHelp();
+    setReportOpen(false);
     form.querySelectorAll(".ads-form__field").forEach(function (el) {
       el.hidden = false;
     });
@@ -308,10 +347,11 @@
     if (stage) stage.classList.remove("is-embed");
     form.classList.remove("is-embed");
     form.classList.add("is-success");
+    setReportOpen(true);
     hideFormFields();
     copy.textContent = opened
-      ? "Your report is open in a new tab, and you're still on Wombat. Open it again any time. A copy may also arrive by email."
-      : "You're still on Wombat. Open your report with the button. A copy may also arrive by email.";
+      ? "Your report is open in a new tab, and you're still on Wombat. Open it again any time. A link to the report will also arrive by email."
+      : "You're still on Wombat. Open your report with the button. A link to the report will also arrive by email.";
     open.href = url;
     success.hidden = false;
     success.classList.add("is-visible");
@@ -333,6 +373,7 @@
     }
     form.classList.add("is-embed");
     if (stage) stage.classList.add("is-embed");
+    setReportOpen(true);
     hideFormFields();
     if (pop) pop.href = url;
     embed.hidden = false;
@@ -354,6 +395,7 @@
       if (settled) return;
       settled = true;
       clearTimeout(timer);
+      noteFrameExpiry(frame);
     }, { once: true });
     frame.src = url;
     if (!quiet && window.umami) {
@@ -366,6 +408,9 @@
     if (!saved) return;
     if (saved.embed) showEmbed(saved.url, true);
     else showNewTab(saved.url, false, true);
+    // A saved link can already be dead. PiFi is cross-origin, so the frame
+    // title is unreadable. Offer a way out whenever we bring a report back.
+    showExpiredHelp();
   }
 
   function presentReport(url, email, address, embed) {
@@ -455,13 +500,15 @@
       });
   });
 
-  var again = document.getElementById("piq-again");
-  if (again) {
-    again.addEventListener("click", function () {
+  function bindAgain(el) {
+    if (!el) return;
+    el.addEventListener("click", function () {
       showForm();
       if (addressInput) addressInput.focus();
     });
   }
+  bindAgain(document.getElementById("piq-again"));
+  bindAgain(document.getElementById("piq-expired-again"));
 
   restoreReport();
   window.addEventListener("pageshow", function (event) {

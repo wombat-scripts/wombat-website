@@ -6,6 +6,12 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-01. Property IQ polish before live
+
+The credit line sits further under What's next. The tall blank between the intro and the report is gone once the form hides, and the email line sits just under the frame: "A link to the report will also arrive by email." Coming back to a saved report shows a way out, because that link can expire and PiFi's page cannot be read from here. Start another report clears the saved link and brings the form back. Book a strategy call stays next to it. The preview Tools links already go to `/property-iq/`. Production is unchanged.
+
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
 ## 2026-10-01. Property IQ remembers the report for this tab
 
 What's next now points at the repayments calculator. The starting-point line sits under the buttons. A successful handover is kept in sessionStorage (report url and embed flag only). Coming back to `/property-iq/` restores the frame or Open my report. Start another report clears it, and a failed handover clears it too.
