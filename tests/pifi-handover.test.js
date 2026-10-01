@@ -113,6 +113,7 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(client, /keepalive:\s*true/);
   assert.match(client, /location\.assign\(url\)/);
   assert.match(client, /pagehide/);
+  assert.match(client, /window\.navigation/);
   assert.doesNotMatch(client, /READY_DELAY_MS/);
   assert.doesNotMatch(client, /35000/);
   assert.doesNotMatch(client, /40000/);

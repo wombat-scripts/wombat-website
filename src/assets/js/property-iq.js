@@ -230,13 +230,17 @@
       setBusy(false);
       showFallback(url);
     }, REDIRECT_FALLBACK_MS);
-    window.addEventListener("pagehide", function () {
+    function cancelFallback() {
       clearTimeout(fallbackTimer);
-    }, { once: true });
+    }
+    window.addEventListener("pagehide", cancelFallback, { once: true });
+    if (window.navigation && window.navigation.addEventListener) {
+      window.navigation.addEventListener("navigate", cancelFallback, { once: true });
+    }
     try {
       window.location.assign(url);
     } catch (err) {
-      clearTimeout(fallbackTimer);
+      cancelFallback();
       setBusy(false);
       showFallback(url);
     }
