@@ -10,7 +10,7 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 PiFi does not say how long a report link lasts. A saved embed is restored only for 24 hours. An older save, or one stored before that timestamp, does not load the frame. The page shows a recovery card instead: Start another report, and Book a strategy call. If the frame can be read and it says the link will not open, the frame is removed and that same card is shown. Start another report still clears the saved link.
 
-**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `tests/pifi-handover.test.js`
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
 
 ## 2026-10-01. Property IQ polish before live
 
