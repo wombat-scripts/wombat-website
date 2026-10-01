@@ -30,7 +30,7 @@ permalink: /property-iq/
 </section>
 
 <section class="section section--tight">
-  <div class="container container--narrow">
+  <div class="container container--narrow" id="piq-stage">
     <form class="ads-form-card piq-form" id="piq-form" novalidate>
       <div class="ads-form__field">
         <label for="piq-address">Property address</label>
@@ -68,10 +68,15 @@ permalink: /property-iq/
       <p class="ads-form__status ads-form__status--error" id="piq-error" role="alert" hidden></p>
       <div class="piq-success" id="piq-success" hidden>
         <p class="piq-success__copy" id="piq-success-copy"></p>
-        <a class="btn btn--primary btn--lg piq-success__open" id="piq-open">Open my report</a>
+        <a class="btn btn--primary btn--lg piq-success__open" id="piq-open" target="_blank" rel="noopener noreferrer">Open my report</a>
       </div>
-      <p class="ads-form__privacy muted">Wombat Home Loans · Credit Rep CRN 559744 · ACL 561324. PropIQ is provided by PiFi. We're not giving valuations advice on this page. The report is a starting point for a conversation.</p>
     </form>
+    <div class="piq-embed" id="piq-embed" hidden>
+      <iframe class="piq-frame" id="piq-frame" title="Your PropIQ report" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <p class="piq-embed__note" id="piq-embed-note">You're still on Wombat. A copy of the report may also arrive by email.</p>
+      <p class="piq-embed__pop"><a id="piq-pop" target="_blank" rel="noopener noreferrer">Open in a new tab</a></p>
+    </div>
+    <p class="ads-form__privacy muted">Wombat Home Loans · Credit Rep CRN 559744 · ACL 561324. PropIQ is provided by PiFi. We're not giving valuations advice on this page. The report is a starting point for a conversation.</p>
   </div>
 </section>
 

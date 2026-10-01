@@ -12,6 +12,7 @@ import {
   COPY,
   friendlyConfigError,
   mapUpstream,
+  probeReportFrame,
   validateInput,
 } from "./pifi-handover-lib.mjs";
 
@@ -93,8 +94,14 @@ export default async (req) => {
     }
 
     if (result.status === 201 && result.upstream && typeof result.upstream.url === "string") {
-      console.info("pifi-handover: created");
-      return json(201, { url: result.upstream.url });
+      let embed = false;
+      try {
+        embed = await probeReportFrame(result.upstream.url);
+      } catch {
+        console.error("pifi-handover: frame probe failed");
+      }
+      console.info("pifi-handover: created", embed ? "embed" : "new-tab");
+      return json(201, { url: result.upstream.url, embed });
     }
 
     const mapped = mapUpstream(result.status, result.upstream);

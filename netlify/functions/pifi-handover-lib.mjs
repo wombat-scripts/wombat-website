@@ -129,6 +129,58 @@ export function mapUpstream(status, body) {
   return { status: 502, retryable: false, message: COPY.fail };
 }
 
+// Checked 1 Oct 2026 on qa.pifiproperty.com (the home page and a /s/ session).
+// No X-Frame-Options. The enforcing Content-Security-Policy is only base-uri,
+// object-src, and form-action. frame-ancestors 'self' is report-only, so Chrome
+// still paints the report in a frame and leaves the parent page in place.
+// A refused frame (github.com) fires the same load event and SecurityError, so
+// page script cannot tell those apart. Read enforcing headers only. If that
+// report-only rule is later enforced, this returns false and the page opens a
+// new tab instead. The live PiFi host was not checked and may differ.
+export function frameAllowed(headers) {
+  const read = (name) => {
+    if (!headers) return "";
+    if (typeof headers.get === "function") return headers.get(name) || "";
+    return headers[name] || headers[name.toLowerCase()] || "";
+  };
+  const xfo = String(read("x-frame-options")).toLowerCase();
+  if (/\bdeny\b/.test(xfo) || /\bsameorigin\b/.test(xfo)) return false;
+  const csp = String(read("content-security-policy"));
+  const rules = csp.split(/[;]/).map((part) => part.trim()).filter((part) => /^frame-ancestors\b/i.test(part));
+  if (!rules.length) return true;
+  return rules.every((rule) => {
+    const sources = rule.replace(/^frame-ancestors/i, "").trim().toLowerCase().split(/\s+/).filter(Boolean);
+    if (sources.includes("'none'")) return false;
+    if (sources.includes("*")) return true;
+    return sources.some((src) => src.includes("wombathomeloans.com.au"));
+  });
+}
+
+export async function probeReportFrame(url, fetchImpl) {
+  if (!isReportUrl(url)) return false;
+  const doFetch = fetchImpl || fetch;
+  let current = url;
+  for (let hop = 0; hop < 3; hop += 1) {
+    const res = await doFetch(current, {
+      method: "GET",
+      redirect: "manual",
+      signal: AbortSignal.timeout(4000),
+    });
+    if (res.body && typeof res.body.cancel === "function") {
+      try { await res.body.cancel(); } catch { /* the headers are enough */ }
+    }
+    if (res.status >= 300 && res.status < 400) {
+      const next = new URL(res.headers.get("location") || "", current).href;
+      if (!isReportUrl(next)) return false;
+      current = next;
+      continue;
+    }
+    if (res.status < 200 || res.status >= 300) return false;
+    return frameAllowed(res.headers);
+  }
+  return false;
+}
+
 export function isReportUrl(value) {
   try {
     const url = new URL(String(value || ""));

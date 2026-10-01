@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-01. Property IQ keeps the report on the Wombat page
+
+Same-tab redirect left people on PiFi with no way home. After handover, the page stays on `/property-iq/`. If a header probe says the report URL can be framed, it is shown in an iframe under the Wombat nav. If the probe says no, or the frame errors or does not load within 12 seconds, the report opens in a new tab and this page shows Open my report. The email still goes out without holding the page.
+
+Checked 1 Oct 2026: `qa.pifiproperty.com` sends no `X-Frame-Options`. The enforcing CSP has no `frame-ancestors`. `frame-ancestors 'self'` is report-only, so Chrome still framed the report and left the parent page in place. A site that refuses frames (github.com) fires the same iframe `load` event, so the browser cannot tell those apart. The probe reads enforcing headers only. If that report-only rule is later enforced, the page opens a new tab. The live PiFi host was not checked and may differ.
+
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `netlify/functions/pifi-handover.mjs`, `netlify/functions/pifi-handover-lib.mjs`, `tests/pifi-handover.test.js`
+
 ## 2026-10-01. Property IQ opens the report in this tab
 
 After PiFi returns a url, the page no longer waits 35 seconds or shows an elapsed clock. The button says Get my report, stays disabled while the handover runs (about 30 seconds at most), then `location.assign` opens that exact url in the same tab. The Resend email still goes out, but it does not hold the redirect. Open my report only appears if the tab does not leave. QA host and partner key are unchanged.

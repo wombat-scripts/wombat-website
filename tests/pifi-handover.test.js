@@ -65,6 +65,35 @@ test('upstream errors map to friendly copy and the right retry rule', async func
   assert.doesNotMatch(lib.mapUpstream(401, { message: 'secret-key-value' }).message, /secret-key/);
 });
 
+test('frame probe allows an open QA page and refuses a frame block', async function () {
+  var lib = await import('../netlify/functions/pifi-handover-lib.mjs');
+  assert.equal(lib.frameAllowed(new Headers()), true);
+  assert.equal(lib.frameAllowed(new Headers({ 'x-frame-options': 'DENY' })), false);
+  assert.equal(lib.frameAllowed(new Headers({ 'x-frame-options': 'SAMEORIGIN' })), false);
+  assert.equal(lib.frameAllowed(new Headers({ 'content-security-policy': "default-src 'self'; frame-ancestors 'none'" })), false);
+  assert.equal(lib.frameAllowed(new Headers({ 'content-security-policy': "frame-ancestors 'self'" })), false);
+  assert.equal(lib.frameAllowed(new Headers({ 'content-security-policy': 'frame-ancestors https://www.wombathomeloans.com.au' })), true);
+  assert.equal(lib.frameAllowed(new Headers({ 'content-security-policy': "frame-ancestors *" })), true);
+  assert.equal(lib.frameAllowed(new Headers({
+    'content-security-policy': "base-uri 'self'; object-src 'none'; form-action 'self'",
+    'content-security-policy-report-only': "frame-ancestors 'self'",
+  })), true);
+  var hops = [];
+  var redirected = await lib.probeReportFrame('https://qa.pifiproperty.com/s/abc', async function (url) {
+    hops.push(String(url));
+    return new Response('', { status: 302, headers: { location: 'https://evil.example/phish' } });
+  });
+  assert.equal(redirected, false);
+  assert.deepEqual(hops, ['https://qa.pifiproperty.com/s/abc']);
+  var open = await lib.probeReportFrame('https://qa.pifiproperty.com/s/abc', async function () {
+    return new Response('<html></html>', { status: 200, headers: { 'content-type': 'text/html' } });
+  });
+  assert.equal(open, true);
+  assert.equal(await lib.probeReportFrame('https://evil.example/s/abc', async function () {
+    return new Response('', { status: 200 });
+  }), false);
+});
+
 test('QA host guard refuses the live API host', async function () {
   var lib = await import('../netlify/functions/pifi-handover-lib.mjs');
   assert.equal(lib.assertQaHost('https://api.qa.pifiproperty.com/'), 'https://api.qa.pifiproperty.com');
@@ -111,9 +140,11 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(client, /NOTIFY_TIMEOUT_MS = 15000/);
   assert.match(client, /propiq-notify/);
   assert.match(client, /keepalive:\s*true/);
-  assert.match(client, /location\.assign\(url\)/);
-  assert.match(client, /pagehide/);
-  assert.match(client, /window\.navigation/);
+  assert.match(client, /window\.open\(url, "_blank"\)/);
+  assert.match(client, /EMBED_LOAD_MS/);
+  assert.match(client, /embed === true/);
+  assert.match(client, /piq-frame/);
+  assert.doesNotMatch(client, /location\.assign/);
   assert.doesNotMatch(client, /READY_DELAY_MS/);
   assert.doesNotMatch(client, /35000/);
   assert.doesNotMatch(client, /40000/);
@@ -133,7 +164,11 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(page, /usually takes a few seconds/);
   assert.match(page, /class="piq-spinner"/);
   assert.match(page, /piq-success__open/);
-  assert.doesNotMatch(page, /target="_blank"/);
+  assert.match(page, /id="piq-frame"/);
+  assert.match(page, /target="_blank"/);
+  assert.match(page, /rel="noopener noreferrer"/);
+  assert.match(page, /Open in a new tab/);
+  assert.match(client, /still on Wombat/);
   assert.doesNotMatch(page, /piq-cog/);
   assert.doesNotMatch(page, /id="piq-elapsed"/);
   assert.doesNotMatch(page, /about a minute/);
@@ -189,15 +224,19 @@ test('handler returns the upstream url unchanged and retries one generic 500', a
   var sent = JSON.parse(calls[0].opts.body);
   assert.equal(res.status, 201);
   assert.equal(body.url, 'https://wombathl.pifiproperty.com/s/abc');
+  assert.equal(body.embed, true);
   assert.equal(body.referralId, undefined);
-  assert.equal(calls.length, 2);
+  assert.equal(calls.length, 3);
+  assert.equal(calls[2].url, 'https://wombathl.pifiproperty.com/s/abc');
+  assert.equal(calls[2].opts.method, 'GET');
+  assert.equal(calls[2].opts.headers && calls[2].opts.headers.Authorization, undefined);
   assert.equal(calls[0].url, 'https://api.qa.pifiproperty.com/v1/partner/handover');
   assert.equal(calls[0].opts.headers.Authorization, 'Bearer qa-test-key');
   assert.equal(sent.journey, 'price');
   assert.equal(sent.context, 'just curious');
   assert.equal(sent.returnUrl, 'https://www.wombathomeloans.com.au/property-iq');
   assert.equal(body.emailSent, undefined);
-  assert.equal(calls.length, 2);
+  assert.equal(calls.length, 3);
   assert.equal(calls.some(function (call) { return String(call.url).indexOf('resend') !== -1; }), false);
   assert.doesNotMatch(JSON.stringify(body), /qa-test-key/);
   assert.doesNotMatch(JSON.stringify(body), /re_test_key/);

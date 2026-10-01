@@ -3635,6 +3635,48 @@ input[type="range"].calc-range::-moz-range-thumb {
   margin-bottom: var(--space-5);
 }
 
+.piq-stage.is-embed {
+  max-width: 1100px;
+}
+
+.piq-form.is-embed {
+  display: none;
+}
+
+.piq-embed {
+  display: none;
+}
+
+.piq-embed.is-visible {
+  display: block;
+}
+
+.piq-frame {
+  display: block;
+  width: 100%;
+  height: min(78vh, 920px);
+  min-height: 560px;
+  border: 1px solid var(--oak);
+  background: #fff;
+  box-shadow: 3px 3px 0 var(--oak);
+}
+
+.piq-embed__note {
+  margin: var(--space-4) 0 0;
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+}
+
+.piq-embed__pop {
+  margin: var(--space-2) 0 0;
+  font-size: var(--fs-small);
+}
+
+.piq-embed__pop a {
+  color: var(--oak-deep);
+  font-weight: 600;
+}
+
 .piq-progress__status {
   margin: 0;
   font-family: var(--font-display);

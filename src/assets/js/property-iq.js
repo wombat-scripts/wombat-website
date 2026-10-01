@@ -13,7 +13,7 @@
   var busy = false;
   var HANDOVER_TIMEOUT_MS = 30000;
   var NOTIFY_TIMEOUT_MS = 15000;
-  var REDIRECT_FALLBACK_MS = 4000;
+  var EMBED_LOAD_MS = 12000;
   var suggestions = [];
   var activeIndex = -1;
   var suggestTimer = null;
@@ -201,49 +201,100 @@
     }).catch(function () {}).finally(function () { clearTimeout(timer); });
   }
 
-  function showFallback(url) {
-    var success = document.getElementById("piq-success");
-    var copy = document.getElementById("piq-success-copy");
-    var open = document.getElementById("piq-open");
-    if (!url || !success || !open) return;
-    form.classList.add("is-success");
+  function hideFormFields() {
     form.querySelectorAll(".ads-form__field, #piq-wait").forEach(function (el) {
       el.hidden = true;
     });
     submitBtn.hidden = true;
     submitBtn.disabled = true;
     submitBtn.setAttribute("aria-hidden", "true");
-    copy.textContent = "Still here? Open the report with the button. We'll email the link as well.";
+  }
+
+  function openTab(url) {
+    var opened = null;
+    try {
+      opened = window.open(url, "_blank");
+    } catch (err) {
+      opened = null;
+    }
+    if (!opened) return false;
+    try { opened.opener = null; } catch (err) { /* some browsers lock opener */ }
+    return true;
+  }
+
+  function showNewTab(url, opened) {
+    var success = document.getElementById("piq-success");
+    var copy = document.getElementById("piq-success-copy");
+    var open = document.getElementById("piq-open");
+    var embed = document.getElementById("piq-embed");
+    var frame = document.getElementById("piq-frame");
+    var stage = document.getElementById("piq-stage");
+    if (!url || !success || !open) return;
+    if (frame) frame.src = "about:blank";
+    if (embed) {
+      embed.hidden = true;
+      embed.classList.remove("is-visible");
+    }
+    if (stage) stage.classList.remove("is-embed");
+    form.classList.remove("is-embed");
+    form.classList.add("is-success");
+    hideFormFields();
+    copy.textContent = opened
+      ? "Your report is open in a new tab, and you're still on Wombat. Open it again any time. A copy may also arrive by email."
+      : "You're still on Wombat. Open your report with the button. A copy may also arrive by email.";
     open.href = url;
     success.hidden = false;
     success.classList.add("is-visible");
+    if (window.umami) {
+      window.umami.track("property-iq-new-tab", { location: "property-iq" });
+    }
   }
 
-  function goToReport(url, email, address) {
-    if (waitLabel) waitLabel.textContent = "Opening your report";
-    if (waitCopy) waitCopy.textContent = "Taking you to PropIQ in this tab.";
-    notifyReport(email, address, url);
+  function showEmbed(url) {
+    var embed = document.getElementById("piq-embed");
+    var frame = document.getElementById("piq-frame");
+    var pop = document.getElementById("piq-pop");
+    var stage = document.getElementById("piq-stage");
+    if (!embed || !frame) {
+      showNewTab(url, openTab(url));
+      return;
+    }
+    form.classList.add("is-embed");
+    if (stage) stage.classList.add("is-embed");
+    hideFormFields();
+    if (pop) pop.href = url;
+    embed.hidden = false;
+    embed.classList.add("is-visible");
+    var settled = false;
+    function giveUp() {
+      if (settled) return;
+      settled = true;
+      showNewTab(url, openTab(url));
+    }
+    var timer = setTimeout(giveUp, EMBED_LOAD_MS);
+    frame.addEventListener("error", function () {
+      clearTimeout(timer);
+      giveUp();
+    }, { once: true });
+    frame.addEventListener("load", function () {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+    }, { once: true });
+    frame.src = url;
     if (window.umami) {
-      window.umami.track("property-iq-redirect", { location: "property-iq" });
+      window.umami.track("property-iq-embed", { location: "property-iq" });
     }
-    var fallbackTimer = setTimeout(function () {
-      setBusy(false);
-      showFallback(url);
-    }, REDIRECT_FALLBACK_MS);
-    function cancelFallback() {
-      clearTimeout(fallbackTimer);
+  }
+
+  function presentReport(url, email, address, embed) {
+    notifyReport(email, address, url);
+    setBusy(false);
+    if (embed) {
+      showEmbed(url);
+      return;
     }
-    window.addEventListener("pagehide", cancelFallback, { once: true });
-    if (window.navigation && window.navigation.addEventListener) {
-      window.navigation.addEventListener("navigate", cancelFallback, { once: true });
-    }
-    try {
-      window.location.assign(url);
-    } catch (err) {
-      cancelFallback();
-      setBusy(false);
-      showFallback(url);
-    }
+    showNewTab(url, openTab(url));
   }
 
   markAddressHint();
@@ -307,7 +358,7 @@
         clearTimeout(timer);
         var url = result.body && result.body.url;
         if (result.status === 201 && isHandoverUrl(url)) {
-          goToReport(url, payload.email, payload.address);
+          presentReport(url, payload.email, payload.address, result.body.embed === true);
           return;
         }
         setBusy(false);
