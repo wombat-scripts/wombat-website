@@ -18,6 +18,9 @@
   var activeIndex = -1;
   var suggestTimer = null;
   var suggestAbort = null;
+  var listMode = "";
+  var RECENT_KEY = "wombat-piq-recent";
+  var RECENT_LIMIT = 10;
 
   function showError(message) {
     errorEl.textContent = message;
@@ -61,10 +64,62 @@
   function closeSuggestions() {
     suggestions = [];
     activeIndex = -1;
+    listMode = "";
     suggestList.innerHTML = "";
     suggestList.hidden = true;
     addressInput.setAttribute("aria-expanded", "false");
     addressInput.removeAttribute("aria-activedescendant");
+  }
+
+  function readRecent() {
+    try {
+      var data = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]");
+      if (!Array.isArray(data)) return [];
+      var seen = {};
+      var list = [];
+      data.forEach(function (item) {
+        if (typeof item !== "string") return;
+        var address = item.trim();
+        if (!address || address.length > 300) return;
+        var key = address.toLowerCase();
+        if (seen[key]) return;
+        seen[key] = true;
+        list.push(address);
+      });
+      return list.slice(0, RECENT_LIMIT);
+    } catch (err) {
+      return [];
+    }
+  }
+
+  function rememberAddress(address) {
+    var value = String(address || "").trim();
+    if (!value || value.length > 300) return;
+    var next = [value];
+    readRecent().forEach(function (item) {
+      if (item.toLowerCase() !== value.toLowerCase()) next.push(item);
+    });
+    try {
+      localStorage.setItem(RECENT_KEY, JSON.stringify(next.slice(0, RECENT_LIMIT)));
+    } catch (err) { /* private mode can refuse storage */ }
+  }
+
+  function showRecent(filter) {
+    var needle = String(filter || "").trim().toLowerCase();
+    var recent = readRecent().filter(function (address) {
+      return !needle || address.toLowerCase().indexOf(needle) !== -1;
+    });
+    if (!recent.length) {
+      closeSuggestions();
+      return;
+    }
+    listMode = "recent";
+    suggestions = recent.map(function (address) {
+      return { label: address, address: address };
+    });
+    activeIndex = -1;
+    renderSuggestions();
+    if (suggestStatus) suggestStatus.textContent = "Recent addresses";
   }
 
   function renderSuggestions() {
@@ -73,6 +128,13 @@
       suggestList.hidden = true;
       addressInput.setAttribute("aria-expanded", "false");
       return;
+    }
+    if (listMode === "recent") {
+      var label = document.createElement("li");
+      label.className = "piq-suggest__label";
+      label.setAttribute("role", "presentation");
+      label.textContent = "Recent";
+      suggestList.appendChild(label);
     }
     suggestions.forEach(function (item, index) {
       var li = document.createElement("li");
@@ -120,6 +182,7 @@
     if (!item) return;
     addressInput.value = withTypedUnit(addressInput.value, item.address);
     markAddressHint();
+    rememberAddress(addressInput.value);
     if (suggestStatus) suggestStatus.textContent = "Address set to " + item.address;
     closeSuggestions();
   }
@@ -134,6 +197,7 @@
       .then(function (res) { return res.json(); })
       .then(function (body) {
         if (addressInput.value.trim() !== query) return;
+        listMode = "suggest";
         suggestions = (Array.isArray(body.suggestions) ? body.suggestions.slice(0, 8) : []).map(function (item) {
           var address = withTypedUnit(query, item.address || item.label || "");
           return { label: address, address: address };
@@ -152,14 +216,34 @@
       });
   }
 
+  function maybeShowRecent() {
+    clearTimeout(suggestTimer);
+    if (suggestAbort) suggestAbort.abort();
+    showRecent("");
+  }
+
+  addressInput.addEventListener("focus", maybeShowRecent);
+  addressInput.addEventListener("click", function () {
+    if (!suggestList.hidden) return;
+    maybeShowRecent();
+  });
+
   addressInput.addEventListener("input", function () {
     markAddressHint();
     var query = addressInput.value.trim();
     clearTimeout(suggestTimer);
     if (query.length < 3 || !/[A-Za-z]/.test(query)) {
-      closeSuggestions();
+      if (suggestAbort) suggestAbort.abort();
+      showRecent(query);
       return;
     }
+    listMode = "suggest";
+    suggestions = [];
+    activeIndex = -1;
+    suggestList.innerHTML = "";
+    suggestList.hidden = true;
+    addressInput.setAttribute("aria-expanded", "false");
+    addressInput.removeAttribute("aria-activedescendant");
     suggestTimer = setTimeout(function () { requestSuggestions(query); }, 280);
   });
 

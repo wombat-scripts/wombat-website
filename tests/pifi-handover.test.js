@@ -205,6 +205,9 @@ test('source does not embed a partner key or the live handover host', function (
   assert.doesNotMatch(client, /A copy may also arrive by email/);
   assert.match(css, /#piq-stage\.is-embed > \.ads-form__privacy/);
   assert.match(css, /margin-top:\s*var\(--space-8\)/);
+  assert.match(css, /\.piq-intro\.section--tight\s*\{[^}]*padding-bottom:\s*0/);
+  assert.match(css, /\.piq-report\.section--tight\s*\{[^}]*padding-top:\s*var\(--space-4\)/);
+  assert.match(css, /body\.piq-open \.piq-report\s*\{[^}]*padding-top:\s*var\(--space-3\)/);
   assert.match(css, /body\.piq-open \.piq-intro/);
   assert.match(client, /piq-open/);
   assert.match(page, /class="section section--tight piq-intro"/);

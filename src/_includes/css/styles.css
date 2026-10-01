@@ -3565,6 +3565,15 @@ input[type="range"].calc-range::-moz-range-thumb {
   overflow: auto;
 }
 
+.piq-suggest__label {
+  padding: 0.55rem 0.9rem 0.2rem;
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
 .piq-suggest__option {
   padding: 0.7rem 0.9rem;
   cursor: pointer;
@@ -3643,8 +3652,19 @@ input[type="range"].calc-range::-moz-range-thumb {
   max-width: 1100px;
 }
 
-/* The intro and the report are separate tight sections. Once the form
-   is gone, those two paddings stack into a tall blank above the frame. */
+/* Idle form: two tight sections otherwise stack into a tall cream gap
+   between the lede and the card. Drop the intro's bottom pad, and keep
+   a short gap above the card. The open-report rules still own the embed. */
+.piq-intro.section--tight {
+  padding-bottom: 0;
+}
+
+.piq-report.section--tight {
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-5);
+}
+
+/* Once the form is gone, the embed sits a little closer under the lede. */
 body.piq-open .piq-intro {
   padding-bottom: 0;
 }
@@ -3655,10 +3675,6 @@ body.piq-open .piq-report {
 
 #piq-stage > .ads-form__privacy {
   margin-top: var(--space-6);
-}
-
-.piq-report.section--tight {
-  padding-bottom: var(--space-5);
 }
 
 #piq-stage.is-embed > .ads-form__privacy,

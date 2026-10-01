@@ -62,6 +62,15 @@ test('short queries and the client stay on our function', function () {
   assert.match(client, /280/);
   assert.match(client, /ArrowDown/);
   assert.match(client, /withTypedUnit/);
+  assert.match(client, /wombat-piq-recent/);
+  assert.match(client, /RECENT_LIMIT = 10/);
+  assert.match(client, /function rememberAddress/);
+  assert.match(client, /function showRecent/);
+  assert.match(client, /textContent = "Recent"/);
+  assert.match(client, /showRecent\(""\)/);
+  assert.match(client, /rememberAddress\(addressInput\.value\)/);
+  assert.doesNotMatch(client, /localStorage\.setItem\([\s\S]{0,180}email/);
+  assert.doesNotMatch(client, /umami\.track\([\s\S]{0,80}recent/i);
   assert.doesNotMatch(client + page, /photon\.komoot\.io/);
   assert.doesNotMatch(client + page, /api\.pifiproperty\.com/);
   assert.doesNotMatch(client + page + fn, /\u2014/);

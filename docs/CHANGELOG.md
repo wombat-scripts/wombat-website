@@ -6,6 +6,12 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-01. Property IQ remembers recent addresses
+
+Picking a suggested address stores it on this browser, up to 10, newest first. Focusing the address box shows that Recent list. Typing a street brings back the live suggestions. The list is not sent to analytics or PiFi until the form is submitted. On the idle form, the cream gap between the intro and the card is closed. The embedded report spacing is unchanged, and the credit line still sits clear of the form.
+
+**Files changed:** `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/address-suggest.test.js`, `tests/pifi-handover.test.js`
+
 ## 2026-10-01. Property IQ opens on the form
 
 `/property-iq/` starts on the address form. A saved report is put back in the frame only for an hour, so Back from the calculator in the same sitting still works. An older save, or one with no timestamp, is cleared and the form stays up. The recovery card is only for a report that was already open and then failed. The credit line sits further under the form, and the email field is white.
