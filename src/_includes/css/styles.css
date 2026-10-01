@@ -3650,6 +3650,7 @@ body.piq-open .piq-report {
 }
 
 #piq-stage.is-embed > .ads-form__privacy,
+body.piq-open #piq-stage > .ads-form__privacy,
 #piq-stage:has(.piq-form.is-success) > .ads-form__privacy {
   margin-top: var(--space-8);
 }

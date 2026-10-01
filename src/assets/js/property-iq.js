@@ -223,12 +223,17 @@
   }
 
   var REPORT_KEY = "wombat-piq-report";
+  // PiFi does not document how long a report link stays open. Restore the
+  // embed only for a day. Older saves, and saves from before this timestamp,
+  // show a recovery card and do not load the frame.
+  var REPORT_FRESH_MS = 24 * 60 * 60 * 1000;
 
   function rememberReport(url, embed) {
     try {
       sessionStorage.setItem(REPORT_KEY, JSON.stringify({
         url: url,
         embed: embed === true,
+        savedAt: Date.now(),
       }));
     } catch (err) { /* private mode can refuse storage */ }
   }
@@ -246,7 +251,11 @@
         forgetReport();
         return null;
       }
-      return { url: data.url, embed: data.embed === true };
+      return {
+        url: data.url,
+        embed: data.embed === true,
+        savedAt: typeof data.savedAt === "number" ? data.savedAt : null,
+      };
     } catch (err) {
       forgetReport();
       return null;
@@ -291,10 +300,37 @@
     }
   }
 
+  function reportIsFresh(saved) {
+    if (!saved || typeof saved.savedAt !== "number" || !isFinite(saved.savedAt)) return false;
+    var age = Date.now() - saved.savedAt;
+    return age >= 0 && age < REPORT_FRESH_MS;
+  }
+
+  function showRecovery() {
+    var embed = document.getElementById("piq-embed");
+    var frame = document.getElementById("piq-frame");
+    var success = document.getElementById("piq-success");
+    var stage = document.getElementById("piq-stage");
+    if (frame) frame.src = "about:blank";
+    if (embed) {
+      embed.hidden = true;
+      embed.classList.remove("is-visible");
+    }
+    if (success) {
+      success.hidden = true;
+      success.classList.remove("is-visible");
+    }
+    if (stage) stage.classList.remove("is-embed");
+    form.classList.remove("is-success");
+    form.classList.add("is-embed");
+    hideFormFields();
+    setReportOpen(true);
+    showExpiredHelp();
+    showNext();
+  }
+
   function noteFrameExpiry(frame) {
-    var expired = frameLooksExpired(frame);
-    if (expired === true) showExpiredHelp();
-    else if (expired === false) hideExpiredHelp();
+    if (frameLooksExpired(frame) === true) showRecovery();
   }
 
   function showForm() {
@@ -384,7 +420,8 @@
     function giveUp() {
       if (settled) return;
       settled = true;
-      showNewTab(url, openTab(url));
+      if (quiet) showRecovery();
+      else showNewTab(url, openTab(url));
     }
     var timer = setTimeout(giveUp, EMBED_LOAD_MS);
     frame.addEventListener("error", function () {
@@ -406,11 +443,12 @@
   function restoreReport() {
     var saved = readReport();
     if (!saved) return;
+    if (!reportIsFresh(saved)) {
+      showRecovery();
+      return;
+    }
     if (saved.embed) showEmbed(saved.url, true);
     else showNewTab(saved.url, false, true);
-    // A saved link can already be dead. PiFi is cross-origin, so the frame
-    // title is unreadable. Offer a way out whenever we bring a report back.
-    showExpiredHelp();
   }
 
   function presentReport(url, email, address, embed) {
@@ -515,8 +553,13 @@
     if (!event.persisted) return;
     var saved = readReport();
     if (!saved || !saved.embed) return;
+    if (!reportIsFresh(saved)) {
+      showRecovery();
+      return;
+    }
     var frame = document.getElementById("piq-frame");
-    if (!frame) return;
+    var embed = document.getElementById("piq-embed");
+    if (!frame || !embed || embed.hidden) return;
     frame.src = "about:blank";
     frame.src = saved.url;
   });
