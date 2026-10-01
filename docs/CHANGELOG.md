@@ -6,6 +6,12 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-01. Property IQ remembers the report for this tab
+
+What's next now points at the repayments calculator. The starting-point line sits under the buttons. A successful handover is kept in sessionStorage (report url and embed flag only). Coming back to `/property-iq/` restores the frame or Open my report. Start another report clears it, and a failed handover clears it too.
+
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
 ## 2026-10-01. Property IQ shows What's next after a report
 
 Once handover succeeds, a warm strip sits under the embedded report or the new-tab success card. It offers a strategy call at `/book/` and the existing borrowing power calculator. The PropIQ range is named as a starting point, not advice. The embed stays in place.

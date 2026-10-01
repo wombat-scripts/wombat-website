@@ -3695,18 +3695,35 @@ input[type="range"].calc-range::-moz-range-thumb {
   font-size: 1.75rem;
 }
 
-.piq-next__note {
-  margin: 0 0 var(--space-4);
-  color: var(--ink-soft);
-  font-size: var(--fs-small);
-  line-height: var(--lh-body);
-}
-
 .piq-next__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
   align-items: center;
+}
+
+.piq-next__note {
+  margin: var(--space-6) 0 0;
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+  line-height: var(--lh-body);
+}
+
+.piq-next__again {
+  margin: var(--space-3) 0 0;
+}
+
+.piq-next__again button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--oak-deep);
+  font: inherit;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  cursor: pointer;
 }
 
 .piq-progress__status {

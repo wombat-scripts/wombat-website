@@ -222,6 +222,37 @@
     return true;
   }
 
+  var REPORT_KEY = "wombat-piq-report";
+
+  function rememberReport(url, embed) {
+    try {
+      sessionStorage.setItem(REPORT_KEY, JSON.stringify({
+        url: url,
+        embed: embed === true,
+      }));
+    } catch (err) { /* private mode can refuse storage */ }
+  }
+
+  function forgetReport() {
+    try { sessionStorage.removeItem(REPORT_KEY); } catch (err) { /* ignore */ }
+  }
+
+  function readReport() {
+    try {
+      var raw = sessionStorage.getItem(REPORT_KEY);
+      if (!raw) return null;
+      var data = JSON.parse(raw);
+      if (!data || !isHandoverUrl(data.url)) {
+        forgetReport();
+        return null;
+      }
+      return { url: data.url, embed: data.embed === true };
+    } catch (err) {
+      forgetReport();
+      return null;
+    }
+  }
+
   function showNext() {
     var next = document.getElementById("piq-next");
     if (!next) return;
@@ -229,7 +260,39 @@
     next.classList.add("is-visible");
   }
 
-  function showNewTab(url, opened) {
+  function showForm() {
+    var embed = document.getElementById("piq-embed");
+    var frame = document.getElementById("piq-frame");
+    var success = document.getElementById("piq-success");
+    var next = document.getElementById("piq-next");
+    var stage = document.getElementById("piq-stage");
+    if (frame) frame.src = "about:blank";
+    if (embed) {
+      embed.hidden = true;
+      embed.classList.remove("is-visible");
+    }
+    if (success) {
+      success.hidden = true;
+      success.classList.remove("is-visible");
+    }
+    if (next) {
+      next.hidden = true;
+      next.classList.remove("is-visible");
+    }
+    if (stage) stage.classList.remove("is-embed");
+    form.classList.remove("is-embed");
+    form.classList.remove("is-success");
+    form.querySelectorAll(".ads-form__field").forEach(function (el) {
+      el.hidden = false;
+    });
+    submitBtn.hidden = false;
+    submitBtn.disabled = false;
+    submitBtn.removeAttribute("aria-hidden");
+    setBusy(false);
+    forgetReport();
+  }
+
+  function showNewTab(url, opened, quiet) {
     var success = document.getElementById("piq-success");
     var copy = document.getElementById("piq-success-copy");
     var open = document.getElementById("piq-open");
@@ -253,12 +316,13 @@
     success.hidden = false;
     success.classList.add("is-visible");
     showNext();
-    if (window.umami) {
+    rememberReport(url, false);
+    if (!quiet && window.umami) {
       window.umami.track("property-iq-new-tab", { location: "property-iq" });
     }
   }
 
-  function showEmbed(url) {
+  function showEmbed(url, quiet) {
     var embed = document.getElementById("piq-embed");
     var frame = document.getElementById("piq-frame");
     var pop = document.getElementById("piq-pop");
@@ -274,6 +338,7 @@
     embed.hidden = false;
     embed.classList.add("is-visible");
     showNext();
+    rememberReport(url, true);
     var settled = false;
     function giveUp() {
       if (settled) return;
@@ -291,9 +356,16 @@
       clearTimeout(timer);
     }, { once: true });
     frame.src = url;
-    if (window.umami) {
+    if (!quiet && window.umami) {
       window.umami.track("property-iq-embed", { location: "property-iq" });
     }
+  }
+
+  function restoreReport() {
+    var saved = readReport();
+    if (!saved) return;
+    if (saved.embed) showEmbed(saved.url, true);
+    else showNewTab(saved.url, false, true);
   }
 
   function presentReport(url, email, address, embed) {
@@ -370,14 +442,35 @@
           presentReport(url, payload.email, payload.address, result.body.embed === true);
           return;
         }
+        forgetReport();
         setBusy(false);
         showError(result.body && result.body.message
           ? result.body.message
           : "Something didn't go through. Try again in a minute. If it keeps failing, email us and we'll sort it.");
       })
       .catch(function () {
+        forgetReport();
         setBusy(false);
         showError("Something didn't go through. Try again in a minute. If it keeps failing, email us and we'll sort it.");
       });
+  });
+
+  var again = document.getElementById("piq-again");
+  if (again) {
+    again.addEventListener("click", function () {
+      showForm();
+      if (addressInput) addressInput.focus();
+    });
+  }
+
+  restoreReport();
+  window.addEventListener("pageshow", function (event) {
+    if (!event.persisted) return;
+    var saved = readReport();
+    if (!saved || !saved.embed) return;
+    var frame = document.getElementById("piq-frame");
+    if (!frame) return;
+    frame.src = "about:blank";
+    frame.src = saved.url;
   });
 })();
