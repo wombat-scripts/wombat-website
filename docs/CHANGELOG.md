@@ -6,6 +6,12 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-01. Property IQ opens on the form
+
+`/property-iq/` starts on the address form. A saved report is put back in the frame only for an hour, so Back from the calculator in the same sitting still works. An older save, or one with no timestamp, is cleared and the form stays up. The recovery card is only for a report that was already open and then failed. The credit line sits further under the form, and the email field is white.
+
+**Files changed:** `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
 ## 2026-10-01. Property IQ does not embed an expired report
 
 PiFi does not say how long a report link lasts. A saved embed is restored only for 24 hours. An older save, or one stored before that timestamp, does not load the frame. The page shows a recovery card instead: Start another report, and Book a strategy call. If the frame can be read and it says the link will not open, the frame is removed and that same card is shown. Start another report still clears the saved link.

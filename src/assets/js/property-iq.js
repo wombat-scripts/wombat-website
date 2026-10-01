@@ -223,10 +223,9 @@
   }
 
   var REPORT_KEY = "wombat-piq-report";
-  // PiFi does not document how long a report link stays open. Restore the
-  // embed only for a day. Older saves, and saves from before this timestamp,
-  // show a recovery card and do not load the frame.
-  var REPORT_FRESH_MS = 24 * 60 * 60 * 1000;
+  // Same sitting only, such as Back from the repayments calculator.
+  // A stale save, or one with no timestamp, is cleared and the form is shown.
+  var REPORT_FRESH_MS = 60 * 60 * 1000;
 
   function rememberReport(url, embed) {
     try {
@@ -444,7 +443,7 @@
     var saved = readReport();
     if (!saved) return;
     if (!reportIsFresh(saved)) {
-      showRecovery();
+      forgetReport();
       return;
     }
     if (saved.embed) showEmbed(saved.url, true);
@@ -554,7 +553,7 @@
     var saved = readReport();
     if (!saved || !saved.embed) return;
     if (!reportIsFresh(saved)) {
-      showRecovery();
+      showForm();
       return;
     }
     var frame = document.getElementById("piq-frame");

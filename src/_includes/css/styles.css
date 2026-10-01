@@ -3318,8 +3318,12 @@ input[type="range"].calc-range::-moz-range-thumb {
   margin-top: var(--space-2);
 }
 
+.piq-form .ads-form__input {
+  background: #fff;
+}
+
 .piq-form .ads-form__submit {
-  margin-bottom: var(--space-5);
+  margin-bottom: 0;
 }
 
 .ads-form__submit:disabled {
@@ -3647,6 +3651,14 @@ body.piq-open .piq-intro {
 
 body.piq-open .piq-report {
   padding-top: var(--space-3);
+}
+
+#piq-stage > .ads-form__privacy {
+  margin-top: var(--space-6);
+}
+
+.piq-report.section--tight {
+  padding-bottom: var(--space-5);
 }
 
 #piq-stage.is-embed > .ads-form__privacy,

@@ -194,9 +194,9 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(client, /function restoreReport\(\)/);
   assert.match(client, /function showRecovery\(\)/);
   assert.match(client, /function reportIsFresh\(/);
-  assert.match(client, /REPORT_FRESH_MS = 24 \* 60 \* 60 \* 1000/);
+  assert.match(client, /REPORT_FRESH_MS = 60 \* 60 \* 1000/);
   assert.match(client, /savedAt: Date\.now\(\)/);
-  assert.match(client, /if \(!reportIsFresh\(saved\)\) \{\s*showRecovery\(\)/);
+  assert.match(client, /if \(!reportIsFresh\(saved\)\) \{\s*forgetReport\(\)/);
   assert.match(client, /frameLooksExpired\(frame\) === true\) showRecovery\(\)/);
   assert.match(client, /showExpiredHelp\(\)/);
   assert.match(client, /frameLooksExpired/);
