@@ -6,6 +6,12 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-01. Property IQ opens the report in this tab
+
+After PiFi returns a url, the page no longer waits 35 seconds or shows an elapsed clock. The button says Get my report, stays disabled while the handover runs (about 30 seconds at most), then `location.assign` opens that exact url in the same tab. The Resend email still goes out, but it does not hold the redirect. Open my report only appears if the tab does not leave. QA host and partner key are unchanged.
+
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
 ## 2026-09-25. Property IQ success hides the submit button
 
 The submit button uses the shared `.btn` display, so `hidden` did not remove it after a report was ready. Success now adds `is-success` on the form and `is-visible` on the report link. The idle button stays Run my report. The link that appears afterwards says Open my report.

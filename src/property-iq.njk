@@ -56,22 +56,19 @@ permalink: /property-iq/
       </div>
 
       <button class="btn btn--primary btn--lg ads-form__submit" id="piq-submit" type="submit">
-        Run my report
+        Get my report
       </button>
       <div class="piq-progress" id="piq-wait" hidden>
         <div class="piq-progress__meter">
           <span class="piq-spinner" aria-hidden="true"></span>
-          <p class="piq-progress__time">
-            <span class="piq-progress__label">Elapsed</span>
-            <span id="piq-elapsed">0:00</span>
-          </p>
+          <p class="piq-progress__status" id="piq-wait-label">Starting your report</p>
         </div>
-        <p class="ads-form__trust" role="status">Getting your report ready. This can take about a minute. Please keep this tab open.</p>
+        <p class="ads-form__trust" id="piq-wait-copy" role="status">PropIQ is opening your report. This usually takes a few seconds. Please keep this tab open.</p>
       </div>
       <p class="ads-form__status ads-form__status--error" id="piq-error" role="alert" hidden></p>
       <div class="piq-success" id="piq-success" hidden>
         <p class="piq-success__copy" id="piq-success-copy"></p>
-        <a class="btn btn--primary btn--lg piq-success__open" id="piq-open" target="_blank" rel="noopener noreferrer">Open my report</a>
+        <a class="btn btn--primary btn--lg piq-success__open" id="piq-open">Open my report</a>
       </div>
       <p class="ads-form__privacy muted">Wombat Home Loans · Credit Rep CRN 559744 · ACL 561324. PropIQ is provided by PiFi. We're not giving valuations advice on this page. The report is a starting point for a conversation.</p>
     </form>

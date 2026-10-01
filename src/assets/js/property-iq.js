@@ -5,16 +5,15 @@
   var submitBtn = document.getElementById("piq-submit");
   var errorEl = document.getElementById("piq-error");
   var waitEl = document.getElementById("piq-wait");
-  var elapsedEl = document.getElementById("piq-elapsed");
-  var elapsedTimer = null;
-  var elapsedStarted = 0;
+  var waitLabel = document.getElementById("piq-wait-label");
+  var waitCopy = document.getElementById("piq-wait-copy");
   var addressInput = document.getElementById("piq-address");
   var suggestList = document.getElementById("piq-suggest-list");
   var suggestStatus = document.getElementById("piq-suggest-status");
   var busy = false;
-  var HANDOVER_TIMEOUT_MS = 40000;
-  var READY_DELAY_MS = 35000;
+  var HANDOVER_TIMEOUT_MS = 30000;
   var NOTIFY_TIMEOUT_MS = 15000;
+  var REDIRECT_FALLBACK_MS = 4000;
   var suggestions = [];
   var activeIndex = -1;
   var suggestTimer = null;
@@ -30,29 +29,27 @@
     errorEl.hidden = true;
   }
 
-  function formatElapsed(ms) {
-    var total = Math.max(0, Math.floor(ms / 1000));
-    var minutes = Math.floor(total / 60);
-    var seconds = total % 60;
-    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-  }
-
   function setBusy(on) {
     busy = on;
     submitBtn.disabled = on;
-    submitBtn.textContent = on ? "Getting your report…" : "Run my report";
+    submitBtn.textContent = on ? "Starting your report…" : "Get my report";
     submitBtn.setAttribute("aria-busy", on ? "true" : "false");
     waitEl.hidden = !on;
-    if (elapsedTimer) {
-      clearInterval(elapsedTimer);
-      elapsedTimer = null;
-    }
     if (!on) return;
-    elapsedStarted = Date.now();
-    if (elapsedEl) elapsedEl.textContent = "0:00";
-    elapsedTimer = setInterval(function () {
-      if (elapsedEl) elapsedEl.textContent = formatElapsed(Date.now() - elapsedStarted);
-    }, 1000);
+    if (waitLabel) waitLabel.textContent = "Starting your report";
+    if (waitCopy) {
+      waitCopy.textContent = "PropIQ is opening your report. This usually takes a few seconds. Please keep this tab open.";
+    }
+  }
+
+  function isHandoverUrl(value) {
+    try {
+      var parsed = new URL(String(value || ""));
+      var host = parsed.hostname.toLowerCase();
+      return parsed.protocol === "https:" && (host === "pifiproperty.com" || host.endsWith(".pifiproperty.com"));
+    } catch (err) {
+      return false;
+    }
   }
 
   function markAddressHint() {
@@ -192,28 +189,19 @@
     setTimeout(closeSuggestions, 150);
   });
 
-  function wait(ms) {
-    return new Promise(function (resolve) { setTimeout(resolve, ms); });
-  }
-
   function notifyReport(email, address, url) {
     var controller = new AbortController();
     var timer = setTimeout(function () { controller.abort(); }, NOTIFY_TIMEOUT_MS);
-    return fetch("/.netlify/functions/propiq-notify", {
+    fetch("/.netlify/functions/propiq-notify", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: email, address: address, url: url }),
       signal: controller.signal,
-    })
-      .then(function (res) {
-        return res.json().catch(function () { return {}; });
-      })
-      .then(function (body) { return body.emailSent === true; })
-      .catch(function () { return false; })
-      .finally(function () { clearTimeout(timer); });
+      keepalive: true,
+    }).catch(function () {}).finally(function () { clearTimeout(timer); });
   }
 
-  function showSuccess(url, emailSent) {
+  function showFallback(url) {
     var success = document.getElementById("piq-success");
     var copy = document.getElementById("piq-success-copy");
     var open = document.getElementById("piq-open");
@@ -225,12 +213,33 @@
     submitBtn.hidden = true;
     submitBtn.disabled = true;
     submitBtn.setAttribute("aria-hidden", "true");
-    copy.textContent = emailSent
-      ? "Check your email. The PropIQ report link for this address is on its way, and Tom is copied."
-      : "The email may not have sent. You can still open the report from this page.";
+    copy.textContent = "Still here? Open the report with the button. We'll email the link as well.";
     open.href = url;
     success.hidden = false;
     success.classList.add("is-visible");
+  }
+
+  function goToReport(url, email, address) {
+    if (waitLabel) waitLabel.textContent = "Opening your report";
+    if (waitCopy) waitCopy.textContent = "Taking you to PropIQ in this tab.";
+    notifyReport(email, address, url);
+    if (window.umami) {
+      window.umami.track("property-iq-redirect", { location: "property-iq" });
+    }
+    var fallbackTimer = setTimeout(function () {
+      setBusy(false);
+      showFallback(url);
+    }, REDIRECT_FALLBACK_MS);
+    window.addEventListener("pagehide", function () {
+      clearTimeout(fallbackTimer);
+    }, { once: true });
+    try {
+      window.location.assign(url);
+    } catch (err) {
+      clearTimeout(fallbackTimer);
+      setBusy(false);
+      showFallback(url);
+    }
   }
 
   markAddressHint();
@@ -293,19 +302,9 @@
       .then(function (result) {
         clearTimeout(timer);
         var url = result.body && result.body.url;
-        if (result.status === 201 && typeof url === "string" && url.indexOf("https://") === 0) {
-          return wait(READY_DELAY_MS).then(function () {
-            return notifyReport(payload.email, payload.address, url).then(function (emailSent) {
-              setBusy(false);
-              showSuccess(url, emailSent);
-              if (window.umami) {
-                window.umami.track("property-iq-ready", {
-                  location: "property-iq",
-                  emailSent: emailSent ? "yes" : "no",
-                });
-              }
-            });
-          });
+        if (result.status === 201 && isHandoverUrl(url)) {
+          goToReport(url, payload.email, payload.address);
+          return;
         }
         setBusy(false);
         showError(result.body && result.body.message

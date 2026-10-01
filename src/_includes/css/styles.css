@@ -3635,25 +3635,13 @@ input[type="range"].calc-range::-moz-range-thumb {
   margin-bottom: var(--space-5);
 }
 
-.piq-progress__time {
+.piq-progress__status {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.75rem;
+  font-size: 1.35rem;
   font-weight: 600;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
   color: var(--ink);
-}
-
-.piq-progress__label {
-  display: block;
-  margin-bottom: 0.2rem;
-  font-family: var(--font-body);
-  font-size: var(--fs-small);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--oak-deep);
 }
 
 .piq-progress .ads-form__trust {
