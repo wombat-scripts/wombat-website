@@ -3673,6 +3673,13 @@ body.piq-open .piq-report {
   padding-top: var(--space-3);
 }
 
+.piq-accuracy {
+  margin: var(--space-6) 0 0;
+  color: var(--ink-muted);
+  font-size: var(--fs-small);
+  line-height: var(--lh-body);
+}
+
 #piq-stage > .ads-form__privacy {
   margin-top: var(--space-6);
 }

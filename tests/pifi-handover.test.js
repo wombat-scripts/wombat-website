@@ -186,6 +186,10 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(page, /class="btn btn--primary" id="piq-expired-again"/);
   assert.match(page, /class="btn btn--ghost" id="piq-again"/);
   assert.match(page, /starting point, not advice/);
+  assert.match(page, /id="piq-accuracy"[\s\S]*class="ads-form__privacy muted"/);
+  assert.match(page, /Estimates on this page come from PropIQ, using third-party property data\./);
+  assert.match(page, /This is not a valuation and not financial advice\./);
+  assert.doesNotMatch(page, /ads-form__privacy[\s\S]{0,220}third-party property data/);
   assert.doesNotMatch(page, /What's next[\s\S]*id="piq-frame"/);
   assert.match(client, /function showNext\(\)/);
   assert.ok((client.match(/showNext\(\)/g) || []).length >= 3);

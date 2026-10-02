@@ -6,6 +6,12 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-02. Property IQ states where the estimates come from
+
+A short accuracy note sits under the form, and stays there once the report is open, above the credit line. It says the figures come from PropIQ via third-party data, can lag a recent sale, and are not a valuation or financial advice.
+
+**Files changed:** `src/property-iq.njk`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
 ## 2026-10-01. Property IQ remembers recent addresses
 
 Picking a suggested address stores it on this browser, up to 10, newest first. Focusing the address box shows that Recent list. Typing a street brings back the live suggestions. The list is not sent to analytics or PiFi until the form is submitted. On the idle form, the cream gap between the intro and the card is closed. The embedded report spacing is unchanged, and the credit line still sits clear of the form.
