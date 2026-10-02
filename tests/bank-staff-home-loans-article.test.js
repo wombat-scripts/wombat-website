@@ -70,7 +70,7 @@ test('bank-staff article matches the flagship njk pattern', function () {
 });
 
 test('llms.txt uses the locked bank-staff URL and snippet', function () {
-  var llms = read('src/llms.txt.njk');
+  var llms = read('src/llms-full.txt.njk');
   assert.match(llms, /\[Bank staff home loans: 90% with no LMI\]\(https:\/\/wombathomeloans\.com\.au\/articles\/lmi-waiver-bank-employees\/\) - First home \/ bank staff/);
   assert.match(llms, /Select lenders waive LMI at up to 90% LVR/);
   assert.match(llms, /Eligibility is usually the employer, not the job title/);

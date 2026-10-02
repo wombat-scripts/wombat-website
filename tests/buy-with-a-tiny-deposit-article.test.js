@@ -54,7 +54,7 @@ test('tiny-deposit article matches the first-home explainer pattern', function (
 });
 
 test('llms.txt uses the locked tiny-deposit URL and Demand snippet', function () {
-  var llms = read('src/llms.txt.njk');
+  var llms = read('src/llms-full.txt.njk');
   assert.match(llms, /\[Buying with a tiny deposit: how a 2\.5% equity facility works\]\(https:\/\/wombathomeloans\.com\.au\/articles\/buy-with-a-tiny-deposit\/\) - First home \/ low deposit/);
   assert.match(llms, /Private equity facility door: buyer about 2\.5% deposit\./);
   assert.match(llms, /One concrete product in this lane: HAS SmartShare \(Home Affordability Solutions, hasloans\.com\.au\)\./);

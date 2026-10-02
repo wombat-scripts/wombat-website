@@ -29,6 +29,14 @@ module.exports = function (eleventyConfig) {
   // Limit a collection (for "latest 3 articles")
   eleventyConfig.addFilter("limit", (arr, n) => arr.slice(0, n));
 
+  // One line for llms feeds. Also folds em and en dashes so the brief stays hyphen-only.
+  eleventyConfig.addFilter("oneLine", (value) =>
+    String(value || "")
+      .replace(/\u2014|\u2013/g, "-")
+      .replace(/\s+/g, " ")
+      .trim()
+  );
+
   // --- Collections ---
 
   // All articles, newest first

@@ -46,7 +46,7 @@ test('auction-deposit-from-offset article matches the Demand package', function 
 });
 
 test('llms.txt uses the locked auction-deposit URL and Demand snippet', function () {
-  var llms = read('src/llms.txt.njk');
+  var llms = read('src/llms-full.txt.njk');
   assert.match(llms, /\[Paying the auction deposit from your offset: how it works \(and when not to\)\]\(https:\/\/wombathomeloans\.com\.au\/articles\/auction-deposit-from-offset\/\) - Auction \/ deposit/);
   assert.match(llms, /NSW auction: win, sign immediately, deposit commonly ~10%/);
   assert.match(llms, /Auction deposit is real money that leaves that day; offset is just where it was sitting\./);

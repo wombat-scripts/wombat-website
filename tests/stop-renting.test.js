@@ -167,10 +167,13 @@ test('callback script reads fields by id and splits validation from submit error
   assert.match(script, /showSuccess\(phone\)/);
   assert.match(script, /Thanks\. Tom will call you on /);
   assert.equal(script.split("umami.track('stop-renting-callback')").length - 1, 1);
+  assert.equal(script.split("umami.track('stop_renting_callback_success')").length - 1, 1);
   var trackAt = script.indexOf("umami.track('stop-renting-callback')");
+  var successAt = script.indexOf("umami.track('stop_renting_callback_success')");
   var showAt = script.indexOf('function showSuccess');
   var submitAt = script.indexOf("form.addEventListener('submit'");
   assert.ok(showAt !== -1 && showAt < trackAt && trackAt < submitAt, 'callback event is only inside showSuccess');
+  assert.ok(showAt < successAt && successAt < submitAt, 'success event is only inside showSuccess');
 
   assert.match(script, /window\.location && window\.location\.pathname/);
   assert.match(script, /'\/stop-renting\/'/);

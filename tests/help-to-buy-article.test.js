@@ -46,7 +46,7 @@ test('Help to Buy article matches the first-home explainer pattern', function ()
 });
 
 test('llms.txt includes the Help to Buy snippet with a hyphen, not an em dash', function () {
-  var llms = read('src/llms.txt.njk');
+  var llms = read('src/llms-full.txt.njk');
   assert.match(llms, /\[Help to Buy: what it is, and what it is not\]\(https:\/\/wombathomeloans\.com\.au\/articles\/help-to-buy-what-it-is\/\) - First home \/ government schemes/);
   assert.match(llms, /Help to Buy is the Australian Government shared-equity scheme\./);
   assert.match(llms, /It is not the 5% deposit scheme\./);

@@ -24,6 +24,20 @@ date: 2026-08-19
            style="min-width:320px;height:700px;"
            data-umami-event="calendly-embed"></div>
       <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      <script>
+        (function () {
+          var booked = false;
+          window.addEventListener('message', function (event) {
+            if (booked || !event || event.origin !== 'https://calendly.com') return;
+            var data = event.data || {};
+            if (data.event !== 'calendly.event_scheduled') return;
+            booked = true;
+            if (window.umami) {
+              try { window.umami.track('book_strategy_scheduled'); } catch (err) {}
+            }
+          });
+        })();
+      </script>
     </div>
 
     <p class="text-center book-embed__aside">
