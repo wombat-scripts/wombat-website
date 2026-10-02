@@ -481,6 +481,29 @@
     }
   }
 
+  // TODO(Heshan/PiFi): auto-scroll partner handover chats to the latest
+  // appraisal when the session opens. The transcript lives in a cross-origin
+  // iframe, so this page cannot read it or move its scroll. The handover URL
+  // is opened unchanged. A new tab is PiFi's own page, and we cannot scroll
+  // that either. This only brings the chat input on our page into view.
+  function scrollEmbedToChatInput() {
+    var embed = document.getElementById("piq-embed");
+    var note = document.getElementById("piq-embed-note");
+    var frame = document.getElementById("piq-frame");
+    if (!embed || embed.hidden) return;
+    var target = note || frame;
+    if (!target) return;
+    var reduce = false;
+    try {
+      reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    } catch (err) { reduce = false; }
+    target.scrollIntoView({
+      block: "end",
+      inline: "nearest",
+      behavior: reduce ? "auto" : "smooth",
+    });
+  }
+
   function showEmbed(url, quiet) {
     var embed = document.getElementById("piq-embed");
     var frame = document.getElementById("piq-frame");
@@ -516,6 +539,7 @@
       settled = true;
       clearTimeout(timer);
       noteFrameExpiry(frame);
+      scrollEmbedToChatInput();
     }, { once: true });
     frame.src = url;
     if (!quiet && window.umami) {
@@ -643,6 +667,12 @@
     var frame = document.getElementById("piq-frame");
     var embed = document.getElementById("piq-embed");
     if (!frame || !embed || embed.hidden) return;
+    frame.addEventListener("load", function onShown() {
+      if (!isHandoverUrl(frame.src)) return;
+      frame.removeEventListener("load", onShown);
+      noteFrameExpiry(frame);
+      scrollEmbedToChatInput();
+    });
     frame.src = "about:blank";
     frame.src = saved.url;
   });

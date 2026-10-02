@@ -3716,6 +3716,7 @@ body.piq-open #piq-stage > .ads-form__privacy,
   margin: var(--space-4) 0 0;
   color: var(--ink-soft);
   font-size: var(--fs-small);
+  scroll-margin-bottom: var(--space-4);
 }
 
 .piq-embed__pop {

@@ -6,6 +6,12 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-02. Property IQ shows the chat input, and a shorter address hint
+
+After a framed handover, the page scrolls so the bottom of the PropIQ frame and the line under it sit in view. The transcript itself still opens on PiFi's intro. That frame is cross-origin, and the session URL is opened unchanged, so Wombat cannot move the chat to the latest appraisal. Heshan needs PropIQ to do that when a partner session opens. A new tab, used when the frame is refused, is PiFi's page and cannot be scrolled from here either. Same-tab redirect is not used. The address hint now reads "Wait a few seconds for address validation".
+
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
 ## 2026-10-02. Property IQ uses the env API host
 
 Homepage Tools, the footer Tools list, and the nav open `/property-iq/`. The short index and the expanded brief now do too. `pifi-handover` still reads `PIFI_API_HOST` and `PIFI_PARTNER_KEY` from the environment. It accepts an https api host on pifiproperty.com and refuses anything else. A missing host or key still fails closed. The partner key is not in source. The accuracy note under the form is unchanged.
