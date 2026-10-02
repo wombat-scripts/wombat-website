@@ -1,0 +1,100 @@
+---
+title: "Property IQ"
+description: "Tell us an address and your email. We'll send a free PropIQ report so you can see what the place is really worth, before you chase the bank or the auction."
+layout: base.njk
+permalink: /property-iq/
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Property IQ",
+  "description": "{{ description }}",
+  "url": "https://wombathomeloans.com.au/property-iq/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+  "provider": { "@type": "MortgageBroker", "name": "Wombat Home Loans", "url": "https://wombathomeloans.com.au/" }
+}
+</script>
+{% endblock %}
+
+<section class="section section--tight piq-intro">
+  <div class="container container--narrow">
+    <p class="calc-breadcrumb"><a href="/calculators/">← Calculators</a></p>
+    <h1>Property IQ</h1>
+    <p class="lede">Tell us an address and your email. We'll send a free PropIQ report so you can see what the place is really worth, before you chase the bank or the auction.</p>
+  </div>
+</section>
+
+<section class="section section--tight piq-report">
+  <div class="container container--narrow" id="piq-stage">
+    <form class="ads-form-card piq-form" id="piq-form" novalidate>
+      <div class="ads-form__field">
+        <label for="piq-address">Property address</label>
+        <div class="piq-suggest" id="piq-suggest">
+          <input class="ads-form__input" id="piq-address" name="address" type="text" autocomplete="off" maxlength="300" required role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="piq-suggest-list" aria-describedby="piq-address-hint">
+          <ul class="piq-suggest__list" id="piq-suggest-list" role="listbox" hidden></ul>
+        </div>
+        <p class="calc-field__hint" id="piq-address-hint">Start typing the street address (Australia). Choose a suggestion so we look up the right place.</p>
+        <p class="piq-suggest__status" id="piq-suggest-status" aria-live="polite"></p>
+      </div>
+
+      <div class="ads-form__field">
+        <label for="piq-email">Your email</label>
+        <input class="ads-form__input" id="piq-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+        <p class="calc-field__hint">We'll send the report link here. No newsletter signup on this step.</p>
+      </div>
+
+      <div class="ads-form__field piq-consent">
+        <label class="piq-consent__label" for="piq-consent">
+          <input type="checkbox" id="piq-consent" name="consent" required>
+          <span>I agree Wombat can send my email and this address to PropIQ (PiFi) so they can open my free property report.</span>
+        </label>
+      </div>
+
+      <button class="btn btn--primary btn--lg ads-form__submit" id="piq-submit" type="submit">
+        Get my report
+      </button>
+      <div class="piq-progress" id="piq-wait" hidden>
+        <div class="piq-progress__meter">
+          <span class="piq-spinner" aria-hidden="true"></span>
+          <p class="piq-progress__status" id="piq-wait-label">Starting your report</p>
+        </div>
+        <p class="ads-form__trust" id="piq-wait-copy" role="status">PropIQ is opening your report. This usually takes a few seconds. Please keep this tab open.</p>
+      </div>
+      <p class="ads-form__status ads-form__status--error" id="piq-error" role="alert" hidden></p>
+      <div class="piq-success" id="piq-success" hidden>
+        <p class="piq-success__copy" id="piq-success-copy"></p>
+        <a class="btn btn--primary btn--lg piq-success__open" id="piq-open" target="_blank" rel="noopener noreferrer">Open my report</a>
+      </div>
+    </form>
+    <div class="piq-embed" id="piq-embed" hidden>
+      <p class="piq-embed__pop"><a id="piq-pop" target="_blank" rel="noopener noreferrer">Open in a new tab</a></p>
+      <iframe class="piq-frame" id="piq-frame" title="Your PropIQ report" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <p class="piq-embed__note" id="piq-embed-note">A link to the report will also arrive by email.</p>
+    </div>
+    <div class="piq-expired" id="piq-expired" hidden>
+      <p id="piq-expired-copy">Report links can expire. This one is not open here. Start another, and a fresh link will arrive by email.</p>
+      <div class="piq-expired__actions">
+        <button type="button" class="btn btn--primary" id="piq-expired-again">Start another report</button>
+        <a class="btn btn--ghost" href="/book/">Book a strategy call</a>
+      </div>
+    </div>
+    <aside class="piq-next" id="piq-next" hidden>
+      <h2>What's next?</h2>
+      <div class="piq-next__actions">
+        <a class="btn btn--primary" href="/book/">Book a strategy call</a>
+        <a class="btn btn--ghost" href="/calculators/repayments/">Explore what a loan might look like</a>
+      </div>
+      <p class="piq-next__note">The PropIQ range is a starting point, not advice.</p>
+      <p class="piq-next__again"><button type="button" class="btn btn--ghost" id="piq-again">Start another report</button></p>
+    </aside>
+    <p class="piq-accuracy" id="piq-accuracy">Property estimates and sale history come from third-party data. They can be incomplete, out of date, or show the wrong property. Use them as a starting point, not as a valuation, title search, or contract review.</p>
+    <p class="ads-form__privacy muted">Wombat Home Loans · Credit Rep CRN 559744 · ACL 561324. PropIQ is provided by PiFi. We're not giving valuations advice on this page. The report is a starting point for a conversation.</p>
+  </div>
+</section>
+
+<script src="/assets/js/property-iq.js" defer></script>

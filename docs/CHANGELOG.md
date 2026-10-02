@@ -6,11 +6,129 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-02. Property IQ uses the env API host
+
+Homepage Tools, the footer Tools list, and the nav open `/property-iq/`. The short index and the expanded brief now do too. `pifi-handover` still reads `PIFI_API_HOST` and `PIFI_PARTNER_KEY` from the environment. It accepts an https api host on pifiproperty.com and refuses anything else. A missing host or key still fails closed. The partner key is not in source. The accuracy note under the form is unchanged.
+
+**Files changed:** `netlify/functions/pifi-handover.mjs`, `netlify/functions/pifi-handover-lib.mjs`, `src/llms.txt.njk`, `src/llms-full.txt.njk`, `tests/pifi-handover.test.js`, `tests/llms-feed.test.js`
+
+## 2026-10-02. Property IQ accuracy note is locked
+
+The note under the form now says estimates and sale history come from third-party data, can be incomplete, out of date, or show the wrong property, and are a starting point rather than a valuation, title search, or contract review. Placement is unchanged.
+
+**Files changed:** `src/property-iq.njk`, `tests/pifi-handover.test.js`
+
+## 2026-10-02. Property IQ states where the estimates come from
+
+A short accuracy note sits under the form, and stays there once the report is open, above the credit line. It says the figures come from PropIQ via third-party data, can lag a recent sale, and are not a valuation or financial advice.
+
+**Files changed:** `src/property-iq.njk`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
 ## 2026-10-02. llms-full.txt, Gosford geo, Umami conversions
 
 `/llms.txt` is the short index and links to `/llms-full.txt`. The expanded brief carries the office address (Suite 1, 86 Mann St, Gosford NSW 2250), CRN 559744, ACL 561324, calculators, flagship article summaries, a one-line summary for every other article, and the public URL list. `/property-iq/` is not listed: production returns 404 and it is not in the live Tools nav. Sitewide FinancialService geo moves from the old Beecroft pin (-33.7511, 151.0759) to the Masons Building centroid at 86-88 Mann Street (-33.427413, 151.341382). AggregateRating stays 4.9 from 13. Umami: `book_strategy_scheduled` when Calendly posts `calendly.event_scheduled`, `stop_renting_callback_success` beside the existing callback event, and `middle_factfind_click` on any middle.finance link.
 
 **Files changed:** `src/llms.txt.njk`, `src/llms-full.txt.njk`, `src/robots.txt.njk`, `src/sitemap.xml.njk`, `src/_layouts/base.njk`, `src/book.njk`, `src/stop-renting.njk`, `src/assets/js/scripts.js`, `.eleventy.js`, article llms tests, `tests/llms-feed.test.js`
+
+## 2026-10-01. Property IQ remembers recent addresses
+
+Picking a suggested address stores it on this browser, up to 10, newest first. Focusing the address box shows that Recent list. Typing a street brings back the live suggestions. The list is not sent to analytics or PiFi until the form is submitted. On the idle form, the cream gap between the intro and the card is closed. The embedded report spacing is unchanged, and the credit line still sits clear of the form.
+
+**Files changed:** `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/address-suggest.test.js`, `tests/pifi-handover.test.js`
+
+## 2026-10-01. Property IQ opens on the form
+
+`/property-iq/` starts on the address form. A saved report is put back in the frame only for an hour, so Back from the calculator in the same sitting still works. An older save, or one with no timestamp, is cleared and the form stays up. The recovery card is only for a report that was already open and then failed. The credit line sits further under the form, and the email field is white.
+
+**Files changed:** `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
+## 2026-10-01. Property IQ does not embed an expired report
+
+PiFi does not say how long a report link lasts. A saved embed is restored only for 24 hours. An older save, or one stored before that timestamp, does not load the frame. The page shows a recovery card instead: Start another report, and Book a strategy call. If the frame can be read and it says the link will not open, the frame is removed and that same card is shown. Start another report still clears the saved link.
+
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
+## 2026-10-01. Property IQ polish before live
+
+The credit line sits further under What's next. The tall blank between the intro and the report is gone once the form hides, and the email line sits just under the frame: "A link to the report will also arrive by email." Coming back to a saved report shows a way out, because that link can expire and PiFi's page cannot be read from here. Start another report clears the saved link and brings the form back. Book a strategy call stays next to it. The preview Tools links already go to `/property-iq/`. Production is unchanged.
+
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
+## 2026-10-01. Property IQ remembers the report for this tab
+
+What's next now points at the repayments calculator. The starting-point line sits under the buttons. A successful handover is kept in sessionStorage (report url and embed flag only). Coming back to `/property-iq/` restores the frame or Open my report. Start another report clears it, and a failed handover clears it too.
+
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
+## 2026-10-01. Property IQ shows What's next after a report
+
+Once handover succeeds, a warm strip sits under the embedded report or the new-tab success card. It offers a strategy call at `/book/` and the existing borrowing power calculator. The PropIQ range is named as a starting point, not advice. The embed stays in place.
+
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
+## 2026-10-01. Property IQ keeps the report on the Wombat page
+
+Same-tab redirect left people on PiFi with no way home. After handover, the page stays on `/property-iq/`. If a header probe says the report URL can be framed, it is shown in an iframe under the Wombat nav. If the probe says no, or the frame errors or does not load within 12 seconds, the report opens in a new tab and this page shows Open my report. The email still goes out without holding the page.
+
+Checked 1 Oct 2026: `qa.pifiproperty.com` sends no `X-Frame-Options`. The enforcing CSP has no `frame-ancestors`. `frame-ancestors 'self'` is report-only, so Chrome still framed the report and left the parent page in place. A site that refuses frames (github.com) fires the same iframe `load` event, so the browser cannot tell those apart. The probe reads enforcing headers only. If that report-only rule is later enforced, the page opens a new tab. The live PiFi host was not checked and may differ.
+
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `netlify/functions/pifi-handover.mjs`, `netlify/functions/pifi-handover-lib.mjs`, `tests/pifi-handover.test.js`
+
+## 2026-10-01. Property IQ opens the report in this tab
+
+After PiFi returns a url, the page no longer waits 35 seconds or shows an elapsed clock. The button says Get my report, stays disabled while the handover runs (about 30 seconds at most), then `location.assign` opens that exact url in the same tab. The Resend email still goes out, but it does not hold the redirect. Open my report only appears if the tab does not leave. QA host and partner key are unchanged.
+
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
+## 2026-09-25. Property IQ success hides the submit button
+
+The submit button uses the shared `.btn` display, so `hidden` did not remove it after a report was ready. Success now adds `is-success` on the form and `is-visible` on the report link. The idle button stays Run my report. The link that appears afterwards says Open my report.
+
+## 2026-09-25. Property IQ shows one Run my report button
+
+The success block used `display: flex`, which overrode the hidden attribute, so a second brown button sat under the form before a report existed. That block stays hidden until handover returns a url. The label is Run my report.
+
+## 2026-09-25. Property IQ button says Run your report
+
+The idle button and the success link both say Run your report. Email me the report is gone. There is a little more space under that button before the fine print.
+
+## 2026-09-25. Property IQ spinner, success spacing, and unit addresses
+
+The busy state uses a clay and oak ring instead of the cog, with the same elapsed clock. After success the submit button hides, the email note sits as quiet text, and Open your report is full width. A typed unit such as `3/9` or `Unit 3/9` stays on the address when a suggestion only has the street number.
+
+## 2026-09-25. Property IQ shows a cog and elapsed time while it waits
+
+While the report is running, the form shows a turning oak cog and an elapsed clock (`0:12`) next to the existing wait line. Both hide on success or error.
+
+## 2026-09-25. Property IQ wait moved into the browser
+
+A 35 second sleep inside `pifi-handover` hit the Netlify plan limit at about 30 seconds and returned HTTP 502. `timeout = 90` in the toml was ignored. The handover function now returns `{ url }` as soon as PiFi answers, with no sleep and no Resend call. The Property IQ page stays busy for 35 seconds, then `propiq-notify` emails the link. If that email does not send, the page still shows Open your report and does not claim the email went out. Heshan may later give a ready signal, and this fixed delay can come out.
+
+## 2026-09-25. Property IQ waits before the report link
+
+After PiFi returns a URL, the function waits `PROPIQ_READY_DELAY_MS` (default 35000) before emailing and before the page shows success. The chat URL does not change when the report finishes, so the wait is so the person lands on the finished report. Heshan may later give a ready signal, and this fixed delay can come out. Superseded the same day: the wait moved to the browser because the function was cut off at about 30 seconds.
+
+## 2026-09-25. Property IQ emails the report
+
+`/property-iq/` is address, email, and consent. The handover function always sends journey `price` and context `just curious`. On success it emails the link with Resend (CC Tom) and stays on the page, with an Open your report link. No auto tab.
+
+## 2026-09-25. Property IQ address suggestions
+
+`/property-iq/` suggests Australian addresses from a server-only Netlify Function (Photon for QA). Picking one fills the handover address string. No provider key in the browser. Homepage Tools card is still a link only.
+
+## 2026-09-25. PropIQ returnUrl is the property page
+
+Handover `returnUrl` is `https://www.wombathomeloans.com.au/property-iq` (www, no trailing slash). QA host and key still come from env only.
+
+## 2026-09-25. Property IQ copy from Demand
+
+Homepage card, `/property-iq/` form, calculators line, and error messages now use Courtney's PropIQ copy. "Just pricing" still sends journey `price`. No em dashes.
+
+## 2026-09-25. Property IQ partner handover (QA)
+
+Homepage Tools card and the footer Property search link now go to `/property-iq/` instead of the direct PiFi listings site. The page collects email, address, journey, optional notes, and consent, then a Netlify Function posts to the PiFi QA handover API using `PIFI_API_HOST` and `PIFI_PARTNER_KEY`. The browser opens the returned url unchanged. Nav and the calculators hub link here as well. QA host only. No partner key in source.
+
+**Files changed:** `netlify/functions/pifi-handover.mjs`, `netlify/functions/pifi-handover-lib.mjs`, `src/property-iq.njk`, `src/assets/js/property-iq.js`, `src/index.njk`, `src/_includes/nav.njk`, `src/_includes/footer.njk`, `src/calculators/index.njk`, `src/_includes/css/styles.css`, `src/_data/site.json`, `src/llms.txt.njk`, `tests/pifi-handover.test.js`, `tests/homepage.test.js`
 
 ---
 

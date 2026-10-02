@@ -32,8 +32,10 @@ test('llms.txt is the short index and points at llms-full.txt', function () {
   assert.match(full, /Credit Representative Number: 559744/);
   assert.match(full, /Australian Credit Licence: 561324/);
   assert.match(full, /## Public URLs/);
-  assert.doesNotMatch(short, /property-iq/);
-  assert.doesNotMatch(full, /property-iq/);
+  assert.match(short, /https:\/\/wombathomeloans\.com\.au\/property-iq\//);
+  assert.match(full, /https:\/\/wombathomeloans\.com\.au\/property-iq\//);
+  assert.doesNotMatch(short, /wombathl\.pifiproperty\.com/);
+  assert.doesNotMatch(full, /wombathl\.pifiproperty\.com/);
   assert.doesNotMatch(short, /\/tools\/house-and-land-cash/);
   assert.doesNotMatch(full, /\/landing\/getting-mortgage-ready/);
   assert.match(robots, /https:\/\/wombathomeloans\.com\.au\/llms-full\.txt/);
