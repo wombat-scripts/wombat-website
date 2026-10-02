@@ -135,6 +135,8 @@ test('source does not embed a partner key or the live handover host', function (
   });
   var page = read('src/property-iq.njk');
   assert.match(page, /id="piq-consent"/);
+  assert.match(page, /Wait a few seconds for address validation/);
+  assert.doesNotMatch(page, /Start typing the street address/);
   assert.doesNotMatch(page, /name="journey"/);
   assert.doesNotMatch(page, /name="context"/);
   assert.match(page, /Get my report/);
@@ -224,6 +226,14 @@ test('source does not embed a partner key or the live handover host', function (
   assert.match(css, /body\.piq-open \.piq-intro/);
   assert.match(client, /piq-open/);
   assert.match(page, /class="section section--tight piq-intro"/);
+  assert.match(client, /function scrollEmbedToChatInput\(/);
+  assert.match(client, /scrollIntoView\(\{[\s\S]*block: "end"/);
+  assert.match(client, /prefers-reduced-motion: reduce/);
+  assert.match(client, /TODO\(Heshan\/PiFi\)/);
+  assert.equal((client.match(/scrollEmbedToChatInput\(\)/g) || []).length, 3);
+  assert.doesNotMatch(client, /\.postMessage\(/);
+  assert.doesNotMatch(client, /contentWindow/);
+  assert.match(css, /\.piq-embed__note\s*\{[^}]*scroll-margin-bottom:\s*var\(--space-4\)/);
   assert.match(client, /pageshow/);
   assert.match(client, /url: url,\s*embed: embed === true/);
   assert.doesNotMatch(client, /location\.search/);
