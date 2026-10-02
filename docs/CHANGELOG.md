@@ -6,6 +6,12 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-02. Property IQ uses the env API host
+
+Homepage Tools, the footer Tools list, and the nav open `/property-iq/`. The short index and the expanded brief now do too. `pifi-handover` still reads `PIFI_API_HOST` and `PIFI_PARTNER_KEY` from the environment. It accepts an https api host on pifiproperty.com and refuses anything else. A missing host or key still fails closed. The partner key is not in source. The accuracy note under the form is unchanged.
+
+**Files changed:** `netlify/functions/pifi-handover.mjs`, `netlify/functions/pifi-handover-lib.mjs`, `src/llms.txt.njk`, `src/llms-full.txt.njk`, `tests/pifi-handover.test.js`, `tests/llms-feed.test.js`
+
 ## 2026-10-02. Property IQ accuracy note is locked
 
 The note under the form now says estimates and sale history come from third-party data, can be incomplete, out of date, or show the wrong property, and are a starting point rather than a valuation, title search, or contract review. Placement is unchanged.
@@ -17,6 +23,12 @@ The note under the form now says estimates and sale history come from third-part
 A short accuracy note sits under the form, and stays there once the report is open, above the credit line. It says the figures come from PropIQ via third-party data, can lag a recent sale, and are not a valuation or financial advice.
 
 **Files changed:** `src/property-iq.njk`, `src/_includes/css/styles.css`, `tests/pifi-handover.test.js`
+
+## 2026-10-02. llms-full.txt, Gosford geo, Umami conversions
+
+`/llms.txt` is the short index and links to `/llms-full.txt`. The expanded brief carries the office address (Suite 1, 86 Mann St, Gosford NSW 2250), CRN 559744, ACL 561324, calculators, flagship article summaries, a one-line summary for every other article, and the public URL list. `/property-iq/` is not listed: production returns 404 and it is not in the live Tools nav. Sitewide FinancialService geo moves from the old Beecroft pin (-33.7511, 151.0759) to the Masons Building centroid at 86-88 Mann Street (-33.427413, 151.341382). AggregateRating stays 4.9 from 13. Umami: `book_strategy_scheduled` when Calendly posts `calendly.event_scheduled`, `stop_renting_callback_success` beside the existing callback event, and `middle_factfind_click` on any middle.finance link.
+
+**Files changed:** `src/llms.txt.njk`, `src/llms-full.txt.njk`, `src/robots.txt.njk`, `src/sitemap.xml.njk`, `src/_layouts/base.njk`, `src/book.njk`, `src/stop-renting.njk`, `src/assets/js/scripts.js`, `.eleventy.js`, article llms tests, `tests/llms-feed.test.js`
 
 ## 2026-10-01. Property IQ remembers recent addresses
 

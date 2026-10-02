@@ -94,15 +94,25 @@ test('frame probe allows an open QA page and refuses a frame block', async funct
   }), false);
 });
 
-test('QA host guard refuses the live API host', async function () {
+test('API host guard accepts the env host and refuses anything else', async function () {
   var lib = await import('../netlify/functions/pifi-handover-lib.mjs');
-  assert.equal(lib.assertQaHost('https://api.qa.pifiproperty.com/'), 'https://api.qa.pifiproperty.com');
+  assert.equal(lib.assertApiHost('https://api.qa.pifiproperty.com/'), 'https://api.qa.pifiproperty.com');
+  assert.equal(lib.assertApiHost('https://api.pifiproperty.com'), 'https://api.pifiproperty.com');
   assert.equal(lib.isReportUrl('https://wombathl.pifiproperty.com/s/abc'), true);
   assert.equal(lib.isReportUrl('https://api.qa.pifiproperty.com/v1/partner/handover'), true);
   assert.equal(lib.isReportUrl('http://wombathl.pifiproperty.com/s/abc'), false);
   assert.equal(lib.isReportUrl('https://evil.example/s/abc'), false);
   assert.throws(function () {
-    lib.assertQaHost('https://api.pifiproperty.com');
+    lib.assertApiHost('https://evil.example');
+  });
+  assert.throws(function () {
+    lib.assertApiHost('http://api.pifiproperty.com');
+  });
+  assert.throws(function () {
+    lib.assertApiHost('https://wombathl.pifiproperty.com');
+  });
+  assert.throws(function () {
+    lib.assertApiHost('https://api.pifiproperty.com/v1/partner/handover');
   });
 });
 
@@ -224,7 +234,13 @@ test('source does not embed a partner key or the live handover host', function (
   assert.doesNotMatch(client, /formatElapsed/);
   assert.doesNotMatch(client, /umami\.track\([^)]*url/);
   var fn = read('netlify/functions/pifi-handover.mjs');
+  var handoverLib = read('netlify/functions/pifi-handover-lib.mjs');
   var notify = read('netlify/functions/propiq-notify.mjs');
+  assert.match(fn, /process\.env\.PIFI_API_HOST/);
+  assert.match(fn, /process\.env\.PIFI_PARTNER_KEY/);
+  assert.match(fn, /assertApiHost/);
+  assert.doesNotMatch(fn + handoverLib, /assertQaHost/);
+  assert.doesNotMatch(fn + handoverLib, /QA_HOST/);
   assert.match(fn, /AbortSignal\.timeout\(TIMEOUT_MS\)/);
   assert.match(fn, /Authorization: `Bearer \$\{key\}`/);
   assert.doesNotMatch(fn, /api\.resend\.com/);
@@ -402,7 +418,7 @@ test('notify reports emailSent false when the key is missing or Resend fails', {
   delete process.env.RESEND_API_KEY;
 });
 
-test('handler does not retry a 401 and refuses the live host', { concurrency: false }, async function () {
+test('handler does not retry a 401 and posts to the env host', { concurrency: false }, async function () {
   var calls = 0;
   var previous = globalThis.fetch;
   globalThis.fetch = async function () {
@@ -432,13 +448,34 @@ test('handler does not retry a 401 and refuses the live host', { concurrency: fa
   assert.doesNotMatch(deniedBody.message, /nope/);
 
   process.env.PIFI_API_HOST = 'https://api.pifiproperty.com';
+  var live = await mod.default(new Request('http://local/', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: payload,
+  }));
+  var liveBody = await live.json();
+  assert.equal(live.status, 401);
+  assert.equal(liveBody.retryable, false);
+  assert.equal(calls, 2);
+  assert.doesNotMatch(liveBody.message, /qa-test-key/);
+
+  process.env.PIFI_API_HOST = 'https://evil.example';
   var blocked = await mod.default(new Request('http://local/', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: payload,
   }));
   assert.equal(blocked.status, 503);
-  assert.equal(calls, 1);
+  assert.equal(calls, 2);
+
+  delete process.env.PIFI_API_HOST;
+  var missing = await mod.default(new Request('http://local/', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: payload,
+  }));
+  assert.equal(missing.status, 503);
+  assert.equal(calls, 2);
   globalThis.fetch = previous;
   delete process.env.PIFI_PARTNER_KEY;
   delete process.env.PIFI_API_HOST;

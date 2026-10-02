@@ -3,12 +3,13 @@
  * POST /.netlify/functions/pifi-handover
  *
  * Reads PIFI_API_HOST and PIFI_PARTNER_KEY from the environment only.
- * This QA build refuses any host other than the QA API.
+ * The host must be https on an api host under pifiproperty.com.
+ * A missing or foreign host fails closed.
  * The partner key is never written to the response or to logs.
  */
 import {
   TIMEOUT_MS,
-  assertQaHost,
+  assertApiHost,
   COPY,
   friendlyConfigError,
   mapUpstream,
@@ -61,10 +62,10 @@ export default async (req) => {
 
   let host;
   try {
-    host = assertQaHost(hostEnv);
+    host = assertApiHost(hostEnv);
   } catch {
     const blocked = friendlyConfigError();
-    console.error("pifi-handover: host rejected (QA host required)");
+    console.error("pifi-handover: host rejected");
     return json(blocked.status, { message: blocked.message, retryable: false });
   }
 

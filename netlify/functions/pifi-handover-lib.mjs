@@ -1,10 +1,11 @@
 /**
  * PiFi Partner Handover helpers.
  * Host and key come from env at request time. This module never embeds them.
- * QA builds accept only the QA API host so a mis-set env cannot call live.
+ * PIFI_API_HOST must be https and an api host on pifiproperty.com.
+ * A QA comment example is https://api.qa.pifiproperty.com. Production sets its own host.
+ * A missing or foreign host fails closed.
  */
 
-export const QA_HOST = "https://api.qa.pifiproperty.com";
 export const RETURN_URL = "https://www.wombathomeloans.com.au/property-iq";
 export const TIMEOUT_MS = 30000;
 
@@ -27,14 +28,26 @@ export function normaliseHost(host) {
   return String(host || "").trim().replace(/\/+$/, "");
 }
 
-export function assertQaHost(host) {
+export function assertApiHost(host) {
   const normalised = normaliseHost(host);
-  if (normalised !== QA_HOST) {
-    const err = new Error("PiFi host is not the QA host");
-    err.code = "host_not_qa";
+  let url;
+  try {
+    url = new URL(normalised);
+  } catch {
+    const err = new Error("PiFi host is not a usable API host");
+    err.code = "host_invalid";
     throw err;
   }
-  return normalised;
+  const hostname = url.hostname.toLowerCase();
+  const onPifi = hostname === "pifiproperty.com" || hostname.endsWith(".pifiproperty.com");
+  const apiHost = hostname === "api.pifiproperty.com" || hostname.startsWith("api.");
+  const bare = !url.username && !url.password && !url.search && !url.hash && (url.pathname === "" || url.pathname === "/");
+  if (url.protocol !== "https:" || !onPifi || !apiHost || !bare) {
+    const err = new Error("PiFi host is not a usable API host");
+    err.code = "host_invalid";
+    throw err;
+  }
+  return url.origin;
 }
 
 export function validateInput(raw) {
