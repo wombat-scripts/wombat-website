@@ -51,7 +51,7 @@ test('build-now-pay-later article matches the Demand package', function () {
 });
 
 test('llms.txt uses the locked build-now URL and Demand snippet', function () {
-  var llms = read('src/llms.txt.njk');
+  var llms = read('src/llms-full.txt.njk');
   assert.match(llms, /\[Build now, pay later: how a construction pause-repay facility works \(and when to leave it alone\)\]\(https:\/\/wombathomeloans\.com\.au\/articles\/build-now-pay-later\/\) - Construction \/ cashflow/);
   assert.match(llms, /During a build, some loans ease repayments \(reduced, paused, or interest-only\)\./);
   assert.match(llms, /Deferred cashflow, not free money\./);

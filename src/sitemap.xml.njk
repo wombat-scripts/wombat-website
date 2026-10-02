@@ -9,7 +9,7 @@ eleventyExcludeFromCollections: true
     <priority>1.0</priority>
   </url>
   {%- for page in collections.all %}
-  {%- if page.url and page.url != "/" and page.url != "/404.html" and page.data.permalink != "/robots.txt" and page.data.permalink != "/sitemap.xml" and page.data.permalink != "/llms.txt" %}
+  {%- if page.url and page.url != "/" and page.url != "/404.html" and page.data.permalink != "/robots.txt" and page.data.permalink != "/sitemap.xml" and page.data.permalink != "/llms.txt" and page.data.permalink != "/llms-full.txt" %}
   <url>
     <loc>{{ site.url }}{{ page.url }}</loc>
     <lastmod>{{ page.date | isoDate }}</lastmod>

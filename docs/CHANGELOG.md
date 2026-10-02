@@ -6,6 +6,14 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-02. llms-full.txt, Gosford geo, Umami conversions
+
+`/llms.txt` is the short index and links to `/llms-full.txt`. The expanded brief carries the office address (Suite 1, 86 Mann St, Gosford NSW 2250), CRN 559744, ACL 561324, calculators, flagship article summaries, a one-line summary for every other article, and the public URL list. `/property-iq/` is not listed: production returns 404 and it is not in the live Tools nav. Sitewide FinancialService geo moves from the old Beecroft pin (-33.7511, 151.0759) to the Masons Building centroid at 86-88 Mann Street (-33.427413, 151.341382). AggregateRating stays 4.9 from 13. Umami: `book_strategy_scheduled` when Calendly posts `calendly.event_scheduled`, `stop_renting_callback_success` beside the existing callback event, and `middle_factfind_click` on any middle.finance link.
+
+**Files changed:** `src/llms.txt.njk`, `src/llms-full.txt.njk`, `src/robots.txt.njk`, `src/sitemap.xml.njk`, `src/_layouts/base.njk`, `src/book.njk`, `src/stop-renting.njk`, `src/assets/js/scripts.js`, `.eleventy.js`, article llms tests, `tests/llms-feed.test.js`
+
+---
+
 ## 2026-09-23. Google rating 4.9/13 and money-page internal links
 
 AggregateRating on the sitewide JSON-LD now matches the Google Business Profile as of 23 Sep 2026: ratingValue 4.9, ratingCount 13 (was 5.0 from 12). Homepage ticket and llms.txt say 4.9 Google. Contextual links, using existing page titles, into the first-home, investor and refinance hubs, the RSU, bank-staff and expat guides, construction pause-repay, the podcast, Just4Fun, and the legal pages. `/landing/expat-home-loans/` and `/stop-renting/` stay unlinked from main content.

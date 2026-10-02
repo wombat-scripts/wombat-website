@@ -190,4 +190,19 @@ if (document.readyState === "loading") {
   initSearchOverlay();
 }
 
+
+  /* ---------------------------------------------------------------------------
+     7. Middle fact-find: outbound click from any Wombat page
+     --------------------------------------------------------------------------- */
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest && event.target.closest("a[href]");
+    if (!link) return;
+    const href = link.getAttribute("href") || "";
+    if (href.indexOf("middle.finance") === -1) return;
+    if (window.umami) {
+      try { window.umami.track("middle_factfind_click"); } catch (err) {}
+    }
+  });
+
 })();

@@ -41,7 +41,7 @@ test('deposit bond article matches the first-home explainer pattern', function (
 });
 
 test('llms.txt includes the deposit bond snippet with a hyphen, not an em dash', function () {
-  var llms = read('src/llms.txt.njk');
+  var llms = read('src/llms-full.txt.njk');
   assert.match(llms, /\[Deposit bonds for first home buyers: how they work at auction \(and what they do not replace\)\]\(https:\/\/wombathomeloans\.com\.au\/articles\/deposit-bond-first-home\/\) - First home \/ deposit/);
   assert.match(llms, /A deposit bond is a digital certificate: a promise to pay the vendor at settlement, not cash leaving your account today\./);
   assert.match(llms, /It is not a home loan, not genuine savings, and not the funds you use to settle\./);
