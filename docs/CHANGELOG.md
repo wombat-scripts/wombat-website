@@ -6,6 +6,12 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-02. Property IQ accuracy note is locked
+
+The note under the form now says estimates and sale history come from third-party data, can be incomplete, out of date, or show the wrong property, and are a starting point rather than a valuation, title search, or contract review. Placement is unchanged.
+
+**Files changed:** `src/property-iq.njk`, `tests/pifi-handover.test.js`
+
 ## 2026-10-02. Property IQ states where the estimates come from
 
 A short accuracy note sits under the form, and stays there once the report is open, above the credit line. It says the figures come from PropIQ via third-party data, can lag a recent sale, and are not a valuation or financial advice.
