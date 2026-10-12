@@ -1,0 +1,174 @@
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { checkHandoverAddress } from "../netlify/functions/handover-address-lib.mjs";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const outPath = path.join(root, "netlify", "data", "au-localities.generated.mjs");
+const STATE_ORDER = ["NSW", "VIC", "QLD", "SA", "WA", "TAS", "NT", "ACT"];
+const NAME_FORM = /^[A-Za-z][A-Za-z'\u2019. -]*[A-Za-z]$/;
+
+function parseCsv(text) {
+  const src = text.charCodeAt(0) === 0xfeff ? text.slice(1) : text;
+  const rows = [];
+  let row = [];
+  let field = "";
+  let quoted = false;
+  for (let i = 0; i < src.length; i += 1) {
+    const c = src[i];
+    if (quoted) {
+      if (c === '"') {
+        if (src[i + 1] === '"') {
+          field += '"';
+          i += 1;
+        } else {
+          quoted = false;
+        }
+      } else {
+        field += c;
+      }
+      continue;
+    }
+    if (c === '"') {
+      quoted = true;
+      continue;
+    }
+    if (c === ",") {
+      row.push(field);
+      field = "";
+      continue;
+    }
+    if (c === "\n" || c === "\r") {
+      if (c === "\r" && src[i + 1] === "\n") i += 1;
+      row.push(field);
+      field = "";
+      if (row.length > 1 || row[0] !== "") rows.push(row);
+      row = [];
+      continue;
+    }
+    field += c;
+  }
+  if (field.length || row.length) {
+    row.push(field);
+    if (row.length > 1 || row[0] !== "") rows.push(row);
+  }
+  return rows;
+}
+
+function mcName(token) {
+  const upper = token.toUpperCase();
+  if (!upper.startsWith("MC") || upper.startsWith("MAC") || upper.length < 4) return "";
+  const rest = token.slice(2);
+  return "Mc" + rest.charAt(0).toUpperCase() + rest.slice(1).toLowerCase();
+}
+
+function properCaseToken(token) {
+  if (!token) return token;
+  return mcName(token) || token.charAt(0).toUpperCase() + token.slice(1).toLowerCase();
+}
+
+function properCaseWord(word) {
+  return word.split(/([’'\-])/).map((part) => {
+    if (part === "'" || part === "\u2019" || part === "-") return part === "\u2019" ? "'" : part;
+    return properCaseToken(part);
+  }).join("");
+}
+
+function properCaseName(name) {
+  const trimmed = String(name || "").trim().replace(/\s+/g, " ").replace(/\u2019/g, "'");
+  const letters = trimmed.replace(/[^A-Za-z]/g, "");
+  if (letters && letters !== letters.toUpperCase()) return trimmed;
+  return trimmed.split(" ").map(properCaseWord).join(" ");
+}
+
+function stateAccepted(state) {
+  return checkHandoverAddress("Gosford " + state + " 2250").ok === true;
+}
+
+function emit(byState, count) {
+  const lines = [];
+  lines.push("// Source: Matthew Proctor Australian postcodes, https://raw.githubusercontent.com/matthewproctor/australianpostcodes/master/australian_postcodes.csv. The maintainer states the data is public domain. Retrieved 2026-10-12. " + count + " delivery-area rows.");
+  lines.push("export const LOCALITIES_BY_POSTCODE = {");
+  const states = STATE_ORDER.filter((state) => byState[state]);
+  states.forEach((state, stateIndex) => {
+    lines.push("  " + state + ": {");
+    const postcodes = Object.keys(byState[state]).sort();
+    postcodes.forEach((postcode, postcodeIndex) => {
+      const names = byState[state][postcode].slice().sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+      const comma = postcodeIndex === postcodes.length - 1 ? "" : ",";
+      const body = names.map((name) => JSON.stringify(name)).join(", ");
+      lines.push("    " + JSON.stringify(postcode) + ": [" + body + "]" + comma);
+    });
+    const comma = stateIndex === states.length - 1 ? "" : ",";
+    lines.push("  }" + comma);
+  });
+  lines.push("};");
+  lines.push("");
+  return lines.join("\n");
+}
+
+function main(sourcePath) {
+  if (!sourcePath) {
+    console.error("usage: node scripts/build-au-localities.mjs <australian_postcodes.csv>");
+    process.exit(1);
+  }
+  const table = parseCsv(readFileSync(sourcePath, "utf8"));
+  const header = table[0].map((cell) => cell.trim());
+  const index = {};
+  header.forEach((name, i) => { index[name] = i; });
+  ["postcode", "locality", "state", "type"].forEach((name) => {
+    if (index[name] === undefined) {
+      console.error("missing column: " + name);
+      process.exit(1);
+    }
+  });
+
+  const byState = {};
+  const seen = new Set();
+  const droppedNames = [];
+  const droppedStateCodes = new Map();
+  let droppedStates = 0;
+
+  table.slice(1).forEach((cells) => {
+    if ((cells[index.type] || "") !== "Delivery Area") return;
+    const state = String(cells[index.state] || "").trim().toUpperCase();
+    let postcode = String(cells[index.postcode] || "").trim();
+    if (/^\d{1,4}$/.test(postcode)) postcode = postcode.padStart(4, "0");
+    const name = properCaseName(cells[index.locality] || "");
+    if (!stateAccepted(state)) {
+      droppedStates += 1;
+      droppedStateCodes.set(state || "(blank)", (droppedStateCodes.get(state || "(blank)") || 0) + 1);
+      return;
+    }
+    const label = name + " " + state + " " + postcode;
+    const check = checkHandoverAddress(label);
+    if (!check.ok) {
+      const length = name.length + 1 + state.length + 1 + postcode.length;
+      if (NAME_FORM.test(name) && /^\d{4}$/.test(postcode) && length <= 300) {
+        console.error("real row would be lost: " + label + " (" + check.reason + ")");
+        process.exit(1);
+      }
+      droppedNames.push(label);
+      return;
+    }
+    const key = state + "\0" + postcode + "\0" + name;
+    if (seen.has(key)) return;
+    seen.add(key);
+    if (!byState[state]) byState[state] = {};
+    if (!byState[state][postcode]) byState[state][postcode] = [];
+    byState[state][postcode].push(name);
+  });
+
+  const count = seen.size;
+  mkdirSync(path.dirname(outPath), { recursive: true });
+  writeFileSync(outPath, emit(byState, count));
+  console.log("dropped " + droppedStates + " rows with a state the handover does not accept");
+  if (droppedStateCodes.size) {
+    console.log("dropped state codes: " + [...droppedStateCodes.keys()].join(", "));
+  }
+  console.log("dropped " + droppedNames.length + " rows the handover would reject");
+  droppedNames.forEach((label) => console.log("  " + label));
+  console.log("wrote " + count + " rows");
+}
+
+main(process.argv[2]);

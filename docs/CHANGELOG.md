@@ -6,6 +6,12 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-12. Property IQ accepts a suburb
+
+The address field takes a street or a suburb such as Gosford NSW. Up to three suburbs from the postcode list sit ahead of street suggestions. A bare postcode is refused. Once the report loads, the page says you can keep asking questions.
+
+**Files changed:** `src/property-iq.njk`, `src/assets/js/property-iq.js`, `.eleventy.js`, `netlify/functions/handover-address-lib.mjs`, `netlify/functions/pifi-handover-lib.mjs`, `netlify/functions/address-suggest.mjs`, `netlify/functions/address-suggest-lib.mjs`, `netlify/data/au-localities.generated.mjs`, `scripts/build-au-localities.mjs`, `tests/pifi-handover.test.js`, `tests/address-suggest.test.js`
+
 ## 2026-10-12. Article heroes where the photo can carry one
 
 Articles with a thumbnail that works large now set `thumbnailAlt`, which is what turns the in-article hero on. Maps, tiny graphics, the split-house illustration, the euro still life, and the office photo used on three articles are left without a hero. The hero slot is 16:9 with the file's real width and height, `object-fit: cover`, and a 28rem cap, and it is not lazy-loaded.

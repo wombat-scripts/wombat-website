@@ -1,10 +1,11 @@
-/**
- * Address suggestion formatting. Photon is the QA preview provider.
- * A later provider can return the same { label, address } list.
- */
+import { checkHandoverAddress } from "./handover-address-lib.mjs";
+import { LOCALITIES_BY_POSTCODE } from "../data/au-localities.generated.mjs";
 
-export const MIN_QUERY = 3;
-export const MAX_SUGGESTIONS = 8;
+const MIN_QUERY = 3;
+const MAX_SUGGESTIONS = 8;
+const LOCALITY_SLOTS = 3;
+const HOME_STATE = "NSW";
+const STREET_SUFFIX = /\b(street|st|road|rd|avenue|ave|drive|dr|place|pl|crescent|cres|parade|pde|lane|ln|way|court|ct|terrace|tce)\b/i;
 
 const STATE_ABBR = {
   "new south wales": "NSW",
@@ -25,17 +26,17 @@ const STATE_ABBR = {
   act: "ACT",
 };
 
-export function abbreviateState(state) {
+function abbreviateState(state) {
   const key = String(state || "").trim().toLowerCase();
   return STATE_ABBR[key] || "";
 }
 
-export function leadingNumber(query) {
+function leadingNumber(query) {
   const match = String(query || "").match(/^\s*(\d+[a-z]?)\b/i);
   return match ? match[1] : "";
 }
 
-export function typedUnit(query) {
+function typedUnit(query) {
   const text = String(query || "").trim();
   let match = text.match(/^(unit|flat|apartment|apt)\s+(\d+[a-z]?(?:\s*\/\s*\d+[a-z]?)?)/i);
   if (match) {
@@ -47,7 +48,7 @@ export function typedUnit(query) {
   return "";
 }
 
-export function streetRemainder(query) {
+function streetRemainder(query) {
   const text = String(query || "").trim();
   if (typedUnit(query)) {
     return text
@@ -60,13 +61,27 @@ export function streetRemainder(query) {
   return text.replace(/^\s*\d+[a-z]?\b\s*/i, "").trim();
 }
 
-export function queryTokens(query) {
+function queryTokens(query) {
   return streetRemainder(query)
     .toLowerCase()
     .split(/[^a-z]+/)
-    .filter(function (token) {
-      return token.length >= 3 && !STATE_ABBR[token];
-    });
+    .filter((token) => token.length >= 3 && !STATE_ABBR[token]);
+}
+
+function normaliseQuery(raw) {
+  return String(raw || "").replace(/[\u0000-\u001f]/g, "").trim().slice(0, 120);
+}
+
+function worthLookingUp(query) {
+  return query.length >= MIN_QUERY && /[A-Za-z]/.test(query) && queryTokens(query).length > 0;
+}
+
+function streetLookups(query) {
+  const lookups = [query];
+  const rest = streetRemainder(query);
+  if (rest.length >= MIN_QUERY && rest !== query) lookups.push(rest);
+  if (rest && !STREET_SUFFIX.test(rest)) lookups.push(rest + " street");
+  return lookups;
 }
 
 function localityOf(props) {
@@ -87,7 +102,7 @@ function nearSydney(feature) {
   return Math.abs(lat + 33.87) < 0.9 && Math.abs(lon - 151.21) < 0.9;
 }
 
-export function formatSuggestion(feature, query) {
+function formatSuggestion(feature, query) {
   const props = feature && feature.properties ? feature.properties : feature;
   if (!props || String(props.countrycode || "").toUpperCase() !== "AU") return null;
   const street = streetOf(props);
@@ -104,7 +119,7 @@ export function formatSuggestion(feature, query) {
 
   const tokens = queryTokens(query);
   const hay = (street + " " + locality).toLowerCase();
-  if (tokens.length && !tokens.some(function (token) { return hay.includes(token); })) return null;
+  if (tokens.length && !tokens.some((token) => hay.includes(token))) return null;
 
   const address = postcode
     ? number + " " + street + ", " + locality + " " + state + " " + postcode
@@ -115,7 +130,7 @@ export function formatSuggestion(feature, query) {
   if (fromQuery && street.toLowerCase().includes((tokens[0] || "").toLowerCase()) && tokens[0]) score += 6;
   if (nearSydney(feature)) score += 8;
   if (postcode) score += 1;
-  tokens.forEach(function (token) {
+  tokens.forEach((token) => {
     if (street.toLowerCase().includes(token)) score += 3;
     if (locality.toLowerCase().includes(token)) score += 1;
   });
@@ -123,21 +138,144 @@ export function formatSuggestion(feature, query) {
   return { label: address, address: address, score: score };
 }
 
-export function suggestionsFromFeatures(features, query) {
+function streetCandidates(features, query) {
   const seen = new Set();
   const list = [];
-  (features || []).forEach(function (feature) {
+  (features || []).forEach((feature) => {
     const item = formatSuggestion(feature, query);
     if (!item || seen.has(item.address)) return;
     seen.add(item.address);
     list.push(item);
   });
-  list.sort(function (a, b) { return b.score - a.score; });
-  return list.slice(0, MAX_SUGGESTIONS).map(function (item) {
-    return { label: item.label, address: item.address };
-  });
+  list.sort((a, b) => b.score - a.score);
+  return list;
 }
 
-export function normaliseQuery(raw) {
-  return String(raw || "").replace(/[\u0000-\u001f]/g, "").trim().slice(0, 120);
+function localityKey(text) {
+  return String(text || "")
+    .toLowerCase()
+    .replace(/['\u2019.]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function buildLocalities(byState) {
+  const rows = [];
+  Object.keys(byState).forEach((state) => {
+    Object.keys(byState[state]).forEach((postcode) => {
+      byState[state][postcode].forEach((name) => {
+        rows.push({
+          label: name + " " + state + " " + postcode,
+          key: localityKey(name),
+          state: state,
+          postcode: postcode,
+        });
+      });
+    });
+  });
+  rows.sort((a, b) => {
+    if (a.key !== b.key) return a.key < b.key ? -1 : 1;
+    if (a.state !== b.state) return a.state < b.state ? -1 : 1;
+    if (a.postcode !== b.postcode) return a.postcode < b.postcode ? -1 : 1;
+    return 0;
+  });
+  return rows;
+}
+
+const LOCALITIES = buildLocalities(LOCALITIES_BY_POSTCODE);
+
+function takeState(words) {
+  const max = Math.min(3, words.length);
+  for (let n = max; n >= 1; n -= 1) {
+    const tail = words.slice(words.length - n).join(" ");
+    if (STATE_ABBR[tail]) {
+      return { state: STATE_ABBR[tail], words: words.slice(0, words.length - n) };
+    }
+  }
+  return null;
+}
+
+function parseLocalityQuery(query) {
+  if (leadingNumber(query) || typedUnit(query)) return null;
+  let words = localityKey(query).split(" ").filter(Boolean);
+  let state = null;
+  let postcode = null;
+  for (let pass = 0; pass < 2; pass += 1) {
+    if (!words.length) break;
+    const last = words[words.length - 1];
+    if (!postcode && /^\d{4}$/.test(last)) {
+      postcode = last;
+      words = words.slice(0, -1);
+      continue;
+    }
+    if (!state) {
+      const peeled = takeState(words);
+      if (peeled) {
+        state = peeled.state;
+        words = peeled.words;
+        continue;
+      }
+    }
+    break;
+  }
+  if (words.some((word) => /\d/.test(word))) return null;
+  const name = words.join(" ");
+  if (name.length < MIN_QUERY) return null;
+  return { name: name, state: state, postcode: postcode };
+}
+
+function tierFor(key, name) {
+  if (key === name) return 0;
+  if (key.startsWith(name)) return 1;
+  const words = key.split(" ");
+  for (let i = 1; i < words.length; i += 1) {
+    if (words[i].startsWith(name)) return 2;
+  }
+  return -1;
+}
+
+function matchLocalities(lq) {
+  if (!lq) return [];
+  const home = [[], [], []];
+  const other = [[], [], []];
+  LOCALITIES.forEach((row) => {
+    if (lq.state && row.state !== lq.state) return;
+    if (lq.postcode && row.postcode !== lq.postcode) return;
+    const tier = tierFor(row.key, lq.name);
+    if (tier < 0) return;
+    const bucket = row.state === HOME_STATE ? home[tier] : other[tier];
+    bucket.push(row);
+  });
+  const out = [];
+  for (let tier = 0; tier < 3; tier += 1) {
+    out.push(...home[tier], ...other[tier]);
+  }
+  return out.slice(0, LOCALITY_SLOTS);
+}
+
+function mergeAcceptedSuggestions(localities, streets) {
+  const seen = new Set();
+  const out = [];
+  function push(address) {
+    if (out.length >= MAX_SUGGESTIONS) return;
+    if (!address || seen.has(address)) return;
+    if (!checkHandoverAddress(address).ok) return;
+    seen.add(address);
+    out.push({ label: address, address: address });
+  }
+  localities.forEach((row) => push(row.label));
+  streets.forEach((row) => push(row.address));
+  return out;
+}
+
+export async function suggestAddresses(rawQuery, source) {
+  const query = normaliseQuery(rawQuery);
+  if (!worthLookingUp(query)) return [];
+  const localities = matchLocalities(parseLocalityQuery(query));
+  const lookups = streetLookups(query);
+  const settled = await Promise.allSettled(lookups.map((q) => Promise.resolve().then(() => source(q))));
+  const features = settled.flatMap((result) => {
+    return result.status === "fulfilled" && Array.isArray(result.value) ? result.value : [];
+  });
+  return mergeAcceptedSuggestions(localities, streetCandidates(features, query));
 }

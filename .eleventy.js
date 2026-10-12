@@ -82,6 +82,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/sitemap.xml");
   eleventyConfig.addPassthroughCopy("src/llms.txt");
   eleventyConfig.addPassthroughCopy("src/llms-full.txt");
+  eleventyConfig.addPassthroughCopy({ "netlify/functions/handover-address-lib.mjs": "property-iq/handover-address.js" });
 
   // --- Filters ---
 

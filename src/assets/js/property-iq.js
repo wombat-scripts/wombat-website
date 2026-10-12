@@ -1,3 +1,5 @@
+import { checkHandoverAddress } from "/property-iq/handover-address.js";
+
 (function () {
   var form = document.getElementById("piq-form");
   if (!form) return;
@@ -57,8 +59,7 @@
 
   function markAddressHint() {
     var value = addressInput.value.trim();
-    var weak = value.length > 0 && (!/[A-Za-z]/.test(value) || !/\d/.test(value));
-    addressInput.setAttribute("aria-invalid", weak ? "true" : "false");
+    addressInput.setAttribute("aria-invalid", value && !checkHandoverAddress(value).ok ? "true" : "false");
   }
 
   function closeSuggestions() {
@@ -588,12 +589,9 @@
       showError("That doesn't look like an email, have another go.");
       return;
     }
-    if (!address) {
-      showError("Add a street address so we know which place to look up.");
-      return;
-    }
-    if (address.length > 300 || !/[A-Za-z]/.test(address) || !/\d/.test(address)) {
-      showError("We couldn't match that address. Check the spelling, or try the full street including suburb.");
+    var addressCheck = checkHandoverAddress(address);
+    if (!addressCheck.ok) {
+      showError(addressCheck.message);
       return;
     }
     if (!consent) {
