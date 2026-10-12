@@ -319,6 +319,29 @@ p {
 small, .small { font-size: var(--fs-small); }
 .meta { font-size: var(--fs-meta); color: var(--ink-muted); }
 
+/* In-article thumbnail. A 16:9 slot is reserved before the file loads.
+   object-fit cover crops non-16:9 photos instead of stretching them.
+   max-height stops a tall source from blowing out the column. */
+.article-hero {
+  position: relative;
+  margin: 1.75rem auto 2rem;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 28rem;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.article-hero img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 ul, ol { padding-left: 1.25rem; margin: 0 0 var(--space-4); }
 li { margin-bottom: var(--space-2); }
 

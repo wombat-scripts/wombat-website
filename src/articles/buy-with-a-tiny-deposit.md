@@ -5,6 +5,7 @@ date: 2026-09-08
 category: "First Home Buyers"
 layout: article.njk
 thumbnail: "/images/articles/couple_keys_3.webp"
+thumbnailAlt: "A couple on a front lawn holding house keys towards the camera, with a brick home behind them"
 ---
 
 Can you buy a first home in Australia with a tiny deposit? Sometimes. One private door starts at about 2.5% of the purchase price. A registered second mortgage (an equity facility / other liability, not a home loan in the usual sense) bridges up to about 17.5%. A normal first mortgage then sits at about 80%. The aim is no Lenders Mortgage Insurance on that first loan, because it sits at 80%.

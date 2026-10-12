@@ -46,17 +46,7 @@ ogType: article
     <h1>{{ title }}</h1>
     {% if date %}<p class="meta">{{ date | readableDate }} · {{ category or "Home Loans" }}</p>{% endif %}
 
-    {# Hero only when the article sets thumbnailAlt, so existing articles stay unchanged. #}
-    {% if thumbnail and thumbnailAlt %}
-    <figure class="article-hero" style="margin: 1.75rem 0 2rem;">
-      <img src="{{ thumbnail }}"
-           alt="{{ thumbnailAlt }}"
-           width="1280"
-           height="720"
-           decoding="async"
-           style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 2px;">
-    </figure>
-    {% endif %}
+    {% include "partials/article-hero.njk" %}
 
     {% include "partials/article-video.njk" %}
 

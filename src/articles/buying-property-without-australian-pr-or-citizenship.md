@@ -8,6 +8,7 @@ date: 2025-10-22
 category: "Home Loans"
 layout: article.njk
 thumbnail: "/images/articles/overseas_buyer.webp"
+thumbnailAlt: "A man with a yellow backpack looking across rooftops towards a harbour and a distant city"
 ---
 
 Who can buy, what you can buy, and the approvals you'll need as a "foreign person" under Australian law.

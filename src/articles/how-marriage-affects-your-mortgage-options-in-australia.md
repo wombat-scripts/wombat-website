@@ -5,6 +5,7 @@ date: 2026-03-28
 category: "Home Loans"
 layout: article.njk
 thumbnail: "/images/articles/family_finances.webp"
+thumbnailAlt: "A couple at a table with a baby, looking over papers beside a laptop"
 ---
 
 Marriage marks the beginning of a new chapter filled with shared dreams and responsibilities, including, for many couples, the purchase of a home. Here's how tying the knot can influence your mortgage options in Australia.

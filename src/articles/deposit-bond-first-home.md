@@ -5,6 +5,7 @@ date: 2026-08-28
 category: "First Home Buyers"
 layout: article.njk
 thumbnail: "/images/articles/couple_signing_2.webp"
+thumbnailAlt: "A couple at a wooden table signing a document, with a laptop and a cup of coffee"
 ---
 
 You're a first home buyer. You want to bid at auction. They want 10% cash on the day. You've got about 5% ready for later, not today. So how much deposit do I need to buy a house in Australia? Enough to settle. Not always enough to hand over before you've even won. That gap is what a deposit bond is for. The one I use is called Deposit Power.

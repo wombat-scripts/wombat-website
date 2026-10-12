@@ -5,6 +5,7 @@ date: 2026-09-22
 category: "First Home Buyers"
 layout: article.njk
 thumbnail: "/images/articles/freestanding_house.webp"
+thumbnailAlt: "A single-storey house at dusk with the lights on, and a garden path in front"
 ---
 
 You are building a house, or buying house-and-land. The land settles. Progressive draws start. On a normal construction loan, you typically repay as the build runs. If you are still paying rent, or servicing another mortgage, that double cashflow stretch is the hard part.

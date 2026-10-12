@@ -6,6 +6,12 @@ Format: most recent at top. Each entry: date, phase, summary, files touched.
 
 ---
 
+## 2026-10-12. Article heroes where the photo can carry one
+
+Articles with a thumbnail that works large now set `thumbnailAlt`, which is what turns the in-article hero on. Maps, tiny graphics, the split-house illustration, the euro still life, and the office photo used on three articles are left without a hero. The hero slot is 16:9 with the file's real width and height, `object-fit: cover`, and a 28rem cap, and it is not lazy-loaded.
+
+**Files changed:** `src/_layouts/article.njk`, `src/_includes/partials/article-hero.njk`, `src/_includes/css/styles.css`, `.eleventy.js`, article front matter, flagship article templates, `tests/article-hero.test.js`
+
 ## 2026-10-02. Property IQ shows the chat input, and a shorter address hint
 
 After a framed handover, the page scrolls so the bottom of the PropIQ frame and the line under it sit in view. The transcript itself still opens on PiFi's intro. That frame is cross-origin, and the session URL is opened unchanged, so Wombat cannot move the chat to the latest appraisal. Heshan needs PropIQ to do that when a partner session opens. A new tab, used when the frame is refused, is PiFi's page and cannot be scrolled from here either. Same-tab redirect is not used. The address hint now reads "Wait a few seconds for address validation".

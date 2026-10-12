@@ -5,6 +5,7 @@ date: 2025-12-01
 category: "Property Investors"
 layout: article.njk
 thumbnail: "/images/articles/calculations_man.webp"
+thumbnailAlt: "A man at a kitchen bench using a calculator over printed statements, with a laptop and a mug nearby"
 ---
 
 One of the most common questions property investors ask is whether to take out an interest-only (IO) loan or a principal and interest (P&I) loan. The honest answer: it depends. on your cash flow, your tax situation, your investment strategy, and how long you intend to hold the property. Here's a clear-eyed breakdown of both.

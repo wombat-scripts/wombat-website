@@ -5,6 +5,7 @@ date: 2026-09-01
 category: "First Home Buyers"
 layout: article.njk
 thumbnail: "/images/articles/couple_keys_2.webp"
+thumbnailAlt: "A couple in front of a brick house, holding a set of keys towards the camera"
 ---
 
 Everyone asks the same first question. Will the government help me buy a house in Australia?
