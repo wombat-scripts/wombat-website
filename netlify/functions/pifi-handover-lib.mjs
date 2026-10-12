@@ -20,8 +20,7 @@ export const DEFAULT_MAIL_CC = "tom@wombathomeloans.com.au";
 export const COPY = {
   emptyEmail: "Add your email so PropIQ can open the report.",
   invalidEmail: "That doesn't look like an email, have another go.",
-  // Shape failures use checkHandoverAddress. This is only for PiFi's own 422.
-  unusableAddress: "We couldn't match that address. Check the spelling, or try the full street including suburb.",
+  upstreamUnusable: "We couldn't match that address. Check the spelling, or try the full street including suburb.",
   fail: "Something didn't go through. Try again in a minute. If it keeps failing, email us and we'll sort it.",
 };
 
@@ -116,7 +115,7 @@ export function mapUpstream(status, body) {
   const error = body && typeof body.error === "string" ? body.error : "";
 
   if (status === 422 || error === "unusable_address") {
-    return { status: 422, retryable: false, message: COPY.unusableAddress };
+    return { status: 422, retryable: false, message: COPY.upstreamUnusable };
   }
   if (status === 401) {
     return { status: 401, retryable: false, message: COPY.fail };

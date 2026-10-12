@@ -1,9 +1,5 @@
-/**
- * Property IQ suggestions. Suburbs come from the bundled locality list.
- * Streets come from the feature source. Every address can be submitted.
- */
 import { checkHandoverAddress } from "./handover-address-lib.mjs";
-import { LOCALITIES_BY_POSTCODE } from "../data/au-localities.mjs";
+import { LOCALITIES_BY_POSTCODE } from "../data/au-localities.generated.mjs";
 
 const MIN_QUERY = 3;
 const MAX_SUGGESTIONS = 8;
@@ -257,7 +253,7 @@ function matchLocalities(lq) {
   return out.slice(0, LOCALITY_SLOTS);
 }
 
-function mergeSuggestions(localities, streets) {
+function mergeAcceptedSuggestions(localities, streets) {
   const seen = new Set();
   const out = [];
   function push(address) {
@@ -272,10 +268,6 @@ function mergeSuggestions(localities, streets) {
   return out;
 }
 
-/**
- * @param {string | null | undefined} rawQuery
- * @param {(query: string) => Promise<unknown>} source
- */
 export async function suggestAddresses(rawQuery, source) {
   const query = normaliseQuery(rawQuery);
   if (!worthLookingUp(query)) return [];
@@ -285,5 +277,5 @@ export async function suggestAddresses(rawQuery, source) {
   const features = settled.flatMap((result) => {
     return result.status === "fulfilled" && Array.isArray(result.value) ? result.value : [];
   });
-  return mergeSuggestions(localities, streetCandidates(features, query));
+  return mergeAcceptedSuggestions(localities, streetCandidates(features, query));
 }

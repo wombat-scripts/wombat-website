@@ -97,7 +97,7 @@ test('a postcode or a tiny query does not ask for streets', async function () {
 });
 
 test('every bundled suburb is a value the handover accepts', async function () {
-  var data = (await import('../netlify/data/au-localities.mjs')).LOCALITIES_BY_POSTCODE;
+  var data = (await import('../netlify/data/au-localities.generated.mjs')).LOCALITIES_BY_POSTCODE;
   var check = (await import('../netlify/functions/handover-address-lib.mjs')).checkHandoverAddress;
   var labels = [];
   Object.keys(data).forEach(function (state) {
@@ -109,6 +109,8 @@ test('every bundled suburb is a value the handover accepts', async function () {
   assert.equal(new Set(labels).size, labels.length);
   assert.ok(labels.indexOf('Ettalong Beach NSW 2257') !== -1);
   assert.ok(labels.indexOf('Gosford NSW 2250') !== -1);
+  assert.ok(labels.indexOf('Macquarie Park NSW 2113') !== -1);
+  assert.equal(labels.some(function (label) { return label.indexOf('McCquarie') !== -1; }), false);
   labels.forEach(function (label) { assert.equal(check(label).ok, true, label); });
 });
 

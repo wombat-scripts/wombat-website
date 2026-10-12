@@ -1,20 +1,14 @@
-/**
- * Which address strings the Property IQ form may hand to PiFi.
- * The browser loads this file unchanged from /property-iq/handover-address.js.
- * It stays free of imports and Node APIs so that copy keeps working.
- */
-
 const STATE = "(?:NSW|VIC|QLD|SA|WA|TAS|NT|ACT)";
 
-// "Ettalong Beach NSW 2257", "gosford nsw 2250", "Gosford, NSW 2250", "O'Connor ACT 2602".
 // iOS smart punctuation turns ' into a right quote, so both are allowed.
 const LOCALITY_FORM = new RegExp(
   "^[A-Za-z][A-Za-z'\\u2019. -]*[A-Za-z],?\\s+" + STATE + "\\s+\\d{4}$",
   "i"
 );
 
-// A house number, optionally lettered, unit-prefixed or ranged, then a street word.
-const STREET_FORM = /(?:^|[\s,\/])[A-Za-z]?\d+[A-Za-z]?(?:\s*[\/-]\s*\d+[A-Za-z]?)?\s+[A-Za-z][A-Za-z'\u2019.-]+/;
+const HOUSE_NUMBER = "[A-Za-z]?\\d+[A-Za-z]?(?:\\s*[\\/-]\\s*\\d+[A-Za-z]?)?";
+const STREET_WORD = "[A-Za-z][A-Za-z'\\u2019.-]+";
+const STREET_FORM = new RegExp("(?:^|[\\s,/])" + HOUSE_NUMBER + "\\s+" + STREET_WORD);
 
 const POSTCODE_ONLY = new RegExp("^(?:" + STATE + "\\s+)?\\d{4}$", "i");
 
@@ -31,11 +25,6 @@ function fail(reason) {
   return { ok: false, reason: reason, message: MESSAGES[reason] };
 }
 
-/**
- * Accepts a trimmed length of 1 to 300 that matches a suburb or a street.
- * Never rewrites the value. Callers send the string they want to keep.
- * @param {unknown} value
- */
 export function checkHandoverAddress(value) {
   const text = typeof value === "string" ? value.trim() : "";
   if (!text) return fail("empty");
