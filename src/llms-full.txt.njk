@@ -59,6 +59,11 @@ Tom hosts The Property Web, a regular interview series featuring buyer's agents,
 
 Flagship explainers are summarised below. Every other public article follows with its page description.
 
+- [Gift, loan or guarantee? How banks actually see the Bank of Mum and Dad](https://wombathomeloans.com.au/articles/bank-of-mum-and-dad/) - First home / family help
+General information on how Australian lenders treat gifted deposits, family guarantees and family loans, how family help fits with the 5% Deposit Scheme (price caps, the 20% deposit limit, the two-borrower rule), and Centrelink gifting limits. Tom Carr, Wombat Home Loans.
+Related: https://wombathomeloans.com.au/articles/guarantor-loan-risks/ and https://wombathomeloans.com.au/which-door/
+Book a 30-minute strategy session: https://wombathomeloans.com.au/book/
+
 - [Build now, pay later: how a construction pause-repay facility works (and when to leave it alone)](https://wombathomeloans.com.au/articles/build-now-pay-later/) - Construction / cashflow
 During a build, some loans ease repayments (reduced, paused, or interest-only). Interest still accrues; sometimes capitalised. After the build, when the home is finished / you can usually move in, normal repayments typically start on the full loan. Deferred cashflow, not free money. Not a cash deposit scheme. Not government shared equity. Not Help to Buy. Not a deposit bond or tiny-deposit equity facility. Still need a real purchase path, a deposit story the structure allows, and a plan for higher repayment after completion.
 One concrete product in this lane: HomePay (homepayaus.com.au). Brand stays out of the URL.
@@ -101,7 +106,8 @@ Auction and house hunting are the first-home door. The years-ahead developer bon
 {%- set auctionDepositSlug = "/articles/auction-deposit-from-offset/" %}
 {%- set bankStaffSlug = "/articles/lmi-waiver-bank-employees/" %}
 {%- set buildNowSlug = "/articles/build-now-pay-later/" %}
-{% for article in collections.articles %}{% if article.url != depositBondSlug and article.url != helpToBuySlug and article.url != tinyDepositSlug and article.url != auctionDepositSlug and article.url != bankStaffSlug and article.url != buildNowSlug %}- [{{ article.data.title }}](https://wombathomeloans.com.au{{ article.url }}). {{ article.data.category or "Home Loans" }}
+{%- set bomadSlug = "/articles/bank-of-mum-and-dad/" %}
+{% for article in collections.articles %}{% if article.url != depositBondSlug and article.url != helpToBuySlug and article.url != tinyDepositSlug and article.url != auctionDepositSlug and article.url != bankStaffSlug and article.url != buildNowSlug and article.url != bomadSlug %}- [{{ article.data.title }}](https://wombathomeloans.com.au{{ article.url }}). {{ article.data.category or "Home Loans" }}
   {{ article.data.description | oneLine }}
 {% endif %}{% endfor %}
 
