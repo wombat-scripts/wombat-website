@@ -4,7 +4,8 @@ description: "Gift, loan or guarantee? How lenders treat family help with a home
 date: 2026-10-12
 category: "First Home Buyers"
 layout: article.njk
-thumbnail: "/images/articles/parents.webp"
+thumbnail: "/images/articles/bank-of-mum-and-dad.webp"
+thumbnailAlt: "A young couple and their parents looking over home loan papers together at the kitchen table"
 permalink: /articles/bank-of-mum-and-dad/
 ---
 
