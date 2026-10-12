@@ -33,12 +33,12 @@ permalink: /property-iq/
   <div class="container container--narrow" id="piq-stage">
     <form class="ads-form-card piq-form" id="piq-form" novalidate>
       <div class="ads-form__field">
-        <label for="piq-address">Property address</label>
+        <label for="piq-address">Property address or suburb</label>
         <div class="piq-suggest" id="piq-suggest">
-          <input class="ads-form__input" id="piq-address" name="address" type="text" autocomplete="off" maxlength="300" required role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="piq-suggest-list" aria-describedby="piq-address-hint">
+          <input class="ads-form__input" id="piq-address" name="address" type="text" autocomplete="off" maxlength="300" required placeholder="Suburb or street address" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="piq-suggest-list" aria-describedby="piq-address-hint">
           <ul class="piq-suggest__list" id="piq-suggest-list" role="listbox" hidden></ul>
         </div>
-        <p class="calc-field__hint" id="piq-address-hint">Wait a few seconds for address validation</p>
+        <p class="calc-field__hint" id="piq-address-hint">Type a street address, or a suburb such as Gosford NSW. We'll match it as you type.</p>
         <p class="piq-suggest__status" id="piq-suggest-status" aria-live="polite"></p>
       </div>
 

@@ -135,7 +135,10 @@ test('source does not embed a partner key or the live handover host', function (
   });
   var page = read('src/property-iq.njk');
   assert.match(page, /id="piq-consent"/);
-  assert.match(page, /Wait a few seconds for address validation/);
+  assert.match(page, /<label for="piq-address">Property address or suburb<\/label>/);
+  assert.match(page, /placeholder="Suburb or street address"/);
+  assert.match(page, /Type a street address, or a suburb such as Gosford NSW\. We'll match it as you type\./);
+  assert.doesNotMatch(page, /Wait a few seconds for address validation/);
   assert.doesNotMatch(page, /Start typing the street address/);
   assert.doesNotMatch(page, /name="journey"/);
   assert.doesNotMatch(page, /name="context"/);
