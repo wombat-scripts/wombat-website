@@ -6,6 +6,7 @@ date: 2026-02-26
 category: "Home Loans"
 layout: article.njk
 thumbnail: "/images/articles/australia.webp"
+thumbnailAlt: "The Australian flag flying from a pole against a blue sky"
 ---
 
 Moving from a temporary visa to permanent residency? Here's how your property buying rights and foreign purchaser surcharges change in Australia.

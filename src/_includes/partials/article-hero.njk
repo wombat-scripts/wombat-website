@@ -1,0 +1,10 @@
+{# Hero only when front matter sets thumbnailAlt. Unsuitable thumbnails stay off the page. #}
+{% if thumbnail and thumbnailAlt %}
+<figure class="article-hero">
+  <img src="{{ thumbnail }}"
+       alt="{{ thumbnailAlt }}"
+       width="{{ thumbnail | imageWidth }}"
+       height="{{ thumbnail | imageHeight }}"
+       decoding="async">
+</figure>
+{% endif %}

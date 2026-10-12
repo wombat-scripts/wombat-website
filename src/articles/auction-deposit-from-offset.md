@@ -5,6 +5,7 @@ date: 2026-09-17
 category: "First Home Buyers"
 layout: article.njk
 thumbnail: "/images/articles/couple_signing_1.webp"
+thumbnailAlt: "A couple at a table, one of them signing a document beside a laptop and a cup of coffee"
 ---
 
 You win the auction. You sign straight away. The deposit is due on the spot, commonly about 10% (sometimes less if the vendor agreed that before the day). In NSW that contract is typically unconditional. There is no subject-to-finance escape hatch like many private-treaty deals.

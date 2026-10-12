@@ -5,6 +5,7 @@ date: 2026-04-08
 category: "Home Loans"
 layout: article.njk
 thumbnail: "/images/articles/professional_city_2.webp"
+thumbnailAlt: "A man with a backpack walking along an empty city street at sunset"
 ---
 
 The mortgage doesn't stop when your paycheck does. Losing a job while carrying a home loan is stressful. but it's a situation lenders have seen before, and there are real options available if you act quickly.

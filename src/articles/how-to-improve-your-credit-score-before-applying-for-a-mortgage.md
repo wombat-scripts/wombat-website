@@ -5,6 +5,7 @@ date: 2025-12-19
 category: "Home Loans"
 layout: article.njk
 thumbnail: "/images/articles/young_couple_house.webp"
+thumbnailAlt: "A couple on the lawn of a two-storey house, holding up a set of keys"
 ---
 
 When you're contemplating the purchase of a home, your credit score becomes more than just a number. it's a reflection of your financial reliability and can be the key to unlocking favourable mortgage terms.

@@ -8,6 +8,7 @@ date: 2026-02-16
 category: "Home Loans"
 layout: article.njk
 thumbnail: "/images/articles/male_investor.webp"
+thumbnailAlt: "A man standing in front of a two-storey house beside a red and white sign"
 ---
 
 Learn how using trusts in property investment can protect borrowing capacity, preserve cash flow, and support portfolio growth.

@@ -5,6 +5,7 @@ date: 2025-09-10
 category: "Home Loans"
 layout: article.njk
 thumbnail: "/images/articles/young_couple_boxes.webp"
+thumbnailAlt: "A couple carrying cardboard boxes through a doorway into a sunlit living room"
 ---
 
 The very first step when entering your first home buying journey should be to speak to your local mortgage broker. They will assist you with all the points listed below and in most cases come at no cost to you. brokers are paid by the lenders, not the borrower.

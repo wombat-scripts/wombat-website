@@ -5,6 +5,7 @@ date: 2026-07-29
 category: "Home Loans"
 layout: article.njk
 thumbnail: "/images/articles/family_finances.webp"
+thumbnailAlt: "A couple at a table with a baby, looking over papers beside a laptop"
 ---
 
 Settlement day is the finish line everyone pictures. The keys, the photo, the first night in the new place. Months of paperwork, finally done.
