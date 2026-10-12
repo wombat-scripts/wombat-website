@@ -50,6 +50,77 @@ test('handover rejects a vague address and a bad email', async function () {
   }).ok, false);
 });
 
+test('the handover takes a street or a suburb pick, unchanged, and nothing vaguer', async function () {
+  var check = (await import('../netlify/functions/handover-address-lib.mjs')).checkHandoverAddress;
+  var lib = await import('../netlify/functions/pifi-handover-lib.mjs');
+  var send = function (address) { return lib.validateInput({ email: 'sarah@example.com', address: address }); };
+
+  assert.equal(send('Ettalong Beach NSW 2257').body.address, 'Ettalong Beach NSW 2257');
+  assert.equal(send('Gosford NSW 2250').kind, 'locality');
+  assert.equal(send('3/9 Webb Street, East Gosford NSW 2250').kind, 'street');
+  assert.equal(send('3/9 Webb Street, East Gosford NSW 2250').body.address, '3/9 Webb Street, East Gosford NSW 2250');
+  assert.equal(send('12 Gore Street, Parramatta NSW 2150').body.address, '12 Gore Street, Parramatta NSW 2150');
+  assert.equal(send('  Gosford NSW 2250  ').body.address, 'Gosford NSW 2250');
+  assert.equal(send('gosford nsw 2250').body.address, 'gosford nsw 2250');
+  assert.equal(send('gosford nsw 2250').kind, 'locality');
+  assert.equal(send('gosford nsw 2250').body.kind, undefined);
+  assert.equal(send('').message, 'Add an address or suburb so we know which place to look up.');
+  assert.equal(send('2250').message, 'A postcode on its own covers a few suburbs. Add the suburb or street, then pick it from the list.');
+  assert.equal(send('abc1').ok, false);
+
+  [
+    ['', 'empty'],
+    ['   ', 'empty'],
+    ['2250', 'postcode_only'],
+    ['NSW 2250', 'postcode_only'],
+    ['Sydney', 'incomplete'],
+    ['ettalong beach', 'incomplete'],
+    ['abc1', 'unrecognised'],
+    ['1 a', 'unrecognised'],
+    ['Gosford 2250', 'unrecognised'],
+    ['Ettalong Beach NSW 22570', 'unrecognised'],
+    ['x'.repeat(295) + ' NSW 2250', 'unrecognised'],
+  ].forEach(function (row) {
+    var result = check(row[0]);
+    assert.equal(result.ok, false, row[0]);
+    assert.equal(result.reason, row[1], row[0]);
+    assert.doesNotMatch(result.message, /\u2014/);
+  });
+
+  assert.equal(check('').message, 'Add an address or suburb so we know which place to look up.');
+  assert.equal(check('2250').message, 'A postcode on its own covers a few suburbs. Add the suburb or street, then pick it from the list.');
+  assert.equal(check('abc1').message, "We couldn't match that address. Check the spelling, or pick a suggestion from the list.");
+
+  [
+    ['12 Example Street, Parramatta NSW 2150', 'street'],
+    ['Unit 3/9 Webb Street, East Gosford NSW 2250', 'street'],
+    ['9-11 Mann Street, Gosford NSW 2250', 'street'],
+    ['G12/100 Market Street, Sydney NSW 2000', 'street'],
+    ['Lot 5 Smith Road, Box Hill NSW 2765', 'street'],
+    ['gosford nsw 2250', 'locality'],
+    ['Gosford, NSW 2250', 'locality'],
+    ['O\u2019Connor ACT 2602', 'locality'],
+    ['St. Marys NSW 2760', 'locality'],
+  ].forEach(function (row) {
+    assert.deepEqual(check(row[0]), { ok: true, kind: row[1] }, row[0]);
+  });
+});
+
+test('the address rule has one home that the browser loads as-is', function () {
+  var rule = read('netlify/functions/handover-address-lib.mjs');
+  var client = read('src/assets/js/property-iq.js');
+  var page = read('src/property-iq.njk');
+  var eleventy = read('.eleventy.js');
+  assert.doesNotMatch(rule, /^\s*import\b|require\(|process\./m);
+  assert.match(eleventy, /"netlify\/functions\/handover-address-lib\.mjs":\s*"property-iq\/handover-address\.js"/);
+  assert.match(client, /import \{ checkHandoverAddress \} from "\/property-iq\/handover-address\.js"/);
+  assert.ok((client.match(/checkHandoverAddress\(/g) || []).length >= 2);
+  assert.doesNotMatch(client, /\/\\d\/\.test\((address|value)\)/);
+  assert.match(page, /<script type="module" src="\/assets\/js\/property-iq\.js\?v=\d{8}"><\/script>/);
+  assert.match(page, /<p class="lede">\{\{ description \}\}<\/p>/);
+  assert.match(page, /description: "Tell us an address and your email\. We'll send a free PropIQ report so you can see what the place is really worth, before you chase the bank or the auction\. Once it loads, scroll to the bottom to keep asking questions\."/);
+});
+
 test('upstream errors map to friendly copy and the right retry rule', async function () {
   var lib = await import('../netlify/functions/pifi-handover-lib.mjs');
   assert.equal(lib.mapUpstream(401, { message: 'unauthorized' }).retryable, false);

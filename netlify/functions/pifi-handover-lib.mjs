@@ -5,6 +5,7 @@
  * A QA comment example is https://api.qa.pifiproperty.com. Production sets its own host.
  * A missing or foreign host fails closed.
  */
+import { checkHandoverAddress } from "./handover-address-lib.mjs";
 
 export const RETURN_URL = "https://www.wombathomeloans.com.au/property-iq";
 export const TIMEOUT_MS = 30000;
@@ -19,7 +20,7 @@ export const DEFAULT_MAIL_CC = "tom@wombathomeloans.com.au";
 export const COPY = {
   emptyEmail: "Add your email so PropIQ can open the report.",
   invalidEmail: "That doesn't look like an email, have another go.",
-  emptyAddress: "Add a street address so we know which place to look up.",
+  // Shape failures use checkHandoverAddress. This is only for PiFi's own 422.
   unusableAddress: "We couldn't match that address. Check the spelling, or try the full street including suburb.",
   fail: "Something didn't go through. Try again in a minute. If it keeps failing, email us and we'll sort it.",
 };
@@ -62,15 +63,12 @@ export function validateInput(raw) {
   if (email !== emailTrimmed || !EMAIL_RE.test(emailTrimmed) || emailTrimmed.length > 254) {
     return { ok: false, message: COPY.invalidEmail };
   }
-  if (!address) {
-    return { ok: false, message: COPY.emptyAddress };
-  }
-  if (address.length > 300 || !/[A-Za-z]/.test(address) || !/\d/.test(address)) {
-    return { ok: false, message: COPY.unusableAddress };
-  }
+  const check = checkHandoverAddress(address);
+  if (!check.ok) return { ok: false, message: check.message };
 
   return {
     ok: true,
+    kind: check.kind,
     body: {
       email: emailTrimmed,
       address,
