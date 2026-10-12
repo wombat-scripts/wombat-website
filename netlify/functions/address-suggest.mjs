@@ -5,13 +5,7 @@
  * ADDRESS_SUGGEST_PROVIDER defaults to photon. No provider key is required
  * for this QA preview, and none is sent to the browser.
  */
-import {
-  MIN_QUERY,
-  normaliseQuery,
-  queryTokens,
-  streetRemainder,
-  suggestionsFromFeatures,
-} from "./address-suggest-lib.mjs";
+import { suggestAddresses } from "./address-suggest-lib.mjs";
 
 const PHOTON_URL = "https://photon.komoot.io/api/";
 const USER_AGENT = "WombatHomeLoans/property-iq (https://www.wombathomeloans.com.au)";
@@ -29,8 +23,6 @@ function json(status, payload, cache) {
   });
 }
 
-const STREET_SUFFIX = /\b(street|st|road|rd|avenue|ave|drive|dr|place|pl|crescent|cres|parade|pde|lane|ln|way|court|ct|terrace|tce)\b/i;
-
 async function photonFeatures(query) {
   const url = new URL(PHOTON_URL);
   url.searchParams.set("q", query);
@@ -43,46 +35,35 @@ async function photonFeatures(query) {
     headers: { Accept: "application/json", "User-Agent": USER_AGENT },
     signal: AbortSignal.timeout(8000),
   });
-  if (!res.ok) {
-    console.error("address-suggest: photon status", res.status);
-    return [];
-  }
+  if (!res.ok) throw new Error("photon status " + res.status);
   const body = await res.json();
   return Array.isArray(body && body.features) ? body.features : [];
 }
 
-async function suggestPhoton(query) {
-  const lookups = [query];
-  const rest = streetRemainder(query);
-  if (rest.length >= MIN_QUERY && rest !== query) lookups.push(rest);
-  if (rest && !STREET_SUFFIX.test(rest)) lookups.push(rest + " street");
-
-  const groups = await Promise.all(lookups.map(photonFeatures));
-  return suggestionsFromFeatures(groups.flat(), query);
-}
-
 export default async (req) => {
-  if (req.method !== "GET") {
-    return json(405, { suggestions: [] }, false);
-  }
+  if (req.method !== "GET") return json(405, { suggestions: [] }, false);
 
   const provider = String(process.env.ADDRESS_SUGGEST_PROVIDER || "photon").toLowerCase();
-  const query = normaliseQuery(new URL(req.url).searchParams.get("q"));
-  if (query.length < MIN_QUERY || !/[A-Za-z]/.test(query) || queryTokens(query).length === 0) {
-    return json(200, { suggestions: [] }, false);
-  }
-
   if (provider !== "photon") {
     console.error("address-suggest: provider not enabled", provider);
     return json(200, { suggestions: [] }, false);
   }
 
+  let degraded = false;
   try {
-    const suggestions = await suggestPhoton(query);
-    console.info("address-suggest: results", suggestions.length, "qlen", query.length);
-    return json(200, { suggestions: suggestions }, true);
+    const suggestions = await suggestAddresses(new URL(req.url).searchParams.get("q"), async (query) => {
+      try {
+        return await photonFeatures(query);
+      } catch (err) {
+        degraded = true;
+        console.error("address-suggest: lookup failed", err && err.name ? err.name : "error");
+        return [];
+      }
+    });
+    console.info("address-suggest: results", suggestions.length);
+    return json(200, { suggestions: suggestions }, !degraded);
   } catch (err) {
-    console.error("address-suggest: lookup failed", err && err.name ? err.name : "error");
+    console.error("address-suggest: suggest failed", err && err.name ? err.name : "error");
     return json(200, { suggestions: [] }, false);
   }
 };
