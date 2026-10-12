@@ -66,7 +66,7 @@ description: Practical guides on home loans, refinancing, expat lending, and pro
         {% if article.data.thumbnail %}
         <div style="aspect-ratio: 16/9; width: calc(100% + 3rem); margin: -1.5rem -1.5rem 1rem; overflow: hidden; flex-shrink: 0;">
           <img src="{{ article.data.thumbnail }}"
-               alt=""
+               alt="{{ article.data.thumbnailAlt or '' }}"
                loading="lazy"
                decoding="async"
                style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">

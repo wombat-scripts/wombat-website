@@ -266,7 +266,7 @@ description: Mortgage broker for banking, tech and consulting types. Bonus incom
         <a href="{{ article.url }}" class="polaroid-card">
           <figure class="polaroid polaroid--tape">
             {% if article.data.thumbnail %}
-            <img src="{{ article.data.thumbnail }}" alt="" width="640" height="360" loading="lazy" decoding="async">
+            <img src="{{ article.data.thumbnail }}" alt="{{ article.data.thumbnailAlt or '' }}" width="640" height="360" loading="lazy" decoding="async">
             {% endif %}
             <figcaption>{{ article.data.category or "Home Loans" }}</figcaption>
           </figure>
