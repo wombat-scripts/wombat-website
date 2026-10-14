@@ -1163,28 +1163,17 @@
     update();
   }
 
-  /* ══════════════════════════════════════════════════════════════════════
-     7. COST OF BUYING (stamp duty + upfront costs)
-     Duty data is inlined by Eleventy from src/_data/stampduty.json.
-     ══════════════════════════════════════════════════════════════════════ */
-  function initBuyingCosts() {
-    var DATA = window.WOMBAT_DUTY;
-    if (!DATA) return;
-    var ready = false;
-    var cb = function () { if (ready) update(); };
-
-    var state  = bindSeg('s-state', cb);
-    var price  = bindMoney('s-price', 's-price-input', cb);
-    var buyer  = bindSeg('s-buyer', cb);
-    var ptype  = bindSeg('s-type', cb);
-    var legal  = bindMoney('s-legal', 's-legal-input', cb);
-    var inspect = bindMoney('s-inspect', 's-inspect-input', cb);
-
-    function bracketDuty(brackets, V) {
+  /* Pure duty maths (no DOM), shared by the buying-costs calculator and
+     tests/stampduty-nsw.test.js. */
+  function dutyEngine(DATA) {
+    /* Generic bracket maths: base + pct% of (V - previous cap). States with
+       per100: true (NSW) charge each $100 or part of $100 over the floor. */
+    function bracketDuty(brackets, V, per100) {
       var prev = 0;
       for (var i = 0; i < brackets.length; i++) {
         var cap = brackets[i][0] === null ? Infinity : brackets[i][0];
         if (V <= cap || i === brackets.length - 1) {
+          if (per100) return brackets[i][1] + brackets[i][2] * Math.ceil((V - prev) / 100);
           return brackets[i][1] + brackets[i][2] / 100 * (V - prev);
         }
         prev = cap;
@@ -1216,16 +1205,23 @@
         if (V > vf.to) return vf.overBase + vf.overPct / 100 * (V - vf.to);
         return bracketDuty(st.general, V);
       }
+      var duty;
       if (st.premium && V > st.premium.threshold) {
-        return st.premium.base + st.premium.pct / 100 * (V - st.premium.threshold);
+        duty = st.per100
+          ? st.premium.base + st.premium.pct * Math.ceil((V - st.premium.threshold) / 100)
+          : st.premium.base + st.premium.pct / 100 * (V - st.premium.threshold);
+      } else {
+        var table = (ownerOcc && st.home) ? st.home : st.general;
+        duty = bracketDuty(table, V, st.per100);
       }
-      var table = (ownerOcc && st.home) ? st.home : st.general;
-      return bracketDuty(table, V);
+      if (st.minDuty && duty < st.minDuty) duty = st.minDuty;
+      return duty;
     }
 
-    /* Duty after first-home buyer relief (approximated with a linear taper
-       between the exemption cap and the cut-off. matches VIC exactly and
-       tracks NSW/QLD/WA closely). */
+    /* Duty after first-home buyer relief. In the concessional zone duty is
+       (full duty at the cut-off) x (V - exemptTo) / (taperTo - exemptTo) when
+       taperFromCap is set (NSW, Revenue NSW formula); otherwise a linear taper
+       of full duty at V, which is only an approximation for QLD/VIC/WA. */
     function fhbDuty(code, V, isNew) {
       var st = DATA.states[code];
       var cfg = st.fhb;
@@ -1237,10 +1233,36 @@
       if (V <= cfg.exemptTo) return { duty: 0, note: cfg.note };
       if (V <= cfg.taperTo) {
         var t = (V - cfg.exemptTo) / (cfg.taperTo - cfg.exemptTo);
-        return { duty: full * t, note: cfg.note + ' (Concessional zone. this is an estimate; the official calculator gives the exact figure.)' };
+        var ref = cfg.taperFromCap ? baseDuty(code, cfg.taperTo, true) : full;
+        return { duty: ref * t, note: cfg.note + ' (Concessional zone. this is an estimate; the official calculator gives the exact figure.)' };
       }
       return { duty: full, note: cfg.note };
     }
+
+    return { bracketDuty: bracketDuty, baseDuty: baseDuty, fhbDuty: fhbDuty };
+  }
+  /* end dutyEngine */
+
+  /* ══════════════════════════════════════════════════════════════════════
+     7. COST OF BUYING (stamp duty + upfront costs)
+     Duty data is inlined by Eleventy from src/_data/stampduty.json.
+     ══════════════════════════════════════════════════════════════════════ */
+  function initBuyingCosts() {
+    var DATA = window.WOMBAT_DUTY;
+    if (!DATA) return;
+    var ready = false;
+    var cb = function () { if (ready) update(); };
+
+    var state  = bindSeg('s-state', cb);
+    var price  = bindMoney('s-price', 's-price-input', cb);
+    var buyer  = bindSeg('s-buyer', cb);
+    var ptype  = bindSeg('s-type', cb);
+    var legal  = bindMoney('s-legal', 's-legal-input', cb);
+    var inspect = bindMoney('s-inspect', 's-inspect-input', cb);
+
+    var engine = dutyEngine(DATA);
+    var baseDuty = engine.baseDuty;
+    var fhbDuty = engine.fhbDuty;
 
     function update() {
       var code = state.value;
@@ -1261,8 +1283,8 @@
           ? (ownerOcc ? 'Includes the owner-occupier / home concession rate.' : 'Investor rate (no home concession).')
           : '';
       }
-      duty = Math.max(0, Math.round(duty));
-      var saving = Math.max(0, Math.round(baseDuty(code, V, ownerOcc) - duty));
+      duty = Math.max(0, Math.round(duty * 100) / 100);
+      var saving = Math.max(0, Math.round((baseDuty(code, V, ownerOcc) - duty) * 100) / 100);
 
       var total = duty + st.regFees + legal.value + inspect.value;
 
