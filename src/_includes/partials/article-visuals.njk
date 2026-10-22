@@ -1,0 +1,62 @@
+{#-
+  Reusable visual components for data-led articles.
+  Import in a page:  {% import "partials/article-visuals.njk" as v %}
+  Then wrap EXISTING copy with {% call v.stats() %}…{% endcall %} etc. The macros only add
+  structure and decoration (aria-hidden icons); every word on the page still comes from the copy.
+  Styles: set `visuals: true` in front matter so base.njk inlines css/article-visuals.css.
+  Icons live in partials/icons/<name>.svg (hand-drawn line icons, currentColor).
+-#}
+
+{# Decorative icon. Hidden from screen readers. #}
+{% macro icon(name, cls="") -%}
+<span class="av-icon {{ cls }}" aria-hidden="true">{% include "partials/icons/" + name + ".svg" %}</span>
+{%- endmacro %}
+
+{# Key-figure cards. Caller passes <li> items; the <strong> phrase becomes the headline,
+   wrap the figure itself in <span class="av-fig"> to give it the marker treatment. #}
+{% macro stats(cls="") -%}
+<ul class="av-stats {{ cls }}">{{ caller() }}</ul>
+{%- endmacro %}
+
+{# Side-by-side comparison. Put v.card() calls inside. #}
+{% macro compare(cls="") -%}
+<div class="av-compare {{ cls }}">{{ caller() }}</div>
+{%- endmacro %}
+
+{# One comparison card. tone: oak | ink | clay. #}
+{% macro card(iconName, tone="oak") -%}
+<div class="av-card av-card--{{ tone }}">
+  {% if iconName %}<span class="av-icon av-card__icon" aria-hidden="true">{% include "partials/icons/" + iconName + ".svg" %}</span>{% endif %}
+  <div class="av-card__body">{{ caller() }}</div>
+</div>
+{%- endmacro %}
+
+{# Checklist of things to look at. Caller passes <li> items (an icon per item is optional). #}
+{% macro checklist(cls="") -%}
+<ul class="av-checklist {{ cls }}">{{ caller() }}</ul>
+{%- endmacro %}
+
+{# Numbered steps (CSS counters draw the numbers). Caller passes <li> items. #}
+{% macro steps(cls="") -%}
+<ol class="av-steps {{ cls }}">{{ caller() }}</ol>
+{%- endmacro %}
+
+{# A note / callout around existing paragraphs. tone: sticky | ink | clay. #}
+{% macro note(tone="sticky") -%}
+<div class="av-note av-note--{{ tone }}">{{ caller() }}</div>
+{%- endmacro %}
+
+{# FAQ cards. Caller passes <p><strong>Question</strong> Answer</p> blocks. #}
+{% macro faq() -%}
+<div class="av-faq">{{ caller() }}</div>
+{%- endmacro %}
+
+{# Closing call-to-action band. Caller passes the heading + paragraph with the /book/ link. #}
+{% macro cta() -%}
+<section class="av-cta">{{ caller() }}</section>
+{%- endmacro %}
+
+{# Sources block. Caller passes the Sources heading + list. #}
+{% macro sources() -%}
+<section class="av-sources">{{ caller() }}</section>
+{%- endmacro %}

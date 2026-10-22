@@ -52,6 +52,8 @@
      inlined CSS ships fresh with every deploy automatically. #}
   <style>.nav__links{visibility:hidden}</style>
   <style>{% include "css/styles.css" %}</style>
+  {# Opt-in article components (partials/article-visuals.njk). #}
+  {% if visuals %}<style>{% include "css/article-visuals.css" %}</style>{% endif %}
 
   {# Schema markup. injected per-page via block #}
   {% block schema %}

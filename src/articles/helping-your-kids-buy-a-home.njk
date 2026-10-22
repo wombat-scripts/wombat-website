@@ -7,6 +7,8 @@ layout: article.njk
 thumbnail: "/images/articles/helping-your-kids-buy-a-home.webp"
 thumbnailAlt: "Grandparents and an adult daughter going through paperwork together at a table"
 permalink: /articles/helping-your-kids-buy-a-home/
+# Inline css/article-visuals.css (components from partials/article-visuals.njk)
+visuals: true
 # One source for the table and the bar visual. label/display are the draft copy verbatim; value drives bar length.
 dataBars:
   labelHeading: "Wealth level"
@@ -23,37 +25,44 @@ dataBars:
       value: 500000
 ---
 
-{# Body is the Demand draft rendered from Markdown, copy verbatim. The draft table is the dataBars partial (table + bars from front matter). #}
+{# Body is the Demand draft rendered from Markdown, copy verbatim. Visual components only wrap the existing copy (see partials/article-visuals.njk). The draft table is the dataBars partial (table + bars from front matter). #}
+{% import "partials/article-visuals.njk" as v %}
 <p>Recent research shows most Australians aged 60 to 80 have given family $10,000 or more, usually as a gift, and almost none got advice first. Before you offer money, check you can still be comfortable in retirement. Then decide whether it's a gift, a loan or a guarantee, and put it in writing. Each carries different risks for you and looks different to the lender.</p>
 <p>This guide is for the parent or grandparent doing the helping. Your child can read the buyer's side in <a href="/articles/bank-of-mum-and-dad/">Gift, loan or guarantee? How banks actually see the Bank of Mum and Dad</a>.</p>
 <h2>What families are actually giving</h2>
 <p><a href="https://www.afr.com/wealth/personal-finance/bank-of-mum-and-dad-gifts-revealed-how-do-you-compare-20261022-p60z3m">Australian Unity research of 2,000 Australians aged 60 to 80, reported in the AFR</a> shows how common family help has become:</p>
-<ul>
-<li><strong>65% have given $10,000 or more</strong> to a child or grandchild, most often to help buy property.</li>
-<li><strong>The average help towards a first home was $75,800</strong>, and it rises sharply with wealth.</li>
-<li><strong>That help typically covers about a quarter to a third</strong> of what the first home costs.</li>
-<li><strong>Most gave it as a gift (60%)</strong>, while 23% treated it as a loan.</li>
-<li><strong>Cost of living drives 53% of giving</strong>, and nearly three in four would rather see family benefit while they're alive.</li>
-</ul>
+{% call v.stats() %}
+<li><strong><span class="av-fig">65%</span> have given $10,000 or more</strong> to a child or grandchild, most often to help buy property.</li>
+<li><strong>The average help towards a first home was <span class="av-fig">$75,800</span></strong>, and it rises sharply with wealth.</li>
+<li><strong>That help typically covers <span class="av-fig">about a quarter to a third</span></strong> of what the first home costs.</li>
+<li><strong>Most gave it as a gift (<span class="av-fig">60%</span>)</strong>, while 23% treated it as a loan.</li>
+<li><strong>Cost of living drives <span class="av-fig">53%</span> of giving</strong>, and nearly three in four would rather see family benefit while they're alive.</li>
+{% endcall %}
 {% include "partials/article-data-bars.njk" %}
 <p>If your figure is smaller, that's fine. These are averages, and the right amount is the one you can afford. The rest of this guide helps you work that out.</p>
 <h2>Can you afford to help and still be comfortable in retirement?</h2>
 <p>Start with your own position, not your child's needs. Retirement can run for decades, and money you hand over is hard to get back.</p>
 <p>Before you name a figure, look at:</p>
-<ul>
-<li><strong>Your super and savings</strong>, and how long they need to last</li>
-<li><strong>What you spend each year</strong>, including travel and the things you've planned for</li>
-<li><strong>Any debt still owing</strong>, including on your own home</li>
-<li><strong>A buffer for health costs</strong>, aged care down the track, and a home that will need repairs</li>
-</ul>
-<p>The research found 55% would give even if it meant going without themselves. Going without in your seventies or eighties is hard to reverse, and it can end with your family supporting you. If helping would leave you short, or depend on your child repaying on time, give less or help another way.</p>
-<p>Only 17% said they feel completely financially free, and 54% would like to give more but hold back because they're unsure about their own future. Yet just 2% spoke to an expert such as a financial adviser the last time they gave. A licensed financial adviser can model what you can safely give. Get that advice before the money moves, because it's much harder to fix afterwards.</p>
+{% call v.checklist() %}
+<li>{{ v.icon("jar") }}<strong>Your super and savings</strong>, and how long they need to last</li>
+<li>{{ v.icon("spend") }}<strong>What you spend each year</strong>, including travel and the things you've planned for</li>
+<li>{{ v.icon("debt") }}<strong>Any debt still owing</strong>, including on your own home</li>
+<li>{{ v.icon("health") }}<strong>A buffer for health costs</strong>, aged care down the track, and a home that will need repairs</li>
+{% endcall %}
+<p>The research found <span class="av-mark">55%</span> would give even if it meant going without themselves. Going without in your seventies or eighties is hard to reverse, and it can end with your family supporting you. If helping would leave you short, or depend on your child repaying on time, give less or help another way.</p>
+<p>Only <span class="av-mark">17%</span> said they feel completely financially free, and <span class="av-mark">54%</span> would like to give more but hold back because they're unsure about their own future. Yet just <span class="av-mark">2%</span> spoke to an expert such as a financial adviser the last time they gave. A licensed financial adviser can model what you can safely give. Get that advice before the money moves, because it's much harder to fix afterwards.</p>
 <h2>Should you decide on a gift or a loan before you promise anything?</h2>
 <p>Yes. Once you've said &quot;we'll help with the deposit&quot;, it's tempting to sort out details later, and that's where families get into trouble.</p>
 <p>A gift and a loan are different things, legally and to a lender. Money from a parent to a child is generally presumed to be a gift, so if you hand it over without paperwork and later call it a loan, that can be hard to prove. Agree on the answer first, write it down, and make sure everyone, the lender included, hears the same thing.</p>
 <h2>What's the difference between a gift, a loan and a guarantee?</h2>
+{% call v.compare() %}
+{% call v.card("gift", "oak") %}
 <p><strong>A gift</strong> is money you don't expect back. It's the simplest option in the lender's eyes, and it's permanent for you. Unless it's documented otherwise, it can also become part of a property settlement if your child later separates.</p>
+{% endcall %}
+{% call v.card("loan", "ink") %}
 <p><strong>A loan</strong> is money you expect back. It protects you more, but your child's lender will treat it as a debt, which can reduce how much they can borrow.</p>
+{% endcall %}
+{% call v.card("guarantee", "clay") %}
 <p><strong>A guarantee</strong> means you offer equity in your own property as extra security for part of your child's loan. No cash changes hands and your child makes the repayments. The risks sit with you:</p>
 <ul>
 <li>If your child can't pay, you can be liable for the guaranteed amount</li>
@@ -61,32 +70,39 @@ dataBars:
 <li>Getting released usually needs a new valuation and the lender's approval, and it isn't automatic</li>
 </ul>
 <p>Ask exactly how much you're guaranteeing and when it ends. Get independent legal advice before you sign, separate from your child. More detail is in <a href="/articles/guarantor-loan-risks/">Guarantor loan risks</a>.</p>
+{% endcall %}
+{% endcall %}
 <h2>How do you make a family loan real?</h2>
-<p>Many families skip this step. In the research, only 37% set a repayment schedule and just 22% signed a formal agreement. If you want the money back, treat it as a proper loan from day one:</p>
-<ul>
+<p>Many families skip this step. In the research, only <span class="av-mark">37%</span> set a repayment schedule and just <span class="av-mark">22%</span> signed a formal agreement. If you want the money back, treat it as a proper loan from day one:</p>
+{% call v.steps() %}
 <li><strong>A written loan agreement</strong>, prepared or reviewed by a lawyer, setting out the amount, the repayments and when it's due</li>
 <li><strong>Regular repayments</strong> your child actually makes, with a record of each one</li>
 <li><strong>Interest</strong>, even at a low rate, so it reads as a genuine arrangement</li>
 <li><strong>Security</strong>, such as a registered second mortgage, where it suits your family and the main lender allows it</li>
 <li><strong>Separate legal advice</strong> for you and for your child</li>
-</ul>
+{% endcall %}
 <p>The point is protection. A well-documented loan puts you in a much stronger position if your child's relationship ends or they run into creditors. A handshake deal is hard to rely on.</p>
 <h2>What will the lender ask about your help?</h2>
+{% call v.note("ink") %}
 <p>The lender will want to know exactly what your help is. For a genuine gift, expect to sign a gift letter or statutory declaration saying the money doesn't have to be repaid, and your child will need to show it in their account. For a family loan, the lender will usually count the repayments like any other debt, so your child may borrow less. Signing a gift letter while privately treating the money as a loan is misleading the lender, and it's not something I'll help with.</p>
+{% endcall %}
 <h2>How does gifting affect your Age Pension?</h2>
-<p>If you're on or near the Age Pension, gifting limits apply. <a href="https://www.servicesaustralia.gov.au/how-much-you-can-gift?context=22526">Services Australia</a> currently allows gifts of up to $10,000 in a financial year and $30,000 over five financial years, and the limits are the same for singles and couples. Anything above that is counted in the assets test and deemed under the income test for five years from the date of the gift.</p>
+{% call v.note("sticky") %}
+<p>If you're on or near the Age Pension, gifting limits apply. <a href="https://www.servicesaustralia.gov.au/how-much-you-can-gift?context=22526">Services Australia</a> currently allows gifts of up to <span class="av-mark">$10,000</span> in a financial year and <span class="av-mark">$30,000</span> over five financial years, and the limits are the same for singles and couples. Anything above that is counted in the assets test and deemed under the income test for five years from the date of the gift.</p>
+{% endcall %}
 <p>A genuine loan isn't a gift. It's treated as a <a href="https://guides.dss.gov.au/social-security-guide/4/4/1/30">financial asset</a> and deemed, even if you charge no interest. If you might forgive a loan later, speak to Services Australia first. These limits can change, so check them before any money moves.</p>
 <h2>How do you keep things fair between your children and grandchildren?</h2>
 <p>Helping one child raises the question of the others. There's no single right answer, but decide on purpose rather than by accident.</p>
-<p>Some parents give each child the same amount. Others give based on need, and more than 30% of those surveyed do this, for example more to the child buying in a pricier area. Timing matters too. A gift to the eldest now and the youngest in ten years may not feel equal, even if the dollar figure is.</p>
+<p>Some parents give each child the same amount. Others give based on need, and more than <span class="av-mark">30%</span> of those surveyed do this, for example more to the child buying in a pricier area. Timing matters too. A gift to the eldest now and the youngest in ten years may not feel equal, even if the dollar figure is.</p>
 <p>Talk openly with all your children about what they'd see as fair. If the gift is an early share of an inheritance, update your will to reflect it, with legal advice on the wording. That one step can head off a lot of hurt.</p>
 <h2>Say what you expect</h2>
-<p>In the research, 43% gave partly hoping to play a bigger part in their family's lives, but only 40% of people with expectations like that ever said so.</p>
+<p>In the research, <span class="av-mark">43%</span> gave partly hoping to play a bigger part in their family's lives, but only <span class="av-mark">40%</span> of people with expectations like that ever said so.</p>
 <p>Unspoken expectations breed resentment. If you'd like more time with the grandkids or a say in where they buy, raise it before any money moves. If there are no strings, say that too, so nobody is guessing years later.</p>
 <h2>What changes when you're helping a grandchild?</h2>
 <p>Not much. The same rules apply, and the Age Pension gifting limits are the same whether the money goes to a child or a grandchild.</p>
 <p>The main difference is family dynamics. Some grandparents give through the parents, others alongside them, and some directly. Either way, keep your grandchild's parents in the conversation so everyone knows what's been given and on what terms.</p>
 <h2>Frequently asked questions</h2>
+{% call v.faq() %}
 <p><strong>Can I be on my child's loan instead of giving money?</strong>
 Sometimes, but that usually rules out first home buyer schemes, raises tax questions, and makes you fully responsible for the debt.</p>
 <p><strong>Is a gift better than a loan?</strong>
@@ -95,13 +111,18 @@ Neither is better in general. A gift is simpler with the lender but permanent fo
 Possibly, but forgiving a loan can count as a gift for Age Pension purposes. Speak to Services Australia and a financial adviser first.</p>
 <p><strong>Do I need my own lawyer if my child already has one?</strong>
 Yes. For a guarantee or a family loan, you should get independent legal advice, separate from your child.</p>
+{% endcall %}
+{% call v.cta() %}
 <h2>Want to know how the lender will see it?</h2>
 <p>Lender policies on gifts, family loans and guarantees vary. I can walk your family through how a lender is likely to see each option before anyone commits, and families often book together. <a href="/book/">Book a call</a> with me.</p>
+{% endcall %}
 <hr>
 <p><em>This is general information only and doesn't take into account your objectives, financial situation or needs. Consider whether it's appropriate for you and get independent legal, tax and financial advice before acting. Credit eligibility criteria, fees and charges apply. Tom Carr, Credit Representative 559744, ACL 561324.</em></p>
+{% call v.sources() %}
 <h2>Sources</h2>
 <ul>
 <li>Australian Unity research of 2,000 Australians aged 60 to 80, reported in the AFR (The Australian Financial Review), October 2026: <a href="https://www.afr.com/wealth/personal-finance/bank-of-mum-and-dad-gifts-revealed-how-do-you-compare-20261022-p60z3m">afr.com</a></li>
 <li>Services Australia, <a href="https://www.servicesaustralia.gov.au/how-much-you-can-gift?context=22526">How much you can gift</a></li>
 <li>Department of Social Services, <a href="https://guides.dss.gov.au/social-security-guide/4/4/1/30">Social Security Guide 4.4.1.30</a></li>
 </ul>
+{% endcall %}
