@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>{{ title }} | Wombat Home Loans</title>
+  <title>{% if seoTitle %}{{ seoTitle }}{% else %}{{ title }} | Wombat Home Loans{% endif %}</title>
   <meta name="description" content="{{ description or 'Mortgage broker for corporate professionals. Bonus income, RSUs and first homes. 20+ years inside the banks. 40+ lenders. No cost to you.' }}">
   <meta name="author" content="Tom Carr">
 
@@ -22,7 +22,7 @@
   {# Open Graph #}
   <meta property="og:type" content="{{ ogType or 'website' }}">
   <meta property="og:site_name" content="Wombat Home Loans">
-  <meta property="og:title" content="{{ ogTitle or title }}">
+  <meta property="og:title" content="{{ ogTitle or seoTitle or title }}">
   <meta property="og:description" content="{{ description or 'Mortgage broker for corporate professionals. Bonus income, RSUs and first homes.' }}">
   <meta property="og:url" content="https://wombathomeloans.com.au{{ page.url }}">
   <meta property="og:image" content="https://wombathomeloans.com.au{{ ogImage or '/assets/og-image.jpg' }}">
@@ -32,7 +32,7 @@
 
   {# Twitter / X #}
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ ogTitle or title }}">
+  <meta name="twitter:title" content="{{ ogTitle or seoTitle or title }}">
   <meta name="twitter:description" content="{{ description or 'Mortgage broker for corporate professionals. Bonus income, RSUs and first homes.' }}">
   <meta name="twitter:image" content="https://wombathomeloans.com.au{{ ogImage or '/assets/og-image.jpg' }}">
 

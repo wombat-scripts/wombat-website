@@ -1,6 +1,8 @@
 ---
 layout: base.njk
 ogType: article
+# Optional per-article SEO front matter: seoTitle (full <title>, no suffix), ogImage (site-relative path),
+# faqSchema (list of { q, a } in plain text, verbatim from the on-page FAQ) renders FAQPage JSON-LD.
 ---
 
 {% block schema %}
@@ -38,6 +40,26 @@ ogType: article
   }
 }
 </script>
+{%- if faqSchema and faqSchema.length %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for item in faqSchema %}
+    {
+      "@type": "Question",
+      "name": {{ item.q | dump | safe }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ item.a | dump | safe }}
+      }
+    }{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}
+</script>
+{%- endif %}
 {% endblock %}
 
 <article class="section">
