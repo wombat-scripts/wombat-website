@@ -18,17 +18,13 @@ eleventyExcludeFromCollections: true
 {%- set pifiUrl = "https://wombathl.pifiproperty.com/" -%}
 
 <div data-pagefind-ignore="all">
-<section class="section section--tight psearch-intro">
-  <div class="container container--narrow">
-    <p class="calc-breadcrumb"><a href="/calculators/">← Calculators</a></p>
-    <p class="psearch-placeholder" role="note">Placeholder copy. Preview only, not launched.</p>
-    <h1>[Placeholder] Find the right home, then the right loan</h1>
-    <p class="lede">[Placeholder] Chat with an AI property search, see homes on a map, compare suburbs and check commutes and schools. When you're ready, hand your goals to Tom.</p>
-  </div>
-</section>
-
-<section class="section section--tight psearch">
+<section class="psearch">
   <div class="container container--wide psearch__stage">
+    <header class="psearch__head">
+      <p class="psearch-placeholder" role="note">Placeholder copy · preview only, not launched</p>
+      <h1 class="psearch__title">[Placeholder] Find the right home, then the right loan</h1>
+      <p class="psearch__lede">[Placeholder] Chat with an AI property search, see homes on a map, compare suburbs, commutes and schools. When you're ready, hand your goals to Tom.</p>
+    </header>
     <div class="psearch__bar">
       <p class="psearch__powered">[Placeholder] Powered by PropIQ (PiFi)</p>
       <a class="psearch__pop" href="{{ pifiUrl }}" target="_blank" rel="noopener" data-umami-event="pifi-search-new-tab">Open in a new tab ↗</a>
@@ -42,7 +38,7 @@ eleventyExcludeFromCollections: true
               allow="clipboard-write"></iframe>
     </div>
     <p class="psearch__note">[Placeholder] Trouble loading, or can't sign in on your phone? <a href="{{ pifiUrl }}" target="_blank" rel="noopener">Open the search in a new tab</a>, or <a href="/book/">book a chat with Tom</a>.</p>
-    <p class="ads-form__privacy muted">[Placeholder] The property search is run by PiFi (PropIQ). What you type in the chat goes to PiFi, and their site uses its own analytics. Estimates are a starting point, not advice. Wombat Home Loans · Credit Rep CRN {{ site.crn or "559744" }} · ACL {{ site.acl or "561324" }}.</p>
+    <p class="ads-form__privacy muted">[Placeholder] The property search is run by PiFi (PropIQ). What you type in the chat goes to PiFi, and their site uses its own analytics. Estimates are a starting point, not advice. Wombat Home Loans · Credit Rep CRN {{ site.crn }} · ACL {{ site.acl }}.</p>
   </div>
 </section>
 </div>
@@ -50,8 +46,8 @@ eleventyExcludeFromCollections: true
 <style>
   .psearch-placeholder {
     display: inline-block;
-    margin: 0 0 var(--space-3);
-    padding: 0.2rem 0.6rem;
+    margin: 0 0 var(--space-2);
+    padding: 0.15rem 0.55rem;
     border: 1px dashed var(--oak-deep);
     color: var(--oak-deep);
     font-size: var(--fs-small);
@@ -59,7 +55,11 @@ eleventyExcludeFromCollections: true
     background: var(--paper-warm);
     transform: rotate(-0.6deg);
   }
+  .psearch { padding: var(--space-4) 0 var(--space-6); }
   .psearch__stage { max-width: 1240px; }
+  .psearch__head { margin: 0 0 var(--space-3); }
+  .psearch__title { font-size: clamp(1.35rem, 1.1rem + 1.2vw, 2rem); line-height: 1.15; margin: 0 0 var(--space-2); }
+  .psearch__lede { margin: 0; color: var(--ink-soft); max-width: 62ch; }
   .psearch__bar {
     display: flex;
     flex-wrap: wrap;
@@ -95,5 +95,6 @@ eleventyExcludeFromCollections: true
   @media (max-width: 640px) {
     .psearch .container { padding-left: var(--space-2); padding-right: var(--space-2); }
     .psearch__frame { height: calc(100dvh - 72px); min-height: 520px; }
+    .psearch__lede { font-size: var(--fs-small); }
   }
 </style>
