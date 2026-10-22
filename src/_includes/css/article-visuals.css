@@ -1,0 +1,317 @@
+/* =============================================================================
+   Article visuals . Direction A: "Kitchen table"
+   Index cards, sticky notes, masking tape, ruled notepad, oak marker.
+   Components: partials/article-visuals.njk. Loaded only when front matter
+   sets `visuals: true`. Kitchen table tokens only (cream, oak, clay, ink).
+   ============================================================================= */
+
+.article-body { --av-tape: rgba(196, 165, 116, 0.42); --av-sticky: #e8d9b0; --av-sheet: #fbf8f2; }
+
+/* Components that break out of the 720px column on wide screens */
+.article-body .av-stats,
+.article-body .av-compare,
+.article-body .av-cta {
+  position: relative;
+  left: 50%;
+  width: min(1040px, calc(100vw - 2.5rem));
+  transform: translateX(-50%);
+}
+
+/* Shared: masking tape strip */
+.av-stats li::before,
+.av-card::before,
+.av-note--sticky::before,
+.article-body .data-bars::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 78px;
+  height: 20px;
+  transform: translateX(-50%) rotate(-2.5deg);
+  background: var(--av-tape);
+  box-shadow: inset 0 0 0 1px rgba(138, 106, 62, 0.18);
+  pointer-events: none;
+}
+
+/* Marker highlight on figures in running text */
+.av-mark {
+  padding: 0 0.18em;
+  margin: 0 -0.05em;
+  font-weight: 600;
+  color: var(--ink);
+  background: linear-gradient(100deg, transparent 0.15em, rgba(196, 165, 116, 0.55) 0.3em, rgba(196, 165, 116, 0.42) 92%, transparent 99%);
+  border-radius: 0.5em 0.2em 0.45em 0.25em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* ── Key figures: sticky notes ───────────────────────────────────────── */
+.av-stats {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  gap: 1.4rem 1rem;
+  padding: 0.75rem 0 0;
+  margin: var(--space-5) 0 var(--space-6);
+}
+.av-stats li {
+  position: relative;
+  margin: 0;
+  padding: 1.25rem 1rem 1rem;
+  background: var(--av-sticky);
+  box-shadow: 0 1px 1px rgba(30, 36, 48, 0.06), 0 6px 14px rgba(30, 36, 48, 0.08);
+  font-size: var(--fs-small);
+  line-height: 1.45;
+  color: var(--ink-soft);
+  transform: rotate(-1.2deg);
+}
+.av-stats li:nth-child(2n) { transform: rotate(1deg); background: var(--card); }
+.av-stats li:nth-child(3n) { transform: rotate(-0.5deg); background: #f1e3c3; }
+.av-stats li strong {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.av-fig {
+  font-family: var(--font-hand);
+  font-size: 1.55em;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--clay);
+}
+
+/* ── Wealth table + bars (dataBars partial): taped index card ─────────── */
+.article-body .data-bars {
+  position: relative;
+  background: var(--av-sheet);
+  transform: rotate(-0.4deg);
+  box-shadow: var(--shadow-md);
+}
+.article-body .data-bars__track { background: repeating-linear-gradient(90deg, var(--paper) 0 24px, var(--card-deep) 24px 25px); }
+.article-body .data-bars__bar { border-radius: 2px 6px 3px 7px; }
+
+/* ── Checklist: ruled notepad with a clay margin line ────────────────── */
+.av-checklist {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0 1.5rem;
+  margin: var(--space-4) 0 var(--space-5);
+  padding: 0.9rem 1.1rem 0.6rem 3.4rem;
+  background:
+    linear-gradient(90deg, transparent 2.6rem, rgba(138, 74, 52, 0.45) 2.6rem, rgba(138, 74, 52, 0.45) calc(2.6rem + 1.5px), transparent calc(2.6rem + 1.5px)),
+    repeating-linear-gradient(180deg, var(--av-sheet) 0 calc(1.65em - 1px), var(--card-deep) calc(1.65em - 1px) 1.65em);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm), 0 0 0 1px var(--line);
+}
+.av-checklist li {
+  position: relative;
+  margin: 0;
+  padding: 0.35rem 0 0.55rem 2.6rem;
+  line-height: 1.65;
+}
+.av-checklist .av-icon {
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 2rem;
+  height: 2rem;
+  color: var(--oak-deep);
+}
+.av-icon svg { display: block; width: 100%; height: 100%; }
+
+/* ── Comparison: three index cards ───────────────────────────────────── */
+.av-compare {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  grid-template-areas: "a c" "b c";
+  gap: 1.6rem 1.4rem;
+  margin: var(--space-5) 0 var(--space-6);
+  padding-top: 0.6rem;
+}
+.av-card:nth-child(1) { grid-area: a; transform: rotate(-0.8deg); }
+.av-card:nth-child(2) { grid-area: b; transform: rotate(0.6deg); }
+.av-card:nth-child(3) { grid-area: c; transform: rotate(-0.3deg); }
+.av-card {
+  --tone: var(--oak-deep);
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.9rem 1fr;
+  gap: 0 0.9rem;
+  align-items: start;
+  padding: 1.3rem 1.25rem 0.4rem;
+  background: var(--av-sheet);
+  border-top: 5px solid var(--tone);
+  border-radius: 3px 3px 2px 2px;
+  box-shadow: var(--shadow-md);
+  font-size: var(--fs-small);
+}
+.av-card--ink  { --tone: var(--ink); }
+.av-card--clay { --tone: var(--clay); }
+.av-card__icon { width: 2.9rem; height: 2.9rem; color: var(--tone); }
+.av-card__body p { margin-bottom: 0.8rem; }
+.av-card__body > p:first-child strong {
+  font-family: var(--font-display);
+  font-size: 1.45em;
+  line-height: 1;
+  color: var(--tone);
+  background: linear-gradient(transparent 62%, rgba(196, 165, 116, 0.45) 62%, rgba(196, 165, 116, 0.45) 92%, transparent 92%);
+}
+.av-card__body ul { margin: 0 0 0.9rem; padding-left: 0; list-style: none; }
+.av-card__body li {
+  position: relative;
+  padding: 0.45rem 0 0.45rem 1.6rem;
+  border-bottom: 1px dashed var(--line);
+}
+.av-card__body li::before {
+  content: "";
+  position: absolute;
+  left: 0.15rem;
+  top: 0.85rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 2px solid var(--clay);
+  border-radius: 45% 55% 50% 40%;
+  transform: rotate(-12deg);
+}
+
+/* ── Steps: numbered slip on one card ────────────────────────────────── */
+.av-steps {
+  list-style: none;
+  counter-reset: av-step;
+  margin: var(--space-4) 0 var(--space-5);
+  padding: 0.5rem 1.1rem;
+  background: var(--av-sheet);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm), 0 0 0 1px var(--line);
+}
+.av-steps li {
+  counter-increment: av-step;
+  position: relative;
+  margin: 0;
+  padding: 0.7rem 0 0.7rem 3rem;
+  border-bottom: 1px dashed var(--line);
+  min-height: 2.6rem;
+}
+.av-steps li:last-child { border-bottom: 0; }
+.av-steps li::before {
+  content: counter(av-step);
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--clay);
+  border: 2px solid var(--clay);
+  border-radius: 52% 48% 55% 45% / 48% 55% 45% 52%;
+  transform: rotate(-6deg);
+}
+
+/* ── Notes ───────────────────────────────────────────────────────────── */
+.av-note {
+  position: relative;
+  margin: var(--space-4) 0 var(--space-5);
+  padding: 1.1rem 1.25rem 0.3rem;
+}
+.av-note p { margin-bottom: 0.8rem; }
+.av-note--sticky {
+  background: var(--av-sticky);
+  box-shadow: 0 1px 1px rgba(30, 36, 48, 0.06), 0 6px 14px rgba(30, 36, 48, 0.08);
+  transform: rotate(-0.5deg);
+  padding-top: 1.4rem;
+}
+.av-note--ink {
+  background: var(--card);
+  border-left: 4px solid var(--oak-deep);
+  border-radius: 0 3px 3px 0;
+}
+
+/* ── FAQ: index cards with a pencilled question mark ─────────────────── */
+.av-faq {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: var(--space-4) 0 var(--space-6);
+}
+.av-faq p {
+  position: relative;
+  margin: 0;
+  padding: 1rem 1.1rem 1rem 3rem;
+  background: var(--av-sheet);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm), 0 0 0 1px var(--line);
+  font-size: var(--fs-small);
+}
+.av-faq p::before {
+  content: "?";
+  position: absolute;
+  left: 0.95rem;
+  top: 0.35rem;
+  font-family: var(--font-hand);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--oak);
+}
+.av-faq strong { display: block; margin-bottom: 0.3rem; font-family: var(--font-display); font-size: 1.1rem; line-height: 1.25; color: var(--ink); }
+
+/* ── CTA band: clay paper with torn edges ────────────────────────────── */
+.av-cta {
+  margin: var(--space-6) 0;
+  padding: 2.4rem clamp(1.25rem, 5vw, 3.5rem) 2rem;
+  background: var(--clay);
+  color: var(--cream);
+  clip-path: polygon(0 3%, 6% 0, 14% 2.5%, 23% .5%, 33% 2.8%, 44% .3%, 55% 2.2%, 66% 0, 77% 2.6%, 88% .4%, 100% 2.4%, 100% 97%, 92% 100%, 81% 97.6%, 70% 99.6%, 59% 97.2%, 48% 99.8%, 37% 97.5%, 26% 99.7%, 15% 97.3%, 6% 99.5%, 0 97.5%);
+}
+.av-cta h2 { color: var(--cream); margin: 0 0 0.6rem; }
+.av-cta p { max-width: 46rem; margin: 0; font-size: 1.1rem; color: rgba(247, 243, 236, 0.92); }
+.av-cta a {
+  display: inline-block;
+  margin: 0.2rem 0.15rem;
+  padding: 0.45rem 1.1rem;
+  background: var(--cream);
+  color: var(--clay);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 3px 5px 2px 6px;
+  box-shadow: 0 3px 0 rgba(30, 36, 48, 0.25);
+  transform: rotate(-1.5deg);
+}
+.av-cta a:hover, .av-cta a:focus-visible { background: #fff; outline: 2px dashed var(--cream); outline-offset: 3px; }
+
+/* ── Sources: folded-corner card ─────────────────────────────────────── */
+.av-sources {
+  margin: var(--space-5) 0 0;
+  padding: 1rem 1.25rem 0.6rem;
+  background: linear-gradient(225deg, transparent 18px, var(--card) 18px);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-small);
+}
+.av-sources h2 { margin: 0 0 0.5rem; font-size: var(--fs-h4); }
+.av-sources ul { margin: 0 0 0.4rem; padding-left: 1.1rem; }
+.av-sources li { margin-bottom: 0.35rem; }
+
+/* ── Mobile ──────────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .av-compare { grid-template-columns: 1fr; grid-template-areas: "a" "b" "c"; }
+}
+@media (max-width: 600px) {
+  .av-stats { grid-template-columns: 1fr 1fr; gap: 1.2rem 0.75rem; }
+  .av-stats li { padding: 1.1rem 0.8rem 0.85rem; font-size: 0.875rem; }
+  .av-stats li:last-child { grid-column: 1 / -1; }
+  .av-stats li strong { font-size: 1.02rem; }
+  .av-checklist { padding-left: 2.6rem; padding-right: 0.8rem; background-position: -0.8rem 0, 0 0; }
+  .av-card { grid-template-columns: 1fr; padding: 1.2rem 1rem 0.3rem; }
+  .av-card__icon { width: 2.4rem; height: 2.4rem; margin-bottom: 0.3rem; }
+  .av-faq { grid-template-columns: 1fr; }
+}
