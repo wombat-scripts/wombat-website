@@ -95,6 +95,13 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
+# Preview-only PiFi AI search spike (preview/pifi-ai-search). Keep it out of
+# search engines even if someone finds the URL.
+[[headers]]
+  for = "/property-search/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 [[headers]]
   for = "/images/*"
   [headers.values]

@@ -9,7 +9,7 @@
   <meta name="author" content="Tom Carr">
 
   <link rel="canonical" href="https://wombathomeloans.com.au{{ page.url }}">
-  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="robots" content="{% if noindex %}noindex, nofollow{% else %}index, follow, max-image-preview:large{% endif %}">
 
   <link href="/pagefind/pagefind-ui.css" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="/pagefind/pagefind-ui.css" rel="stylesheet"></noscript>
