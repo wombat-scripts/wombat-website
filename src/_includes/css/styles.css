@@ -3886,6 +3886,18 @@ body.piq-open #piq-stage > .ads-form__privacy,
   display: block;
 }
 
+/* Property IQ: link-out card to PiFi's AI property search */
+.piq-search { padding-top: 0; }
+.piq-search__card {
+  padding: var(--space-5);
+  background: #f3eadc;
+  border: 1px solid var(--oak);
+  box-shadow: 3px 3px 0 var(--oak);
+}
+.piq-search__title { margin: 0 0 var(--space-2); font-size: 1.35rem; }
+.piq-search__copy { margin: 0 0 var(--space-4); color: var(--ink-soft); }
+.piq-search__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
 .piq-next h2 {
   margin: 0 0 var(--space-2);
   font-size: 1.75rem;
