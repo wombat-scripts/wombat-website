@@ -24,6 +24,8 @@ Live products in this lane often work up to about $1.6m. Confirm the live terms 
 
 The 2.5% does not always have to be "genuine savings." Some providers allow a gift, an inheritance, the sale of an asset, or a bonus. The source still has to be verified.
 
+If family is offering to help, share [this guide for parents and grandparents](/articles/helping-your-kids-buy-a-home/) with them.
+
 You still need cash for stamp duty (unless a concession applies), conveyancing, inspections, and compulsory independent legal advice. That legal advice is often a few hundred dollars. You pay it. It usually cannot be rolled into the facility.
 
 So the slogan is 2.5%. The real cash number is 2.5% plus buying costs. Keep stamp duty in that number.

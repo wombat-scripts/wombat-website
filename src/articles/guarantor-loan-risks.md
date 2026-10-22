@@ -39,3 +39,5 @@ Guarantor loans often come with more limited product options and may carry highe
 ## Before You Proceed
 
 Guarantor loans offer real advantages for first home buyers who need help getting into the market. But the risks to the guarantor are serious. Everyone involved should understand the full picture. ideally with independent legal and financial advice before signing anything. It's also worth exploring whether other pathways (government schemes, larger deposits, alternative lenders) might reduce or eliminate the need for a guarantor altogether.
+
+Parent or grandparent being asked to help? Read [what to check before you say yes](/articles/helping-your-kids-buy-a-home/).
