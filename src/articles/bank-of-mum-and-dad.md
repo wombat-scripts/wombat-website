@@ -11,6 +11,8 @@ permalink: /articles/bank-of-mum-and-dad/
 
 Plenty of parents want to help their kids into a first home. That help usually comes as a gift, a loan or a guarantee, and each one looks different to a lender. The mistakes I see most often are cash gifts that affect a parent's pension, guarantees that put two homes at risk, and family loans with nothing in writing.
 
+If you're the parent or grandparent doing the helping, start with [Helping your child or grandchild buy a home](/articles/helping-your-kids-buy-a-home/).
+
 ## Do you need family help if you're using the 5% Deposit Scheme?
 
 Sometimes not. The [Australian Government 5% Deposit Scheme](https://firsthomebuyers.gov.au/sites/default/files/2025-09/Australian%20Government%205%25%20Deposit%20Scheme%20Information%20Guide.pdf) lets eligible first home buyers purchase with a smaller deposit. Three rules shape how family help fits with it:

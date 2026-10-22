@@ -1,0 +1,33 @@
+{#- Data table plus a bar visual, both from the page's `dataBars` front matter.
+    The table is the accessible source; the bars repeat it visually and are hidden from screen readers. -#}
+{%- set maxValue = 0 -%}
+{%- for row in dataBars.rows %}{% if row.value > maxValue %}{% set maxValue = row.value %}{% endif %}{% endfor -%}
+<figure class="data-bars">
+  <div class="data-bars__chart" aria-hidden="true">
+    {%- for row in dataBars.rows %}
+    <div class="data-bars__row">
+      <span class="data-bars__label">{{ row.label }}</span>
+      <span class="data-bars__track"><span class="data-bars__bar" style="--bar: {{ (row.value / maxValue * 100) | round(1) }}%"></span></span>
+      <span class="data-bars__value">{{ row.display }}</span>
+    </div>
+    {%- endfor %}
+  </div>
+  <div class="data-bars__table-wrap">
+    <table class="data-bars__table">
+      <thead>
+        <tr>
+          <th scope="col">{{ dataBars.labelHeading }}</th>
+          <th scope="col">{{ dataBars.valueHeading }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%- for row in dataBars.rows %}
+        <tr>
+          <th scope="row">{{ row.label }}</th>
+          <td>{{ row.display }}</td>
+        </tr>
+        {%- endfor %}
+      </tbody>
+    </table>
+  </div>
+</figure>
