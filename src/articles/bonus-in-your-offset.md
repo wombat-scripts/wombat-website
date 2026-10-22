@@ -70,6 +70,10 @@ Yes. I'd rather see a bonus sitting in a linked offset than poured into the loan
 
 A sensible buffer is personal. Think about a few months of essential spending, any known bills coming up, and what you'd need if next year's bonus came in smaller.
 
+## Buying your first home with your bonus?
+
+If your bonus is going towards a deposit, you won't have an offset yet, and this is the best time to get the setup right. Ask whether the loan you're looking at comes with a full offset on the variable split, how splits would work if you fix part of it, and what the offset costs. Some first home buyers keep part of their savings back as a buffer and put it straight into the offset at settlement, rather than using every dollar on the deposit. Whether that suits you depends on your deposit, LMI and the scheme you're using, so it's worth talking through before you commit.
+
 ## What about tax time?
 
 Keep this general and check with your accountant. Tax is withheld from bonuses, but what's withheld won't always match your final bill, especially if you have other income or deductions. If you think you might owe something at tax time, an offset is a handy place to hold that money: it reduces interest while it waits, and it's there when the bill arrives. Just don't treat the whole balance as spare.
@@ -102,6 +106,9 @@ Generally, interest saved isn't treated as income, unlike interest earned in a s
 
 **What happens if my offset has more money than my loan split?**
 The extra doesn't reduce any more interest. You may need to relink the offset or restructure your splits.
+
+**I'm buying my first home. Should I get an offset?**
+If you'll keep savings or a buffer after settlement, usually yes, as long as it's linked to a variable split and the cost is worth it for your balance. It's easier to set up properly at the start than to fix later.
 
 ## Want a second set of eyes on your offset?
 
