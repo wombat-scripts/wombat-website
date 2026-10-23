@@ -3803,6 +3803,10 @@ body.piq-open .piq-report {
   margin-top: var(--space-6);
 }
 
+.piq-search .ads-form__privacy {
+  margin-top: var(--space-4);
+}
+
 #piq-stage.is-embed > .ads-form__privacy,
 body.piq-open #piq-stage > .ads-form__privacy,
 #piq-stage:has(.piq-form.is-success) > .ads-form__privacy {
