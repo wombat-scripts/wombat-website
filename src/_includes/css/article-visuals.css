@@ -313,3 +313,13 @@
   .av-card__icon { width: 2.4rem; height: 2.4rem; margin-bottom: 0.3rem; }
   .av-faq { grid-template-columns: 1fr; }
 }
+
+/* ── Variants: two cards side by side, text-only cards, solid list rules ── */
+.av-compare--pair { grid-template-columns: 1fr 1fr; grid-template-areas: "a b"; }
+.av-card--text { grid-template-columns: 1fr; }
+.av-compare--pair .av-card__body li,
+.av-card__body .av-list--solid li { border-bottom-style: solid; }
+.av-label { display: block; margin-bottom: 0.35rem; letter-spacing: 0.08em; text-transform: uppercase; }
+@media (max-width: 760px) {
+  .av-compare--pair { grid-template-columns: 1fr; grid-template-areas: "a" "b"; }
+}

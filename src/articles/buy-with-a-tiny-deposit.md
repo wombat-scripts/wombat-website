@@ -10,7 +10,7 @@ thumbnailAlt: "A couple on a front lawn holding house keys towards the camera, w
 
 Can you buy a first home in Australia with a tiny deposit? Sometimes. One private door starts at about 2.5% of the purchase price. A registered second mortgage (an equity facility / other liability, not a home loan in the usual sense) bridges up to about 17.5%. A normal first mortgage then sits at about 80%. The aim is no Lenders Mortgage Insurance on that first loan, because it sits at 80%.
 
-That structure is not a government scheme. It is not Help to Buy. It is not the 5% First Home Guarantee. One concrete product in this lane is HAS SmartShare from Home Affordability Solutions ([hasloans.com.au](https://www.hasloans.com.au/)). The rest of this page is about the door itself: when it helps, and when to leave it alone.
+That structure is not a government scheme. It is not Help to Buy. It is not the 5% Deposit Scheme (formerly the First Home Guarantee). One concrete product in this lane is HAS SmartShare from Home Affordability Solutions ([hasloans.com.au](https://www.hasloans.com.au/)). The rest of this page is about the door itself: when it helps, and when to leave it alone.
 
 If a cheaper, simpler path is open, start there. Check [which door is actually open](/which-door/). For the wider high-income, thin-cash map, see [high income, small deposit](/articles/high-income-small-deposit/).
 
@@ -22,7 +22,7 @@ Live products in this lane often work up to about $1.6m. Confirm the live terms 
 
 ### What cash you still need
 
-The 2.5% does not always have to be "genuine savings." Some providers allow a gift, an inheritance, the sale of an asset, or a bonus. The source still has to be verified.
+Under HAS SmartShare, the 2.5% does not always have to be genuine savings (it can be a gift, inheritance or bonus). That is a HAS rule, not a 5% Deposit Scheme rule.
 
 If family is offering to help, share [this guide for parents and grandparents](/articles/helping-your-kids-buy-a-home/) with them.
 

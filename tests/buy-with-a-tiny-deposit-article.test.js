@@ -25,7 +25,7 @@ test('tiny-deposit article matches the first-home explainer pattern', function (
   assert.match(article, /Can you buy with a tiny deposit\? A private equity facility can bridge from about 2\.5% to an ~80% first mortgage\./);
   assert.match(article, /Can you buy a first home in Australia with a tiny deposit\?/);
   assert.match(article, /One private door starts at about 2\.5% of the purchase price\./);
-  assert.match(article, /That structure is not a government scheme\. It is not Help to Buy\. It is not the 5% First Home Guarantee\./);
+  assert.match(article, /That structure is not a government scheme\. It is not Help to Buy\. It is not the 5% Deposit Scheme \(formerly the First Home Guarantee\)\./);
   assert.match(article, /One concrete product in this lane is HAS SmartShare/);
   assert.match(article, /### How the structure works/);
   assert.match(article, /The facility provider is not a co-owner\./);
@@ -58,7 +58,7 @@ test('llms.txt uses the locked tiny-deposit URL and Demand snippet', function ()
   assert.match(llms, /\[Buying with a tiny deposit: how a 2\.5% equity facility works\]\(https:\/\/wombathomeloans\.com\.au\/articles\/buy-with-a-tiny-deposit\/\) - First home \/ low deposit/);
   assert.match(llms, /Private equity facility door: buyer about 2\.5% deposit\./);
   assert.match(llms, /One concrete product in this lane: HAS SmartShare \(Home Affordability Solutions, hasloans\.com\.au\)\./);
-  assert.match(llms, /Not Help to Buy\. Not the 5% First Home Guarantee\./);
+  assert.match(llms, /Not Help to Buy\. Not the 5% Deposit Scheme \(formerly the First Home Guarantee\)\./);
   assert.match(llms, /https:\/\/wombathomeloans\.com\.au\/which-door\//);
   assert.match(llms, /https:\/\/wombathomeloans\.com\.au\/articles\/high-income-small-deposit\//);
   assert.match(llms, /https:\/\/wombathomeloans\.com\.au\/book\//);
