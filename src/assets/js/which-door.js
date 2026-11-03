@@ -9,7 +9,8 @@
 (function (root) {
   'use strict';
 
-  var HA_CAPS = 'https://www.housingaustralia.gov.au/support-buy-home/property-price-caps';
+  var HA_CAPS = 'https://firsthomebuyers.gov.au/australian-government-5-percent-deposit-scheme/property-price-caps';
+  var SCHEME_ARTICLE = '/articles/5-percent-deposit-scheme/';
   var LMI_WAIVER = '/articles/lmi-waiver-bank-employees/';
   var SMALL_DEPOSIT = '/articles/high-income-small-deposit/';
   var KIWISAVER = '/articles/kiwisaver-australian-deposit/';
@@ -159,7 +160,7 @@
     var why = 'You are a first-home buyer, you can get to 5%, and this price sits under the Housing Australia cap for that area. That is the first door I open.';
 
     if (kind === 'sydney') {
-      why = 'You are a first-home buyer, you can get to 5%, and a Sydney, Illawarra, Newcastle or Lake Macquarie price under $1.5 million sits under the published cap. That is the first door I open.';
+      why = 'You are a first-home buyer, you can get to 5%, and a Sydney, Central Coast, Coffs Harbour-Grafton, Illawarra, Mid North Coast, Richmond-Tweed, Newcastle or Lake Macquarie price under $1.5 million sits under the published cap. That is the first door I open.';
     } else if (kind === 'nsw') {
       why = 'You are a first-home buyer, you can get to 5%, and an other-NSW price under $800,000 sits under the published cap. That is the first door I open.';
     } else if (kind === 'state') {
@@ -185,6 +186,8 @@
         'Bring a suburb and a price to the call and I will tell you if this door is open.'
       ];
     }
+
+    paragraphs.push('Read: <a href="' + SCHEME_ARTICLE + '">the 5% Deposit Scheme explained</a>');
 
     return {
       headline: headline,
