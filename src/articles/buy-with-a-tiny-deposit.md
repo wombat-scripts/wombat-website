@@ -32,7 +32,7 @@ So the slogan is 2.5%. The real cash number is 2.5% plus buying costs. Keep stam
 
 ### Growth share, losses, and the lock-in
 
-These facilities typically share in growth above a threshold (often 10%), at an agreed percentage set when the facility starts. They do not share losses. If prices fall, you still owe the facility in full.
+HAS SmartShare is a private second mortgage (commonly 17.5% of the price) that is fixed and interest-only for its first 5 years. When you sell or refinance, it's repaid in full along with an agreed percentage of the property's growth above 10%. HAS doesn't share in losses.
 
 There is usually a multi-year minimum term (often three years). Refinance or sell inside that window and an early exit fee applies. The dollar amount is not always published. After the minimum term you can often refinance the facility out if the first lender will let you. Many customers aim around year 3 to 3.5. The right timing depends on equity, serviceability, and what the first lender will do.
 
