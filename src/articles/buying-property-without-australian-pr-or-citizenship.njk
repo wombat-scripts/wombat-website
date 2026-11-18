@@ -1,0 +1,592 @@
+---
+layout: landing.njk
+title: "Buying a home in Australia on a visa: what you can buy, and how much you can borrow"
+description: "Can you buy a home in Australia on a visa? What FIRB is, the established-home ban to June 2029, and how foreign buyer surcharges differ by state."
+date: 2026-11-18
+category: "Home Loans"
+author: Tom Carr
+ogType: article
+thumbnail: /images/articles/overseas_buyer.webp
+thumbnailAlt: "A man with a yellow backpack looking across rooftops towards a harbour and a distant city"
+permalink: /articles/buying-property-without-australian-pr-or-citizenship/
+# SEO: full <title> (no suffix appended). H1 stays as title.
+seoTitle: "Buying a Home in Australia on a Visa: 2026 Guide | Wombat"
+---
+
+{# Page-specific styles, same components as the bank-staff flagship. #}
+{% block head %}
+<style>
+  .callout {
+    background: var(--paper-cool);
+    border-left: 3px solid var(--steel);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--space-5);
+    margin: var(--space-6) 0;
+  }
+  .callout .eyebrow { margin-bottom: var(--space-2); }
+  .callout .eyebrow::before { display: none; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout ul { margin-bottom: 0; }
+  .callout li { margin-bottom: var(--space-2); }
+  .callout li:last-child { margin-bottom: 0; }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: var(--space-5) 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+  }
+  .table-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--fs-small);
+  }
+  .table-wrap thead { background: var(--navy); color: #fff; }
+  .table-wrap th {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    font-weight: 600;
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .table-wrap td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .table-wrap tbody tr:nth-child(even) { background: var(--paper-cool); }
+  .table-wrap td:first-child { font-weight: 600; color: var(--navy); }
+
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: var(--space-4) var(--space-7) var(--space-4) 0;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy-deep);
+    cursor: pointer;
+    position: relative;
+    line-height: var(--lh-tight);
+  }
+  .faq-q::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    color: var(--steel);
+    transition: transform var(--motion-fast) var(--easing);
+  }
+  .faq-q[aria-expanded="true"]::after { content: '−'; }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--motion-mid) var(--easing);
+  }
+  .faq-a.open { max-height: 400px; }
+  .faq-a p { padding-bottom: var(--space-4); }
+
+  .sources-list { padding-left: 1.2rem; }
+  .sources-list li { margin-bottom: var(--space-3); }
+
+  /* Phone: each visa or state row becomes a card. Labels are the column headings. */
+  @media (max-width: 600px) {
+    .visa-compare-wrap,
+    .state-matrix-wrap {
+      overflow: visible;
+      border: 0;
+      background: transparent;
+    }
+    .visa-compare thead,
+    .state-matrix thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .visa-compare,
+    .visa-compare tbody,
+    .visa-compare tr,
+    .visa-compare td,
+    .state-matrix,
+    .state-matrix tbody,
+    .state-matrix tr,
+    .state-matrix td {
+      display: block;
+      width: auto;
+    }
+    .visa-compare tr,
+    .state-matrix tr {
+      background: var(--card);
+      border: 1px solid var(--ink);
+      border-radius: 2px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: var(--space-4);
+      padding: var(--space-4);
+    }
+    .visa-compare tbody tr:nth-child(even),
+    .state-matrix tbody tr:nth-child(even) { background: var(--card); }
+    .visa-compare td,
+    .state-matrix td {
+      border: 0;
+      padding: 0.4rem 0;
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .visa-compare td:first-child,
+    .state-matrix td:first-child {
+      font-family: var(--font-display);
+      font-size: var(--fs-h4);
+      font-weight: 600;
+      padding-top: 0;
+      padding-bottom: var(--space-2);
+    }
+    .visa-compare td::before,
+    .state-matrix td::before {
+      content: attr(data-label);
+      display: block;
+      font-family: var(--font-body);
+      font-size: var(--fs-meta);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--oak-deep);
+      margin-bottom: 0.15rem;
+    }
+    .visa-compare td:first-child::before,
+    .state-matrix td:first-child::before { content: none; }
+  }
+
+  /* Keep anchored headings clear of the 72px sticky nav. */
+  #state-by-state,
+  #lending-by-visa {
+    scroll-margin-top: calc(72px + var(--space-4));
+  }
+</style>
+{% endblock %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Buying a home in Australia on a visa: what you can buy, and how much you can borrow",
+  "description": "Can you buy a home in Australia on a visa? What FIRB is, the established-home ban to June 2029, and how foreign buyer surcharges differ by state.",
+  "url": "https://wombathomeloans.com.au/articles/buying-property-without-australian-pr-or-citizenship/",
+  "datePublished": "2025-10-22",
+  "dateModified": "2026-11-18",
+  "author": {
+    "@type": "Person",
+    "name": "Tom Carr",
+    "url": "https://wombathomeloans.com.au",
+    "jobTitle": "Mortgage Broker",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Wombat Home Loans"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Wombat Home Loans",
+    "url": "https://wombathomeloans.com.au",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wombathomeloans.com.au/assets/logo-horizontal.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wombathomeloans.com.au/articles/buying-property-without-australian-pr-or-citizenship/"
+  }
+}
+</script>
+
+{# ── Hero ── #}
+<section class="section" style="padding-block: clamp(5rem, 10vw, 9rem);">
+  <div class="container container--narrow" style="text-align: center;">
+    <p class="eyebrow">Home Loans</p>
+    <h1 class="display">Buying a home in Australia on a visa: what you can buy, and how much you can borrow</h1>
+    <p class="meta" style="color: var(--ink-muted);">Last checked: 18 November 2026</p>
+    {% include "partials/article-hero.njk" %}
+  </div>
+</section>
+
+{# ── Short answer ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <div class="callout">
+      <p><strong>The short answer:</strong> yes, many visa holders can buy a home in Australia. What you can buy, and how much a lender will lend, comes down to your visa. Permanent residents are treated much like citizens. Temporary residents need federal approval (FIRB, explained below) and can't buy an established home until at least 30 June 2029. On top of that, most states and territories charge foreign buyers extra stamp duty, and some charge extra land tax every year. Partner visa holders buying with a citizen or PR spouse often have the easiest path.</p>
+    </div>
+    <p>Everyone's situation is different, so this is general information, not advice.</p>
+  </div>
+</section>
+
+{# ── Federal vs state ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <h2>Federal rules and state rules: what's the difference?</h2>
+    <p>Two layers of rules apply.</p>
+    <ul>
+      <li><strong>Federal rules</strong> are the same everywhere in Australia. They decide whether you need approval to buy and what type of property you can buy.</li>
+      <li><strong>State and territory rules</strong> decide the extra costs. Each state sets its own foreign buyer stamp duty, land tax surcharge and first home buyer help, and each has its own test for who counts as foreign.</li>
+    </ul>
+    <p>So you can be fine federally and still pay a state surcharge, or the other way around.</p>
+  </div>
+</section>
+
+{# ── Foreign person ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <h2>Are you a "foreign person"?</h2>
+    <p>For federal property rules you're generally a foreign person if you're not an Australian citizen, not a permanent resident, and not a New Zealand citizen on a special category visa (subclass 444). Temporary visa holders, including most bridging visa holders, are foreign persons.</p>
+    <p>States use their own definitions. Most treat permanent residents as not foreign. NSW adds a test based on days spent in Australia. The state table below shows the differences.</p>
+  </div>
+</section>
+
+{# ── What is FIRB? ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <h2>What is FIRB?</h2>
+    <p>FIRB is the Foreign Investment Review Board. It sits within the federal Treasury and screens foreign purchases of Australian property and businesses, advising the Treasurer. For homes, the ATO runs the process: you lodge the application and pay the fee through the ATO.</p>
+    <p>If you're a foreign person, including a temporary resident, you generally need FIRB approval before you buy a home anywhere in Australia, whatever the price. Permanent residents, citizens and NZ citizens on a 444 visa don't need it.</p>
+    <p>Approval means the government doesn't object to you buying that kind of property. It usually comes with conditions. For example, vacant land has to be built on within four years, and foreign owners of homes generally have to lodge a vacancy return with the ATO each year. Your contract should be conditional on getting approval.</p>
+  </div>
+</section>
+
+{# ── Visa table ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <h2 id="lending-by-visa">How does your visa type change what a lender will do?</h2>
+    <p>Lenders set their own rules, and they change. As a rough guide:</p>
+
+    <div class="table-wrap visa-compare-wrap">
+      <table class="visa-compare">
+        <thead>
+          <tr>
+            <th>Your situation</th>
+            <th>FIRB approval?</th>
+            <th>What you can buy</th>
+            <th>Typical lending (varies by lender)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Your situation">Permanent resident living in Australia</td>
+            <td data-label="FIRB approval?">No</td>
+            <td data-label="What you can buy">Any home, including established</td>
+            <td data-label="Typical lending (varies by lender)">Close to a citizen. Many lenders go up to 95% of the price with lenders mortgage insurance</td>
+          </tr>
+          <tr>
+            <td data-label="Your situation">Partner visa (309/820), buying as joint tenants with a citizen or PR spouse</td>
+            <td data-label="FIRB approval?">No</td>
+            <td data-label="What you can buy">Any home, including established</td>
+            <td data-label="Typical lending (varies by lender)">Some lenders accept this, usually with the citizen or PR partner on the loan too. Limits range from about 70% to 95%, and some lenders don't accept partner visas at all</td>
+          </tr>
+          <tr>
+            <td data-label="Your situation">Partner visa, buying alone</td>
+            <td data-label="FIRB approval?">Yes</td>
+            <td data-label="What you can buy">New homes, off-the-plan or land</td>
+            <td data-label="Typical lending (varies by lender)">Very limited. Most lenders that accept partner visas want the citizen or PR partner on the loan</td>
+          </tr>
+          <tr>
+            <td data-label="Your situation">Skilled temporary visa (such as 482, 491, 494)</td>
+            <td data-label="FIRB approval?">Yes</td>
+            <td data-label="What you can buy">New homes, off-the-plan or land</td>
+            <td data-label="Typical lending (varies by lender)">A smaller group of lenders, usually up to 70% to 80% of the price. A few may go higher with lenders mortgage insurance. Some want 12 months or more left on the visa. Others set a minimum visa length, or accept only certain streams, occupations or the main visa holder</td>
+          </tr>
+          <tr>
+            <td data-label="Your situation">Student, graduate (485) or working holiday visa</td>
+            <td data-label="FIRB approval?">Yes</td>
+            <td data-label="What you can buy">New homes, off-the-plan or land</td>
+            <td data-label="Typical lending (varies by lender)">Mainstream lenders generally say no. Specialist options are limited, if any</td>
+          </tr>
+          <tr>
+            <td data-label="Your situation">NZ citizen on a 444 visa</td>
+            <td data-label="FIRB approval?">No</td>
+            <td data-label="What you can buy">Any home, including established</td>
+            <td data-label="Typical lending (varies by lender)">Often close to PR, but check the lender</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Lenders also look at time left on your visa, whether you're the main visa holder, and whether you're paid in Australian dollars. State surcharges are separate, so check the table further down.</p>
+  </div>
+</section>
+
+{# ── FIRB cost ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <h2>How much does FIRB approval cost?</h2>
+    <p>The fee is tiered by price and changes each year. For new homes or vacant land bought between 1 July 2026 and 30 June 2027, the ATO lists $15,600 for a property up to $1 million and $31,300 up to $2 million. Check the ATO's current table before you sign.</p>
+  </div>
+</section>
+
+{# ── Established homes ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <h2>Can temporary residents buy an established home?</h2>
+    <p>Not right now. From 1 April 2025, foreign persons, including temporary residents, are banned from buying established homes anywhere in Australia. The 2026-27 Budget extended the ban, so it now runs until at least 30 June 2029. Older articles still quote March 2027. That's out of date.</p>
+    <p>With FIRB approval, you can still buy:</p>
+    <ul>
+      <li>a new or near-new home</li>
+      <li>an off-the-plan apartment or house</li>
+      <li>vacant land to build on</li>
+    </ul>
+    <p>There are narrow exceptions: big redevelopments that add 20 or more homes; established homes that support housing on a commercial scale, such as existing build-to-rent, retirement villages, aged care and student housing; and some worker housing provided by foreign-controlled companies under the Pacific Australia Labour Mobility (PALM) scheme. They aren't a way for a household to buy an established home. Knocking down one house and building one new one still counts as buying an established home.</p>
+  </div>
+</section>
+
+{# ── State by state ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <h2 id="state-by-state">State by state: what extra costs do foreign buyers pay?</h2>
+    <p>Most states and territories charge foreign buyers extra stamp duty when they buy, and some charge extra land tax every year. Surcharges are generally charged only on the foreign buyer's share.</p>
+
+    <div class="table-wrap state-matrix-wrap">
+      <table class="state-matrix">
+        <thead>
+          <tr>
+            <th>State</th>
+            <th>Foreign buyer duty surcharge</th>
+            <th>Foreign or absentee land tax surcharge</th>
+            <th>PR, partner visa or day-count rules</th>
+            <th>First home help for foreign buyers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="State">NSW</td>
+            <td data-label="Foreign buyer duty surcharge">9% on top of normal duty</td>
+            <td data-label="Foreign or absentee land tax surcharge">5% of land value a year, no threshold</td>
+            <td data-label="PR, partner visa or day-count rules">PR and 309/820 holders need 200 days in Australia in the 12 months before the contract (or live in it continuously for 200 days within 12 months of the contract, as your home, buying in your own name, not as a trustee). Land tax: PR needs 200 days in the calendar year</td>
+            <td data-label="First home help for foreign buyers">Duty concession and grant need at least one citizen or PR buyer. Concession doesn't remove the 9%</td>
+          </tr>
+          <tr>
+            <td data-label="State">VIC</td>
+            <td data-label="Foreign buyer duty surcharge">8% on top of normal duty</td>
+            <td data-label="Foreign or absentee land tax surcharge">4% absentee owner surcharge, only if you don't ordinarily live in Australia (and were away on 31 Dec or for more than 6 months of the year)</td>
+            <td data-label="PR, partner visa or day-count rules">PR holders not foreign. Possible exemption for a home you live in, bought with a citizen or PR partner</td>
+            <td data-label="First home help for foreign buyers">Duty exemption or concession and grant need at least one citizen, NZ citizen or PR buyer</td>
+          </tr>
+          <tr>
+            <td data-label="State">QLD</td>
+            <td data-label="Foreign buyer duty surcharge">8% on top of normal duty</td>
+            <td data-label="Foreign or absentee land tax surcharge">3% absentee surcharge on land value over $350,000 (if you don't usually live in Australia)</td>
+            <td data-label="PR, partner visa or day-count rules">PR and 444 holders not foreign. Status is set at the contract date, so getting PR later doesn't remove it</td>
+            <td data-label="First home help for foreign buyers">Home and first home duty concessions need citizen, PR or specified foreign retiree status (from 1 Aug 2026). Grant needs a citizen or PR applicant</td>
+          </tr>
+          <tr>
+            <td data-label="State">WA</td>
+            <td data-label="Foreign buyer duty surcharge">7% on top of normal duty</td>
+            <td data-label="Foreign or absentee land tax surcharge">None listed</td>
+            <td data-label="PR, partner visa or day-count rules">PR and 444 holders not foreign. 820 and bridging visas are foreign. Reassessment possible if no longer foreign at transfer</td>
+            <td data-label="First home help for foreign buyers">First home owner rate and grant need at least one citizen or PR. 7% still applies to the foreign share</td>
+          </tr>
+          <tr>
+            <td data-label="State">SA</td>
+            <td data-label="Foreign buyer duty surcharge">7% on top of normal duty</td>
+            <td data-label="Foreign or absentee land tax surcharge">None listed</td>
+            <td data-label="PR, partner visa or day-count rules">Refund if you stop being a foreign person within 12 months of buying</td>
+            <td data-label="First home help for foreign buyers">Duty relief and grant need at least one citizen, PR or NZ citizen on a 444</td>
+          </tr>
+          <tr>
+            <td data-label="State">TAS</td>
+            <td data-label="Foreign buyer duty surcharge">8% on top of normal duty</td>
+            <td data-label="Foreign or absentee land tax surcharge">2% of land value a year (land bought from 1 Jul 2022)</td>
+            <td data-label="PR, partner visa or day-count rules">PR and 444 holders not foreign. Exemption for a couple where only one is foreign, holding the home in equal shares and moving in within 6 months</td>
+            <td data-label="First home help for foreign buyers">Grant needs at least one citizen or PR. Established-home duty exemption ended 30 Jun 2026</td>
+          </tr>
+          <tr>
+            <td data-label="State">ACT</td>
+            <td data-label="Foreign buyer duty surcharge">None</td>
+            <td data-label="Foreign or absentee land tax surcharge">0.75% of land value a year</td>
+            <td data-label="PR, partner visa or day-count rules">Not charged if you're ordinarily resident in Australia or live in the home</td>
+            <td data-label="First home help for foreign buyers">Home Buyer Concession lists no citizenship test. Check with ACT Revenue Office</td>
+          </tr>
+          <tr>
+            <td data-label="State">NT</td>
+            <td data-label="Foreign buyer duty surcharge">None</td>
+            <td data-label="Foreign or absentee land tax surcharge">None (NT has no land tax)</td>
+            <td data-label="PR, partner visa or day-count rules">Not applicable</td>
+            <td data-label="First home help for foreign buyers">HomeGrown Territory Grant needs at least one citizen or PR</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Rules and rates change, so check with the state or territory revenue office before you sign.</p>
+  </div>
+</section>
+
+{# ── Worked example: NSW ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <h2>Worked example: NSW</h2>
+    <p>NSW shows how the state layer works, and it has one test that catches a lot of people out.</p>
+    <ul>
+      <li><strong>Surcharge purchaser duty: 9%</strong> of the price, on top of normal stamp duty. Revenue NSW's own example is a $1 million purchase attracting $90,000 in surcharge duty plus $39,187 in standard duty.</li>
+      <li><strong>Surcharge land tax: 5%</strong> of the land value every year. There's no tax-free threshold, so it applies even when normal land tax doesn't.</li>
+      <li><strong>The 200-day test.</strong> In NSW, a permanent resident only avoids the 9% if they've been in Australia for at least 200 days in the 12 months before the contract. If not, they can still be exempt by living in the home continuously, as their main residence, for at least 200 days within 12 months of the contract, as long as they're buying in their own name, not as a trustee. Partner visa holders (309/820) can use the same tests.</li>
+      <li><strong>Land tax uses a different count.</strong> A PR needs 200 days in Australia in the calendar year. Spend 165 days or more overseas in a year and the 5% can apply.</li>
+      <li><strong>Refunds.</strong> If you paid the surcharge at exchange and you're no longer a foreign person by the date the property transfers to you, for example because PR came through, you may be able to apply for a refund. It isn't automatic.</li>
+    </ul>
+    <p>Other states work differently. Queensland, for example, fixes your status on the contract date, so getting PR before settlement doesn't remove its surcharge.</p>
+  </div>
+</section>
+
+{# ── Buying with a partner ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <h2>Can buying with your partner avoid FIRB?</h2>
+    <p>Yes, if it's done properly. If you're a temporary resident and you buy as <strong>joint tenants</strong> with your spouse or de facto partner who's an Australian citizen, a permanent resident or an eligible NZ citizen, the purchase is exempt from FIRB. That means the established-home ban doesn't apply either.</p>
+    <p>The details matter:</p>
+    <ul>
+      <li>It has to be joint tenants. Tenants in common doesn't qualify.</li>
+      <li>Your partner's citizenship or PR has to already be granted.</li>
+      <li>Tell your conveyancer before the contract is drawn up.</li>
+      <li>It doesn't switch off state surcharges, although some states have their own exemptions for couples buying a home to live in. See the table.</li>
+    </ul>
+    <p>Most lenders will want both of you on the loan.</p>
+  </div>
+</section>
+
+{# ── Trusts and nominees ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <h2>What about trusts, nominees or a relative buying for you?</h2>
+    <p>Steer clear. You'll see these sold online as loopholes. They aren't.</p>
+    <p>If a citizen buys a home that's really for a foreign relative, FIRB looks through to the real owner. The ATO is targeting this, and the results can include forced sale orders and penalties. A company or trust is usually treated as a foreign person if one foreign person holds 20% or more of it, or foreign persons together hold 40% or more. That brings FIRB and state surcharges straight back in. Some states are stricter: in NSW, a discretionary trust can pay surcharge duty if any potential beneficiary is a foreign person.</p>
+    <p>A family guarantor can help with a loan, but it doesn't change anyone's FIRB status.</p>
+  </div>
+</section>
+
+{# ── First home schemes ── #}
+<section class="section section--cool">
+  <div class="container container--narrow">
+    <h2>Can visa holders use first home buyer schemes?</h2>
+    <p>Mostly no. The federal 5% Deposit Scheme is for citizens and permanent residents only, and every applicant on the loan has to qualify. Help to Buy is for citizens only.</p>
+    <p>State first home grants and stamp duty concessions generally need at least one buyer to be a citizen or permanent resident. Even where a concession applies, the foreign buyer's share can still attract the state surcharge. The table above shows each state.</p>
+  </div>
+</section>
+
+{# ── FAQ ── #}
+<section class="section">
+  <div class="container container--narrow">
+    <h2>FAQ</h2>
+    <div style="margin-top: var(--space-5);">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Can I buy a home on a temporary skilled visa?</button>
+        <div class="faq-a"><p>Yes, but with FIRB approval, and only a new home, off-the-plan or land until at least 30 June 2029. A smaller group of lenders will lend.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Do permanent residents pay foreign buyer surcharges?</button>
+        <div class="faq-a"><p>In most states, no. NSW is the main exception: PR holders also need to meet its 200-day test. Check the state table.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Can I buy an established home with my Australian partner?</button>
+        <div class="faq-a"><p>Yes, if you buy as joint tenants and your partner is a citizen, PR or eligible NZ citizen. No FIRB approval is needed.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">I'm on a student visa. Can I get a home loan?</button>
+        <div class="faq-a"><p>Realistically, very hard. Mainstream lenders generally don't lend to student, graduate or working holiday visa holders.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Is FIRB the same as stamp duty?</button>
+        <div class="faq-a"><p>No. FIRB is federal approval to buy. Stamp duty and its foreign buyer surcharges are state taxes. You may need to deal with both.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ── CTA ── #}
+<section class="section section--cool" style="text-align: center;">
+  <div class="container container--narrow">
+    <h2>Talk it through before you sign anything</h2>
+    <p>Tax, stamp duty and FIRB questions can get technical, so you may need a lawyer or accountant as well. I can help with the lending side: who'll lend on your visa, how much, and what to sort out first.</p>
+    <div style="margin-top: var(--space-5);">
+      {% cta "Book a 30-minute chat" %}
+    </div>
+  </div>
+</section>
+
+{# ── Sources ── #}
+<section class="section section--tight">
+  <div class="container container--narrow">
+    <p>Sources: FIRB residential land guidance and Guidance Note 2 (joint tenants exemption); ATO foreign investment fees (last updated 1 July 2026) and established dwelling ban pages; state and territory revenue offices (NSW, VIC, QLD, WA, SA, TAS, ACT, NT), checked 18 November 2026; firsthomebuyers.gov.au.</p>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I buy a home on a temporary skilled visa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, but with FIRB approval, and only a new home, off-the-plan or land until at least 30 June 2029. A smaller group of lenders will lend."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do permanent residents pay foreign buyer surcharges?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In most states, no. NSW is the main exception: PR holders also need to meet its 200-day test. Check the state table."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I buy an established home with my Australian partner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if you buy as joint tenants and your partner is a citizen, PR or eligible NZ citizen. No FIRB approval is needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I'm on a student visa. Can I get a home loan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Realistically, very hard. Mainstream lenders generally don't lend to student, graduate or working holiday visa holders."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is FIRB the same as stamp duty?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. FIRB is federal approval to buy. Stamp duty and its foreign buyer surcharges are state taxes. You may need to deal with both."
+      }
+    }
+  ]
+}
+</script>
+
+{% block scripts %}
+<script>
+  function toggleFaq(btn) {
+    var answer = btn.nextElementSibling;
+    var isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(function(a) { a.classList.remove('open'); });
+    document.querySelectorAll('.faq-q').forEach(function(q) { q.setAttribute('aria-expanded', 'false'); });
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+</script>
+{% endblock %}
