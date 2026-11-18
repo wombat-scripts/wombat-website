@@ -41,7 +41,7 @@ Each state and territory sets its own foreign buyer surcharges. When a property 
 - In **Victoria** (example), if one partner is a foreign purchaser, the Foreign Purchaser Additional Duty (FPAD) of 8% applies to that partner's interest only. Victoria also has an exemption from FPAD when a foreign purchaser buys a home jointly with a spouse or domestic partner who is a citizen or permanent resident, as long as they live in it as their main residence for 12 months. Check the conditions with the State Revenue Office.
 - In **New South Wales** (example), the surcharge purchaser duty (9%) and surcharge land tax (5% each year) apply to the foreign owner's share only. If the foreign partner holds a partner visa (subclass 309 or 820) and has been in Australia for at least 200 days in the 12 months before the contract, they can be treated like a permanent resident for surcharge duty.
 
-Other states differ. Tasmania, for example, also has an exemption for a couple buying a home to live in where only one partner is foreign. For every state and territory, see the [state-by-state table](/articles/buying-property-without-australian-pr-or-citizenship/#state-by-state) in our main visa article.
+Other states differ. Tasmania, for example, also has an exemption for a couple buying a home where only one partner is foreign, as long as they hold it in equal shares and move in within 6 months. For every state and territory, see the [state-by-state table](/articles/buying-property-without-australian-pr-or-citizenship/#state-by-state) in our main visa article.
 
 ## Trusts and Companies: Important Trap
 
@@ -50,7 +50,7 @@ If property is purchased through a trust or company, the foreign person tests ap
 ## Key Takeaways
 
 - Buying as joint tenants with a citizen or PR spouse means no FIRB approval, even for an established home. Tenants in common doesn't qualify.
-- Only the foreign person's share attracts state surcharges.
+- Generally, only the foreign person's share attracts state surcharges.
 - Being married doesn't on its own exempt the foreign partner from state surcharges. Some states have couple exemptions, and in NSW, for example, a 309/820 partner visa holder who meets the 200-day test can be exempt.
 - Trusts and companies require extra caution. Professional advice is essential.
 
@@ -58,4 +58,4 @@ If you and your partner are planning a purchase, speak with your state revenue o
 
 For the full picture on buying while you're on a visa, see [Buying a home in Australia on a visa](/articles/buying-property-without-australian-pr-or-citizenship/).
 
-The lending guide for this situation is [Getting a home loan as an Australian expat: what the banks don't tell you](/articles/expat-home-loan-guide/).
+For how lenders treat a partner visa holder, see [How does your visa type change what a lender will do?](/articles/buying-property-without-australian-pr-or-citizenship/#lending-by-visa).

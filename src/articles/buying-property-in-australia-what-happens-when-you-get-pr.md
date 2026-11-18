@@ -22,8 +22,8 @@ If you hold a temporary visa, the ATO considers you a foreign person for residen
 
 - You must apply for approval through the ATO before you buy.
 - You can only buy certain property types (e.g. new dwellings, off-the-plan, vacant land with build requirements).
-- You can't buy an established home. Foreign persons, including temporary residents, are banned from buying established homes from 1 April 2025 to 30 June 2029, with limited exceptions.
-- Foreign purchaser surcharges and land tax surcharges apply.
+- You can't buy an established home. Foreign persons, including temporary residents, are banned from buying established homes from 1 April 2025 until at least 30 June 2029, with limited exceptions.
+- State foreign buyer surcharges may apply, depending on the state.
 
 ## After PR: No FIRB Approval, But Check the Surcharges
 
@@ -31,7 +31,7 @@ Once you hold a permanent resident visa, you don't need ATO (FIRB) approval to b
 
 The state surcharges are a different question. Each state and territory has its own test, and most treat permanent residents as not foreign. Two examples:
 
-- In **NSW** (example), PR alone isn't enough. To avoid the 9% surcharge purchaser duty, you need to have been in Australia for at least 200 days in the 12 months before the contract date. If you don't meet that, you can still be exempt if you live in the home you're buying, as your main residence, for at least 200 days in the 12 months after the contract. Partner visa holders (subclass 309 or 820) can use the same tests.
+- In **NSW** (example), PR alone isn't enough. To avoid the 9% surcharge purchaser duty, you need to have been in Australia for at least 200 days in the 12 months before the contract date. If you don't meet that, you can still be exempt if you live in the home you're buying continuously, as your main residence, for at least 200 days within 12 months of the contract, and you're buying in your own name, not as a trustee. Partner visa holders (subclass 309 or 820) can use the same tests.
 - NSW **surcharge land tax** (5% of the land value each year) uses a different count. A permanent resident needs to be in Australia for 200 days or more in the calendar year. Spend 165 days or more overseas in a year and the surcharge can apply. Revenue NSW's land tax page only mentions permanent residents here, so if you're on a partner visa, check with Revenue NSW rather than assume the same rule applies.
 - In **Victoria** (example), permanent residents are specifically excluded from the Foreign Purchaser Additional Duty (FPAD).
 
@@ -51,4 +51,4 @@ Confirm your status with the ATO and your state revenue office before you sign a
 
 For the full picture on buying while you're on a visa, see [Buying a home in Australia on a visa](/articles/buying-property-without-australian-pr-or-citizenship/).
 
-Once the status question is clear, the loan guide is [Getting a home loan as an Australian expat: what the banks don't tell you](/articles/expat-home-loan-guide/).
+For how lenders treat PR and visa holders, see [How does your visa type change what a lender will do?](/articles/buying-property-without-australian-pr-or-citizenship/#lending-by-visa). If you're a PR living overseas, the [expat home loan guide](/articles/expat-home-loan-guide/) is the better fit.
