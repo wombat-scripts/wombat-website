@@ -372,15 +372,6 @@ small, .small { font-size: var(--fs-small); }
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  /* Keep markdown columns readable; the table scrolls inside the article. */
-  .article-body table:not(.data-bars__table) th,
-  .article-body table:not(.data-bars__table) td {
-    min-width: 9.5rem;
-  }
-  .article-body table:not(.data-bars__table) th:last-child,
-  .article-body table:not(.data-bars__table) td:last-child {
-    min-width: 16rem;
-  }
 }
 
 /* Article data piece: bars + table from one front-matter source
