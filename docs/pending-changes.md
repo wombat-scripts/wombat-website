@@ -2,6 +2,8 @@
 
 This is the running to-do list. Things to fix, decide, or add. When something is done, move it to `change-log.md`.
 
+26 Nov 2026: Claude GitHub handoff live (test issue).
+
 ---
 
 ## Before launch (must-do)
