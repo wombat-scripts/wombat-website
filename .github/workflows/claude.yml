@@ -1,0 +1,49 @@
+name: Claude
+
+# Claude picks up work when "@claude" appears in a new issue (title or body),
+# an issue comment, or a pull request review comment. Add the "heavy" label to
+# an issue to use Opus; everything else runs on Sonnet.
+on:
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+
+concurrency:
+  group: claude-${{ github.event.issue.number || github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  claude:
+    if: >-
+      (github.event_name == 'issues' &&
+        (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude'))) ||
+      (github.event_name != 'issues' && contains(github.event.comment.body, '@claude'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # Kevin and Amy open issues through Cursor's GitHub app. Bots are
+          # refused by default; adjust this name if the first run shows a
+          # different bot login.
+          allowed_bots: "cursor[bot]"
+          claude_args: >-
+            --model ${{ contains(github.event.issue.labels.*.name, 'heavy') && 'claude-opus-5-5' || 'claude-sonnet-5-5' }}
+            --max-turns 40
+            --allowedTools "Bash(npm install),Bash(npm ci),Bash(npm test),Bash(npm run build),Bash(git:*)"

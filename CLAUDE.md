@@ -85,3 +85,16 @@ Vanilla JS only. Five modules: nav scroll state, marquee duplication, reveal-on-
 - `docs/meta-and-seo.md` — SEO/schema rules, sitemap priorities, social preview validation checklist
 - `docs/CHANGELOG.md` — log of meaningful changes
 - `docs/pending-changes.md` — upcoming work
+
+## Working from GitHub issues
+
+Work usually arrives as a GitHub issue written by BackEnd - Kevin or FrontEnd - Amy (Grok Bot agents) from Tom's direction. Tom sets outcomes; you decide how.
+
+- **Never push to `main`.** Netlify deploys `main` live within about 30 seconds. Work on a branch named `claude/issue-<number>-<short-slug>`.
+- Before finishing, run `npm test` and `npm run build`; both must pass.
+- Follow "When adding a new page" above, and add a line to `docs/CHANGELOG.md` for any visible change.
+- Finish with a comment on the issue: what changed, files touched, test and build result, and anything Tom should check by eye. Keep it short and plain.
+- If the brief is unclear or conflicts with this file (brand rules, the "Never change" list), ask in the issue instead of guessing.
+- Pull requests are reviewed by Verify - Helen. Her verdict is a comment starting `HELEN: GREEN`, `HELEN: GREY` or `HELEN: RED`. Fix anything RED, then ask her to re-check.
+- No client personal or credit information anywhere: code, copy, examples, test fixtures or comments.
+- House rules for all Wombat agents: `wombat-scripts/wombat-agents` → `AGENTS.md`.
